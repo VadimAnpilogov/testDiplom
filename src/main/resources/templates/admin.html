@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body th:replace="fragments/menu :: menu"></body>
+<body>
+
+<div class="container">
+
+    <div>
+        <h1>Admin page (Spring Security protected)</h1>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    </div>
+</div>
+</body>
+</html>

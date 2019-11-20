@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body th:fragment="menu">
+
+<nav>
+    <ul>
+        <li><a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a></li>
+        <li><a href="home">Home</a></li>
+
+<!--        <li><a href="/registration">регистрация</a></li>-->
+    </ul>
+</nav>
+
+
+
+<table>
+    <tr>
+        <td> <a href="logout">Выйти</a></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

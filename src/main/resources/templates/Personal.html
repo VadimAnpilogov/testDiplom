@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body th:replace="fragments/menu :: menu"></body>
+<body>
+
+<div >
+    <div>
+        <h1 style="color:#0000ff">Личный кабинет</h1>
+        <h1 th:inline="text" style="color:#0000ff">Здравствуйте [[${#httpServletRequest.remoteUser}]]!</h1>
+    </div>
+</div>
+<h3 style="color:#0000ff">Вот ваши личные данные</h3>
+<br>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<!--<body th:replace="fragments/menu :: menu"></body>-->
+
+<body>
+
+<form action="userR">
+    <div align="center">
+        <input type="submit" class="loginForm" value="Регистрация студент"/>
+    </div>
+</form>
+<br>
+<form action="adminR">
+    <div align="center">
+        <input type="submit" class="loginForm" value="Регистрация преподователь"/>
+    </div>
+</form>
+
+<nav>
+    <ul>
+        <!--        <li><a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a></li>-->
+        <li><a href="NoAuthHome">Вернуться назад</a></li>
+
+        <!--        <li><a href="/registration">регистрация</a></li>-->
+    </ul>
+</nav>
+</body>
+</html>

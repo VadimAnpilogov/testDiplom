@@ -31,8 +31,14 @@ public class MessagesController {
 
         return "message";
     }
+    @GetMapping("messageS")
+    public String messageS(Model model){
+        Iterable<Messages> messS = sMessageRepo.findAll();
+        model.addAttribute("messageS", messS);
 
-    @GetMapping("message/{recipient}")
+        return "messageS";
+    }
+    @GetMapping("messageR/{recipient}")
     public String messageR(@PathVariable String recipient, Model model){
         recipient1 = recipient;
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
@@ -46,7 +52,7 @@ public class MessagesController {
         sender1 = sender;
         Iterable<Messages> messS = sMessageRepo.findAll();
         model.addAttribute("messageS", messS);
-        return "message";
+        return "messageS";
     }
     @PostMapping("messageAdd")
     public String messageAdd(Messages messages){
@@ -54,7 +60,7 @@ public class MessagesController {
         messages.setSender(sender1);
         sMessageRepo.save(messages);
 
-        return "message";
+        return "messageS";
     }
 
 //    @PostMapping("/adminR")

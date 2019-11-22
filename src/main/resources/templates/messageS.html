@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body th:replace="fragments/menu :: menu"></body>
+<body>
+
+<div >
+    <div>
+        <h1 style="color:#0000ff"> сообщения</h1>
+    </div>
+</div>
+
+<form method="post" action="messageAdd">
+    <table align="center" >
+        <tr>
+            <td width="400px">
+                <p>Ваши сообщения пользователю:</p>
+            </td>
+            <td width="400px">
+                <p>Сообщения от этого пользователя:</p>
+            </td>
+        </tr>
+        <tr th:each="mesS : ${messageS}">
+            <td width="400px" th:utext="${mesS.message}"></td>
+            <!--        <td width="400px" th:utext="${mesS.username}"></td>-->
+        </tr>
+        <tr>
+            <td width="400px">
+                <input type="message" name="message"
+                       placeholder="Введите ваше сообщение" required="true"/>
+            <td> <input type="submit"value="Отправить"/></td>
+            </td>
+        </tr>
+
+
+    </table>
+</form>
+
+
+</body>
+</html>

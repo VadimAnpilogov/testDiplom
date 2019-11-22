@@ -30,31 +30,31 @@
 </form>
 
 
-<form method="post" action="messageAdd">
-    <table align="center" th:each="mesS : ${messageS}">
-        <tr>
-            <td width="400px">
-                <p>Ваши сообщения пользователю:</p>
-            </td>
-            <td width="400px">
-                <p>Сообщения от этого пользователя:</p>
-            </td>
-        </tr>
-        <tr>
-            <td width="400px" th:utext="${mesS.message}"></td>
-            <!--        <td width="400px" th:utext="${mesS.username}"></td>-->
-        </tr>
-        <tr>
-            <td width="400px">
-                <input type="message" name="message"
-                       placeholder="Введите ваше сообщение" required="true"/>
-            <td> <input type="submit"value="Отправить"/></td>
-            </td>
-        </tr>
+<!--<form method="post" action="messageAdd">-->
+<!--    <table align="center" th:each="mesS : ${messageS}">-->
+<!--        <tr>-->
+<!--            <td width="400px">-->
+<!--                <p>Ваши сообщения пользователю:</p>-->
+<!--            </td>-->
+<!--            <td width="400px">-->
+<!--                <p>Сообщения от этого пользователя:</p>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td width="400px" th:utext="${mesS.message}"></td>-->
+<!--            &lt;!&ndash;        <td width="400px" th:utext="${mesS.username}"></td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td width="400px">-->
+<!--                <input type="message" name="message"-->
+<!--                       placeholder="Введите ваше сообщение" required="true"/>-->
+<!--            <td> <input type="submit"value="Отправить"/></td>-->
+<!--            </td>-->
+<!--        </tr>-->
 
 
-    </table>
-</form>
+<!--    </table>-->
+<!--</form>-->
 
 
 </body>

@@ -26,6 +26,7 @@ jar {
     }
 }
 dependencies {
+//    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
     compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.1.9.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.6.RELEASE'
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'

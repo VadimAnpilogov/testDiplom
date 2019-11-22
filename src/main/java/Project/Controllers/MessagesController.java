@@ -27,11 +27,8 @@ public class MessagesController {
 
     @GetMapping("message")
     public String message(Model model){
-
-
-//        if(){
-//
-//        }
+        Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
+        model.addAttribute("messageU", messU);
         Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
         Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
         model.addAttribute("messageS", messS);
@@ -39,14 +36,7 @@ public class MessagesController {
 
         return "message";
     }
-    @GetMapping("messageS")
-    public String messageS(Model model){
-//        Iterable<Messages> messS = sMessageRepo.findAll();
-        Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
-        model.addAttribute("messageS", messS);
 
-        return "messageS";
-    }
     @GetMapping("messageR/{recipient}")
     public String messageR(@PathVariable String recipient, Model model){
         recipient1 = recipient;
@@ -60,18 +50,21 @@ public class MessagesController {
     public String messageU(@PathVariable String sender, Model model){
         sender1 = sender;
 //        Iterable<Messages> messS = sMessageRepo.findAll();
+        Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
+        model.addAttribute("messageU", messU);
         Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
         Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
         model.addAttribute("messageS", messS);
         model.addAttribute("messageS1", messS1);
-        return "messageS";
+        return "message";
     }
     @GetMapping("messageU/messageAdd")
     public String messageAdd(@RequestParam String message, Model model){
 //        messages1.setRecipient(recipient1);
 //        messages1.setSender(sender1);
 //        sMessageRepo.save(messages1);
-
+        Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
+        model.addAttribute("messageU", messU);
         Messages messages = new Messages(message, recipient1, sender1);
         sMessageRepo.save(messages);
 
@@ -84,7 +77,7 @@ public class MessagesController {
         model.addAttribute("messageS", messS);
         model.addAttribute("messageS1", messS1);
 
-        return "messageS";
+        return "message";
     }
 
 }

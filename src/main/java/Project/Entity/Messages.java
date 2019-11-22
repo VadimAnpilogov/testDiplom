@@ -17,6 +17,13 @@ public class Messages {
     private String sender;
 //    private boolean active;
 
+public Messages(){}
+
+    public Messages(String message, String recipient, String sender) {
+        this.message = message;
+        this.recipient = recipient;
+        this.sender = sender;
+    }
 
     public Long getId() {
         return id;

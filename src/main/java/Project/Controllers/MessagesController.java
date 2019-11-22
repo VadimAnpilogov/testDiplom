@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MessagesController {
@@ -54,11 +55,16 @@ public class MessagesController {
         model.addAttribute("messageS", messS);
         return "messageS";
     }
-    @PostMapping("messageAdd")
-    public String messageAdd(Messages messages){
-        messages.setRecipient(recipient1);
-        messages.setSender(sender1);
+    @GetMapping("messageU/messageAdd")
+    public String messageAdd(@RequestParam String message, Model model){
+//        messages1.setRecipient(recipient1);
+//        messages1.setSender(sender1);
+//        sMessageRepo.save(messages1);
+
+        Messages messages = new Messages(message, recipient1, sender1);
         sMessageRepo.save(messages);
+        Iterable<Messages> messS = sMessageRepo.findAll();
+        model.addAttribute("messageS", messS);
 
         return "messageS";
     }

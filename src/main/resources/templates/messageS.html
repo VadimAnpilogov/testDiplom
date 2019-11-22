@@ -21,9 +21,20 @@
             <td width="400px">
                 <p>Сообщения от этого пользователя:</p>
             </td>
+            <td width="400px">
+                <p>Сообщения этому пользователя:</p>
+            </td>
         </tr>
         <tr th:each="mesS : ${messageS}">
             <td width="400px" th:utext="${mesS.message}"></td>
+            <td width="400px" th:utext="${mesS.recipient}"></td>
+            <td width="400px" th:utext="${mesS.sender}"></td>
+            <!--        <td width="400px" th:utext="${mesS.username}"></td>-->
+        </tr>
+        <tr th:each="mesS : ${messageS1}">
+            <td width="400px" th:utext="${mesS.message}"></td>
+            <td width="400px" th:utext="${mesS.recipient}"></td>
+            <td width="400px" th:utext="${mesS.sender}"></td>
             <!--        <td width="400px" th:utext="${mesS.username}"></td>-->
         </tr>
         <tr>

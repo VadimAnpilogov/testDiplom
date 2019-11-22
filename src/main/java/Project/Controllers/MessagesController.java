@@ -27,14 +27,22 @@ public class MessagesController {
 
     @GetMapping("message")
     public String message(Model model){
-        Iterable<Messages> messS = sMessageRepo.findAll();
+
+
+//        if(){
+//
+//        }
+        Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
+        Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
         model.addAttribute("messageS", messS);
+        model.addAttribute("messageS1", messS1);
 
         return "message";
     }
     @GetMapping("messageS")
     public String messageS(Model model){
-        Iterable<Messages> messS = sMessageRepo.findAll();
+//        Iterable<Messages> messS = sMessageRepo.findAll();
+        Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
         model.addAttribute("messageS", messS);
 
         return "messageS";
@@ -51,8 +59,11 @@ public class MessagesController {
     @GetMapping("/messageU/{sender}")
     public String messageU(@PathVariable String sender, Model model){
         sender1 = sender;
-        Iterable<Messages> messS = sMessageRepo.findAll();
+//        Iterable<Messages> messS = sMessageRepo.findAll();
+        Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
+        Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
         model.addAttribute("messageS", messS);
+        model.addAttribute("messageS1", messS1);
         return "messageS";
     }
     @GetMapping("messageU/messageAdd")
@@ -63,23 +74,17 @@ public class MessagesController {
 
         Messages messages = new Messages(message, recipient1, sender1);
         sMessageRepo.save(messages);
-        Iterable<Messages> messS = sMessageRepo.findAll();
+
+
+
+
+//        Iterable<Messages> messS = sMessageRepo.findAll();
+        Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
+        Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
         model.addAttribute("messageS", messS);
+        model.addAttribute("messageS1", messS1);
 
         return "messageS";
     }
 
-//    @PostMapping("/adminR")
-//    public String addAdmin(User user,Model model){
-//        User userFromDB = userRepository.findByUsername(user.getUsername());
-//        if(userFromDB != null){
-//            model.addAttribute("messages", "User exists");
-//            return "adminR";
-//        }
-//
-//        user.setActive(true);
-//        user.setRoles(Collections.singleton(Role.ADMIN));
-//        userRepository.save(user);
-//        return "home";
-//    }
 }

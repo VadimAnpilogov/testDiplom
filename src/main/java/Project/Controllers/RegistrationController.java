@@ -3,6 +3,7 @@ package Project.Controllers;
 import Project.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,29 +39,27 @@ public class RegistrationController {
 
 
     @PostMapping("/userR")
-    public String addUser(User user, Map<String, Object> model){
+    public String addUser(User user, Model model){
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if(userFromDB != null){
-            model.put("message", "User exists");
-            return "login";
+            model.addAttribute("messages", "User exists");
+            return "userR";
         }
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-//        user.setRoles("USER");
         userRepository.save(user);
         return "home";
     }
     @PostMapping("/adminR")
-    public String addAdmin(User user, Map<String, Object> model){
+    public String addAdmin(User user,Model model){
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if(userFromDB != null){
-            model.put("message", "User exists");
-            return "login";
+            model.addAttribute("messages", "User exists");
+            return "adminR";
         }
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.ADMIN));
-//        user.setRoles("ADMIN");
         userRepository.save(user);
         return "home";
     }

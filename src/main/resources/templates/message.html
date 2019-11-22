@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body th:replace="fragments/menu :: menu"></body>
+<body>
+
+<div >
+    <div>
+        <h1 style="color:#0000ff">Личные сообщения</h1>
+    </div>
+</div>
+
+<form>
+    <table align="left">
+        <tr>
+
+            <p>Выберите, кому хотите написать сообщение:</p>
+
+        </tr>
+        <tr th:each="mesU : ${messageU}">
+
+            <td width="60px" th:utext="${mesU.username}"></td>
+            <td><a th:href="@{'/messageU/{sender}'(sender=${mesU.username})}"><h5>Написать</h5></a></td>
+<!--            <td><input type="submit"value="Написать"/></td>-->
+        </tr>
+    </table>
+
+</form>
+
+
+<form method="post" action="messageAdd">
+    <table align="center" th:each="mesS : ${messageS}">
+        <tr>
+            <td width="400px">
+                <p>Ваши сообщения пользователю:</p>
+            </td>
+            <td width="400px">
+                <p>Сообщения от этого пользователя:</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="400px" th:utext="${mesS.message}"></td>
+            <!--        <td width="400px" th:utext="${mesS.username}"></td>-->
+        </tr>
+        <tr>
+            <td width="400px">
+                <input type="message" name="message"
+                       placeholder="Введите ваше сообщение" required="true"/>
+            <td> <input type="submit"value="Отправить"/></td>
+            </td>
+        </tr>
+
+
+    </table>
+</form>
+
+
+</body>
+</html>

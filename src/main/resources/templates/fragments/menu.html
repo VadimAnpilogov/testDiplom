@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <body th:fragment="menu">
 
@@ -18,7 +19,26 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a>
             </li>
-            <li class="nav-item">
+<div th:if="${#request.isUserInRole('ADMIN')}">
+    <li class="nav-item">
+        <a class="nav-link" href="home">Настройки</a>
+    </li>
+</div>
+            <div >
+                <li class="nav-item" sec:authorize="${hasAuthority('USER')}">
+                    <a class="nav-link" href="home">Настройки2</a>
+                </li>
+            </div>
+            <div >
+                <li class="nav-item" sec:authorize="${hasAuthority('ADMIN')}">
+                    <a class="nav-link" href="home">Настройки3</a>
+                </li>
+            </div>
+<!--           <div th:text="${#request.}" >-->
+<!--               [[${#httpServletRequest.remoteUser}]]-->
+<!--               [[${#httpServletRequest.isSecure()}]]-->
+<!--           </div>-->
+            <li class="nav-item" >
                 <a class="nav-link" href="logout">Выйти</a>
             </li>
         </ul>

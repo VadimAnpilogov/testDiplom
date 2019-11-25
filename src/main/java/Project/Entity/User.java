@@ -23,6 +23,11 @@ public class User {
     public User(){}
 
 
+    public boolean isRole(){
+
+        return roles.contains(Role.ADMIN);
+    }
+
     public Long getId() {
         return id;
     }

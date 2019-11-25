@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments/head :: head"></head>
 <div class="back">
 
@@ -21,6 +22,19 @@
         </tr>
     </table>
 </div>
+<div sec:authentication="name">11111111</div> <!-- works fine -->
+<div sec:authentication="principal.authorities">2222222222</div> <!-- works fine -->
 
+<div sec:authorize="${hasAuthority('USER')}">333333</div>
+<div sec:authorize="${hasAuthority('ADMIN')}">44444444</div>
+
+<div  sec:authorize="isAuthenticated()" >true</div> <!-- works fine -->
+<!--<span th:text="${#authorization.expression('isAuthenticated()')}"></span> &lt;!&ndash; works fine &ndash;&gt;-->
+
+<!--<div th:text="${#vars.}">rtyuio</div> &lt;!&ndash;Works fine &ndash;&gt;-->
+<div  sec:authorize="${hasRole('ADMIN')}" > IS ADMIN </div> <!-- Doesnt work -->
+<!--7.<div  sec:authorize="${hasRole(#vars.role_admin)}" > IS ADMIN </div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
+<!--<div th:text="${#authorization.expression('hasRole(''ADMIN'')')} "></div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
+<!--<div th:text="${#authorization.expression('hasRole(#vars.role_admin)')}"></div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
 </body>
 </html>

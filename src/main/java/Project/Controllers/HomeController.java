@@ -10,12 +10,12 @@ public class HomeController {
 
     @GetMapping(value = {"/", "/NoAuthHome"})
     public String NoAuthHome() {
-        return "/NoAuthHome";
+        return "NoAuthHome";
     }
 
     @GetMapping("/home")
     public String home() {
-        return "/home";
+        return "home";
     }
 
 }

@@ -1,20 +1,31 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
 
 <body th:replace="fragments/menu :: menu"></body>
+<body th:replace="fragments/menuPersonal :: menuPersonal"></body>
 <body>
 
-<div >
-    <div>
-        <h1 style="color:#0000ff">Личный кабинет</h1>
-        <h1 th:inline="text" style="color:#0000ff">Здравствуйте [[${#httpServletRequest.remoteUser}]]!</h1>
-    </div>
-</div>
-<h3 style="color:#0000ff">Вот ваши личные данные</h3>
+<h1  align="center" style="color:#0000ff">Личный кабинет</h1>
+<!--<h3 style="color:#0000ff">Вот ваши личные данные</h3>-->
 <br>
-<a th:href="@{'/messageR/{recipient}'(recipient=${#httpServletRequest.remoteUser})}">Личные сообщения</a>
+<!--<a th:href="@{'/messageR/{recipient}'(recipient=${#httpServletRequest.remoteUser})}">Личные сообщения</a>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

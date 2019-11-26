@@ -23,16 +23,17 @@
     </table>
 </div>
 <div sec:authentication="name">11111111</div> <!-- works fine -->
-<div sec:authentication="principal.authorities">2222222222</div> <!-- works fine -->
+<!--<div sec:authentication="principal.authorities">2222222222</div> &lt;!&ndash; works fine &ndash;&gt;-->
 
 <div sec:authorize="${hasAuthority('USER')}">333333</div>
 <div sec:authorize="${hasAuthority('ADMIN')}">44444444</div>
 
-<div  sec:authorize="isAuthenticated()" >true</div> <!-- works fine -->
+<div  sec:authorize="!isAuthenticated()" >true</div> <!-- works fine -->
 <!--<span th:text="${#authorization.expression('isAuthenticated()')}"></span> &lt;!&ndash; works fine &ndash;&gt;-->
 
 <!--<div th:text="${#vars.}">rtyuio</div> &lt;!&ndash;Works fine &ndash;&gt;-->
 <div  sec:authorize="${hasRole('ADMIN')}" > IS ADMIN </div> <!-- Doesnt work -->
+Logged user: <span sec:authentication="name">Bob</span>
 <!--7.<div  sec:authorize="${hasRole(#vars.role_admin)}" > IS ADMIN </div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
 <!--<div th:text="${#authorization.expression('hasRole(''ADMIN'')')} "></div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
 <!--<div th:text="${#authorization.expression('hasRole(#vars.role_admin)')}"></div> &lt;!&ndash; Doesnt work &ndash;&gt;-->

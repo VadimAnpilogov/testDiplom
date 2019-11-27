@@ -19,8 +19,6 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-
-
     @GetMapping("/Personal")
     public String personalUser(Model model){
     User user1 = userRepo.findByUsername(username1);
@@ -35,7 +33,10 @@ public class UserController {
         model.addAttribute("users", user1);
 
         return "redirect:/Personal";
-
-
     }
+
+
+
+
+
 }

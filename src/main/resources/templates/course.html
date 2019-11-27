@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+</head>
+
+<body th:replace="fragments/menu :: menu"></body>
+<body th:replace="fragments/menuPersonal :: menuPersonal"></body>
+<body>
+
+<h1  align="center" style="color:#0000ff">Курсы</h1>
+<br>
+<form  action="addCourse?CourseName1=CourseName">
+    <table align="center">
+        <tr>
+            <td width="400px">
+                <p>Название курса</p>
+            </td>
+            <td>
+                <p>Преподаватель</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td width="400px">
+                <input type="CourseName1" name="CourseName"
+                       placeholder="Введите название курса" required="true"/>
+            </td>
+            <td></td>
+            <td> <input type="submit"value="Добавить"/></td>
+        </tr>
+        <tr th:each="cor : ${Course1}">
+            <td th:utext="${cor.courseName}"></td>
+            <td th:utext="${cor.prepName}"></td>
+        </tr>
+
+    </table>
+</form>
+
+
+</body>
+</html>

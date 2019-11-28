@@ -18,24 +18,32 @@ public class CourseController {
     public CourseRepo courseRepo;
 
     public  String PrepName;
-    @GetMapping("course/{prepName}")
-    public String course(@PathVariable String prepName, Model model){
-        PrepName=prepName;
-        Iterable<Course> course = courseRepo.findAllByOrderByCourseNameAsc();
-        model.addAttribute("Course1", course);
+    public String CourseName;
+
+    @GetMapping("course")
+    public String course(Model model){
+
+        Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
+        model.addAttribute("QCourse1", course);
         return "course";
     }
 
-    @GetMapping("addCourse")
+    @GetMapping("createCourse/addCourse")
     public String addCourse(@RequestParam String courseName, Model model){
-
-        Iterable<Course> course1 = courseRepo.findAllByOrderByCourseNameAsc();
-        model.addAttribute("Course1", course1);
+//        CourseName = courseName;
         Course course = new Course(courseName, PrepName);
         courseRepo.save(course);
-        return  "course";
+        Iterable<Course> course1 = courseRepo.findAllByOrderByIdAsc();
+        model.addAttribute("QCourse1", course1);
+        return  "CreateCourse";
     }
 
-
+    @GetMapping("createCourse/{prepName}")
+    public String CreateCourse(@PathVariable String prepName, Model model){
+        PrepName=prepName;
+        Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
+        model.addAttribute("QCourse1", course);
+        return "CreateCourse";
+    }
 
 }

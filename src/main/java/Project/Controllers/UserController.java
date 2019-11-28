@@ -1,5 +1,6 @@
 package Project.Controllers;
 
+import Project.Repository.UMessageRepo;
 import Project.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,11 +15,14 @@ import Project.Entity.User;
 //@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     public String username1="test1";
-
+    public int roleA=0;
+    public int roleU=1;
 
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private UMessageRepo uMessageRepo;
     @GetMapping("/Personal")
     public String personalUser(Model model){
     User user1 = userRepo.findByUsername(username1);
@@ -36,7 +40,22 @@ public class UserController {
     }
 
 
+    @GetMapping("Prep")
+    public String Prep( Model model){
+        Iterable<User> userRole = uMessageRepo.findAllByRl(roleA);
+        model.addAttribute("prepod", userRole);
 
+        return "Prep";
+    }
+
+
+    @GetMapping("Stud")
+    public String Stud(Model model){
+
+        Iterable<User> userRole = uMessageRepo.findAllByRl(roleU);
+        model.addAttribute("student",userRole);
+        return "Stud";
+    }
 
 
 }

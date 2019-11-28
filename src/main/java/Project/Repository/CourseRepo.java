@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CourseRepo extends CrudRepository<Course, String > {
-    List<Course> findAllByOrderByCourseNameAsc();
+public interface CourseRepo extends CrudRepository<Course, Long > {
+    List<Course> findAllByOrderByIdAsc();
 }

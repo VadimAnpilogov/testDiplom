@@ -10,7 +10,7 @@
 
 <h1  align="center" style="color:#0000ff">Курсы</h1>
 <br>
-<form>
+<form  action="addCourse?courseName1=courseName">
     <table align="center">
         <tr>
             <td width="400px">
@@ -20,6 +20,13 @@
                 <p>Преподаватель</p>
             </td>
             <td></td>
+        </tr>
+        <tr>
+            <td width="400px">
+                <input type="courseName1" name="courseName"
+                       placeholder="Введите название курса" required="true"/>
+            </td>
+            <td> <input type="submit"value="Добавить"/></td>
         </tr>
         <tr th:each="cor : ${QCourse1}">
             <td th:utext="${cor.courseName}"></td>

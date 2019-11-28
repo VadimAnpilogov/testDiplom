@@ -46,6 +46,7 @@ public class RegistrationController {
             return "userR";
         }
         user.setActive(true);
+        user.setRl(1);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
         return "home";
@@ -59,6 +60,7 @@ public class RegistrationController {
         }
 
         user.setActive(true);
+        user.setRl(0);
         user.setRoles(Collections.singleton(Role.ADMIN));
         userRepository.save(user);
         return "home";

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UMessageRepo extends CrudRepository<User, Integer> {
+public interface UMessageRepo extends CrudRepository<User, Long> {
     List<User> findAllByOrderByIdAsc();
-
+    List<User> findAllByRl(int rl);
 }

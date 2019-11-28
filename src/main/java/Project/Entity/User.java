@@ -14,6 +14,7 @@ public class User {
     private String username;
     private String password;
     private boolean active;
+    private int rl;
 
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -23,9 +24,18 @@ public class User {
     public User(){}
 
 
-    public boolean isRole(){
+//    public boolean isRole(){
+//
+//        return roles.contains(Role.ADMIN);
+//    }
 
-        return roles.contains(Role.ADMIN);
+
+    public int getRl() {
+        return rl;
+    }
+
+    public void setRl(int rl) {
+        this.rl = rl;
     }
 
     public Long getId() {

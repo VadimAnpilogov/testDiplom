@@ -13,17 +13,13 @@
 <form>
     <table align="center">
         <tr>
-            <td width="400px">
-                <p>Название курса</p>
-            </td>
             <td>
-                <p>Преподаватель</p>
+                <p>Студенты</p>
             </td>
             <td></td>
         </tr>
-        <tr th:each="cor : ${QCourse1}">
-            <td th:utext="${cor.courseName}"></td>
-            <td th:utext="${cor.prepName}"></td>
+        <tr th:each="stud : ${student}">
+            <td th:utext="${stud.username}"></td>
         </tr>
 
     </table>

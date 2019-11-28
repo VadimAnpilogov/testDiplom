@@ -30,9 +30,9 @@ public class MessagesController {
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
         Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
-        Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
+//        Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
         model.addAttribute("messageS", messS);
-        model.addAttribute("messageS1", messS1);
+//        model.addAttribute("messageS1", messS1);
 
         return "message";
     }
@@ -60,9 +60,7 @@ public class MessagesController {
     }
     @GetMapping("messageU/messageAdd")
     public String messageAdd(@RequestParam String message, Model model){
-//        messages1.setRecipient(recipient1);
-//        messages1.setSender(sender1);
-//        sMessageRepo.save(messages1);
+
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
         Messages messages = new Messages(message, recipient1, sender1);

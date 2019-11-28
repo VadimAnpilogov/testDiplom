@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SMessageRepo extends CrudRepository<Messages, Integer> {
+public interface SMessageRepo extends CrudRepository<Messages, Long> {
     List<Messages> findByRecipientAndSender(String recipient, String sender);
 
 

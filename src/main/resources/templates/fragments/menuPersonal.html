@@ -16,16 +16,16 @@
                         <a class="nav-link" th:href="@{'/messageR/{recipient}'(recipient=${#httpServletRequest.remoteUser})}">Личные сообщения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{'/course/{prepName}'(prepName=${#httpServletRequest.remoteUser})}">Курсы</a>
+                        <a class="nav-link" href="/course">Курсы</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="${hasAuthority('ADMIN')}">
+                        <a class="nav-link" th:href="@{'/createCourse/{prepName}'(prepName=${#httpServletRequest.remoteUser})}">Создание курса</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Создание курса</a>
+                        <a class="nav-link" href="Prep">Преподаватели</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Преподаватели</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Студенты</a>
+                        <a class="nav-link" href="Stud">Студенты</a>
                     </li>
                 </ul>
 

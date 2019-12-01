@@ -24,7 +24,7 @@ public class MessagesController {
     public UMessageRepo uMessageRepo;
     @Autowired
     public SMessageRepo sMessageRepo;
-
+//Страница сообщений
     @GetMapping("message")
     public String message(Model model){
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
@@ -36,7 +36,7 @@ public class MessagesController {
 
         return "message";
     }
-
+//Получение имени получателя
     @GetMapping("messageR/{recipient}")
     public String messageR(@PathVariable String recipient, Model model){
         recipient1 = recipient;
@@ -45,7 +45,7 @@ public class MessagesController {
 
         return "message";
     }
-
+    //Получение имени отправителя
     @GetMapping("/messageU/{sender}")
     public String messageU(@PathVariable String sender, Model model){
         sender1 = sender;
@@ -58,6 +58,7 @@ public class MessagesController {
         model.addAttribute("messageS1", messS1);
         return "message";
     }
+//Отправка сообщения
     @GetMapping("messageU/messageAdd")
     public String messageAdd(@RequestParam String message, Model model){
 

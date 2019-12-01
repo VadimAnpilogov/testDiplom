@@ -4,26 +4,32 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
 
-<body th:replace="fragments/menu :: menu"></body>
+<!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/menuPersonal :: menuPersonal"></body>
 <body>
 
-<h1  align="center" style="color:#0000ff">Курсы</h1>
+<h1  align="center" style="color:#0000ff">Студенты</h1>
 <br>
-<form>
-    <table align="center">
-        <tr>
-            <td>
-                <p>Студенты</p>
-            </td>
-            <td></td>
-        </tr>
-        <tr th:each="stud : ${student}">
-            <td th:utext="${stud.username}"></td>
-        </tr>
 
-    </table>
-</form>
+
+<table class="table-responsive-xl table-hover " align="center" th:width="1000" >
+    <thead class="thead-inverse">
+    <tr>
+        <!--        <th scope="col">#</th>-->
+        <th scope="col">Имя студента</th>
+        <th scope="col">Просмотр</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="stud : ${student}">
+        <td th:utext="${stud.username}">Mark</td>
+        <td ><a th:href="@{'/studName/{studName}'(studName=${stud.username})}"><h5>Перейти на страницу</h5></a></td>
+    </tr>
+
+    </tbody>
+</table>
+
+
 
 
 </body>

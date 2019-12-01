@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface CourseRepo extends CrudRepository<Course, Long > {
     List<Course> findAllByOrderByIdAsc();
+//    List<Course> findByCourseName(String courseName);
+    Course findByCourseName(String courseName);
 }

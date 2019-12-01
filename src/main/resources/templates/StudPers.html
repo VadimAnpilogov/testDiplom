@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+</head>
+
+<!--<body th:replace="fragments/menu :: menu"></body>-->
+<body th:replace="fragments/menuPersonal :: menuPersonal"></body>
+<body>
+
+<h1  align="center" style="color:#0000ff">Страница пользователя</h1>
+<!--<h3 style="color:#0000ff">Вот ваши личные данные</h3>-->
+<br>
+<!--<a th:href="@{'/messageR/{recipient}'(recipient=${#httpServletRequest.remoteUser})}">Личные сообщения</a>-->
+
+<p>Hello, [[${message}]]</p>
+
+<form  action="messageAdd?reviews1=reviews">
+    <table align="center" >
+        <tr>
+            <td width="400px">
+                <p>Отзыв:</p>
+            </td>
+            <td width="400px">
+                <p>Автор</p>
+            </td>
+
+        <tr>
+            <td width="400px">
+
+                <input type="reviews1" name="reviews"
+                       placeholder="Введите ваше сообщение" required="true"/>
+            <td> <input type="submit"value="Отправить"/></td>
+            </td>
+        </tr>
+        <tr th:each="rev : ${reviews}" >
+            <td width="400px" th:utext="${rev.reviewsOp}"></td>
+            <td width="400px" th:utext="${rev.authorReviews}"></td>
+        </tr>
+
+    </table>
+</form>
+</body>
+<!--<body th:replace="fragments/reviewsFr :: reviewsFr"></body>-->
+</html>

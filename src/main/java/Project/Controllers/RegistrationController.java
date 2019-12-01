@@ -22,22 +22,23 @@ public class RegistrationController {
 
     @Autowired
     private UserRepo userRepository;
-
+//Страница регистрации
     @GetMapping("/registration")
     public String registration(){
         return "registration";
     }
-
+//Старница регистрации студента
     @GetMapping("/userR")
     public String userR (){
         return "userR";
     }
+//Страница регистрации преподавтеля
     @GetMapping("/adminR")
     public String adminR(){
         return "adminR";
     }
 
-
+//Регистрация студента
     @PostMapping("/userR")
     public String addUser(User user, Model model){
         User userFromDB = userRepository.findByUsername(user.getUsername());
@@ -51,6 +52,7 @@ public class RegistrationController {
         userRepository.save(user);
         return "home";
     }
+//Регистрация преподавателя
     @PostMapping("/adminR")
     public String addAdmin(User user,Model model){
         User userFromDB = userRepository.findByUsername(user.getUsername());

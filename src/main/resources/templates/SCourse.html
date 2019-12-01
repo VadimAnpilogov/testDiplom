@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+</head>
+
+<!--<body th:replace="fragments/menu :: menu"></body>-->
+<body th:replace="fragments/menuPersonal :: menuPersonal"></body>
+<body>
+
+<h1  align="center" style="color:#0000ff">Курс</h1>
+<br>
+<form>
+    <table align="center">
+        <tr th:each="cors : ${courses}">
+            <td>
+                Название курса
+            </td>
+            <td th:utext="${cors.courseName}"></td>
+            <td ><a th:href="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}"><h5>Записаться</h5></a></td>
+        </tr>
+
+
+    </table>
+</form>
+
+
+</body>
+</html>

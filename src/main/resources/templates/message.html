@@ -90,6 +90,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="col d-flex p-0">
             <div class="card">
                 <div class="card-header bg-darkblue text-white py-1 px-2" style="flex: 1 1">
@@ -110,59 +112,53 @@
                     </div>
                 </div>
                 <div class="card-body bg-lightgrey d-flex flex-column p-0" style="flex: 9 1">
+
                     <div class="container-fluid message-scroll" style="flex: 1 1">
-                        <div class="row">
-                            <div class="card message-card m-1">
-                                <div class="card-body p-2">
-                                    <span class="mx-2">Привет, как дела?</span>
-                                    <span class="float-right mx-1"><small>14:13<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="card message-card bg-lightblue m-1">
-                                <div class="card-body p-2">
-                                    <span class="mx-2">Привет, у меня отлично</span>
-                                    <span class="float-right mx-1"><small>14:14<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="card message-card bg-lightblue m-1">
-                                <div class="card-body p-2">
-                                    <span class="mx-2">Как у тебя?</span>
-                                    <span class="float-right mx-1"><small>14:14<i class="fas fa-check fa-fw" style="color:#66a80f"></i></small></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="card message-card m-1">
-                                <div class="card-body p-2">
-                                    <span>Тоже все отлчично, как у тебя идут дела с твоим проектом?</span>
-                                    <span class="float-right"><small>14:16<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="card message-card bg-lightblue m-1">
-                                <div class="card-body p-2">
-                                    <span>Довольно неплохо, недавно сделал личные сообщения для пользователей, а также возможность оставлять отзывы</span>
-                                    <span class="float-right mx-1"><small>14:21<i class="fas fa-check fa-fw" style="color:#66a80f"></i></small></span>
-                                </div>
-                            </div>
+                        <div class="row" th:each="mesS : ${messageS}">
+
+
+                                        <div class="card message-card m-1" >
+                                            <div class="card-body p-2">
+                                                <div class="mx-2" th:utext="${mesS.message}">
+                                                </div>
+                                                <div>
+                                                    <span class="float-right mx-1"><small>14:13<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+
                         </div>
                     </div>
+<!--                                    <span class="mx-2" th:utext="${mesS.message}">Привет, как дела?</span>-->
+<!--                                    <span class="float-right mx-1"><small>14:13<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>-->
+
+
+
+
+
+
+
+
+                    <form action="messageAdd?message1=message">
                     <div class="input-group">
-                        <input type="text" class="form-control border-0" placeholder="Input message...">
+                        <input type="message1" name="message" class="form-control border-0" placeholder="Input message...">
                         <span class="input-group-addon">
-                            <button class="btn border-0 bg-white text-primary hover-color-darkblue" type="button">
-                                <i class="fab fa-telegram-plane fa-2x"></i>
-                            </button>
+<!--                            <input type="message1" name="message"-->
+<!--                                                   placeholder="Введите ваше сообщение" required="true"/>-->
+                                        <input type="submit"value="Отправить"/>
+<!--                            <button class="btn border-0 bg-white text-primary hover-color-darkblue" type="button">-->
+<!--                                <i class="fab fa-telegram-plane fa-2x"></i>-->
+<!--                            </button>-->
                         </span>
                     </div>
+                </form>
+
                 </div>
             </div>
         </div>
+
+
     </div>
     <!-- row -->
 </div>

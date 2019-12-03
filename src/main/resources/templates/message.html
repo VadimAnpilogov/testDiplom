@@ -9,160 +9,223 @@
 
 <body>
 
-<div >
-    <div>
-        <h1 style="color:#0000ff">Личные сообщения</h1>
-    </div>
-</div>
-
-<!--<form>-->
-<!--    <table align="left">-->
-<!--        <tr>-->
-
-<!--            <p>Выберите, кому хотите написать сообщение:</p>-->
-
-<!--        </tr>-->
-<!--        <tr th:each="mesU : ${messageU}">-->
-
-<!--            <td width="60px" th:utext="${mesU.username}"></td>-->
-<!--            <td><a th:href="@{'/messageU/{sender}'(sender=${mesU.username})}"><h5>Написать</h5></a></td>-->
-<!--&lt;!&ndash;            <td><input type="submit"value="Написать"/></td>&ndash;&gt;-->
-<!--        </tr>-->
-<!--    </table>-->
-
-<!--</form>-->
-<!--<form  action="messageAdd?message1=message">-->
-<!--    <table align="center" >-->
-<!--        <tr>-->
-<!--            <td width="400px">-->
-<!--                <p>Сообщения:</p>-->
-<!--            </td>-->
-<!--            <td width="400px">-->
-<!--                <p>Отправитель</p>-->
-<!--            </td>-->
-
-<!--        </tr>-->
-<!--        <tr th:each="mesS : ${messageS}" >-->
-<!--            <td width="400px" th:utext="${mesS.message}"></td>-->
-<!--            <td width="400px" th:utext="${mesS.recipient}"></td>-->
-<!--        </tr>-->
-<!--        <tr th:each="mesS : ${messageS1}">-->
-<!--            <td width="400px" th:utext="${mesS.message}"></td>-->
-<!--            <td width="400px" th:utext="${mesS.recipient}"></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td width="400px">-->
-<!--                <input type="message1" name="message"-->
-<!--                       placeholder="Введите ваше сообщение" required="true"/>-->
-<!--            <td> <input type="submit"value="Отправить"/></td>-->
-<!--            </td>-->
-<!--        </tr>-->
+<!--<div >-->
+<!--    <div>-->
+<!--        <h1 style="color:#0000ff">Личные сообщения</h1>-->
+<!--    </div>-->
+<!--</div>-->
 
 
-<!--    </table>-->
-<!--</form>-->
+<!--<div style="height: 700px; background-color: rgb(86,167,255);">-->
 
-<div class="container-fluid chat-container">
-    <div class="row h-100">
-        <div class="col-3 border-chat-lightgray px-0" id="sidebar">
-            <div id="sidebar-content" class="w-100 h-100">
-                <div class="input-group p-0 d-xs-none" id="search-group">
-                    <input type="text" class="form-control border-0" placeholder="Search..." id="search">
-                    <span class="input-group-addon">
-                        <button class="btn border-0 bg-white text-primary hover-color-darkblue" type="button">
-                            <i class="fa fa-search fa-fw"></i>
-                        </button>
-                    </span>
-                </div>
-                <div class="sidebar-scroll" id="list-group">
-                    <ul class="list-group w-100" id="friend-list" >
-                        <li class="list-group-item p-1  hover-bg-lightgray" th:each="mesU : ${messageU}" >
-                            <img src="//placehold.it/50x50" class="rounded-circle">
-                            <a th:href="@{'/messageU/{sender}'(sender=${mesU.username})}">
-                                <span class="d-xs-none username" th:utext="${mesU.username}">
-                                stan
-                                </span>
-                            </a>
-                        </li>
+<!--    <div class="mh-100 row">-->
+<!--        <div class="col" style="width: 200px">-->
+<!--            <div class="list-group" th:each="mesU : ${messageU}" th:width="200">-->
+<!--                <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.username})}" class="list-group-item list-group-item-action">-->
+<!--                    <span class="d-xs-none username" th:utext="${mesU.username}"></span>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="mw-50 p-3 col" style="background-color: rgb(213,215,255);">-->
+<!--            <div class="h-25 " style="background-color: rgb(19,14,255);">-->
+
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
 
 
-                    </ul>
-                </div>
-            </div>
-        </div>
+
+<!--<div class="container-fluid chat-container">-->
+<!--    <div class="row h-100">-->
+<!--        <div class="col-3 border-chat-lightgray px-0" id="sidebar">-->
+<!--            <div id="sidebar-content" class="w-100 h-100">-->
+<!--&lt;!&ndash;                <div class="input-group p-0 d-xs-none" id="search-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="text" class="form-control border-0" placeholder="Search..." id="search">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span class="input-group-addon">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button class="btn border-0 bg-white text-primary hover-color-darkblue" type="button">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <i class="fa fa-search fa-fw"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;список пользователей&ndash;&gt;-->
+<!--                <div class="list-group" th:each="mesU : ${messageU}" th:width="200">-->
+<!--                    <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.username})}" class="list-group-item list-group-item-action">-->
+<!--                        <span class="d-xs-none username" th:utext="${mesU.username}"></span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!-- &lt;!&ndash;список пользователей&ndash;&gt;-->
 
 
-        <div class="col d-flex p-0">
-            <div class="card">
-                <div class="card-header bg-darkblue text-white py-1 px-2" style="flex: 1 1">
-                    <div class="d-flex flex-row justify-content-start">
-                        <div class="col-1 p-1">
-                            <button class="btn text-white bg-darkblue p-0 hover-color-lightgray">
-                                <i class="fas fa-bars fa-2x"></i>
-                            </button>
-                        </div>
-                        <div class="col">
-                            <div class="my-0">
-                                <b>test1</b>
-                            </div>
-<!--                            <div class="my-0">-->
-<!--                                <small>last seen Feb 18 2017</small>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="col d-flex p-0">-->
+<!--            <div class="card">-->
+<!--&lt;!&ndash;                <div class="card-header bg-darkblue text-white py-1 px-2" style="flex: 1 1">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="d-flex flex-row justify-content-start">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="my-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <b>Ваши сообщения пользователю</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="my-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <small>last seen Feb 18 2019</small>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="card-body bg-lightgrey d-flex flex-column p-0" style="flex: 9 1">-->
+<!--                    <div class="container-fluid message-scroll" style="flex: 1 1">-->
+<!--                        <div class="row" th:each="mesS : ${messageS}">-->
+
+
+<!--                            <div class="card message-card m-1" >-->
+<!--                                <div class="card-body p-2">-->
+<!--                                   <div class="mx-2" th:utext="${mesS.message}">-->
+<!--                                        </div>-->
+<!--                                          <div>-->
+<!--                                          <span class="float-right mx-1"><small>14:13<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>-->
+<!--                                        </div>-->
+<!--                                      <br>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
 <!--                            </div>-->
+<!--                        </div>-->
+<!--                    <form action="messageAdd?message1=message">-->
+<!--                         <div class="form-group">-->
+<!--                           <input type="message1" name="message" class="form-control border-1" placeholder="Input message...">-->
+<!--                         </div>-->
+<!--                        <button type="submit" class="btn btn-primary mb-2">Отправить</button>-->
+<!--                    </form>-->
+<!--                    </div>-->
+<!--                 </div>-->
+<!--             </div>-->
+
+
+
+<!--         </div>-->
+<!--    &lt;!&ndash; row &ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash; container &ndash;&gt;-->
+
+
+
+
+<div class="container">
+    <h3 class=" text-center">Личные сообщения</h3>
+    <div class="messaging">
+        <div class="inbox_msg">
+            <div class="inbox_people">
+                <div class="headind_srch">
+                    <div class="recent_heading">
+                        <h4>Диалоги</h4>
+                    </div>
+                    <div class="srch_bar">
+                        <div class="stylish-input-group">
+                            <input type="text" class="search-bar"  placeholder="Search" >
+                            <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+                    </div>
+                </div>
+
+<!--                <div class="inbox_chat">-->
+<!--                    <div class="chat_list">-->
+<!--                        <div class="chat_people">-->
+<!--                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
+<!--                            <div class="chat_ib">-->
+<!--                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>-->
+<!--                                <p>Test, which is a new approach to have all solutions-->
+<!--                                    astrology under one roof.</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="inbox_chat" >
+                    <div class="chat_list" th:each="mesU : ${messageU}">
+                        <div class="chat_people">
+                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                            <div class="chat_ib" >
+                                <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.username})}">
+                                    <h5 th:utext="${mesU.username}">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-body bg-lightgrey d-flex flex-column p-0" style="flex: 9 1">
-
-                    <div class="container-fluid message-scroll" style="flex: 1 1">
-                        <div class="row" th:each="mesS : ${messageS}">
 
 
-                                        <div class="card message-card m-1" >
-                                            <div class="card-body p-2">
-                                                <div class="mx-2" th:utext="${mesS.message}">
-                                                </div>
-                                                <div>
-                                                    <span class="float-right mx-1"><small>14:13<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>
-                                                </div>
-                                                <br>
-                                            </div>
-                                        </div>
+            </div>
+            <div class="mesgs">
+                <div class="msg_history">
 
+
+<!--                    <div class="incoming_msg">-->
+<!--                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
+<!--                        -->
+<!--                    </div>-->
+
+
+<!--                    <div class="received_msg">-->
+<!--                        <div class="received_withd_msg">-->
+<!--                            <p>Test which is a new approach to have all-->
+<!--                                solutions</p>-->
+<!--                            <span class="time_date"> 11:01 AM    |    June 9</span></div>-->
+<!--                    </div>-->
+
+<!--                    <div class="outgoing_msg">-->
+<!--                        <div class="sent_msg">-->
+<!--                            <p>Test which is a new approach to have all-->
+<!--                                solutions</p>-->
+<!--                            <span class="time_date"> 11:01 AM    |    June 9</span> </div>-->
+<!--                    </div>-->
+
+
+                    <div th:each="mesS : ${messageS}">
+                        <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >
+                            <div class="received_withd_msg">
+                                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
+                                <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
+                        </div>
+
+                        <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >
+                            <div class="sent_msg">
+                                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
+                                <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
                         </div>
                     </div>
-<!--                                    <span class="mx-2" th:utext="${mesS.message}">Привет, как дела?</span>-->
-<!--                                    <span class="float-right mx-1"><small>14:13<i class="fas fa-eye fa-fw" style="color:#e64980"></i></small></span>-->
 
 
 
 
 
+                </div>
+                <!--                    <form action="messageAdd?message1=message">-->
+                <!--                         <div class="form-group">-->
+                <!--                           <input type="message1" name="message" class="form-control border-1" placeholder="Input message...">-->
+                <!--                         </div>-->
+                <!--                        <button type="submit" class="btn btn-primary mb-2">Отправить</button>-->
+                <!--                    </form>-->
 
-
-
-                    <form action="messageAdd?message1=message">
-                    <div class="input-group">
-                        <input type="message1" name="message" class="form-control border-0" placeholder="Input message...">
-                        <span class="input-group-addon">
-<!--                            <input type="message1" name="message"-->
-<!--                                                   placeholder="Введите ваше сообщение" required="true"/>-->
-                                        <input type="submit"value="Отправить"/>
-<!--                            <button class="btn border-0 bg-white text-primary hover-color-darkblue" type="button">-->
-<!--                                <i class="fab fa-telegram-plane fa-2x"></i>-->
-<!--                            </button>-->
-                        </span>
+                <form action="messageAdd?message1=message">
+                <div class="type_msg">
+                    <div class="input_msg_write">
+                        <input type="message1" name="message" class="write_msg" placeholder="Input message" />
+                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                     </div>
+                </div>
                 </form>
-
-                </div>
             </div>
         </div>
 
 
-    </div>
-    <!-- row -->
-</div>
-<!-- container -->
+        <p class="text-center top_spac"> Design by <a target="_blank" href="#">Vadim Anpilogov</a></p>
 
+    </div></div>
 </body>
 </html>

@@ -15,14 +15,18 @@ public class Messages {
     private String message;
     private String recipient;
     private String sender;
+    private String nameMess;
+    public String date;
 //    private boolean active;
 
 public Messages(){}
 
-    public Messages(String message, String recipient, String sender) {
+    public Messages(String message, String recipient, String sender, String nameMess, String date) {
         this.message = message;
         this.recipient = recipient;
         this.sender = sender;
+        this.nameMess = nameMess;
+        this.date = date;
     }
 
     public Long getId() {
@@ -55,5 +59,21 @@ public Messages(){}
 
     public void setSender(String sender) {
         this.sender = sender;
+    }
+
+    public String getNameMess() {
+        return nameMess;
+    }
+
+    public void setNameMess(String nameMess) {
+        this.nameMess = nameMess;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

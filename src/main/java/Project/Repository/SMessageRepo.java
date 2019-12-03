@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface SMessageRepo extends CrudRepository<Messages, Long> {
     List<Messages> findByRecipientAndSender(String recipient, String sender);
-
+    List<Messages> findByNameMess(String nameMess);
+    List<Messages> findByNameMessOrderByDateAsc(String nameMess);
 
 }

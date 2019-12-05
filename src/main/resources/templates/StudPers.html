@@ -13,33 +13,35 @@
 <br>
 <!--<a th:href="@{'/messageR/{recipient}'(recipient=${#httpServletRequest.remoteUser})}">Личные сообщения</a>-->
 
-<p>Hello, [[${message}]]</p>
 
 <form  action="messageAdd?reviews1=reviews">
-    <table align="center" >
-        <tr>
-            <td width="400px">
-                <p>Отзыв:</p>
-            </td>
-            <td width="400px">
-                <p>Автор</p>
-            </td>
-
-        <tr>
-            <td width="400px">
-
+    <div class="container">
+        <h3 class=" text-center">Отзывы</h3>
+        <div class="messaging">
+            <div align="center">
                 <input type="reviews1" name="reviews"
                        placeholder="Введите ваше сообщение" required="true"/>
-            <td> <input type="submit"value="Отправить"/></td>
-            </td>
-        </tr>
-        <tr th:each="rev : ${reviews}" >
-            <td width="400px" th:utext="${rev.reviewsOp}"></td>
-            <td width="400px" th:utext="${rev.authorReviews}"></td>
-        </tr>
-
-    </table>
+                <input type="submit"value="Отправить"/>
+            </div>
+            <div class="chat_list" th:each="rev : ${reviews}">
+                <div class="chat_people">
+                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="chat_ib" >
+                        <a th:href="@{'/prepName/{prepName}'(prepName=${rev.authorReviews})}">
+                            <h4 th:utext="${rev.authorReviews}">Sunil Rajput <span class="chat_date">Dec 25</span></h4>
+                        </a>
+                        <h4 th:utext="${rev.reviewsOp}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </form>
+
+
+</form>
+
 </body>
 <!--<body th:replace="fragments/reviewsFr :: reviewsFr"></body>-->
 </html>

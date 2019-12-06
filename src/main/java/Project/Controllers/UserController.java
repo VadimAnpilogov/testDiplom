@@ -104,6 +104,9 @@ public class UserController {
         reviewsRepo.save(reviews1);
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
         model.addAttribute("reviews", reviews2);
+
+        Iterable<User> users = uMessageRepo.findByUsername(StudName);
+        model.addAttribute("personalData", users);
 //        Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviewsAndAutorReviews(StudName, autor);
 //        model.addAttribute("reviews", reviews2);
         return "StudPers";
@@ -114,15 +117,30 @@ public class UserController {
 
         Reviews reviews1= new Reviews(reviews, PrepName, username1);
         reviewsRepo.save(reviews1);
+        Iterable<User> users = uMessageRepo.findByUsername(PrepName);
+        model.addAttribute("personalData", users);
+
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(PrepName);
         model.addAttribute("reviews", reviews2);
 
 
         return "PrepPers";
     }
-
-
-
-
+//
+//    @GetMapping("PrepPers")
+//    public String prepPers(Model model){
+//        Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(PrepName);
+//        model.addAttribute("reviews", reviews2);
+//
+//        return "PrepPers";
+//    }
+//
+//    @GetMapping("StudPers")
+//    public String studPers(Model model){
+//        Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
+//        model.addAttribute("reviews", reviews2);
+//
+//        return "PrepPers";
+//    }
 
 }

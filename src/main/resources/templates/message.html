@@ -8,74 +8,79 @@
 <body th:replace="fragments/menuCreateCourse :: menuCreateCourse"></body>
 
 <body>
+<div class="f1">
+    <div align="center" class="f3">
 
-<div class="container">
-    <h3 class=" text-center">Личные сообщения</h3>
-    <div class="messaging">
-        <div class="inbox_msg">
-            <div class="inbox_people">
-                <div class="headind_srch">
-                    <div class="recent_heading">
-                        <h4>Диалоги</h4>
-                    </div>
+        <div class="container">
+            <h3 class=" text-center">Личные сообщения</h3>
+            <div class="messaging">
+                <div class="inbox_msg">
+                    <div class="inbox_people">
+                        <div class="headind_srch">
+                            <div class="recent_heading">
+                                <h4>Диалоги</h4>
+                            </div>
 
-<!--                    поиск диалогов-->
-<!--                    <div class="srch_bar">-->
-<!--                        <div class="stylish-input-group">-->
-<!--                            <input type="text" class="search-bar"  placeholder="Search" >-->
-<!--                            <span class="input-group-addon">-->
-<!--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
-<!--                </span> </div>-->
-<!--                    </div>-->
-                </div>
+        <!--                    поиск диалогов-->
+        <!--                    <div class="srch_bar">-->
+        <!--                        <div class="stylish-input-group">-->
+        <!--                            <input type="text" class="search-bar"  placeholder="Search" >-->
+        <!--                            <span class="input-group-addon">-->
+        <!--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
+        <!--                </span> </div>-->
+        <!--                    </div>-->
+                        </div>
 
-                <div class="inbox_chat" >
-                    <div class="chat_list" th:each="mesU : ${messageU}">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib" >
-                                <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.username})}">
-                                    <h5 th:utext="${mesU.username}">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                </a>
+                        <div class="inbox_chat" >
+                            <div class="chat_list" th:each="mesU : ${messageU}">
+                                <div class="chat_people">
+                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                    <div class="chat_ib" >
+                                        <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.username})}">
+                                            <h5 th:utext="${mesU.username}">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
-                </div>
+                    <div class="mesgs">
+                        <div class="msg_history">
 
+                            <div th:each="mesS : ${messageS}">
+                                <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >
+                                    <div class="received_withd_msg">
+                                        <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
+                                        <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
+                                </div>
 
-            </div>
-            <div class="mesgs">
-                <div class="msg_history">
-
-                    <div th:each="mesS : ${messageS}">
-                        <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >
-                            <div class="received_withd_msg">
-                                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                                <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
+                                <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >
+                                    <div class="sent_msg">
+                                        <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
+                                        <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >
-                            <div class="sent_msg">
-                                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                                <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
+                        <form action="messageAdd?message1=message">
+                        <div class="type_msg">
+                            <div class="input_msg_write">
+                                <input type="message1" name="message" class="write_msg" placeholder="Input message" />
+                                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                            </div>
                         </div>
+                        </form>
                     </div>
                 </div>
 
-                <form action="messageAdd?message1=message">
-                <div class="type_msg">
-                    <div class="input_msg_write">
-                        <input type="message1" name="message" class="write_msg" placeholder="Input message" />
-                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-                </form>
-            </div>
-        </div>
 
+<!--                <p class="text-center top_spac"> Design by <a target="_blank" href="#">Vadim Anpilogov</a></p>-->
 
-        <p class="text-center top_spac"> Design by <a target="_blank" href="#">Vadim Anpilogov</a></p>
+            </div></div>
 
-    </div></div>
+    </div>
+</div>
 </body>
 </html>

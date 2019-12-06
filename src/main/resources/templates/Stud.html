@@ -3,32 +3,34 @@
 <head th:replace="fragments/head :: head"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
-
+<head th:replace="fragments/style :: style">
 <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/menuPersonal :: menuPersonal"></body>
 <body>
+<div class="f1">
+    <div align="center" class="f2">
+        <h3 class=" text-center">Студенты</h3>
+        <br>
 
-<h1  align="center" style="color:#0000ff">Студенты</h1>
-<br>
 
+        <table class="table-responsive-xl table-hover " align="center" th:width="1000" >
+            <thead class="thead-inverse">
+            <tr>
+                <!--        <th scope="col">#</th>-->
+                <th scope="col">Имя студента</th>
+                <th scope="col">Просмотр</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stud : ${student}">
+                <td th:utext="${stud.username}">Mark</td>
+                <td ><a class="cont" th:href="@{'/studName/{studName}'(studName=${stud.username})}"><h5>Перейти на страницу</h5></a></td>
+            </tr>
 
-<table class="table-responsive-xl table-hover " align="center" th:width="1000" >
-    <thead class="thead-inverse">
-    <tr>
-        <!--        <th scope="col">#</th>-->
-        <th scope="col">Имя студента</th>
-        <th scope="col">Просмотр</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="stud : ${student}">
-        <td th:utext="${stud.username}">Mark</td>
-        <td ><a th:href="@{'/studName/{studName}'(studName=${stud.username})}"><h5>Перейти на страницу</h5></a></td>
-    </tr>
-
-    </tbody>
-</table>
-
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 

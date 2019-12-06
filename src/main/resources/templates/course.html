@@ -6,32 +6,35 @@
 
 
 </head>
-
+<head th:replace="fragments/style :: style">
 <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/menuPersonal :: menuPersonal"></body>
 <body>
+<div class="f1">
+    <div align="center" class="f2">
+        <h3 class=" text-center">Курсы</h3>
+        <br>
 
-<h1  align="center" style="color:#0000ff">Курсы</h1>
-<br>
+        <table class="table-responsive-xl table-hover " align="center" th:width="1000" >
+            <thead class="thead-inverse">
+            <tr>
+        <!--        <th scope="col">#</th>-->
+                <th scope="col">Название курса</th>
+                <th scope="col">Преподаватель</th>
+                <th scope="col">Просмотр</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cor : ${QCourse1}">
+        <!--        <th scope="row" ></th>-->
+                <td th:utext="${cor.courseName}">Mark</td>
+                <td th:utext="${cor.prepName}">Otto</td>
+                <td><a class="cont" th:href="@{'/SCourse/{course}'(course=${cor.courseName})}"><h5>Перейти к курсу</h5></td>
+            </tr>
 
-<table class="table-responsive-xl table-hover " align="center" th:width="1000" >
-    <thead class="thead-inverse">
-    <tr>
-<!--        <th scope="col">#</th>-->
-        <th scope="col">Название курса</th>
-        <th scope="col">Преподаватель</th>
-        <th scope="col">Просмотр</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="cor : ${QCourse1}">
-<!--        <th scope="row" ></th>-->
-        <td th:utext="${cor.courseName}">Mark</td>
-        <td th:utext="${cor.prepName}">Otto</td>
-        <td><a th:href="@{'/SCourse/{course}'(course=${cor.courseName})}"><h5>Перейти к курсу</h5></td>
-    </tr>
-
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

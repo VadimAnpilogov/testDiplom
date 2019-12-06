@@ -15,6 +15,9 @@ public class User {
     private String password;
     private boolean active;
     private int rl;
+    private String fio;
+    private String phone;
+    private String email;
 
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -22,12 +25,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
     public User(){}
-
-
-//    public boolean isRole(){
-//
-//        return roles.contains(Role.ADMIN);
-//    }
 
 
     public int getRl() {
@@ -78,4 +75,27 @@ public class User {
         this.roles = roles;
     }
 
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

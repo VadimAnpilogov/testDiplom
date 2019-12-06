@@ -28,19 +28,19 @@ public class RegistrationController {
         return "registration";
     }
 //Старница регистрации студента
-    @GetMapping("/userR")
+    @GetMapping("/user")
     public String userR (){
         return "userR";
     }
 //Страница регистрации преподавтеля
-    @GetMapping("/adminR")
+    @GetMapping("/admin")
     public String adminR(){
         return "adminR";
     }
 
 //Регистрация студента
     @PostMapping("/userR")
-    public String addUser(User user, Model model){
+    public String addUser(@RequestParam String username, User user, Model model){
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "User exists");
@@ -49,12 +49,15 @@ public class RegistrationController {
         user.setActive(true);
         user.setRl(1);
         user.setRoles(Collections.singleton(Role.USER));
+
         userRepository.save(user);
+
+
         return "home";
     }
 //Регистрация преподавателя
     @PostMapping("/adminR")
-    public String addAdmin(User user,Model model){
+    public String addAdmin(@RequestParam String username, User user,Model model){
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "User exists");
@@ -64,7 +67,9 @@ public class RegistrationController {
         user.setActive(true);
         user.setRl(0);
         user.setRoles(Collections.singleton(Role.ADMIN));
+
         userRepository.save(user);
+
         return "home";
     }
 

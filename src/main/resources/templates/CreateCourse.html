@@ -3,38 +3,81 @@
 <head th:replace="fragments/head :: head"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
-
+<head th:replace="fragments/style :: style">
 <!--<body th:replace="fragments/menu :: menu"></body>-->
-<body th:replace="fragments/menuPersonal :: menuPersonal"></body>
+<body th:replace="fragments/menuCreateCourse :: menuCreateCourse"></body>
 <body>
 
-<h1  align="center" style="color:#0000ff">Курсы</h1>
+<!--<h1  align="center" style="color:#0000ff">Создание курса</h1>-->
+<h3 class=" text-center">Создание курса</h3>
 <br>
-<form  action="addCourse?courseName1=courseName">
-    <table align="center">
-        <tr>
-            <td width="400px">
-                <p>Название курса</p>
-            </td>
-            <td>
-                <p>Преподаватель</p>
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td width="400px">
-                <input type="courseName1" name="courseName"
-                       placeholder="Введите название курса" required="true"/>
-            </td>
-            <td> <input type="submit"value="Добавить"/></td>
-        </tr>
-        <tr th:each="cor : ${QCourse1}">
-            <td th:utext="${cor.courseName}"></td>
-            <td th:utext="${cor.prepName}"></td>
-        </tr>
+<form  th:align="center" action="addCourse?courseName1=courseName&description1=description&forUser1=forUser">
+    <div class="row justify-content-md-center">
+        <div class="form-group col-sm-4">
+            <label for="courseName" class="h4">Название курса</label>
+            <input type="courseName1" name="courseName" class="form-control" id="courseName" placeholder="Введите название курса" required>
+            <br>
 
-    </table>
+            <label for="description" class="h4">Описание курса</label>
+            <input type="description1" name="description" class="form-control" id="description" placeholder="Введите описание курса" required>
+            <br>
+
+            <label for="forUser" class="h4">Для кого этот курс</label>
+            <input type="forUser1" name="forUser" class="form-control" id="forUser" placeholder="Введите кому подходит курс" required>
+
+
+        </div>
+    </div>
+    <input type="submit"value="Добавить"/>
 </form>
+<!--    <table align="center">-->
+<!--        <tr>-->
+<!--            <td width="400px">-->
+<!--                <p>Название курса</p>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <p>Преподаватель</p>-->
+<!--            </td>-->
+<!--            <td></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--            -->
+<!--            </td>-->
+<!--            <td width="400px">-->
+<!--                <input type="courseName1" name="courseName"-->
+<!--                       placeholder="Введите название курса" required="true"/>-->
+<!--                <input type="description1" name="description"-->
+<!--                       placeholder="Введите название курса" required="true"/>-->
+<!--                <input type="forUser1" name="forUser"-->
+<!--                       placeholder="Введите название курса" required="true"/>-->
+<!--            </td>-->
+<!--            <td> <input type="submit"value="Добавить"/></td>-->
+<!--        </tr>-->
+<!--        <tr th:each="cor : ${QCourse1}">-->
+<!--            <td th:utext="${cor.courseName}"></td>-->
+<!--            <td th:utext="${cor.prepName}"></td>-->
+<!--        </tr>-->
+
+<!--    </table>-->
+
+
+<!--<div class="row" align="center">-->
+<!--    <div class="form-group col-sm-4">-->
+<!--        <label for="courseName" class="h4">Название курса</label>-->
+<!--        <input type="text" class="form-control" id="courseName" placeholder="Введите название курса" required>-->
+
+
+<!--        <label for="description" class="h4">Описание курса</label>-->
+<!--        <input type="email" class="form-control" id="description" placeholder="Введите описание курса" required>-->
+
+
+<!--        <label for="forUser" class="h4">Для кого этот курс</label>-->
+<!--        <input type="email" class="form-control" id="forUser" placeholder="Введите кому подходит курс" required>-->
+
+
+<!--    </div>-->
+<!--</div>-->
 
 
 </body>

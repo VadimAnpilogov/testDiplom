@@ -5,7 +5,7 @@
 </head>
 <head th:replace="fragments/style :: style">
 <!--<body th:replace="fragments/menu :: menu"></body>-->
-<body th:replace="fragments/menuPersonal :: menuPersonal"></body>
+<body th:replace="fragments/menuCreateCourse :: menuCreateCourse"></body>
 <body>
 
 <h1  align="center" style="color:#0000ff">Страница пользователя</h1>
@@ -15,23 +15,49 @@
 
 <!--<p>Hello, [[${message}]]</p>-->
 
+
+<div class="container">
+    <!--        <h3 class=" text-center">Отзывы</h3>-->
+
+    <div class="chat_list" th:each="data : ${personalData}">
+        <div class="chat_people row">
+            <div class="col-md-auto"> <img class="pers" src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                <div>
+                    <a th:href="@{'/messageR/{sender}'(sender=${#httpServletRequest.remoteUser})}">Личные сообщения</a>
+                </div>
+
+            </div>
+            <div class="col-6" >
+
+                <h4 align="center" th:utext="${data.username}">Sunil Rajput <span class="chat_date">Dec 25</span></h4>
+                <h4 align="center" th:utext="${data.fio}">Sunil Rajput</h4>
+                <h4 align="center" th:if="${data.rl == 1}">Студент</h4>
+                <h4 align="center" th:if="${data.rl == 0}">Преподаватель</h4>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
 <form  action="messageAdd?reviews1=reviews">
     <div class="container">
         <h3 class=" text-center">Отзывы</h3>
         <div class="messaging">
                 <div align="center">
-                    <input type="reviews1" name="reviews"
+                    <input type="reviews1" name="reviews" class="form-control"
                            placeholder="Введите ваше сообщение" required="true"/>
                     <input type="submit"value="Отправить"/>
                 </div>
                         <div class="chat_list" th:each="rev : ${reviews}">
                             <div class="chat_people">
-                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                <div class="chat_img"> <img class="rew" src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                 <div class="chat_ib" >
                                     <a th:href="@{'/prepName/{prepName}'(prepName=${rev.authorReviews})}">
-                                        <h4 th:utext="${rev.authorReviews}">Sunil Rajput <span class="chat_date">Dec 25</span></h4>
+                                        <h5 th:utext="${rev.authorReviews}">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
                                     </a>
-                                    <h4 th:utext="${rev.reviewsOp}"></h4>
+                                    <h5 th:utext="${rev.reviewsOp}"></h5>
                                 </div>
                             </div>
                         </div>

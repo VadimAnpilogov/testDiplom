@@ -14,11 +14,16 @@ public class Course {
     private Long id;
     private String courseName;
     private String PrepName;
+    private String description;
+    private String forUser;
 
     public  Course(){}
-    public Course(String courseName, String prepName) {
+
+    public Course(String courseName, String prepName, String description, String forUser) {
         this.courseName = courseName;
-        PrepName = prepName;
+        this.PrepName = prepName;
+        this.description = description;
+        this.forUser = forUser;
     }
 
     public Long getId() {
@@ -43,5 +48,21 @@ public class Course {
 
     public void setPrepName(String prepName) {
         PrepName = prepName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getForUser() {
+        return forUser;
+    }
+
+    public void setForUser(String forUser) {
+        this.forUser = forUser;
     }
 }

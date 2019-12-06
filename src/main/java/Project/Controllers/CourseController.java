@@ -34,12 +34,12 @@ public class CourseController {
     }
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")
-    public String addCourse(@RequestParam String courseName, Model model){
+    public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String forUser, Model model){
 //        CourseName = courseName;
-        Course course = new Course(courseName, PrepName);
+        Course course = new Course(courseName, PrepName, description, forUser);
         courseRepo.save(course);
-        Iterable<Course> course1 = courseRepo.findAllByOrderByIdAsc();
-        model.addAttribute("QCourse1", course1);
+//        Iterable<Course> course1 = courseRepo.findAllByOrderByIdAsc();
+//        model.addAttribute("QCourse1", course1);
         return  "CreateCourse";
     }
 //Получение имени преподавателя для создания курса

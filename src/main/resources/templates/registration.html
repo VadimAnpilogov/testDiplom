@@ -2,30 +2,76 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
 </head>
-
+<head th:replace="fragments/style :: style">
 <body th:replace="fragments/menu :: menu"></body>
 
-<body>
 
-<form action="userR">
-    <div align="center">
-        <input type="submit" class="loginForm" value="Регистрация студент"/>
+
+
+
+
+<body class="login-page">
+
+
+
+<!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>-->
+
+
+<!--<form action="login" method="post">-->
+<!--    <label>Username</label>&ndash;&gt;-->
+<!--    <input type="text" name="username" id="username"-->
+<!--           placeholder="UserName" required="true" autofocus="true"/>-->
+<!--    <label>Password</label>-->
+<!--    <input type="password" name="password" id="password"-->
+<!--           placeholder="Password" required="true"/>-->
+<!--    <div align="center">-->
+<!--        <input type="submit"value="Войти"/>-->
+<!--    </div>-->
+<!--</form>-->
+
+<main>
+    <div class="login-block">
+        <!--        <img src="1.png" alt="Scanfcode">-->
+        <h1>Ты хочешь зарегистрироваться как:</h1>
+        <form action="user" >
+            <button class="btn btn-primary btn-block" type="submit">Студент</button>
+        </form>
+
+        <h1>или</h1>
+
+        <form action="admin" >
+            <button class="btn btn-primary btn-block" type="submit">Преподователь</button>
+        </form>
+
     </div>
-</form>
-<br>
-<form action="adminR">
-    <div align="center">
-        <input type="submit" class="loginForm" value="Регистрация преподователь"/>
+
+    <div class="login-links">
+        <p class="text-center">Уже есть аккаунт? <a class="txt-brand" href="login"><font color=#29aafe>Авторизуйся</font></a></p>
     </div>
-</form>
+</main>
 
-<nav>
-    <ul>
-        <!--        <li><a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a></li>-->
-        <li><a href="NoAuthHome">Вернуться назад</a></li>
 
-        <!--        <li><a href="/registration">регистрация</a></li>-->
-    </ul>
-</nav>
+<!--<body>-->
+
+<!--<form action="userR">-->
+<!--    <div align="center">-->
+<!--        <input type="submit" class="loginForm" value="Регистрация студент"/>-->
+<!--    </div>-->
+<!--</form>-->
+<!--<br>-->
+<!--<form action="adminR">-->
+<!--    <div align="center">-->
+<!--        <input type="submit" class="loginForm" value="Регистрация преподователь"/>-->
+<!--    </div>-->
+<!--</form>-->
+
+<!--<nav>-->
+<!--    <ul>-->
+<!--        &lt;!&ndash;        <li><a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a></li>&ndash;&gt;-->
+<!--        <li><a href="NoAuthHome">Вернуться назад</a></li>-->
+
+<!--        &lt;!&ndash;        <li><a href="/registration">регистрация</a></li>&ndash;&gt;-->
+<!--    </ul>-->
+<!--</nav>-->
 </body>
 </html>

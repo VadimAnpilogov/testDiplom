@@ -2,35 +2,74 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
 </head>
-
+<head th:replace="fragments/style :: style">
 <body th:replace="fragments/menu :: menu"></body>
-<nav>
-    <ul>
-        <!--        <li><a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a></li>-->
-        <li><a href="NoAuthHome">Home</a></li>
+<!--<nav>-->
+<!--    <ul>-->
+<!--        &lt;!&ndash;        <li><a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a></li>&ndash;&gt;-->
+<!--        <li><a href="NoAuthHome">Home</a></li>-->
 
-        <!--        <li><a href="/registration">регистрация</a></li>-->
-    </ul>
-</nav>
+<!--        &lt;!&ndash;        <li><a href="/registration">регистрация</a></li>&ndash;&gt;-->
+<!--    </ul>-->
+<!--</nav>-->
 
-<body>
-
-
-
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<body class="login-page">
 
 
-<form action="login" method="post">
-    <label>Username</label>-->
-    <input type="text" name="username" id="username"
-           placeholder="UserName" required="true" autofocus="true"/>
-    <label>Password</label>
-    <input type="password" name="password" id="password"
-           placeholder="Password" required="true"/>
-    <div align="center">
-        <input type="submit"value="Войти"/>
+
+<!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>-->
+
+
+<!--<form action="login" method="post">-->
+<!--    <label>Username</label>&ndash;&gt;-->
+<!--    <input type="text" name="username" id="username"-->
+<!--           placeholder="UserName" required="true" autofocus="true"/>-->
+<!--    <label>Password</label>-->
+<!--    <input type="password" name="password" id="password"-->
+<!--           placeholder="Password" required="true"/>-->
+<!--    <div align="center">-->
+<!--        <input type="submit"value="Войти"/>-->
+<!--    </div>-->
+<!--</form>-->
+
+<main>
+    <div class="login-block">
+<!--        <img src="1.png" alt="Scanfcode">-->
+        <h1>Введите свои данные</h1>
+        <form action="login" method="post">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Ваш логин">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Ваш пароль">
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit">Войти</button>
+<!--            <div class="login-footer">-->
+<!--                <h6>или войдите с помощью</h6>-->
+<!--                <ul class="social-icons">-->
+<!--                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>-->
+<!--                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>-->
+<!--                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+        </form>
     </div>
-</form>
+
+    <div class="login-links">
+        <p class="text-center">Еще нет аккаунта? <a class="txt-brand" href="registration"><font color=#29aafe>Регистрируйся</font></a></p>
+    </div>
+</main>
 
 </body>
 </html>

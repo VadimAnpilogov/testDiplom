@@ -3,7 +3,7 @@
 <head th:replace="fragments/head :: head"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 </head>
-
+<head th:replace="fragments/style :: style">
 <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/menuPersonal :: menuPersonal"></body>
 <body>
@@ -11,8 +11,45 @@
 <h1  align="center" style="color:#0000ff">Личный кабинет</h1>
 <!--<h3 style="color:#0000ff">Вот ваши личные данные</h3>-->
 <br>
-<!--<a th:href="@{'/messageR/{recipient}'(recipient=${#httpServletRequest.remoteUser})}">Личные сообщения</a>-->
 
+    <div class="container">
+<!--        <h3 class=" text-center">Отзывы</h3>-->
+
+            <div class="chat_list" th:each="data : ${personalData}">
+                <div class="chat_people row">
+                    <div class="col-md-auto"> <img class="pers" src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="col-6" >
+
+                            <h4 align="center" th:utext="${data.username}">Sunil Rajput <span class="chat_date">Dec 25</span></h4>
+                        <h4 align="center" th:utext="${data.fio}">Sunil Rajput</h4>
+                        <h4 align="center" th:utext="${data.phone}">Sunil Rajput</h4>
+                        <h4 align="center" th:utext="${data.email}">Sunil Rajput</h4>
+
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+    </div>
+
+<div class="container">
+    <h3 class=" text-center">Отзывы</h3>
+    <div class="messaging">
+        <div class="chat_list" th:each="rev : ${reviews}">
+            <div class="chat_people">
+                <div class="chat_img"> <img class="rew" src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_ib" >
+                    <a th:href="@{'/prepName/{prepName}'(prepName=${rev.authorReviews})}">
+                        <h5 th:utext="${rev.authorReviews}">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                    </a>
+                    <h5 th:utext="${rev.reviewsOp}"></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 </body>
 </html>

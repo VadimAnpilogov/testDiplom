@@ -31,11 +31,17 @@ public class UserController {
 
     @Autowired
     private UMessageRepo uMessageRepo;
+
 //Личный кабинет
     @GetMapping("/Personal")
     public String personalUser(Model model){
     User user1 = userRepo.findByUsername(username1);
       model.addAttribute("users", user1);
+        Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(username1);
+        model.addAttribute("reviews", reviews2);
+
+        Iterable<User> users = uMessageRepo.findByUsername(username1);
+        model.addAttribute("personalData", users);
         return "Personal";
     }
 //Получение имени пользователя для входа в личный кабинет
@@ -71,15 +77,22 @@ public class UserController {
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
         model.addAttribute("reviews", reviews2);
         model.addAttribute("message", studName);
+
+        Iterable<User> users = uMessageRepo.findByUsername(StudName);
+        model.addAttribute("personalData", users);
         return "StudPers";
     }
 
     @GetMapping("prepName/{prepName}")
     public String prepName(@PathVariable String prepName, Model model){
         PrepName=prepName;
+        Iterable<User> users = uMessageRepo.findByUsername(PrepName);
+        model.addAttribute("personalData", users);
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(PrepName);
         model.addAttribute("reviews", reviews2);
         model.addAttribute("message", prepName);
+
+
         return "PrepPers";
     }
 

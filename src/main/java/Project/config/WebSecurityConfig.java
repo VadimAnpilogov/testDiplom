@@ -1,7 +1,13 @@
 package Project.config;
 
 
+
+import Project.Entity.User;
+import Project.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,9 +18,11 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 
 import javax.sql.DataSource;
+import java.time.LocalDateTime;
 
 @Configuration
 @EnableWebSecurity
+@EnableOAuth2Sso
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -22,6 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+//    @Autowired
+//    private UserRepo userRepo;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,6 +61,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     }
+    @Bean
+    public PrincipalExtractor principalExtractor(UserRepo userDetailsRepo) {
+        return map -> {
+//            String id = (String) map.get("sub");
+//            idNew = id.toString();
+            String idNew = (String) map.get("sub");
+            User user = userDetailsRepo.findByIdNew(idNew).orElseGet(() -> {
+                User newUser = new User();
 
+                newUser.setIdNew(idNew);
+                newUser.setUsername((String) map.get("name"));
+                newUser.setEmail((String) map.get("email"));
+//                newUser.setGender((String) map.get("gender"));
+//                newUser.setLocale((String) map.get("locale"));
+//                newUser.setUserpic((String) map.get("picture"));
+
+                return newUser;
+            });
+
+//            user.setLastVisit(LocalDateTime.now());
+
+            return userDetailsRepo.save(user);
+        };
+    }
 
 }

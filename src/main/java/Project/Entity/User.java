@@ -11,6 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String idNew;
     private String username;
     private String password;
     private boolean active;
@@ -105,5 +106,13 @@ public class User {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    public String getIdNew() {
+        return idNew;
+    }
+
+    public void setIdNew(String idNew) {
+        this.idNew = idNew;
     }
 }

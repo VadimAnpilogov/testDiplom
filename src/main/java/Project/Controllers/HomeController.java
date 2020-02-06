@@ -13,9 +13,9 @@ public class HomeController {
         return "NoAuthHome";
     }
 
+
     @GetMapping("/home")
     public String home() {
         return "home";
     }
-
 }

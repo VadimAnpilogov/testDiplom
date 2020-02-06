@@ -5,46 +5,71 @@
 
 <body th:fragment="menu">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Mentor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item active" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="home">Главная <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item" sec:authorize="isAuthenticated()">
-                <a class="nav-link" th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a>
-            </li>
-<!--            <div >-->
-<!--                <li class="nav-item" sec:authorize="${hasAuthority('USER')}">-->
-<!--                    <a class="nav-link" href="home">Проверка Пользователя</a>-->
-<!--                </li>-->
-<!--            </div>-->
-<!--            <div >-->
-<!--                <li class="nav-item" sec:authorize="${hasAuthority('ADMIN')}">-->
-<!--                    <a class="nav-link" href="home">Проверка Админа</a>-->
-<!--                </li>-->
-<!--            </div>-->
-            <li class="nav-item" sec:authorize="!isAuthenticated()">
-                <a class="nav-link" href="home">Войти</a>
+<div class="topmenu">
+    <div class="widget">
+        <h3>Mentor</h3>
+        <ul>
+            <li sec:authorize="isAuthenticated()"><a href="home">Главная</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a>
             </li>
             <li class="nav-item" sec:authorize="!isAuthenticated()">
-                <a class="nav-link" href="registration">Регистрация</a>
+                <a  href="home">Войти</a>
             </li>
+
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a  href="registration">Регистрация</a>
+            </li>
+
             <li class="nav-item" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="logout">Выйти</a>
+                <a  href="logout">Выйти</a>
             </li>
         </ul>
-        <span class="navbar-text" sec:authorize="isAuthenticated()">
-     Logged user: <span sec:authentication="name"></span>
-    </span>
     </div>
-</nav>
+</div>
+
+
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <a class="navbar-brand" href="#">Mentor</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--        <ul class="navbar-nav mr-auto">-->
+
+<!--            <li class="nav-item active" sec:authorize="isAuthenticated()">-->
+<!--                <a class="nav-link" href="home">Главная <span class="sr-only">(current)</span></a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                <a class="nav-link" th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a>-->
+<!--            </li>-->
+<!--&lt;!&ndash;            <div >&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item" sec:authorize="${hasAuthority('USER')}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="nav-link" href="home">Проверка Пользователя</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div >&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item" sec:authorize="${hasAuthority('ADMIN')}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="nav-link" href="home">Проверка Админа</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <li class="nav-item" sec:authorize="!isAuthenticated()">-->
+<!--                <a class="nav-link" href="home">Войти</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" sec:authorize="!isAuthenticated()">-->
+<!--                <a class="nav-link" href="registration">Регистрация</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                <a class="nav-link" href="logout">Выйти</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <span class="navbar-text" sec:authorize="isAuthenticated()">-->
+<!--     Logged user: <span sec:authentication="name"></span>-->
+<!--    </span>-->
+<!--    </div>-->
+<!--</nav>-->
 
 
 

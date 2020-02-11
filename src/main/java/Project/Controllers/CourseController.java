@@ -3,6 +3,7 @@ package Project.Controllers;
 
 import Project.Entity.Course;
 import Project.Entity.SignUpCourse;
+import Project.Entity.User;
 import Project.Repository.CourseRepo;
 import Project.Repository.SCourseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,20 @@ public class CourseController {
     public String usernameCorse;
     public String course1;
 //Страница курсов
-    @GetMapping("course")
+    @GetMapping("/course")
     public String course(Model model){
 
         Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
         model.addAttribute("QCourse1", course);
         return "course";
+    }
+    @GetMapping("FilterUsernameUserCourse")
+    public String FilterFioUserCourse (){
+//        username1 = username;
+//        User user1 = userRepo.findByUsername(username1);
+//        model.addAttribute("users", user1);
+
+        return "redirect:/course";
     }
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")

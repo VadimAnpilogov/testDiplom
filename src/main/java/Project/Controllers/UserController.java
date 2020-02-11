@@ -54,6 +54,7 @@ public class UserController {
         return "redirect:/Personal";
     }
 
+
 //Страница всех преподавтелей
     @GetMapping("Prep")
     public String Prep( Model model){

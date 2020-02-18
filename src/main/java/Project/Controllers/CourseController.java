@@ -33,14 +33,7 @@ public class CourseController {
         model.addAttribute("QCourse1", course);
         return "course";
     }
-    @GetMapping("FilterUsernameUserCourse")
-    public String FilterFioUserCourse (){
-//        username1 = username;
-//        User user1 = userRepo.findByUsername(username1);
-//        model.addAttribute("users", user1);
 
-        return "redirect:/course";
-    }
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")
     public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String forUser, Model model){

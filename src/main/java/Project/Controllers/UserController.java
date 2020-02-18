@@ -32,6 +32,15 @@ public class UserController {
     @Autowired
     private UMessageRepo uMessageRepo;
 
+    //странца всех пользователей
+    @GetMapping("users")
+    public String users( Model model){
+        Iterable<User> userRole = uMessageRepo.findAll();
+        model.addAttribute("users", userRole);
+
+        return "users";
+    }
+
 //Личный кабинет
     @GetMapping("/Personal")
     public String personalUser(Model model){

@@ -9,9 +9,23 @@
 
     <button type="button" class="btn btn-outline-info">Преподавателям</button>
 
-    <button type="button" class="btn btn-success">Войти</button>
-    <button type="button" class="btn btn-success">Зарегистироваться</button>
-    <button type="button" class="btn btn-success">Выйти</button>
+<!--    <a th:href="@{'/course'}">-->
+
+        <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">
+            <a th:href="@{'/course'}">Войти</a>
+        </button>
+
+
+<!--    <a th:href="@{'registration'}">-->
+
+    <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">Зарегистироваться</button>
+
+
+
+
+<!--    <a  th:href="@{'/logout'}">-->
+
+        <button sec:authorize="isAuthenticated()" type="button" class="btn btn-success"><span sec:authentication="name"></span> Выйти</button>
 
 </div>
 

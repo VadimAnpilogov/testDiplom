@@ -9,30 +9,44 @@
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
 
-<div class="f1">
-    <div align="center" class="f2">
-        <h3 class=" text-center">Преподаватели</h3>
-        <br>
 
-        <table class="table-responsive-xl table-hover " align="center" th:width="1000" >
-            <thead class="thead-inverse">
-            <tr>
-                <!--        <th scope="col">#</th>-->
-                <th scope="col">Имя пользователя</th>
-                <th scope="col">Просмотр</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="usr : ${users}">
-                <td th:utext="${usr.username}"></td>
-                <td ><a class="cont" th:href="@{'/prepName/{prepName}'(prepName=${usr.username})}"><h5>Перейти на страницу</h5></a></td>
-            </tr>
-
-            </tbody>
-        </table>
-    </div>
-
+<div class="coursesTiles">
+    <table>
+        <tr th:each="usr : ${users}">
+            <th>
+                <img src="https://psv4.userapi.com/c856228/u149565255/docs/d4/f2b4e075e0c2/Untitled1.png?extra=BgIv7XMuTa3ouAnJK2nyDg2T9o9L8YgBrHycL_99Ko3mpx6j1FAp7XYlpebXELtrFigiD5SWAAP0lqihuIDxpnurpLUhGFkKLq_wTSOhoBW8i7ALszEIItLOaXNgZAaQmZ42VGHhsU0QHH99WbKFjqS8etY">
+                <h1>Имя пользователя:</h1>
+                <h2 th:utext="${usr.username}">Область курсов</h2>
+            </th>
+        </tr>
+    </table>
 </div>
+
+
+<!--<div class="f1">-->
+<!--    <div align="center" class="f2">-->
+<!--        <h3 class=" text-center">Преподаватели</h3>-->
+<!--        <br>-->
+
+<!--        <table class="table-responsive-xl table-hover " align="center" th:width="1000" >-->
+<!--            <thead class="thead-inverse">-->
+<!--            <tr>-->
+<!--                &lt;!&ndash;        <th scope="col">#</th>&ndash;&gt;-->
+<!--                <th scope="col">Имя пользователя</th>-->
+<!--                <th scope="col">Просмотр</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="usr : ${users}">-->
+<!--                <td th:utext="${usr.username}"></td>-->
+<!--                <td ><a class="cont" th:href="@{'/prepName/{prepName}'(prepName=${usr.username})}"><h5>Перейти на страницу</h5></a></td>-->
+<!--            </tr>-->
+
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+<!--</div>-->
 
 
 

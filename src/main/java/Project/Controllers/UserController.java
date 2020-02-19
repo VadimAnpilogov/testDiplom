@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import Project.Entity.User;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 //@PreAuthorize("hasAuthority('ADMIN')")
@@ -22,6 +25,7 @@ public class UserController {
     public int roleU=1;
     public String PrepName;
     public String StudName;
+    public String date = "test";
 
     @Autowired
     private ReviewsRepo reviewsRepo;
@@ -109,8 +113,11 @@ public class UserController {
 
     @GetMapping("studName/messageAdd")
     public String addReviewsStud(@RequestParam String reviews, Model model){
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
+        date=formatForDateNow.format(dateNow);
 
-        Reviews reviews1= new Reviews(reviews, StudName, username1);
+        Reviews reviews1= new Reviews(reviews, StudName, username1, date);
         reviewsRepo.save(reviews1);
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
         model.addAttribute("reviews", reviews2);
@@ -124,8 +131,11 @@ public class UserController {
 
     @GetMapping("prepName/messageAdd")
     public String addReviewsPrep(@RequestParam String reviews, Model model){
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
+        date=formatForDateNow.format(dateNow);
 
-        Reviews reviews1= new Reviews(reviews, PrepName, username1);
+        Reviews reviews1= new Reviews(reviews, PrepName, username1, date);
         reviewsRepo.save(reviews1);
         Iterable<User> users = uMessageRepo.findByUsername(PrepName);
         model.addAttribute("personalData", users);

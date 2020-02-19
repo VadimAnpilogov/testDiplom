@@ -15,13 +15,21 @@ public class Reviews {
     private String reviewsOp;
     private String userReviews;
     private String authorReviews;
+    public String date;
 
     public Reviews(){}
 
-    public Reviews(String reviewsOp, String userReviews, String authorReviews) {
-        this.reviewsOp = reviewsOp;
+    public Reviews( String reviewsOp, String authorReviews, String userReviews,  String date) {
         this.userReviews = userReviews;
+        this.reviewsOp = reviewsOp;
         this.authorReviews = authorReviews;
+        this.date = date;
+    }
+
+    public Reviews(String reviewsOp, String authorReviews, String date) {
+        this.reviewsOp = reviewsOp;
+        this.authorReviews = authorReviews;
+        this.date = date;
     }
 
     public Long getId() {
@@ -40,13 +48,6 @@ public class Reviews {
         this.reviewsOp = reviewsOp;
     }
 
-    public String getUserReviews() {
-        return userReviews;
-    }
-
-    public void setUserReviews(String userReviews) {
-        this.userReviews = userReviews;
-    }
 
     public String getAuthorReviews() {
         return authorReviews;
@@ -54,5 +55,21 @@ public class Reviews {
 
     public void setAuthorReviews(String authorReviews) {
         this.authorReviews = authorReviews;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(String userReviews) {
+        this.userReviews = userReviews;
     }
 }

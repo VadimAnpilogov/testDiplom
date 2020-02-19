@@ -2,14 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head :: head"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-
-
-
 </head>
 <head th:replace="fragments/style :: style">
 <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
+
+<div class="coursesTiles">
+    <table>
+        <tr>
+            <th>
+                <img src="https://psv4.userapi.com/c856228/u149565255/docs/d4/f2b4e075e0c2/Untitled1.png?extra=BgIv7XMuTa3ouAnJK2nyDg2T9o9L8YgBrHycL_99Ko3mpx6j1FAp7XYlpebXELtrFigiD5SWAAP0lqihuIDxpnurpLUhGFkKLq_wTSOhoBW8i7ALszEIItLOaXNgZAaQmZ42VGHhsU0QHH99WbKFjqS8etY">
+                <h1>Название курса</h1>
+                <h3>Область курса</h3>
+                <h3>Онлайн/оффлайн</h3>
+                <h3>Индивидуальные/групповые занятия</h3>
+                <h2>Цена</h2>
+            </th>
+            <th>
+                <h1>Плитка курса</h1>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <h1>Плитка курса</h1>
+            </th>
+            <th>
+                <h1>Плитка курса</h1>
+            </th>
+        </tr>
+    </table>
+</div>
+
 <div class="f1">
     <div align="center" class="f2">
         <h3 class=" text-center">Курсы</h3>
@@ -36,5 +60,6 @@
         </table>
     </div>
 </div>
+
 </body>
 </html>

@@ -5,17 +5,41 @@
 <head th:fragment="style">
     <style>
 
+        .userName{
+            position: relative;
+            top: 14px;
+            left: 65%;
+            margin: 0 10px 0 30px;
+            border: 2px solid #185675;
+            padding: 5px 12px 7px;
+            border-radius: 12px;
+            font-family: 'Ubuntu', cursive;
+        }
+        .loginRef{
+            text-decoration: none;
+            outline: none;
+            color: white;
+        }
+        .loginRef:hover{
+            text-decoration: none;
+            color: white;
+        }
+
         .upMenu{
             color: white;
             height: 60px;
+            min-width: 900px;
             background-color: #103b4f;
-            padding-left: 250px;
-            /*position: relative;*/
+            /*Невозможность выделить текст*/
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer */
+            -webkit-user-select: none; /* Chrome, Safari, and Opera */
+            -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
         }
         .upMenu button{
             position: relative;
             top: 12px;
-            left: 60%;
+            left: 65%;
             margin: 0 10px;
         }
 
@@ -47,22 +71,29 @@
             border: 2px #2b4458 solid;
             border-radius: 4px;
             position: relative;
+            background-size: 500px;
+            background-position-x: 100%;
+            background-repeat: no-repeat;
+            background-image: url("https://psv4.userapi.com/c856228/u149565255/docs/d4/f2b4e075e0c2/Untitled1.png?extra=BgIv7XMuTa3ouAnJK2nyDg2T9o9L8YgBrHycL_99Ko3mpx6j1FAp7XYlpebXELtrFigiD5SWAAP0lqihuIDxpnurpLUhGFkKLq_wTSOhoBW8i7ALszEIItLOaXNgZAaQmZ42VGHhsU0QHH99WbKFjqS8etY");
         }
         .coursesTiles table{
             border-spacing: 70px 50px;
             border-collapse: separate;
             margin: auto;
-            width: 1400px;
+            width: 85%;
             table-layout: fixed;
+            min-width: 500px;
         }
-        .coursesTiles img{
-            position: absolute;
-            left: 939px;
-            bottom: 0px;
-            height: 226px;
-            border-radius: 4px;
-            z-index: 1;
-        }
+        /*.coursesTiles img{*/
+            /*position: relative;*/
+            /*left: 20px;*/
+            /*bottom: 20px;*/
+            /*height: 226px;*/
+            /*border-radius: 4px;*/
+            /*z-index: 1;*/
+            /*display: block;*/
+            /*margin-left: auto;*/
+        /*}*/
 
         .container{max-width:1170px; margin:auto;}
         img{ max-width:100%;}
@@ -148,7 +179,7 @@
         }
         .received_msg {
             display: inline-block;
-            padding: 0 0 0 300px;
+            padding: 0 0 0 22%;
             vertical-align: top;
             width: 92%;
         }
@@ -174,7 +205,8 @@
         .mesgs {
             float: left;
             width: calc(100% - 550px);
-            height: 900px;
+            /*height: 900px;*/
+            height: calc(100% - 70px);
             position: absolute;
             margin: 0 0 0 540px;
             right: 0;
@@ -191,11 +223,11 @@
         }
         .outgoing_msg{
             overflow:hidden;
-            margin:26px 0 26px;
+            margin: 26px 0 26px;
         }
         .sent_msg {
             float: right;
-            padding: 0 300px 0 0;
+            padding: 0 20% 0 0;
             /*width: 46%;*/
         }
         .input_msg_write input {
@@ -210,11 +242,11 @@
 
         .type_msg {
             border-top: 1px solid #c4c4c4;
-            position: fixed;
-            width: calc(100% - 1150px);
+            position: relative;
+            width: 60%;
             height: 50px;
             /*padding: 800px 0 0 0;*/
-            margin: 880px 300px 0 300px;
+            margin: 0 auto;
         }
         .msg_send_btn {
             background: #05728f none repeat scroll 0 0;
@@ -234,11 +266,26 @@
             position: relative;
         }
         .msg_history {
-            height: calc(100% - 50px);
+            height: calc(100% - 70px);
             width: 100%;
             overflow-y: scroll;
-            position: absolute;
+            position: relative;
             padding: 0 10px 0 0;
+        }
+        ::-webkit-scrollbar-track
+        {
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar
+        {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            background-color: #828282;
         }
 
         .rew{
@@ -494,20 +541,19 @@
 /*вертикальное меню*/
         * {box-sizing: border-box; margin: 0;}
         .widget {
-
             height: 100%;
             /*ширина меню*/
             width: 230px;
             position: fixed;
             top: 0px;
-
             padding: 20px;
             /*border: 5px solid #f1f1f1;*/
             background: rgb(27, 43, 56);
             /*background: url("https://sun9-4.userapi.com/c857232/v857232021/d1ab6/dKLBNVpg0Ww.jpg");*/
 
             /*border-radius: 5px;*/
-            font-family: 'Roboto', sans-serif;
+            /*font-family: 'Roboto', sans-serif;*/
+            font-family: 'Ubuntu', sans-serif;
         }
         .username_msg{
             color: #b4c5d5;

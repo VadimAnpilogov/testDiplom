@@ -11,9 +11,9 @@
 
 <!--    <a th:href="@{'/course'}">-->
 
-        <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">
-            <a th:href="@{'/course'}">Войти</a>
-        </button>
+    <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">
+        <a class="loginRef" th:href="@{'/course'}">Войти</a>
+    </button>
 
 
 <!--    <a th:href="@{'registration'}">-->
@@ -25,7 +25,8 @@
 
 <!--    <a  th:href="@{'/logout'}">-->
 
-        <button sec:authorize="isAuthenticated()" type="button" class="btn btn-success"><span sec:authentication="name"></span> Выйти</button>
+    <button sec:authorize="isAuthenticated()" type="button" class="btn btn-success">Выйти</button>
+    <span class="userName" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
 
 </div>
 

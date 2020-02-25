@@ -25,6 +25,7 @@ public class MessagesController {
     public String NameMess= "test";
     public String sen;
     public String date;
+    public String namePage = "Чат";
 
     @Autowired
     public UMessageRepo uMessageRepo;
@@ -35,6 +36,7 @@ public class MessagesController {
 //Страница сообщений
     @GetMapping("message")
     public String message(Model model){
+        model.addAttribute("namePage", namePage);
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
 
@@ -49,6 +51,7 @@ public class MessagesController {
 //Получение имени Отправителя
     @GetMapping("messageR/{sender}")
     public String messageR(@PathVariable String sender, Model model){
+        model.addAttribute("namePage", namePage);
         sender1 = sender;
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
@@ -59,6 +62,7 @@ public class MessagesController {
     //Получение имени Получателя
     @GetMapping("/messageU/{recipient}")
     public String messageU(@PathVariable String recipient, Model model){
+        model.addAttribute("namePage", namePage);
         recipient1 = recipient;
 
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
@@ -83,7 +87,7 @@ public class MessagesController {
 //Отправка сообщения
     @GetMapping("messageU/messageAdd")
     public String messageAdd(@RequestParam String message, Model model){
-
+        model.addAttribute("namePage", namePage);
         NameMess=recipient1+sender1;
         Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);
         sen=messages1.toString();

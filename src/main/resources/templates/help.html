@@ -10,56 +10,36 @@
 
 <body>
 
-<!--<div class="topmenu">-->
-<!--    <div class="widget_message">-->
-<!--        <ul>-->
-<!--            <li th:each="mesU : ${messageU}">-->
-<!--                <div class="chat_list">-->
-<!--                    <div class="chat_people">-->
-<!--                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
-<!--                        <div class="chat_ib">-->
-<!--                            <a th:href="@{'/messageU/{recipient}#endpage'(recipient=${mesU.username})}" class="username_msg">-->
-<!--                                <h5 th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--</div>-->
 
 <div class="mesgs">
-    <div class="msg_history">
-
-        <div th:each="mesS : ${helpMessage}">
-            <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >
-                <div class="received_withd_msg">
+    <div class="chat">
+        <div class="name" th:each="mesS : ${helpMessage}">
+            <h4 class="name" th:utext="${mesS.sender}"> 11:01 AM    |    Today </h4>
+            <div class="message">
+                <div class="messages">
                     <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                    <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
-            </div>
+                    <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
 
-            <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >
-                <div class="sent_msg">
-                    <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                    <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
+                </div>
             </div>
         </div>
+
         <span id="endpage"></span>
     </div>
 
-    <form action="helpAddMessage?message1=message#endpage">
-        <div class="type_msg">
+
+
+</div>
+<div class="enter">
+    <div class="type_msg">
+        <form action="helpAddMessage?message1=message#endpage">
             <div class="input_msg_write">
                 <input type="message1" name="message" class="write_msg" placeholder="Input message" autocomplete="off"/>
                 <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
-
 
 </body>
 </html>

@@ -22,6 +22,8 @@ import java.util.Date;
 public class HomeController {
     public String sender1 = "test";
     public String date = "test";
+    public String namePage = "Контакты";
+    public String namePageHelp = "Помощь";
 
     @Autowired
     private ChatRepo chatRepo;
@@ -39,6 +41,7 @@ public class HomeController {
 
     @GetMapping("/help/{sender}")
     public String helpSender(@PathVariable String sender, Model model) {
+        model.addAttribute("namePage", namePageHelp);
         sender1 = sender;
         Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
         model.addAttribute("helpMessage", helpS);
@@ -46,12 +49,14 @@ public class HomeController {
     }
     @GetMapping("/help")
     public String help( Model model) {
+        model.addAttribute("namePage", namePageHelp);
         Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
         model.addAttribute("helpMessage", helpS);
         return "help";
     }
     @GetMapping("helpAddMessage")
     public String AddHelpSender(@RequestParam String message, Model model){
+        model.addAttribute("namePage", namePageHelp);
         Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
         model.addAttribute("helpMessage", helpS);
 
@@ -66,7 +71,8 @@ public class HomeController {
     }
 
     @GetMapping("/contacts")
-    public String contacts() {
+    public String contacts(Model model) {
+        model.addAttribute("namePage", namePage);
         return "contacts";
     }
 

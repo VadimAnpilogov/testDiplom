@@ -25,10 +25,11 @@ public class CourseController {
     public  String PrepName;
     public String usernameCorse;
     public String course1;
+    public String namePage = "Курсы";
 //Страница курсов
     @GetMapping("/course")
     public String course(Model model){
-
+        model.addAttribute("namePage", namePage);
         Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
         model.addAttribute("QCourse1", course);
         return "course";
@@ -37,7 +38,7 @@ public class CourseController {
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")
     public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String forUser, Model model){
-
+        model.addAttribute("namePage", namePage);
         Course course = new Course(courseName, PrepName, description, forUser);
         courseRepo.save(course);
 
@@ -46,6 +47,7 @@ public class CourseController {
 //Получение имени преподавателя для создания курса
     @GetMapping("createCourse/{prepName}")
     public String CreateCourse(@PathVariable String prepName, Model model){
+        model.addAttribute("namePage", namePage);
         PrepName=prepName;
         Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
         model.addAttribute("QCourse1", course);
@@ -55,6 +57,7 @@ public class CourseController {
     @GetMapping("SCourse")
     public String SCourse(Model model){
 //        Iterable<Course> courses = courseRepo.findByCourseName(course1);
+        model.addAttribute("namePage", namePage);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
         return "SCourse";
@@ -64,6 +67,7 @@ public class CourseController {
     @GetMapping("SCourse/{course}")
     public String SCourseC(@PathVariable String course, Model model){
         course1=course;
+        model.addAttribute("namePage", namePage);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
         return "SCourse";
@@ -71,6 +75,7 @@ public class CourseController {
 //Запись на курс
     @GetMapping("signCourse/{user}")
     public String signCourse(@PathVariable String user, Model model){
+        model.addAttribute("namePage", namePage);
         usernameCorse=user;
         SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
         sCourseRepo.save(signUpCourse);

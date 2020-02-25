@@ -6,27 +6,38 @@
 <body th:fragment="upMenu">
 
 <div class="upMenu">
+    <div class="row">
+        <div class="span4">
+            <h4 class="namePage" th:text="${namePage}"></h4>
+        </div>
+        <div class="span6">
+            <button type="button" class="btn btn-outline-info">Преподавателям</button>
 
-    <button type="button" class="btn btn-outline-info">Преподавателям</button>
+            <!--    <a th:href="@{'/course'}">-->
 
-<!--    <a th:href="@{'/course'}">-->
-
-    <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">
-        <a class="loginRef" th:href="@{'/course'}">Войти</a>
-    </button>
-
-
-<!--    <a th:href="@{'registration'}">-->
-
-    <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">Зарегистироваться</button>
-
+            <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">
+                <a class="loginRef" th:href="@{'/course'}">Войти</a>
+            </button>
 
 
+            <!--    <a th:href="@{'registration'}">-->
 
-<!--    <a  th:href="@{'/logout'}">-->
+            <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">Зарегистироваться</button>
 
-    <button sec:authorize="isAuthenticated()" type="button" class="btn btn-success">Выйти</button>
-    <span class="userName" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+
+
+
+            <!--    <a  th:href="@{'/logout'}">-->
+
+            <button sec:authorize="isAuthenticated()" type="button" class="btn btn-success">Выйти</button>
+            <span class="userName" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+
+        </div>
+    </div>
+
+
+
+
 
 </div>
 

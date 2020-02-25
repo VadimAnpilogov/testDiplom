@@ -6,62 +6,52 @@
 <head th:replace="fragments/style :: style">
     <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
-<body th:replace="fragments/homeMenu :: homeMenu"></body>
+
 
 <body>
-
-<!--<div class="topmenu">-->
-<!--    <div class="widget_message">-->
-<!--        <ul>-->
-<!--            <li th:each="mesU : ${messageU}">-->
-<!--                <div class="chat_list">-->
-<!--                    <div class="chat_people">-->
-<!--                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>-->
-<!--                        <div class="chat_ib">-->
-<!--                            <a th:href="@{'/messageU/{recipient}#endpage'(recipient=${mesU.username})}" class="username_msg">-->
-<!--                                <h5 th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--</div>-->
+<!--th:if="${mesS.authorReviews != #httpServletRequest.remoteUser}"-->
 
 <div class="mesgs">
-    <div class="msg_history">
+        <div class="chat">
+            <div class="name" th:each="mesS : ${reviewsMessage}">
+                <h4 class="name" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>
+                <div class="message">
+                    <div class="messages">
+                        <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>
+                        <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
 
-        <div th:each="mesS : ${reviewsMessage}">
-            <div th:if="${mesS.authorReviews != #httpServletRequest.remoteUser}" class="received_msg" >
-                <div class="received_withd_msg">
-                    <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>
-                    <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
-                <span class="time_date" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </span> </div>
+                    </div>
+                </div>
             </div>
 
-<!--            <div th:if="${mesS.authorReviews == #httpServletRequest.remoteUser}" class="outgoing_msg" >-->
-<!--                <div class="sent_msg">-->
-<!--                    <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>-->
-<!--                    <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today </span> </div>-->
-<!--                    <span class="time_date" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </span> </div>-->
-<!--            </div>-->
+            <span id="endpage"></span>
         </div>
-        <span id="endpage"></span>
-    </div>
 
-    <form action="rewiewsAddMessage?message1=message#endpage">
-        <div class="type_msg">
+
+
+
+
+
+
+
+<!--    <div class="msg_history">-->
+
+<!--        -->
+<!--    </div>-->
+
+
+</div>
+<div class="enter">
+    <div class="type_msg">
+        <form action="rewiewsAddMessage?message1=message#endpage">
             <div class="input_msg_write">
                 <input type="message1" name="message" class="write_msg" placeholder="Input message" autocomplete="off"/>
                 <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
-        </div>
-    </form>
+        </form>
+</div>
 </div>
 
-
 </body>
+<body th:replace="fragments/homeMenu :: homeMenu"></body>
 </html>

@@ -20,7 +20,7 @@ public class reviewsController {
 
     public String authorReviews = "anonymous";
     public String date = "test";
-
+    public String namePage = "Отзывы";
 
 //    @GetMapping("/rewiews")
 //    public String Rewiews()
@@ -31,6 +31,7 @@ public class reviewsController {
 
     @GetMapping("/rewiews/{sender}")
     public String rewiewsSender(@PathVariable String sender, Model model) {
+        model.addAttribute("namePage", namePage);
         authorReviews = sender;
         Iterable<Reviews> reviewsMess = reviewsRepoR.findAllByOrderByIdAsc();
         model.addAttribute("reviewsMessage", reviewsMess);
@@ -38,12 +39,14 @@ public class reviewsController {
     }
     @GetMapping("/rewiews")
     public String Rewiews( Model model) {
+        model.addAttribute("namePage", namePage);
         Iterable<Reviews> reviewsMess = reviewsRepoR.findAllByOrderByIdAsc();
         model.addAttribute("reviewsMessage", reviewsMess);
         return "rewiews";
     }
     @GetMapping("rewiewsAddMessage")
     public String AddRewiewsSender(@RequestParam String message, Model model){
+        model.addAttribute("namePage", namePage);
         Iterable<Reviews> reviewsMess = reviewsRepoR.findAllByOrderByIdAsc();
         model.addAttribute("reviewsMessage", reviewsMess);
 

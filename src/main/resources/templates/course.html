@@ -13,13 +13,12 @@
     <table>
         <tr th:each="cor : ${QCourse1}">
             <th>
-                <h1 th:utext="${cor.courseName}">Название курса</h1>
-                <h3 th:utext="${cor.prepName}" >Преподаватель</h3>
-                <h3>Область курса</h3>
-                <h3>Онлайн/оффлайн</h3>
-                <h3>Индивидуальные/групповые занятия</h3>
-                <h2>Цена</h2>
-<!--                <img src="https://s9.wampi.ru/2020/02/25/Untitled1.png">-->
+                <h1 class="courseDetail">Название курса: </h1><h1 th:utext="${cor.courseName}">Название курса</h1>
+                <h3 class="courseDetail">Преподаватель: </h3><h3 th:utext="${cor.prepName}" >Преподаватель</h3>
+                <h3 class="courseDetail">Область курса: </h3><h3>Область курса</h3>
+                <h3 class="courseDetail">Занятия: </h3><h3>Онлайн/оффлайн</h3>
+                <h3 class="courseDetail">Тип занятий: </h3><h3>Индивидуальные/групповые занятия</h3>
+                <h2 class="courseDetail">Стоимость: </h2><h2>Цена</h2>
             </th>
         </tr>
         <tr>

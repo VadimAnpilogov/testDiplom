@@ -11,36 +11,17 @@
 <body>
 <!--th:if="${mesS.authorReviews != #httpServletRequest.remoteUser}"-->
 
-<div class="mesgs">
-        <div class="chat">
-            <div class="name" th:each="mesS : ${reviewsMessage}">
-                <h4 class="name" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>
-                <div class="message">
-                    <div class="messages">
-                        <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>
-                        <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
-
-                    </div>
-                </div>
-            </div>
-
-            <span id="endpage"></span>
+<div class="reviews">
+    <div class="review" th:each="mesS : ${reviewsMessage}">
+        <h4 class="reviewName" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>
+        <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
+        <div class="reviewText">
+            <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>
         </div>
-
-
-
-
-
-
-
-
-<!--    <div class="msg_history">-->
-
-<!--        -->
-<!--    </div>-->
-
-
+    </div>
+    <span id="endpage"></span>
 </div>
+
 <div class="enter">
     <div class="type_msg">
         <form action="rewiewsAddMessage?message1=message#endpage">
@@ -49,7 +30,7 @@
                 <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
         </form>
-</div>
+    </div>
 </div>
 
 </body>

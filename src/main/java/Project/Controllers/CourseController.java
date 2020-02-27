@@ -26,6 +26,7 @@ public class CourseController {
     public String usernameCorse;
     public String course1;
     public String namePage = "Курсы";
+    public String namePageCreate = "Создание курса";
 //Страница курсов
     @GetMapping("/course")
     public String course(Model model){
@@ -38,7 +39,7 @@ public class CourseController {
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")
     public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String forUser, Model model){
-        model.addAttribute("namePage", namePage);
+        model.addAttribute("namePage", namePageCreate);
         Course course = new Course(courseName, PrepName, description, forUser);
         courseRepo.save(course);
 
@@ -47,7 +48,7 @@ public class CourseController {
 //Получение имени преподавателя для создания курса
     @GetMapping("createCourse/{prepName}")
     public String CreateCourse(@PathVariable String prepName, Model model){
-        model.addAttribute("namePage", namePage);
+        model.addAttribute("namePage", namePageCreate);
         PrepName=prepName;
         Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
         model.addAttribute("QCourse1", course);

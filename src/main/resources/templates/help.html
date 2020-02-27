@@ -11,25 +11,18 @@
 <body>
 
 
-<div class="mesgs">
-    <div class="chat">
-        <div class="name" th:each="mesS : ${helpMessage}">
-            <h4 class="name" th:utext="${mesS.sender}"> 11:01 AM    |    Today </h4>
-            <div class="message">
-                <div class="messages">
-                    <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                    <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
 
-                </div>
+    <div class="reviews">
+        <div class="review" th:each="mesS : ${helpMessage}">
+            <h4 class="reviewName" th:utext="${mesS.sender}"> 11:01 AM    |    Today </h4>
+            <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
+            <div class="reviewText">
+                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
             </div>
         </div>
-
         <span id="endpage"></span>
     </div>
 
-
-
-</div>
 <div class="enter">
     <div class="type_msg">
         <form action="helpAddMessage?message1=message#endpage">

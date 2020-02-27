@@ -8,98 +8,41 @@
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
-<div class="f1">
-    <div align="center" class="f2">
-<!--<h1  align="center" style="color:#0000ff">Создание курса</h1>-->
-        <h3 class=" text-center">Создание курса</h3>
-        <br>
-        <form  th:align="center" action="addCourse?courseName1=courseName&description1=description&forUser1=forUser">
-            <div class="row justify-content-md-center">
-                <div class="form-group col-sm-4">
-                    <label for="courseName" class="h4">Название курса</label>
-                    <input type="courseName1" name="courseName" class="form-control" id="courseName" placeholder="Введите название курса" required>
-                    <br>
 
-                    <label for="description" class="h4">Описание курса</label>
-                    <input type="description1" name="description" class="form-control" id="description" placeholder="Введите описание курса" required>
-                    <br>
+    <div class="formCourse">
 
-                    <label for="forUser" class="h4">Для кого этот курс</label>
-                    <input type="forUser1" name="forUser" class="form-control" id="forUser" placeholder="Введите кому подходит курс" required>
+        <table>
+            <tr>
+                <th>
+                    <form action="addCourse?courseName1=courseName&description1=description&forUser1=forUser">
+                        <div>
+                            <div>
+                                <label for="courseName" class="h4">Название курса</label>
+                                <input type="courseName1" name="courseName" class="form-control" id="courseName" placeholder="Введите название курса" required>
 
+                                <label for="description" class="h4">Описание курса</label>
+                                <input type="description1" name="description" class=" formCourseinputText form-control" id="description" placeholder="Введите описание курса" required>
 
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <div class="jumbotron">
-                <h1 class="display-4">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </div>
-            <div class="jumbotron">
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                            </div>
+                        </div>
 
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-            </div>
-            <input type="submit"value="Добавить"/>
-        </form>
-        <!--    <table align="center">-->
-        <!--        <tr>-->
-        <!--            <td width="400px">-->
-        <!--                <p>Название курса</p>-->
-        <!--            </td>-->
-        <!--            <td>-->
-        <!--                <p>Преподаватель</p>-->
-        <!--            </td>-->
-        <!--            <td></td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--            <td>-->
-        <!--            -->
-        <!--            </td>-->
-        <!--            <td width="400px">-->
-        <!--                <input type="courseName1" name="courseName"-->
-        <!--                       placeholder="Введите название курса" required="true"/>-->
-        <!--                <input type="description1" name="description"-->
-        <!--                       placeholder="Введите название курса" required="true"/>-->
-        <!--                <input type="forUser1" name="forUser"-->
-        <!--                       placeholder="Введите название курса" required="true"/>-->
-        <!--            </td>-->
-        <!--            <td> <input type="submit"value="Добавить"/></td>-->
-        <!--        </tr>-->
-        <!--        <tr th:each="cor : ${QCourse1}">-->
-        <!--            <td th:utext="${cor.courseName}"></td>-->
-        <!--            <td th:utext="${cor.prepName}"></td>-->
-        <!--        </tr>-->
+                        <input class="formCourseinput" type="submit"value="Добавить"/>
+                    </form>
+                </th>
 
-        <!--    </table>-->
+                <th>
+                    <form>
+                        <label for="cour" class="h4">Занятия</label>
+                        <input type="cour" name="cour" class="form-control" id="cour" placeholder="Введите название курса" required>
+                    </form>
+                </th>
+            </tr>
+        </table>
 
 
-        <!--<div class="row" align="center">-->
-        <!--    <div class="form-group col-sm-4">-->
-        <!--        <label for="courseName" class="h4">Название курса</label>-->
-        <!--        <input type="text" class="form-control" id="courseName" placeholder="Введите название курса" required>-->
 
-
-        <!--        <label for="description" class="h4">Описание курса</label>-->
-        <!--        <input type="email" class="form-control" id="description" placeholder="Введите описание курса" required>-->
-
-
-        <!--        <label for="forUser" class="h4">Для кого этот курс</label>-->
-        <!--        <input type="email" class="form-control" id="forUser" placeholder="Введите кому подходит курс" required>-->
-
-
-        <!--    </div>-->
-        <!--</div>-->
     </div>
-</div>
+
 
 </body>
 </html>

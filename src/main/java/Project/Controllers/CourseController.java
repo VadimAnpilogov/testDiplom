@@ -3,9 +3,11 @@ package Project.Controllers;
 
 import Project.Entity.Course;
 import Project.Entity.SignUpCourse;
+import Project.Entity.Theme;
 import Project.Entity.User;
 import Project.Repository.CourseRepo;
 import Project.Repository.SCourseRepo;
+import Project.Repository.ThemeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class CourseController {
 
@@ -21,12 +26,18 @@ public class CourseController {
     public CourseRepo courseRepo;
     @Autowired
     public SCourseRepo sCourseRepo;
+    @Autowired
+    public ThemeRepo themeRepo;
 
     public  String PrepName;
     public String usernameCorse;
     public String course1;
     public String namePage = "Курсы";
     public String namePageCreate = "Создание курса";
+    public String namePageTheme = "Темы курса";
+    public String namePrep;
+    public String nameCourses;
+    public String date;
 //Страница курсов
     @GetMapping("/course")
     public String course(Model model){
@@ -38,8 +49,11 @@ public class CourseController {
 
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")
-    public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String forUser, Model model){
+    public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String forUser , @RequestParam String namePr, Model model){
         model.addAttribute("namePage", namePageCreate);
+        namePrep = namePr;
+        nameCourses = courseName;
+
         Course course = new Course(courseName, PrepName, description, forUser);
         courseRepo.save(course);
 
@@ -85,4 +99,28 @@ public class CourseController {
         return "SCourse";
     }
 
+    @GetMapping("addTheme")
+    public String addTheme(Model model, @RequestParam String nameTheme){
+        model.addAttribute("namePage", namePageTheme);
+
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
+        date=formatForDateNow.format(dateNow);
+
+        Theme themes = new Theme(nameTheme, nameCourses, PrepName, date);
+        themeRepo.save(themes);
+
+        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
+        model.addAttribute("Theme", theme);
+        return "theme";
+    }
+
+    @GetMapping("theme")
+    public String theme(Model model){
+        model.addAttribute("namePage", namePageTheme);
+
+        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
+        model.addAttribute("Theme", theme);
+        return "theme";
+    }
 }

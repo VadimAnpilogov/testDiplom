@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+</head>
+<head th:replace="fragments/style :: style">
+    <!--<body th:replace="fragments/menu :: menu"></body>-->
+<body th:replace="fragments/upMenu :: upMenu"></body>
+<body th:replace="fragments/homeMenu :: homeMenu"></body>
+<body>
+
+<div class="formCourse">
+    <form action="addTheme?nameTheme1=nameTheme">
+        <label for="nameTheme" class="h4">Темы</label>
+        <input type="nameTheme1" name="nameTheme" class="form-control" id="nameTheme" placeholder="Введите название темы" required>
+    </form>
+    <div th:each="Them : ${Theme}">
+        <h4 th:utext="${Them.nameTheme}"></h4>
+    </div>
+
+</div>
+
+
+</body>
+</html>

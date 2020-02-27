@@ -10,37 +10,27 @@
 <body>
 
     <div class="formCourse">
+        <form action="addCourse?courseName1=courseName&description1=description&forUser1=forUser">
+            <h4>Название курса</h4>
+            <input type="courseName1" name="courseName" class="form-control" id="courseName" placeholder="Введите название курса" required>
 
-        <table>
-            <tr>
-                <th>
-                    <form action="addCourse?courseName1=courseName&description1=description&forUser1=forUser">
-                        <div>
-                            <div>
-                                <label for="courseName" class="h4">Название курса</label>
-                                <input type="courseName1" name="courseName" class="form-control" id="courseName" placeholder="Введите название курса" required>
+            <h4>Описание курса</h4>
+            <input type="description1" name="description" class=" formCourseinputDescription form-control" id="description" placeholder="Введите описание курса" required>
 
-                                <label for="description" class="h4">Описание курса</label>
-                                <input type="description1" name="description" class=" formCourseinputText form-control" id="description" placeholder="Введите описание курса" required>
+            <h4>Область курса</h4>
+            <input type="description1" name="description" class=" formCourseinputText form-control" id="description" placeholder="Введите область курса (например, программирование, математика, музыка, фитнес)" required>
 
-                            </div>
-                        </div>
+            <h4>Формат проведения</h4>
+            <label><input class="courseCheck-box" type="radio" checked name="online"/>Онлайн</label>
+            <label><input class="courseCheck-box" type="radio" name="online"/>Оффлайн</label>
 
-                        <input class="formCourseinput" type="submit"value="Добавить"/>
-                    </form>
-                </th>
+            <h4>Стоимость</h4>
+            <input type="description1" name="description" class=" formCourseinputText form-control" id="description" placeholder="Введите стоимость" required>
+            <label><input class="courseCheck-box" type="radio" checked name="price"/>Каждого занятия</label>
+            <label><input class="courseCheck-box" type="radio" name="price"/>Всего курса в целом</label>
 
-                <th>
-                    <form>
-                        <label for="cour" class="h4">Занятия</label>
-                        <input type="cour" name="cour" class="form-control" id="cour" placeholder="Введите название курса" required>
-                    </form>
-                </th>
-            </tr>
-        </table>
-
-
-
+            <input class="formCourseinput" type="submit"value="Добавить"/>
+        </form>
     </div>
 
 

@@ -6,35 +6,28 @@
 <head th:replace="fragments/style :: style">
     <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
-
-
+<body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
-<!--th:if="${mesS.authorReviews != #httpServletRequest.remoteUser}"-->
 
-<div class="reviews">
-    <div class="review" th:each="mesS : ${reviewsMessage}">
-        <h4 class="reviewName" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>
-        <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
-        <div class="reviewText">
-            <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>
-        </div>
-    </div>
-    <span id="endpage"></span>
-</div>
-
-
-
-<div class="enter">
-    <div class="type_msg">
-        <form action="rewiewsAddMessage?message1=message#endpage">
-            <div class="input_msg_write">
-                <input type="message1" name="message" class="write_msg" placeholder="Input message" autocomplete="off"/>
-                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+    <div class="reviews">
+        <div class="review" th:each="mesS : ${reviewsMessage}">
+            <h4 class="reviewName" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>
+            <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
+            <div class="reviewText">
+                <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>
             </div>
+        </div>
+        <span id="endpage"></span>
+    </div>
+
+<div class="reviewEnter">
+    <div class="reviewWrite">
+        <form action="rewiewsAddMessage?message1=message#endpage">
+            <input type="message1" name="message" class="reviewWriteArea" placeholder="Поделитесь вашими впечатлениями от использования сервиса" autocomplete="off"/>
+            <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
         </form>
     </div>
 </div>
 
 </body>
-<body th:replace="fragments/homeMenu :: homeMenu"></body>
 </html>

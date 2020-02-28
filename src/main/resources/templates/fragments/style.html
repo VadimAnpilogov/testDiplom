@@ -5,6 +5,39 @@
 <head th:fragment="style">
     <style>
 
+        .reviewEnter{
+            position: sticky;
+            background-color: rgba(51, 52, 55, 0.93);
+            width: calc( 100% - 230px );
+            height: 15%;
+            bottom:0;
+            margin-left: 230px;
+            min-height: 60px;
+            max-height: 20%;
+        }
+        .reviewWrite{
+            position: relative;
+            margin: auto;
+            max-width: 50%;
+            min-width: 200px;
+            top: 10px;
+        }
+        .reviewWriteArea{
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #1f2024;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
         .courseDetail{
             float: left;
             margin-right: 10px;
@@ -254,8 +287,8 @@
             font-size: 17px;
             height: 33px;
             position: absolute;
-            right: 20px;
-            top: 11px;
+            right: -40px;
+            top: 2px;
             width: 33px;
         }
         .messaging {
@@ -710,7 +743,7 @@
             height: 15%;
             /*position:absolute; !* добавили *!*/
             bottom:0;
-            /*margin-left: 230px;*/
+            margin-left: 230px;
         }
         .message{
             /*background-color: #103b4f;*/
@@ -733,10 +766,13 @@
         }
         .contacts{
             color: #e5e7ed;
-            margin-top: 40px;
+            margin: 40px 0 0 230px;
         }
         .txtCont{
-            margin-top: 40px;
+            margin: 40px 0 0 0;
+            min-width: 500px;
+            max-width: 1050px;
+
         }
         .formCourse{
             margin: 30px auto;

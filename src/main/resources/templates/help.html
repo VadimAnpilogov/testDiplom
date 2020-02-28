@@ -7,10 +7,7 @@
     <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
-
 <body>
-
-
 
     <div class="reviews">
         <div class="review" th:each="mesS : ${helpMessage}">
@@ -23,13 +20,11 @@
         <span id="endpage"></span>
     </div>
 
-<div class="enter">
-    <div class="type_msg">
+<div class="reviewEnter">
+    <div class="reviewWrite">
         <form action="helpAddMessage?message1=message#endpage">
-            <div class="input_msg_write">
-                <input type="message1" name="message" class="write_msg" placeholder="Input message" autocomplete="off"/>
-                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-            </div>
+            <input type="message1" name="message" class="reviewWriteArea" placeholder="Input message" autocomplete="off"/>
+            <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
         </form>
     </div>
 </div>

@@ -5,6 +5,42 @@
 <head th:fragment="style">
     <style>
 
+        .myCourse{
+            max-width: 970px;
+            margin: 50px auto;
+        }
+        .myCourseText h4{
+            text-align: center;
+        }
+
+        .personalData{
+            text-align: left;
+        }
+        .f1 table{
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            border-bottom: 1px white solid;
+        }
+        .f1 th{
+            padding: 5px 92px;
+        }
+
+        .write_msg{
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #1f2024;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
         .reviewEnter{
             position: sticky;
             background-color: rgba(51, 52, 55, 0.93);
@@ -121,7 +157,10 @@
             min-width: 930px;
         }
 
-        .container{max-width:1170px; margin:auto;}
+        .container{
+            max-width: 970px;
+            margin: auto;
+        }
         img{ max-width:100%;}
         .inbox_people {
             background: #f8f8f8 none repeat scroll 0 0;
@@ -224,20 +263,20 @@
             position: relative;
             left: 77%;
         }
+        .time_dateMes {
+            color: #747474;
+            font-size: 12px;
+            position: relative;
+        }
         .received_withd_msg {
             /*width: 57%;*/
             float: left;
         }
         .mesgs {
-            float: left;
             width: calc(100% - 550px);
-            /*height: 900px;*/
             height: calc(100% - 70px);
-            position: absolute;
+            position: relative;
             margin: 0 0 0 540px;
-            right: 200px;
-
-
         }
 
         .sent_msg p {
@@ -270,13 +309,11 @@
         }
 
         .type_msg {
-            /*border-top: 1px solid #c4c4c4;*/
             position: relative;
-            width: 60%;
-            height: 50px;
-            /*padding: 800px 0 0 0;*/
-            margin: 0 auto;
-            padding-top: 50px;
+            margin: auto;
+            max-width: 58%;
+            min-width: 200px;
+            top: 10px;
         }
         .msg_send_btn {
             background: #05728f none repeat scroll 0 0;
@@ -599,7 +636,6 @@
             /*ширина меню*/
             width: 300px;
             position: fixed;
-            top: 0px;
 
             padding: 20px;
 
@@ -616,9 +652,9 @@
             color: #e5e7ed;
         }
         .widget_message ul {
-            margin: 0;
             padding: 0;
             list-style: none;
+            margin-top: 60px;
             /*ширина подчеркивания в меню*/
             width: auto;
         }
@@ -737,13 +773,14 @@
 
         }
         .enter{
-            position: fixed;
+            position: sticky;
             background-color: rgba(51, 52, 55, 0.93);
-            width: 100%;
-            height: 15%;
-            /*position:absolute; !* добавили *!*/
+            width: calc( 100% - 530px);
             bottom:0;
-            margin-left: 230px;
+            margin-left: 530px;
+            height: 15%;
+            max-height: 20%;
+            min-height: 60px;
         }
         .message{
             /*background-color: #103b4f;*/

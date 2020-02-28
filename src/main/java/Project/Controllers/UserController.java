@@ -51,7 +51,7 @@ public class UserController {
 //Личный кабинет
     @GetMapping("/Personal")
     public String personalUser(Model model){
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
     User user1 = userRepo.findByUsername(username1);
       model.addAttribute("users", user1);
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(username1);
@@ -64,7 +64,7 @@ public class UserController {
 //Получение имени пользователя для входа в личный кабинет
     @GetMapping("FilterUsernameUser/{username}")
     public String FilterFioUser (@PathVariable String username, Model model){
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
         username1 = username;
         User user1 = userRepo.findByUsername(username1);
         model.addAttribute("users", user1);
@@ -76,7 +76,7 @@ public class UserController {
 //Страница всех преподавтелей
     @GetMapping("Prep")
     public String Prep( Model model){
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
         Iterable<User> userRole = uMessageRepo.findAllByRl(roleA);
         model.addAttribute("prepod", userRole);
 
@@ -86,14 +86,14 @@ public class UserController {
 //Страница всех студентов
     @GetMapping("Stud")
     public String Stud(Model model){
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
         Iterable<User> userRole = uMessageRepo.findAllByRl(roleU);
         model.addAttribute("student",userRole);
         return "Stud";
     }
     @GetMapping("studName/{studName}")
     public String studName(@PathVariable String studName, Model model){
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
         StudName=studName;
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
         model.addAttribute("reviews", reviews2);
@@ -106,7 +106,7 @@ public class UserController {
 
     @GetMapping("prepName/{prepName}")
     public String prepName(@PathVariable String prepName, Model model){
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
         PrepName=prepName;
         Iterable<User> users = uMessageRepo.findByUsername(PrepName);
         model.addAttribute("personalData", users);
@@ -125,7 +125,7 @@ public class UserController {
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
         date=formatForDateNow.format(dateNow);
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
         Reviews reviews1= new Reviews(reviews, StudName, username1, date);
         reviewsRepo.save(reviews1);
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
@@ -140,7 +140,7 @@ public class UserController {
 
     @GetMapping("prepName/messageAdd")
     public String addReviewsPrep(@RequestParam String reviews, Model model){
-        model.addAttribute("namePagePersonal", namePagePersonal);
+        model.addAttribute("namePage", namePagePersonal);
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
         date=formatForDateNow.format(dateNow);

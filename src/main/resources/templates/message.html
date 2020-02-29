@@ -6,50 +6,42 @@
 <head th:replace="fragments/style :: style">
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
-<body>
+<body class="noScroll">
 
-<div class="topmenu">
-    <div class="widget_message">
-        <ul>
-            <li th:each="mesU : ${messageU}">
-                <div class="chat_list">
-                    <div class="chat_people">
-                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="chat_ib">
-                            <a th:href="@{'/messageU/{recipient}#endpage'(recipient=${mesU.username})}" class="username_msg">
-                                <h5 th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                            </a>
-                        </div>
+<div class="widget_message">
+    <ul>
+        <li th:each="mesU : ${messageU}">
+            <div class="chat_list">
+                <div class="chat_people">
+                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="chat_ib">
+                        <a th:href="@{'/messageU/{recipient}#endpage'(recipient=${mesU.username})}" class="username_msg">
+                            <h5 th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                        </a>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </div>
-</div>
-
-</div>
-<div class="mesgs">
-    <div class="msg_history">
-
-        <div th:each="mesS : ${messageS}">
-            <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >
-                <div class="received_withd_msg">
-                    <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                    <span class="time_dateMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
             </div>
+        </li>
+    </ul>
+</div>
 
-            <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >
-                <div class="sent_msg">
-                    <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                    <span class="time_dateMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span> </div>
+</div>
+<div class="msgs">
+    <div th:each="mesS : ${messageS}">
+        <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >
+            <div class="received_withd_msg">
+                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
+                <span class="time_dateMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
             </div>
         </div>
-        <span id="endpage"></span>
+        <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >
+            <div class="sent_msg">
+                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
+                <span class="time_dateMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
+            </div>
+        </div>
     </div>
-
-
-
-
+    <span id="endpage"></span>
 </div>
 <div class="enter">
     <div class="type_msg">

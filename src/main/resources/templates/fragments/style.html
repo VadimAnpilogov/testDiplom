@@ -5,6 +5,14 @@
 <head th:fragment="style">
     <style>
 
+
+        .inputField, .inputField:focus{
+            background-color: #1f2024;
+            color: white;
+            border: 1px solid #ced4da;
+            outline: none;
+        }
+
         .myCourse{
             max-width: 970px;
             margin: 50px auto;
@@ -42,8 +50,7 @@
         }
 
         .reviewEnter{
-            /*position: sticky;*/
-            position: fixed;
+            position: sticky;
             background-color: rgba(51, 52, 55, 0.93);
             width: calc( 100% - 230px );
             height: 15%;
@@ -101,6 +108,7 @@
         }
 
         .upMenu{
+            display: block;
             color: white;
             height: 60px;
             min-width: 900px;
@@ -273,11 +281,12 @@
             /*width: 57%;*/
             float: left;
         }
-        .mesgs {
+        .msgs {
             width: calc(100% - 550px);
-            height: calc(100% - 70px);
-            position: relative;
+            height: calc( 100% - 201px );
+            position: absolute;
             margin: 0 0 0 540px;
+            overflow-y: scroll;
         }
 
         .sent_msg p {
@@ -305,6 +314,8 @@
             color: #ededed;
             font-size: 15px;
             min-height: 48px;
+            max-height: 120px;
+            height: 100%;
             width: 100%;
             padding: 0 0 0 20px;
         }
@@ -333,12 +344,8 @@
             /*padding: 0 0 50px 0;*/
             position: relative;
         }
-        .msg_history {
-            height: calc(100% - 70px);
-            width: 100%;
-            overflow-y: scroll;
-            position: relative;
-            padding: 0 10px 0 0;
+        .noScroll{
+            overflow-y: hidden;
         }
         ::-webkit-scrollbar-track
         {
@@ -655,7 +662,6 @@
         .widget_message ul {
             padding: 0;
             list-style: none;
-            margin-top: 60px;
             /*ширина подчеркивания в меню*/
             width: auto;
         }
@@ -728,18 +734,25 @@
             background: #1f2024;
             max-width: 1900px;
             min-width: 1300px;
+            overflow-x: hidden;
             /*background: url("https://sun9-42.userapi.com/c857232/v857232021/d1abf/OHjPCZlwU7Y.jpg");*/
 
         }
+
         .namePage{
+
+        }
+        .namePage h4{
             color: #e5e7ed;
             margin-left: 300px;
             padding-top: 15px;
-
         }
         .span6{
-            position: absolute;
-            margin-left: 55%;
+            position: relative;
+            /* margin-left: 15%; */
+            float: right;
+            right: 30%;
+            bottom: 50px;
         }
 
         .reviews{
@@ -774,11 +787,10 @@
 
         }
         .enter{
-            /*position: sticky;*/
-            position: fixed;
+            position: absolute;
             background-color: rgba(51, 52, 55, 0.93);
             width: calc( 100% - 530px);
-            bottom:0;
+            bottom: 0;
             margin-left: 530px;
             height: 15%;
             max-height: 20%;
@@ -836,6 +848,10 @@
         }
         .courseCheck-box {
             margin: 0 5px 0 8px;
+        }
+
+        .btn-success.focus, .btn-success:focus{
+            box-shadow: none;
         }
 
 

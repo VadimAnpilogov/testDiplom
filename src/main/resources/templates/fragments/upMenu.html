@@ -5,40 +5,23 @@
 
 <body th:fragment="upMenu">
 
-<div class="upMenu">
-    <div class="row">
-        <div class="span4">
-            <h4 class="namePage" th:text="${namePage}"></h4>
-        </div>
-        <div class="span6">
-            <button type="button" class="btn btn-outline-info">Преподавателям</button>
-
-            <!--    <a th:href="@{'/course'}">-->
-
-            <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">
-                <a class="loginRef" th:href="@{'/course'}">Войти</a>
-            </button>
-
-
-            <!--    <a th:href="@{'registration'}">-->
-
-            <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">Зарегистироваться</button>
-
-
-
-
-            <!--    <a  th:href="@{'/logout'}">-->
-
-            <button sec:authorize="isAuthenticated()" type="button" class="btn btn-success">Выйти</button>
-            <span class="userName" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
-
-        </div>
+<div class="row upMenu">
+    <div class="namePage">
+        <h4 th:text="${namePage}"></h4>
     </div>
+    <div class="span6">
+        <button type="button" class="btn btn-outline-info">Преподавателям</button>
 
+        <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">
+            <a class="loginRef" th:href="@{'/course'}">Войти</a>
+        </button>
 
+        <button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success">Зарегистироваться</button>
 
+        <button sec:authorize="isAuthenticated()" type="button" class="btn btn-success">Выйти</button>
 
-
+        <span class="userName" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

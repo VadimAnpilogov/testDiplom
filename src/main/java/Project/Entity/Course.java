@@ -15,15 +15,18 @@ public class Course {
     private String courseName;
     private String PrepName;
     private String description;
-    private String forUser;
+    private String region;
+    private  String price;
 
-    public  Course(){}
+    public Course() {
+    }
 
-    public Course(String courseName, String prepName, String description, String forUser) {
+    public Course( String courseName, String prepName, String description, String region, String price) {
         this.courseName = courseName;
         this.PrepName = prepName;
         this.description = description;
-        this.forUser = forUser;
+        this.region = region;
+        this.price = price;
     }
 
     public Long getId() {
@@ -58,11 +61,19 @@ public class Course {
         this.description = description;
     }
 
-    public String getForUser() {
-        return forUser;
+    public String getRegion() {
+        return region;
     }
 
-    public void setForUser(String forUser) {
-        this.forUser = forUser;
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

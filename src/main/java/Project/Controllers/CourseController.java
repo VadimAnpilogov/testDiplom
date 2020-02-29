@@ -49,15 +49,15 @@ public class CourseController {
 
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")
-    public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String forUser , @RequestParam String namePr, Model model){
+    public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String region , @RequestParam String price, Model model){
         model.addAttribute("namePage", namePageCreate);
-        namePrep = namePr;
+//        namePrep = namePr;
         nameCourses = courseName;
 
-        Course course = new Course(courseName, PrepName, description, forUser);
+        Course course = new Course(courseName, PrepName, description, region, price);
         courseRepo.save(course);
 
-        return  "CreateCourse";
+        return  "theme";
     }
 //Получение имени преподавателя для создания курса
     @GetMapping("createCourse/{prepName}")

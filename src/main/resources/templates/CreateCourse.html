@@ -10,7 +10,7 @@
 <body>
 
     <div class="formCourse">
-        <form action="addCourse?courseName1=courseName&description1=description&forUser1=forUser">
+        <form action="addCourse?courseName1=courseName&description1=description&region1=region&price1=price">
             <h4>Название курса</h4>
             <input type="courseName1" name="courseName" class="form-control" id="courseName" placeholder="Введите название курса" required>
 
@@ -18,14 +18,14 @@
             <input type="description1" name="description" class=" formCourseinputDescription form-control" id="description" placeholder="Введите описание курса" required>
 
             <h4>Область курса</h4>
-            <input type="description1" name="description" class=" formCourseinputText form-control" id="description" placeholder="Введите область курса (например, программирование, математика, музыка, фитнес)" required>
+            <input type="region1" name="region" class=" formCourseinputText form-control" id="region" placeholder="Введите область курса (например, программирование, математика, музыка, фитнес)" required>
 
             <h4>Формат проведения</h4>
             <label><input class="courseCheck-box" type="radio" checked name="online"/>Онлайн</label>
             <label><input class="courseCheck-box" type="radio" name="online"/>Оффлайн</label>
 
             <h4>Стоимость</h4>
-            <input type="description1" name="description" class=" formCourseinputText form-control" id="description" placeholder="Введите стоимость" required>
+            <input type="price1" name="price" class=" formCourseinputText form-control" id="price" placeholder="Введите стоимость" required>
             <label><input class="courseCheck-box" type="radio" checked name="price"/>Каждого занятия</label>
             <label><input class="courseCheck-box" type="radio" name="price"/>Всего курса в целом</label>
 

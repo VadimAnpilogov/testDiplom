@@ -16,42 +16,11 @@
             <th>
                 <h1>Имя пользователя:</h1>
                 <h2 th:utext="${usr.username}">Область курсов</h2>
+                <a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>
             </th>
         </tr>
     </table>
 </div>
-
-
-<!--<div class="f1">-->
-<!--    <div align="center" class="f2">-->
-<!--        <h3 class=" text-center">Преподаватели</h3>-->
-<!--        <br>-->
-
-<!--        <table class="table-responsive-xl table-hover " align="center" th:width="1000" >-->
-<!--            <thead class="thead-inverse">-->
-<!--            <tr>-->
-<!--                &lt;!&ndash;        <th scope="col">#</th>&ndash;&gt;-->
-<!--                <th scope="col">Имя пользователя</th>-->
-<!--                <th scope="col">Просмотр</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="usr : ${users}">-->
-<!--                <td th:utext="${usr.username}"></td>-->
-<!--                <td ><a class="cont" th:href="@{'/prepName/{prepName}'(prepName=${usr.username})}"><h5>Перейти на страницу</h5></a></td>-->
-<!--            </tr>-->
-
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-
-<!--</div>-->
-
-
-
-
-
-
 
 </body>
 </html>

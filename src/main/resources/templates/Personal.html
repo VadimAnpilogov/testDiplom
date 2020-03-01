@@ -9,7 +9,7 @@
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
 
-<div class="f1">
+<div class="f11">
     <div>
         <table>
             <tr>
@@ -45,18 +45,53 @@
     <div id="carouselExampleIndicators" class="carousel slide myCourse" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1" th:each="cor : ${course}"></li>
+<!--            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://skitterphoto.com/photos/skitterphoto-3354-default.jpg" class="d-block w-100" alt="...">
+<!--                <img src="https://skitterphoto.com/photos/skitterphoto-3354-default.jpg" class="d-block w-100" alt="...">-->
+                <div class="coursesTil">
+                    <table>
+                        <tr >
+                            <th>
+
+                                <h1 class="courseDetail">Здесь будут все ваши курсы, на которые вы подписались</h1>
+<!--                                <h3 class="courseDetail">Преподаватель: </h3><h3 th:utext="${cor.prepName}" >Преподаватель</h3>-->
+<!--                                <h3 class="courseDetail">Область курса: </h3><h3 th:utext="${cor.region}">Область курса</h3>-->
+<!--                                <h3 class="courseDetail">Занятия: </h3><h3 th:utext="${cor.format}">Онлайн/оффлайн</h3>-->
+<!--                                <h3 class="courseDetail">Тип занятий: </h3><h3>Индивидуальные/групповые занятия</h3>-->
+<!--                                <h2 class="courseDetail">Стоимость: </h2><h2 th:utext="${cor.price}">Цена</h2>-->
+<!--                                <h2 class="courseDetail">Цена указана: </h2><h2 th:utext="${cor.priceType}">Цена</h2>-->
+<!--                                <a th:href="@{'/SCourse/{course}'(course=${cor.courseName})}">Перейти на курс</a>-->
+                            </th>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1490454856948-d753949d9f10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1471138834787-57fda64058f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="...">
+<!--            <div class="carousel-item">-->
+<!--                <img src="https://images.unsplash.com/photo-1490454856948-d753949d9f10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" class="d-block w-100" alt="...">-->
+<!--            </div>-->
+            <div class="carousel-item" th:each="cor : ${course}">
+<!--                <img src="https://images.unsplash.com/photo-1471138834787-57fda64058f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="...">-->
+                                <div class="coursesTil">
+                                    <table>
+                                        <tr >
+                                            <th>
+
+                                                <h1 class="courseDetail">Название курса: </h1><h1 th:utext="${cor.courseName}">Название курса</h1>
+                                                <h3 class="courseDetail">Преподаватель: </h3><h3 th:utext="${cor.prepName}" >Преподаватель</h3>
+                                                <h3 class="courseDetail">Область курса: </h3><h3 th:utext="${cor.region}">Область курса</h3>
+                                                <h3 class="courseDetail">Занятия: </h3><h3 th:utext="${cor.format}">Онлайн/оффлайн</h3>
+                                                <h3 class="courseDetail">Тип занятий: </h3><h3>Индивидуальные/групповые занятия</h3>
+                                                <h2 class="courseDetail">Стоимость: </h2><h2 th:utext="${cor.price}">Цена</h2>
+                                                <h2 class="courseDetail">Цена указана: </h2><h2 th:utext="${cor.priceType}">Цена</h2>
+                                                <a th:href="@{'/SCourse/{course}'(course=${cor.courseName})}">Перейти на курс</a>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -69,22 +104,6 @@
         </a>
     </div>
 
-    <div class="container">
-        <h3 class=" text-center">Отзывы</h3>
-        <div class="messaging">
-            <div class="chat_list" th:each="rev : ${reviews}">
-                <div class="chat_people">
-                    <div class="chat_img"> <img class="rew" src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                    <div class="chat_ib" >
-                        <a class="cont" th:href="@{'/prepName/{prepName}'(prepName=${rev.authorReviews})}">
-                            <h5 class="cont1" th:utext="${rev.authorReviews}">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                        </a>
-                        <h5 class="cont1" th:utext="${rev.reviewsOp}"></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 

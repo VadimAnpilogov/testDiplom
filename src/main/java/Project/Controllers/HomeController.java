@@ -24,19 +24,27 @@ public class HomeController {
     public String date = "test";
     public String namePage = "Контакты";
     public String namePageHelp = "Помощь";
-
+    public String namePageHome = "Домашняя страница";
+    public String namePageLogin = "Авторизация";
     @Autowired
     private ChatRepo chatRepo;
 
     @GetMapping(value = {"/", "/NoAuthHome"})
-    public String NoAuthHome() {
+    public String NoAuthHome(Model model) {
+        model.addAttribute("namePage", namePageHome);
         return "NoAuthHome";
     }
 
 
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("namePage", namePageHome);
         return "home";
+    }
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("namePage", namePageLogin);
+        return "login";
     }
 
     @GetMapping("/help/{sender}")

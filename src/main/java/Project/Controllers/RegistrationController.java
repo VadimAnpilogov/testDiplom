@@ -31,25 +31,30 @@ public class RegistrationController {
     @Autowired
     private MailSender mailSender;
 
+    public String namePage = "Регистрация";
 //Страница регистрации
     @GetMapping("/registration")
-    public String registration(){
+    public String registration(Model model){
+        model.addAttribute("namePage", namePage);
         return "registration";
     }
 //Старница регистрации студента
     @GetMapping("/user")
-    public String userR (){
+    public String userR (Model model){
+        model.addAttribute("namePage", namePage);
         return "userR";
     }
 //Страница регистрации преподавтеля
     @GetMapping("/admin")
-    public String adminR(){
+    public String adminR(Model model){
+        model.addAttribute("namePage", namePage);
         return "adminR";
     }
 
 //Регистрация студента
     @PostMapping("/userR")
     public String addUser(@RequestParam String username, User user, Model model){
+        model.addAttribute("namePage", namePage);
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "User exists");
@@ -76,6 +81,7 @@ public class RegistrationController {
 //Регистрация преподавателя
     @PostMapping("/adminR")
     public String addAdmin(@RequestParam String username, User user,Model model){
+        model.addAttribute("namePage", namePage);
         User userFromDB = userRepository.findByUsername(user.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "User exists");
@@ -102,6 +108,7 @@ public class RegistrationController {
 
     @GetMapping("/activate/{code}")
     public String activate(Model model, @PathVariable String code) {
+        model.addAttribute("namePage", namePage);
         boolean isActivated = activateUser(code);
 
         if (isActivated) {

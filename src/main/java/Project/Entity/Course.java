@@ -16,17 +16,21 @@ public class Course {
     private String PrepName;
     private String description;
     private String region;
-    private  String price;
+    private String price;
+    private String priceType;
+    private String format;
 
     public Course() {
     }
 
-    public Course( String courseName, String prepName, String description, String region, String price) {
+    public Course( String courseName, String prepName, String description, String region, String price, String priceType, String format) {
         this.courseName = courseName;
         this.PrepName = prepName;
         this.description = description;
         this.region = region;
         this.price = price;
+        this.priceType = priceType;
+        this.format = format;
     }
 
     public Long getId() {
@@ -75,5 +79,21 @@ public class Course {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(String priceType) {
+        this.priceType = priceType;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
     }
 }

@@ -49,15 +49,15 @@ public class CourseController {
 
 //Страница создания курсов, добавление курса
     @GetMapping("createCourse/addCourse")
-    public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String region , @RequestParam String price, Model model){
+    public String addCourse(@RequestParam String courseName, @RequestParam String description, @RequestParam String region , @RequestParam String price, @RequestParam String priceType, @RequestParam String format, Model model){
         model.addAttribute("namePage", namePageCreate);
 //        namePrep = namePr;
         nameCourses = courseName;
 
-        Course course = new Course(courseName, PrepName, description, region, price);
+        Course course = new Course(courseName, PrepName, description, region, price, priceType, format);
         courseRepo.save(course);
 
-        return  "theme";
+        return  "redirect:/theme";
     }
 //Получение имени преподавателя для создания курса
     @GetMapping("createCourse/{prepName}")
@@ -75,6 +75,9 @@ public class CourseController {
         model.addAttribute("namePage", namePage);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
+
+        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
+        model.addAttribute("theme", theme);
         return "SCourse";
     }
 
@@ -83,8 +86,11 @@ public class CourseController {
     public String SCourseC(@PathVariable String course, Model model){
         course1=course;
         model.addAttribute("namePage", namePage);
+        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
+        model.addAttribute("theme", theme);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
+
         return "SCourse";
     }
 //Запись на курс
@@ -123,4 +129,5 @@ public class CourseController {
         model.addAttribute("Theme", theme);
         return "theme";
     }
+
 }

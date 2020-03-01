@@ -10,7 +10,7 @@
 <body>
 
     <div class="formCourse">
-        <form action="addCourse?courseName1=courseName&description1=description&region1=region&price1=price">
+        <form action="addCourse?courseName1=courseName&description1=description&region1=region&price1=price&priceType=priceType&format=format">
             <h4>Название курса</h4>
             <input type="courseName1" name="courseName" class="form-control inputField" id="courseName" autocomplete="off" placeholder="Введите название курса" required>
 
@@ -21,13 +21,13 @@
             <input type="region1" name="region" class="formCourseinputText form-control inputField" id="region" autocomplete="off" placeholder="Введите область курса (например, программирование, математика, музыка, фитнес)" required>
 
             <h4>Формат проведения</h4>
-            <label><input class="courseCheck-box" type="radio" checked name="online"/>Онлайн</label>
-            <label><input class="courseCheck-box" type="radio" name="online"/>Оффлайн</label>
+            <label><input class="courseCheck-box" type="radio" checked name="format" value="Онлайн"/>Онлайн</label>
+            <label><input class="courseCheck-box" type="radio" name="format" value="Оффлайн"/>Оффлайн</label>
 
             <h4>Стоимость</h4>
             <input type="price1" name="price" class="formCourseinputText form-control inputField" id="price" autocomplete="off" placeholder="Введите стоимость" required>
-            <label><input class="courseCheck-box" type="radio" checked name="price"/>Каждого занятия</label>
-            <label><input class="courseCheck-box" type="radio" name="price"/>Всего курса в целом</label>
+            <label><input class="courseCheck-box" type="radio" checked name="priceType" value="Каждого занятия"/>Каждого занятия</label>
+            <label><input class="courseCheck-box" type="radio" name="priceType" value="Всего курса в целом"/>Всего курса в целом</label>
 
             <input class="formCourseinput btn btn-success" type="submit"value="Добавить"/>
         </form>

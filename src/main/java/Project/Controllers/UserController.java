@@ -1,6 +1,8 @@
 package Project.Controllers;
 
+import Project.Entity.Course;
 import Project.Entity.Reviews;
+import Project.Repository.CourseRepo;
 import Project.Repository.ReviewsRepo;
 import Project.Repository.UMessageRepo;
 import Project.Repository.UserRepo;
@@ -28,12 +30,14 @@ public class UserController {
     public String date = "test";
     public String namePage = "Пользователи";
     public String namePagePersonal = "Личный кабинет";
-
+    public String namePagePers = "Страница пользователя";
     @Autowired
     private ReviewsRepo reviewsRepo;
 
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private CourseRepo courseRepo;
 
     @Autowired
     private UMessageRepo uMessageRepo;
@@ -59,6 +63,10 @@ public class UserController {
 
         Iterable<User> users = uMessageRepo.findByUsername(username1);
         model.addAttribute("personalData", users);
+
+        Iterable<Course> course = courseRepo.findAll();
+        model.addAttribute("course", course);
+
         return "Personal";
     }
 //Получение имени пользователя для входа в личный кабинет
@@ -173,4 +181,24 @@ public class UserController {
 //        return "PrepPers";
 //    }
 
+    @GetMapping("userPers/{username}")
+    public String userPersFilter (@PathVariable String username, Model model){
+        model.addAttribute("namePage", namePagePers);
+        username1 = username;
+        User user1 = userRepo.findByUsername(username1);
+        model.addAttribute("users", user1);
+        Iterable<Course> course = courseRepo.findAll();
+        model.addAttribute("course", course);
+        return "redirect:/userPers";
+    }
+    @GetMapping("/userPers")
+    public String userPers(Model model){
+        model.addAttribute("namePage", namePagePers);
+        Iterable<User> user = uMessageRepo.findByUsername(username1);
+        model.addAttribute("users", user);
+
+        Iterable<Course> course = courseRepo.findAll();
+        model.addAttribute("course", course);
+        return "userPers";
+    }
 }

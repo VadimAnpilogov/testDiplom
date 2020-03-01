@@ -8,56 +8,77 @@
 <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
-<body>
-<div class="f1">
-    <div align="center" class="f2">
-        <h3 class=" text-center">Запись на курс</h3>
-        <div class="container">
-            <!--        <h3 class=" text-center">Отзывы</h3>-->
+<body >
+<!--<div class="names" th:each="corse : ${courses}">-->
+<!--    <h2 align="center" th:utext="${corse.courseName}"></h2>-->
+<!--</div>-->
 
-            <div class="chat_list" th:each="cors : ${courses}">
-                <div class="chat_people row">
-<!--                    <div class="col-md-auto"> <img class="pers" src=https://img.icons8.com/dusk/128/000000/student-male.png" alt="sunil">-->
-<!--&lt;!&ndash;                        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <a class="cont" th:href="@{'/messageR/{sender}'(sender=${#httpServletRequest.remoteUser})}">Личные сообщения</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-
-<!--                    </div>-->
-                    <div class="col-6" >
-
-                        <h4 align="center">Название курса <span class="chat_date">Dec 25</span></h4>
-                        <h4 align="center" th:utext="${cors.courseName}">Sunil Rajput</h4>
-                        <a class="cont" th:href="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}">
-                            <h4>Записаться</h4>
-                        </a>
-        <!--                <h4 align="center" th:if="${data.rl == 1}">Студент</h4>-->
-        <!--                <h4 align="center" th:if="${data.rl == 0}">Преподаватель</h4>-->
-                    </div>
+<div>
+    <table >
+        <tr>
+            <td>
+                <div class="photo">
+<!--                    <img src="https://i9.wampi.ru/2020/03/01/book-731199_960_720.webp">-->
+                    <img src="https://i9.wampi.ru/2020/03/01/origami_samolet_art_128345_1920x1080.jpg">
 
                 </div>
-            </div>
+            </td>
+            <td th:each="cors : ${courses}">
+                <div class="textOp">
+                    <h3 class="courseDetail">Название курса: </h3><h3 th:utext="${cors.courseName}">Название курса</h3>
+                    <h6 class="courseDetail">Преподаватель: </h6><h6 th:utext="${cors.prepName}" >Преподаватель</h6>
+                    <h6 class="courseDetail">Область курса: </h6><h6 th:utext="${cors.region}">Область курса</h6>
+                    <h6 class="courseDetail">Занятия: </h6><h6 th:utext="${cors.format}">Онлайн/оффлайн</h6>
+                    <h6 class="courseDetail">Тип занятий: </h6><h6>Индивидуальные/групповые занятия</h6>
+                    <h6 class="courseDetail">Стоимость: </h6><h6 th:utext="${cors.price}">Цена</h6>
+                    <h6 class="courseDetail">Цена указана: </h6><h6 th:utext="${cors.priceType}">Цена</h6>
+                    <h6 class="courseDetail">Описание курса: </h6>
+                    <h6 th:utext="${cors.description}"></h6>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div  class="themes">
+                    <div>
+                        <h3 align="center">Темы курса:</h3>
+                    </div>
+                    <div th:each="them : ${theme}">
+                        <h6 th:utext="${them.nameTheme}"></h6>
+                    </div>
+                </div>
 
-        </div>
-    </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
 
-<!--<h1  align="center" style="color:#0000ff">Курс</h1>-->
-<!--<br>-->
-<!--<form>-->
-<!--    <table align="center">-->
-<!--        <tr th:each="cors : ${courses}">-->
-<!--            <td>-->
-<!--                Название курса-->
-<!--            </td>-->
-<!--            <td th:utext="${cors.courseName}"></td>-->
-<!--            <td ><a th:href="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}"><h5>Записаться</h5></a></td>-->
-<!--        </tr>-->
 
+<!--<div class="f1">-->
+<!--    <div align="center" class="f2">-->
+<!--        <div class="container">-->
+<!--            &lt;!&ndash;        <h3 class=" text-center">Отзывы</h3>&ndash;&gt;-->
 
-<!--    </table>-->
-<!--</form>-->
+<!--            <div class="chat_list" th:each="cors : ${courses}">-->
+<!--                <div class="chat_people row">-->
+<!--                    <div class="col-6" >-->
 
+<!--                        <h4 align="center">Название курса <span class="chat_date">Dec 25</span></h4>-->
+<!--                        <h4 align="center" th:utext="${cors.courseName}">Sunil Rajput</h4>-->
+<!--                        <a class="cont" th:href="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}">-->
+<!--                            <h4>Записаться</h4>-->
+<!--                        </a>-->
+<!--        &lt;!&ndash;                <h4 align="center" th:if="${data.rl == 1}">Студент</h4>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <h4 align="center" th:if="${data.rl == 0}">Преподаватель</h4>&ndash;&gt;-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 </body>
 </html>

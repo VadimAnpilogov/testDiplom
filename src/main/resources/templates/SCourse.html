@@ -41,6 +41,12 @@
             <td>
                 <div  class="themes">
                     <div>
+                        <form class="butCourse" th:action="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}" >
+<!--                            <button type="button" class="btn btn-outline-info">Записаться на курс</button>-->
+                            <a class="cont" th:href="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}">
+                                <h4>Записаться на курс</h4>
+                             </a>
+                        </form>
                         <h3 align="center">Темы курса:</h3>
                     </div>
                     <div th:each="them : ${theme}">

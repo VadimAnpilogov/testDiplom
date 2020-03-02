@@ -2,10 +2,8 @@ package Project.Controllers;
 
 import Project.Entity.Course;
 import Project.Entity.Reviews;
-import Project.Repository.CourseRepo;
-import Project.Repository.ReviewsRepo;
-import Project.Repository.UMessageRepo;
-import Project.Repository.UserRepo;
+import Project.Entity.SignUpCourse;
+import Project.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -42,6 +40,9 @@ public class UserController {
     @Autowired
     private UMessageRepo uMessageRepo;
 
+    @Autowired
+    private SCourseRepo sCourseRepo;
+
     //странца всех пользователей
     @GetMapping("users")
     public String users( Model model){
@@ -64,8 +65,13 @@ public class UserController {
         Iterable<User> users = uMessageRepo.findByUsername(username1);
         model.addAttribute("personalData", users);
 
+        Iterable<SignUpCourse> signUpCourses = sCourseRepo.findByCourseName(username1);
+        model.addAttribute("signUpCourse", signUpCourses);
+
         Iterable<Course> course = courseRepo.findAll();
         model.addAttribute("course", course);
+
+
 
         return "Personal";
     }
@@ -77,6 +83,8 @@ public class UserController {
         User user1 = userRepo.findByUsername(username1);
         model.addAttribute("users", user1);
 
+        Iterable<SignUpCourse> signUpCourses = sCourseRepo.findByCourseName(username1);
+        model.addAttribute("signUpCourse", signUpCourses);
         return "redirect:/Personal";
     }
 
@@ -164,23 +172,7 @@ public class UserController {
 
         return "PrepPers";
     }
-//
-//    @GetMapping("PrepPers")
-//    public String prepPers(Model model){
-//        Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(PrepName);
-//        model.addAttribute("reviews", reviews2);
-//
-//        return "PrepPers";
-//    }
-//
-//    @GetMapping("StudPers")
-//    public String studPers(Model model){
-//        Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
-//        model.addAttribute("reviews", reviews2);
-//
-//        return "PrepPers";
-//    }
-
+//страница пользователя
     @GetMapping("userPers/{username}")
     public String userPersFilter (@PathVariable String username, Model model){
         model.addAttribute("namePage", namePagePers);
@@ -191,6 +183,7 @@ public class UserController {
         model.addAttribute("course", course);
         return "redirect:/userPers";
     }
+ //страница пользователя
     @GetMapping("/userPers")
     public String userPers(Model model){
         model.addAttribute("namePage", namePagePers);

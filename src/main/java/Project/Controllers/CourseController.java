@@ -91,7 +91,7 @@ public class CourseController {
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
 
-        return "SCourse";
+        return "redirect:/SCourse";
     }
 //Запись на курс
     @GetMapping("signCourse/{user}")

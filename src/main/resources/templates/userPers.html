@@ -19,12 +19,21 @@
             <th>
                 <div class="photoPers">
                     <img src="https://i9.wampi.ru/2020/03/01/s1200-1.webp">
+                    <button type="button" class="btn btn-outline-info buttonPers">Написать сообщение пользователю</button>
                 </div>
             </th>
             <th>
-                <div class="textOp">
-<!--                    <h2 th:utext="${usr}"></h2>-->
+                <div class="DataPers">
+                    <h6 class="courseDetail">ФИО: </h6><h6 th:utext="${usr.fio}">Название курса</h6>
+                    <h6 class="courseDetail">Почта: </h6><h6 th:utext="${usr.email}" >Преподаватель</h6>
+                    <h6 class="courseDetail">Телефон: </h6><h6 th:utext="${usr.phone}">Область курса</h6>
+                    <h6 class="courseDetail">Статус: </h6><h6 th:utext="${usr.roles}">Онлайн/оффлайн</h6>
+                    <h6 class="courseDetail">Звание: </h6><h6>Джуниор</h6>
+                    <h6 class="courseDetail">Последнее достижение: </h6><h6>Фото аватара</h6>
+                    <h6 class="courseDetail">Рейтинг: </h6><h6>3358</h6>
+                    <h6 class="courseDetail">Место в рейтинге: </h6><h6>100</h6>
                 </div>
+
             </th>
         </tr>
     </table>

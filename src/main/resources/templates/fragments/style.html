@@ -5,6 +5,24 @@
 <head th:fragment="style">
     <style>
 
+        .withoutMenu{
+            margin-left: 250px;
+        }
+
+        .courseTable{
+            margin: 45px auto 0;
+        }
+
+        .formCourse h4{
+            font-size: 20px;
+        }
+
+        .textOp{
+            margin-left: 40px;
+        }
+        .textOp h3, h6{
+            color: white;
+        }
 
         .inputField, .inputField:focus{
             background-color: #1f2024;
@@ -15,10 +33,11 @@
 
         .myCourse{
             max-width: 970px;
-            margin: 50px auto;
+            margin: 0 auto;
         }
         .myCourseText h4{
             text-align: center;
+            margin-top: 20px;
         }
         .myCourseText1 h4{
             text-align: center;
@@ -132,6 +151,9 @@
 
         .coursesTiles{
             margin-left: 250px;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
         }
         .coursesTiles h1{/*название курса*/
             color: white;
@@ -347,9 +369,6 @@
             /*padding: 0 0 50px 0;*/
             position: relative;
         }
-        .noScroll{
-            overflow-y: hidden;
-        }
         ::-webkit-scrollbar-track
         {
             border-radius: 10px;
@@ -377,19 +396,36 @@
 
         /*Лендинг для пользователей*/
 
+        .firstText{
+            font-size: 20px;
+            margin: 0 300px 150px 300px;
+            font-style: oblique;
+            font-family: 'Roboto', sans-serif;
+        }
         .lnd1{
             margin-top: 70px;
             margin-bottom: 70px;
             position: relative;
+            font-size: 45px;
         }
         .lnd th{
             padding: 20px 100px;
         }
         .lnd{
-            margin-left: 250px;
+            margin-left: 230px;
             text-align: center;
             color: #eeeeee;
-            min-width: fit-content;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 230px);
+            overflow-x: hidden;
+        }
+        .lnd img{
+            position: relative;
+        }
+        .lndBottom{
+            margin-bottom: 60px;
         }
 
 
@@ -596,10 +632,13 @@
         /*форма входа*/
 
 
-
         .f1{
-            margin: 30px 0 0 230px;
             color: #e5e7ed;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 230px);
+            margin: 0 0 0 230px;
         }
         .f11{
             margin: 180px 0 0 230px;
@@ -741,6 +780,7 @@
             max-width: 1900px;
             min-width: 1300px;
             overflow-x: hidden;
+            overflow-y: hidden;
             /*background: url("https://sun9-42.userapi.com/c857232/v857232021/d1abf/OHjPCZlwU7Y.jpg");*/
 
         }
@@ -762,8 +802,11 @@
         }
 
         .reviews{
-            position: relative;
-            margin-left: 230px;
+            position: absolute;
+            overflow-y: scroll;
+            max-width: calc(100% - 250px);
+            height: calc(100% - 201px);
+            left: 250px;
         }
         .review{
             color: white;
@@ -831,12 +874,25 @@
             max-width: 1050px;
 
         }
-        .formCourse{
-            margin: 30px auto;
-            left: 115px;
+        .courseForm{
+            margin: 40px auto;
             max-width: 800px;
+        }
+        .scroll{
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 250px);
+            margin: 0 0 0 250px;
+            overflow-x: hidden;
+        }
+        .formCourse{
             color: #e5e7ed;
-            position: relative;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 230px);
+            margin: 0 0 0 230px;
         }
         .formCourseinput{
             margin-top: 30px;
@@ -860,17 +916,16 @@
             box-shadow: none;
         }
         .photo{
-
-            margin-left: 350px;
-            margin-top: 50px;
             width: 500px;
-            height: 250px;
+            max-width: 500px;
+            min-width: 200px;
+            margin: auto;
         }
         .names{
             color: #e5e7ed;
             margin-top: 24px;
         }
-        .   textOp{
+        .textOp{
             margin-left: 50px;
             color: #e5e7ed;
             width: 700px;
@@ -878,13 +933,12 @@
         }
         .photoPers{
             margin-left: 350px;
-            /*margin-top: 50px;*/
+            margin-top: -90px;
             width: 280px;
             height: 100px;
         }
         .themes{
             margin-top: 40px;
-            margin-left: 300px;
             color: #e5e7ed;
         }
         .themes h3{
@@ -927,10 +981,6 @@
             width: 75%;
             table-layout: fixed;
             min-width: 930px;
-        }
-        .butCourse{
-            margin-left: 180px;
-            margin-top: 50px;
         }
 
         .DataPers{

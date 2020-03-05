@@ -13,7 +13,6 @@
     <table>
         <tr th:each="cor : ${QCourse1}">
             <th>
-
                     <h1 class="courseDetail">Название курса: </h1><h1 th:utext="${cor.courseName}">Название курса</h1>
                     <h3 class="courseDetail">Преподаватель: </h3><h3 th:utext="${cor.prepName}" >Преподаватель</h3>
                     <h3 class="courseDetail">Область курса: </h3><h3 th:utext="${cor.region}">Область курса</h3>

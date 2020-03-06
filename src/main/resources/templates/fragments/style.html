@@ -57,7 +57,6 @@
         .write_msg{
             display: block;
             width: 100%;
-            height: calc(1.5em + .75rem + 2px);
             padding: .375rem .75rem;
             font-size: 1rem;
             font-weight: 400;
@@ -68,6 +67,8 @@
             border: 1px solid #ced4da;
             border-radius: .25rem;
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            height: 100px;
+            resize: none;
         }
 
         .reviewEnter{
@@ -377,7 +378,7 @@
         }
         .msgs {
             width: calc(100% - 550px);
-            height: calc( 100% - 201px );
+            height: calc( 100% - 180px );
             position: absolute;
             margin: 0 0 0 540px;
             overflow-y: scroll;
@@ -910,9 +911,9 @@
             width: calc( 100% - 530px);
             bottom: 0;
             margin-left: 530px;
-            height: 15%;
-            max-height: 20%;
-            min-height: 60px;
+            height: 120px;
+            /*max-height: 20%;*/
+            /*min-height: 60px;*/
         }
         .message{
             /*background-color: #103b4f;*/
@@ -972,7 +973,9 @@
             margin: 10px 0;
         }
         .formCourseinputDescription{
-            height: 140px;
+            height: 150px;
+            min-height: 40px;
+            max-height: 500px;
         }
         .formCourse h4{
             margin: 20px 0 10px 20px;

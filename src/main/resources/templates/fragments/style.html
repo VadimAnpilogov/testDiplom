@@ -190,6 +190,19 @@
             table-layout: fixed;
             min-width: 930px;
         }
+        .coursesTiles a {
+            color: #17a2b8;
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size .3s;
+        }
+
+        .coursesTiles a:hover {
+            background-size: 100% 2px;
+        }
 
         .usersImg {
             /*width: auto; */
@@ -325,9 +338,10 @@
         }
         .received_msg {
             display: inline-block;
-            padding: 0 0 0 22%;
+            padding: 0 0 0 20%;
             vertical-align: top;
-            width: 92%;
+            width: 80%;
+            margin: 13px 0;
         }
         .received_withd_msg p {
             background: #ebebeb none repeat scroll 0 0;
@@ -342,12 +356,20 @@
             color: #747474;
             font-size: 12px;
             position: relative;
-            left: 77%;
+            top: 5px;
+            /*left: 77%;*/
         }
-        .time_dateMes {
+        .time_dateOutMes {
             color: #747474;
             font-size: 12px;
             position: relative;
+            float: right;
+        }
+        .time_dateInMes {
+            color: #747474;
+            font-size: 12px;
+            position: relative;
+            float: left;
         }
         .received_withd_msg {
             /*width: 57%;*/
@@ -371,12 +393,12 @@
             width:100%;
         }
         .outgoing_msg{
-            overflow:hidden;
-            margin: 26px 0 26px;
+            overflow: hidden;
+            margin: 13px 0;
+            padding: 0 20%;
         }
         .sent_msg {
             float: right;
-            padding: 0 20% 0 0;
             /*width: 46%;*/
         }
         .input_msg_write input {

@@ -6,7 +6,10 @@ import Project.Entity.User;
 import Project.Repository.SMessageRepo;
 import Project.Repository.UMessageRepo;
 
+import Project.Service.MessageService;
+import Project.Service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +35,11 @@ public class MessagesController {
     @Autowired
     public SMessageRepo sMessageRepo;
 
+    @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private UserSevice userSevice;
 
 //Страница сообщений
     @GetMapping("message")
@@ -48,36 +56,21 @@ public class MessagesController {
 
         return "message";
     }
-//Получение имени Отправителя
-    @GetMapping("messageR/{sender}")
-    public String messageR(@PathVariable String sender, Model model){
-        model.addAttribute("namePage", namePage);
-        sender1 = sender;
-        Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
-        model.addAttribute("messageU", messU);
 
-
-        return "message";
-    }
     //Получение имени Получателя
     @GetMapping("/messageU/{recipient}")
-    public String messageU(@PathVariable String recipient, Model model){
+    public String messageU(
+            @AuthenticationPrincipal User user,
+            @PathVariable String recipient, Model model){
         model.addAttribute("namePage", namePage);
         recipient1 = recipient;
 
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
 
-
-        NameMess=recipient1+sender1;
+        NameMess = messageService.nameDialog(recipient1,user.getUsername() );
         Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);
-        sen=messages1.toString();
-        if (sen == "[]") {
-            NameMess = sender1+recipient1;
-        }
-        else {
-            NameMess =recipient1+sender1;
-        }
+
 
 
         Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
@@ -86,38 +79,26 @@ public class MessagesController {
     }
 //Отправка сообщения
     @GetMapping("messageU/messageAdd")
-    public String messageAdd(@RequestParam String message, Model model){
+    public String messageAdd(
+            @AuthenticationPrincipal User user,
+            @RequestParam String message, Model model){
         model.addAttribute("namePage", namePage);
-        NameMess=recipient1+sender1;
+
+        NameMess = messageService.nameDialog(recipient1,user.getUsername() );
         Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);
-        sen=messages1.toString();
-        if (sen == "[]") {
-            NameMess = sender1+recipient1;
-        }
-        else {
-            NameMess =recipient1+sender1;
-        }
 
 
-        Date dateNow = new Date();
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
-        date=formatForDateNow.format(dateNow);
+        date = userSevice.date();
 
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
 
-        Messages messages = new Messages(message, recipient1, sender1, NameMess,date);
+        Messages messages = new Messages(message, recipient1, user.getUsername(), NameMess,date);
         sMessageRepo.save(messages);
 
         Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
         model.addAttribute("messageS", messages2);
 
-
-//        Iterable<Messages> messS = sMessageRepo.findAll();
-//        Iterable<Messages> messS = sMessageRepo.findByRecipientAndSender(recipient1, sender1);
-//        Iterable<Messages> messS1 = sMessageRepo.findByRecipientAndSender(sender1, recipient1);
-//        model.addAttribute("messageS", messS);
-//        model.addAttribute("messageS1", messS1);
 
         return "message";
     }

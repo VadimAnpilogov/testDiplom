@@ -32,6 +32,7 @@ public class RegistrationController {
     private MailSender mailSender;
 
     public String namePage = "Регистрация";
+
 //Страница регистрации
     @GetMapping("/registration")
     public String registration(Model model){

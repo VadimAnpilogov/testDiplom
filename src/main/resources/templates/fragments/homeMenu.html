@@ -17,21 +17,29 @@
 
 
 
+<!--            <li sec:authorize="isAuthenticated()">-->
+<!--                <a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a>-->
+<!--            </li>-->
             <li sec:authorize="isAuthenticated()">
-                <a th:href="@{'/FilterUsernameUser/{username}'(username=${#httpServletRequest.remoteUser})}">Личный кабинет</a>
+                <a th:href="@{'/Personal'}">Личный кабинет</a>
             </li>
 <!--           Образец перехода-->
             <li>
                 <a th:href="@{'/course'}">Курсы</a>
             </li>
-        <li  sec:authorize="${hasAuthority('ADMIN')}">
-            <a  th:href="@{'/createCourse/{prepName}'(prepName=${#httpServletRequest.remoteUser})}">Создание курса</a>
+<!--        <li  sec:authorize="${hasAuthority('ADMIN')}">-->
+<!--            <a  th:href="@{'/createCourse/{prepName}'(prepName=${#httpServletRequest.remoteUser})}">Создание курса</a>-->
+<!--        </li>-->
+        <li>
+            <a th:href="@{'/createCourse'}">Создание курса</a>
         </li>
 <!--            Образец перехода-->
+<!--            <li>-->
+<!--                <a  th:href="@{'/messageR/{sender}'(sender=${#httpServletRequest.remoteUser})}">Чат</a>-->
+<!--            </li>-->
             <li>
-                <a  th:href="@{'/messageR/{sender}'(sender=${#httpServletRequest.remoteUser})}">Чат</a>
+                <a th:href="@{'/message'}">Чат</a>
             </li>
-
             <li>
                 <a th:href="@{'/users'}">Пользователи</a>
             </li>

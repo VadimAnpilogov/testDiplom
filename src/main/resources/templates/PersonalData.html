@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+</head>
+<head th:replace="fragments/style :: style">
+    <!--<body th:replace="fragments/menu :: menu"></body>-->
+<body th:replace="fragments/upMenu :: upMenu"></body>
+<body th:replace="fragments/homeMenu :: homeMenu"></body>
+<body>
+
+<div class="f1">
+    <div>
+        <table>
+            <tr>
+                <th>
+                    <a th:href="@{'/Personal'}"><h4>Главная</h4></a>
+                </th>
+                <th>
+                    <a th:href="@{'/PersonalData'}"><h4>Мои данные</h4></a>
+                </th>
+                <th>
+                    <a th:href="@{'/Personal'}"><h4>Достижения</h4></a>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+        <div class="chat_list row" th:each="data : ${personalDataEdit}">
+            <div class="col-md-auto">
+                <!--                <img class="pers" src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
+                <img class="pers" src="https://i9.wampi.ru/2020/03/01/s1200-1.webp" alt="sunil">
+                <form action="PersonalEdit">
+                    <button type="submit" class="btn btn-outline-info buttonPers">Изменить личные данные</button>
+                </form>
+            </div>
+            <div class="col-6 personalData" >
+                <h4 th:utext="${data.username}">Sunil Rajput <span class="chat_date">Dec 25</span></h4>
+                <h4 th:utext="${data.fio}">Sunil Rajput</h4>
+                <h4 th:utext="${data.phone}">Sunil Rajput</h4>
+                <h4 th:utext="${data.email}">Sunil Rajput</h4>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

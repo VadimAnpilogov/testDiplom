@@ -4,6 +4,7 @@ package Project.config;
 
 import Project.Entity.User;
 import Project.Repository.UserRepo;
+import Project.Service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,46 +29,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-//    @Autowired
-//    private UserRepo userRepo;
+    @Autowired
+    private UserSevice userSevice;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/NoAuthHome", "/registration", "/userR", "/adminR", "/user", "/admin", "/activate/*", "/rewiews", "/help", "/contacts").permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers("/", "/NoAuthHome", "/registration", "/userR", "/adminR", "/user", "/admin", "/activate/*", "/rewiews", "/help", "/contacts").permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
                 .and()
-                .logout()
-                .permitAll();
-//        http
-//                .antMatcher("/**")
-//                .authorizeRequests()
-//                .antMatchers("/","/login**", "/registration", "/user", "/admin","/userR", "/adminR", "/activate/*", "course**", "message**", "Prep").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout().logoutSuccessUrl("/").permitAll()
-//                .and()
-//                .csrf().disable();
+                    .logout()
+                    .permitAll();
+
     }
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password, active from usr where username=?")
-                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
+        auth.userDetailsService(userSevice)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+//                .usersByUsernameQuery("select username, password, active from usr where username=?")
+//                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
 
 
     }

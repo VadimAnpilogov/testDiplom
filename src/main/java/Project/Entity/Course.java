@@ -1,10 +1,9 @@
 package Project.Entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -20,6 +19,23 @@ public class Course {
     private String priceType;
     private String format;
 
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "SignUpCourses",
+//            joinColumns = {@JoinColumn(name = "courseName")},
+//            inverseJoinColumns = {@JoinColumn(name = "UserCourseName")}
+//    )
+//    private Set<User> users = new HashSet<>();
+//
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
+
     public Course() {
     }
 
@@ -32,6 +48,8 @@ public class Course {
         this.priceType = priceType;
         this.format = format;
     }
+
+
 
     public Long getId() {
         return id;

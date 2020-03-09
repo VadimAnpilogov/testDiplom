@@ -8,6 +8,12 @@
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body class="noScroll">
 
+<script>
+    function hidden(){
+        document.getElementsByClassName('enter').style.display = "none";
+    }
+</script>
+
 <div class="widget_message">
     <ul>
         <li th:each="mesU : ${messageU}">
@@ -43,7 +49,7 @@
     </div>
     <span id="endpage"></span>
 </div>
-<div class="enter">
+<div class="enter" th:if="${test != null}">
     <div class="type_msg">
         <form action="messageAdd?message1=message#endpage">
             <div class="input_msg_write">
@@ -51,6 +57,12 @@
                 <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
         </form>
+    </div>
+</div>
+<div class="getEnterMessage2" th:if="${test == null}">
+    <div class="getEnterMessage">
+        <img src="https://img.icons8.com/color/96/000000/chat.png">
+        <a>Выберите диалог</a>
     </div>
 </div>
 

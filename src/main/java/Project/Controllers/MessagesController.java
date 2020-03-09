@@ -63,6 +63,7 @@ public class MessagesController {
             @AuthenticationPrincipal User user,
             @PathVariable String recipient, Model model){
         model.addAttribute("namePage", namePage);
+        model.addAttribute("test", "test");
         recipient1 = recipient;
 
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
@@ -83,6 +84,7 @@ public class MessagesController {
             @AuthenticationPrincipal User user,
             @RequestParam String message, Model model){
         model.addAttribute("namePage", namePage);
+        model.addAttribute("test", "test");
 
         NameMess = messageService.nameDialog(recipient1,user.getUsername() );
         Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);

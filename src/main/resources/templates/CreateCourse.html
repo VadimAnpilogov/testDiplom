@@ -10,12 +10,12 @@
 <body>
 
     <div class="formCourse">
-        <form action="addCourse?courseName1=courseName&description1=description&region1=region&price1=price&priceType=priceType&format=format">
+        <form class="courseForm" action="addCourse?courseName1=courseName&description1=description&region1=region&price1=price&priceType=priceType&format=format">
             <h4>Название курса</h4>
             <input type="courseName1" name="courseName" class="form-control inputField" id="courseName" autocomplete="off" placeholder="Введите название курса" required>
 
             <h4>Описание курса</h4>
-            <input type="description1" name="description" class="formCourseinputDescription form-control inputField" id="description" autocomplete="off" placeholder="Введите описание курса" required>
+            <textarea maxlength="1700" type="description1" name="description" class="formCourseinputDescription form-control inputField" id="description" autocomplete="off" placeholder="Введите описание курса" required></textarea>
 
             <h4>Область курса</h4>
             <input type="region1" name="region" class="formCourseinputText form-control inputField" id="region" autocomplete="off" placeholder="Введите область курса (например, программирование, математика, музыка, фитнес)" required>

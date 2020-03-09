@@ -13,8 +13,8 @@
 <!--    <h2 align="center" th:utext="${corse.courseName}"></h2>-->
 <!--</div>-->
 
-<div>
-    <table >
+<div class="withoutMenu scroll">
+    <table class="courseTable">
         <tr>
             <td>
                 <div class="photo">
@@ -41,13 +41,10 @@
             <td>
                 <div  class="themes">
                     <div>
-                        <form class="butCourse" th:action="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}" >
-<!--                            <button type="button" class="btn btn-outline-info">Записаться на курс</button>-->
-                            <a class="cont" th:href="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}">
-                                <h4>Записаться на курс</h4>
-                             </a>
+                        <form th:action="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}" >
+                            <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
                         </form>
-                        <h3 align="center">Темы курса:</h3>
+                        <h3>Темы курса:</h3>
                     </div>
                     <div th:each="them : ${theme}">
                         <h6 th:utext="${them.nameTheme}"></h6>
@@ -58,33 +55,6 @@
         </tr>
     </table>
 </div>
-
-
-
-<!--<div class="f1">-->
-<!--    <div align="center" class="f2">-->
-<!--        <div class="container">-->
-<!--            &lt;!&ndash;        <h3 class=" text-center">Отзывы</h3>&ndash;&gt;-->
-
-<!--            <div class="chat_list" th:each="cors : ${courses}">-->
-<!--                <div class="chat_people row">-->
-<!--                    <div class="col-6" >-->
-
-<!--                        <h4 align="center">Название курса <span class="chat_date">Dec 25</span></h4>-->
-<!--                        <h4 align="center" th:utext="${cors.courseName}">Sunil Rajput</h4>-->
-<!--                        <a class="cont" th:href="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}">-->
-<!--                            <h4>Записаться</h4>-->
-<!--                        </a>-->
-<!--        &lt;!&ndash;                <h4 align="center" th:if="${data.rl == 1}">Студент</h4>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <h4 align="center" th:if="${data.rl == 0}">Преподаватель</h4>&ndash;&gt;-->
-<!--                    </div>-->
-
-<!--                </div>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 </body>
 </html>

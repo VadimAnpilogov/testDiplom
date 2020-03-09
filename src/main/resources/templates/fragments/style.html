@@ -5,6 +5,24 @@
 <head th:fragment="style">
     <style>
 
+        .withoutMenu{
+            margin-left: 250px;
+        }
+
+        .courseTable{
+            margin: 45px auto 0;
+        }
+
+        .formCourse h4{
+            font-size: 20px;
+        }
+
+        .textOp{
+            margin-left: 40px;
+        }
+        .textOp h3, h6{
+            color: white;
+        }
 
         .inputField, .inputField:focus{
             background-color: #1f2024;
@@ -15,10 +33,11 @@
 
         .myCourse{
             max-width: 970px;
-            margin: 50px auto;
+            margin: 0 auto;
         }
         .myCourseText h4{
             text-align: center;
+            margin-top: 20px;
         }
         .myCourseText1 h4{
             text-align: center;
@@ -38,7 +57,6 @@
         .write_msg{
             display: block;
             width: 100%;
-            height: calc(1.5em + .75rem + 2px);
             padding: .375rem .75rem;
             font-size: 1rem;
             font-weight: 400;
@@ -49,6 +67,8 @@
             border: 1px solid #ced4da;
             border-radius: .25rem;
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            height: 100px;
+            resize: none;
         }
 
         .reviewEnter{
@@ -132,6 +152,9 @@
 
         .coursesTiles{
             margin-left: 250px;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
         }
         .coursesTiles h1{/*название курса*/
             color: white;
@@ -165,6 +188,66 @@
             border-collapse: separate;
             margin: auto;
             width: 75%;
+            table-layout: fixed;
+            min-width: 930px;
+        }
+        .coursesTiles a {
+            color: #17a2b8;
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size .3s;
+        }
+
+        .coursesTiles a:hover {
+            background-size: 100% 2px;
+        }
+
+        .usersImg {
+            /*width: auto; */
+            margin: 9px 28% 15px;
+        }
+        .usersTiles{
+            margin-left: 250px;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+        }
+        .usersTiles h1{
+            color: white;
+            font-size: 20px;
+            position: relative;
+        }
+        .usersTiles h2{
+            color: white;
+            font-size: 14px;
+            position: relative;
+        }
+        .usersTiles a{
+            color: white;
+            font-size: 11px;
+            position: relative;
+        }
+        .usersTiles th{
+            text-align: center;
+            background-color: #103b4f;
+            padding: 10px;
+            /* height: 230px; */
+            border: 2px #2b4458 solid;
+            border-radius: 4px;
+            position: relative;
+            background-size: 500px;
+            background-position-x: 100%;
+            background-repeat: no-repeat;
+            /* background-image: url(https://s9.wampi.ru/2020/02/26/Untitled1.png);*/
+        }
+        .usersTiles table{
+            border-spacing: 40px 50px;
+            border-collapse: separate;
+            margin: auto;
+            width: 80%;
             table-layout: fixed;
             min-width: 930px;
         }
@@ -256,9 +339,10 @@
         }
         .received_msg {
             display: inline-block;
-            padding: 0 0 0 22%;
+            padding: 0 0 0 20%;
             vertical-align: top;
-            width: 92%;
+            width: 80%;
+            margin: 13px 0;
         }
         .received_withd_msg p {
             background: #ebebeb none repeat scroll 0 0;
@@ -273,12 +357,20 @@
             color: #747474;
             font-size: 12px;
             position: relative;
-            left: 77%;
+            top: 5px;
+            /*left: 77%;*/
         }
-        .time_dateMes {
+        .time_dateOutMes {
             color: #747474;
             font-size: 12px;
             position: relative;
+            float: right;
+        }
+        .time_dateInMes {
+            color: #747474;
+            font-size: 12px;
+            position: relative;
+            float: left;
         }
         .received_withd_msg {
             /*width: 57%;*/
@@ -286,7 +378,7 @@
         }
         .msgs {
             width: calc(100% - 550px);
-            height: calc( 100% - 201px );
+            height: calc( 100% - 180px );
             position: absolute;
             margin: 0 0 0 540px;
             overflow-y: scroll;
@@ -302,12 +394,12 @@
             width:100%;
         }
         .outgoing_msg{
-            overflow:hidden;
-            margin: 26px 0 26px;
+            overflow: hidden;
+            margin: 13px 0;
+            padding: 0 20%;
         }
         .sent_msg {
             float: right;
-            padding: 0 20% 0 0;
             /*width: 46%;*/
         }
         .input_msg_write input {
@@ -347,9 +439,6 @@
             /*padding: 0 0 50px 0;*/
             position: relative;
         }
-        .noScroll{
-            overflow-y: hidden;
-        }
         ::-webkit-scrollbar-track
         {
             border-radius: 10px;
@@ -377,19 +466,36 @@
 
         /*Лендинг для пользователей*/
 
+        .firstText{
+            font-size: 20px;
+            margin: 0 300px 150px 300px;
+            font-style: oblique;
+            font-family: 'Roboto', sans-serif;
+        }
         .lnd1{
             margin-top: 70px;
             margin-bottom: 70px;
             position: relative;
+            font-size: 45px;
         }
         .lnd th{
             padding: 20px 100px;
         }
         .lnd{
-            margin-left: 250px;
+            margin-left: 230px;
             text-align: center;
             color: #eeeeee;
-            min-width: fit-content;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 230px);
+            overflow-x: hidden;
+        }
+        .lnd img{
+            position: relative;
+        }
+        .lndBottom{
+            margin-bottom: 60px;
         }
 
 
@@ -596,13 +702,16 @@
         /*форма входа*/
 
 
-
         .f1{
-            margin: 30px 0 0 230px;
             color: #e5e7ed;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 230px);
+            margin: 0 0 0 230px;
         }
         .f11{
-            margin: 180px 0 0 230px;
+            margin: 180px 0 0 0;
             color: #e5e7ed;
         }
         a.cont{
@@ -741,6 +850,7 @@
             max-width: 1900px;
             min-width: 1300px;
             overflow-x: hidden;
+            overflow-y: hidden;
             /*background: url("https://sun9-42.userapi.com/c857232/v857232021/d1abf/OHjPCZlwU7Y.jpg");*/
 
         }
@@ -762,8 +872,11 @@
         }
 
         .reviews{
-            position: relative;
-            margin-left: 230px;
+            position: absolute;
+            overflow-y: scroll;
+            max-width: calc(100% - 250px);
+            height: calc(100% - 201px);
+            left: 250px;
         }
         .review{
             color: white;
@@ -798,9 +911,9 @@
             width: calc( 100% - 530px);
             bottom: 0;
             margin-left: 530px;
-            height: 15%;
-            max-height: 20%;
-            min-height: 60px;
+            height: 120px;
+            /*max-height: 20%;*/
+            /*min-height: 60px;*/
         }
         .message{
             /*background-color: #103b4f;*/
@@ -831,12 +944,25 @@
             max-width: 1050px;
 
         }
-        .formCourse{
-            margin: 30px auto;
-            left: 115px;
+        .courseForm{
+            margin: 40px auto;
             max-width: 800px;
+        }
+        .scroll{
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 250px);
+            margin: 0 0 0 250px;
+            overflow-x: hidden;
+        }
+        .formCourse{
             color: #e5e7ed;
-            position: relative;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 230px);
+            margin: 0 0 0 230px;
         }
         .formCourseinput{
             margin-top: 30px;
@@ -847,7 +973,9 @@
             margin: 10px 0;
         }
         .formCourseinputDescription{
-            height: 140px;
+            height: 150px;
+            min-height: 40px;
+            max-height: 500px;
         }
         .formCourse h4{
             margin: 20px 0 10px 20px;
@@ -860,31 +988,28 @@
             box-shadow: none;
         }
         .photo{
-
-            margin-left: 350px;
-            margin-top: 50px;
             width: 500px;
-            height: 250px;
+            max-width: 500px;
+            min-width: 200px;
+            margin: auto;
         }
         .names{
             color: #e5e7ed;
             margin-top: 24px;
         }
-        .   textOp{
+        .textOp{
             margin-left: 50px;
             color: #e5e7ed;
             width: 700px;
             /*height: 300px;*/
         }
         .photoPers{
-            margin-left: 350px;
-            /*margin-top: 50px;*/
+            margin-top: -90px;
             width: 280px;
             height: 100px;
         }
         .themes{
             margin-top: 40px;
-            margin-left: 300px;
             color: #e5e7ed;
         }
         .themes h3{
@@ -927,10 +1052,6 @@
             width: 75%;
             table-layout: fixed;
             min-width: 930px;
-        }
-        .butCourse{
-            margin-left: 180px;
-            margin-top: 50px;
         }
 
         .DataPers{

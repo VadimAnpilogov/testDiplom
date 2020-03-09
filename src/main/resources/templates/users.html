@@ -10,17 +10,60 @@
 <body>
 
 
-<div class="coursesTiles">
+<div class="usersTiles">
     <table>
         <tr th:each="usr : ${users}">
             <th>
-                <h1>Имя пользователя:</h1>
-                <h2 th:utext="${usr.username}">Область курсов</h2>
-                <a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>
+                <div class="usersImg">
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                </div>
+                <h1 th:utext="${usr.username}">Имя пользователя</h1>
+                <h2>Статус</h2>
+                <h2>Звание</h2>
+                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
+            </th>
+            <th>
+                <div class="usersImg">
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                </div>
+                <h1 th:utext="${usr.username}">Имя пользователя</h1>
+                <h2>Преподаватель</h2>
+                <h2>Новичок</h2>
+                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
+            </th>
+            <th>
+                <div class="usersImg">
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                </div>
+                <h1 th:utext="${usr.username}">Имя пользователя</h1>
+                <h2>Студент</h2>
+                <h2>Профессионал</h2>
+                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
+            </th>
+            <th>
+                <div class="usersImg">
+                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                </div>
+                <h1 th:utext="${usr.username}">Имя пользователя</h1>
+                <h2>Студент</h2>
+                <h2>Продвинутый</h2>
+                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
             </th>
         </tr>
     </table>
 </div>
+
+<!--<div class="coursesTiles">-->
+    <!--<table>-->
+        <!--<tr th:each="usr : ${users}">-->
+            <!--<th>-->
+                <!--<h1>Имя пользователя:</h1>-->
+                <!--<h2 th:utext="${usr.username}">Область курсов</h2>-->
+                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
+            <!--</th>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 
 </body>
 </html>

@@ -128,7 +128,7 @@ public class CourseController {
 
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
         model.addAttribute("Theme", theme);
-        return "theme";
+        return "redirect:/theme";
     }
 
     @GetMapping("theme")

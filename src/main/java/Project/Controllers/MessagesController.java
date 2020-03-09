@@ -50,8 +50,8 @@ public class MessagesController {
 
 
 
-        Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
-        model.addAttribute("messageS", messages2);
+//        Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
+//        model.addAttribute("messageS", messages2);
 
 
         return "message";

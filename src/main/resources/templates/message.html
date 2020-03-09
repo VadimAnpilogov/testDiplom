@@ -11,9 +11,9 @@
 <div class="widget_message">
     <ul>
         <li th:each="mesU : ${messageU}">
-            <div class="chat_list">
+            <div class="message_list">
                 <div class="chat_people">
-                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="chat_img"><a th:href="@{'/userPers/{username}'(username=${mesU.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
                     <div class="chat_ib">
                         <a th:href="@{'/messageU/{recipient}#endpage'(recipient=${mesU.username})}" class="username_msg">
                             <h5 th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
@@ -47,7 +47,7 @@
     <div class="type_msg">
         <form action="messageAdd?message1=message#endpage">
             <div class="input_msg_write">
-                <textarea maxlength="1000" type="message1" name="message" class="write_msg" placeholder="Введите сообщение" autocomplete="off"></textarea>
+                <textarea maxlength="1000" type="message1" name="message" class="write_msg" placeholder="Введите сообщение" autocomplete="off" required></textarea>
                 <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
         </form>

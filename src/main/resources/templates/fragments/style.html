@@ -5,6 +5,23 @@
 <head th:fragment="style">
     <style>
 
+        .persButtons{
+            margin: 25px 0 0 0;
+        }
+        .persButtons a{
+            color: #e5e7ed;
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size .3s;
+            font-size: 24px;
+        }
+        .persButtons a:hover{
+            background-size: 100% 2px;
+        }
+
         .withoutMenu{
             margin-left: 250px;
         }
@@ -328,7 +345,7 @@
         .chat_list {
             border-bottom: 1px solid #c4c4c4;
             margin: 0;
-            padding: 5px 16px 5px;
+            padding: 17px 16px 23px;
         }
         .inbox_chat { height: 550px; overflow-y: scroll;}
 
@@ -1054,6 +1071,18 @@
             table-layout: fixed;
             min-width: 930px;
         }
+        .coursesTil a{
+            color: #17a2b8;
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size .3s;
+        }
+        .coursesTil a:hover {
+            background-size: 100% 2px;
+        }
 
         .DataPers{
             color: #e5e7ed;
@@ -1068,6 +1097,9 @@
 
         .personalDataEdit h5{
             margin-top: 10px;
+        }
+        .personalDataEdit{
+            margin: -32px auto 0;
         }
     </style>
 

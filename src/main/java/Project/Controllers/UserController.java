@@ -129,15 +129,19 @@ public class UserController {
         }
 
 
-        if(userFromDB != null && boole == 0){
+        if((userFromDB != null) && (boole == 0)){
 
             test = "tester";
             return "redirect:/PersonalEdit";
         }
+        else
+        {
+            test = "test";
+            userSevice.updateProfile(user, password, email, username, fio, phone);
+        }
 
 
-        test = "test";
-        userSevice.updateProfile(user, password, email, username, fio, phone);
+
         return "redirect:/PersonalData";
     }
 

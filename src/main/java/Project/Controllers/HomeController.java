@@ -84,5 +84,11 @@ public class HomeController {
         return "contacts";
     }
 
+    @GetMapping("/ForPrep")
+    public String ForPrep(Model model) {
+        model.addAttribute("namePage", namePage);
+        return "ForPrep";
+    }
+
 
 }

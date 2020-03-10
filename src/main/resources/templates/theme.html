@@ -10,14 +10,15 @@
 <body>
 
 <div class="formCourse">
-    <form action="addTheme?nameTheme1=nameTheme">
-        <label for="nameTheme" class="h4">Темы</label>
-        <input type="nameTheme1" name="nameTheme" class="form-control" id="nameTheme" placeholder="Введите название темы" required>
-    </form>
-    <div th:each="Them : ${Theme}">
-        <h4 th:utext="${Them.nameTheme}"></h4>
+    <div class="formTheme">
+        <form action="addTheme?nameTheme1=nameTheme">
+            <label for="nameTheme" class="h4">Темы</label>
+            <input type="nameTheme1" name="nameTheme" class="form-control inputField" id="nameTheme" placeholder="Введите название темы" autocomplete="off" required>
+        </form>
+        <div th:each="Them : ${Theme}">
+            <h4 th:utext="${Them.nameTheme}"></h4>
+        </div>
     </div>
-
 </div>
 
 

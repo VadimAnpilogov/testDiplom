@@ -20,21 +20,24 @@ public class Course {
     private String format;
 
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "SignUpCourses",
-//            joinColumns = {@JoinColumn(name = "courseName")},
-//            inverseJoinColumns = {@JoinColumn(name = "UserCourseName")}
-//    )
-//    private Set<User> users = new HashSet<>();
-//
-//    public Set<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Set<User> users) {
-//        this.users = users;
-//    }
+    @ManyToMany
+    @JoinTable(
+            name = "SignUpCourses",
+            joinColumns = {@JoinColumn(name = "courseName")},
+            inverseJoinColumns = {@JoinColumn(name = "UserCourseName")}
+    )
+    private Set<User> users = new HashSet<>();
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+    public void addSignUp(User user){
+        users.add(user);
+    }
 
     public Course() {
     }
@@ -54,7 +57,10 @@ public class Course {
     public Long getId() {
         return id;
     }
-
+    public Long getId(String courseName) {
+        this.courseName = courseName;
+        return id;
+    }
     public void setId(Long id) {
         this.id = id;
     }

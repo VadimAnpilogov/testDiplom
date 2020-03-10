@@ -25,24 +25,29 @@
             </tr>
         </table>
     </div>
+    <form  method="post" action="PersonalEdit?password?phone?email?username?fio">
     <div class="container">
         <div class="chat_list row" th:each="data : ${personalDataEdit}">
+
             <div class="col-md-auto">
                 <!--                <img class="pers" src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
                 <img class="pers" src="https://i9.wampi.ru/2020/03/01/s1200-1.webp" alt="sunil">
-                <form action="PersonalEdit">
+
                     <button type="submit" class="btn btn-outline-info buttonPers">Сохранить изменения</button>
-                </form>
+
             </div>
             <div class="col-6 personalDataEdit" >
                 <h5>ФИО</h5>
-                <input type="courseName1" value="fio" th:attr="value=${data.fio}" name="courseName" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
+                <input type="fio1" value="fio" th:attr="value=${data.fio}" name="fio" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
                 <h5>Телефон</h5>
-                <input type="courseName1" value="fio" th:attr="value=${data.phone}" name="courseName" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
+                <input type="phone1" value="fio" th:attr="value=${data.phone}" name="phone" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
                 <h5>Почта</h5>
-                <input type="courseName1" value="fio" th:attr="value=${data.email}" name="courseName" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
+                <input type="email1" value="fio" th:attr="value=${data.email}" name="email" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
                 <h5>Никнейм</h5>
-                <input type="courseName1" value="fio" th:attr="value=${data.username}" name="courseName" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
+                <input type="username1" value="fio" th:attr="value=${data.username}" name="username" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
+                <h5 style="color: #dd3333" th:text="${UserMessage}"></h5>
+                <h5>Пароль</h5>
+                <input type="password1" value="fio" th:attr="value=${data.password}" name="password" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
 
 
 
@@ -51,9 +56,10 @@
 <!--                <h4 th:utext="${data.phone}">Sunil Rajput</h4>-->
 <!--                <h4 th:utext="${data.email}">Sunil Rajput</h4>-->
             </div>
+
         </div>
     </div>
-
+    </form>
 
 
 </div>

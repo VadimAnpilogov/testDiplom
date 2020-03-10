@@ -23,6 +23,9 @@
             </div>
         </li>
     </ul>
+    <form action="users">
+        <button type="submit" class="btn btn-outline-info">Создать диалог</button>
+    </form>
 </div>
 
 </div>
@@ -43,7 +46,7 @@
     </div>
     <span id="endpage"></span>
 </div>
-<div class="enter">
+<div class="enter" th:if="${test != null}">
     <div class="type_msg">
         <form action="messageAdd?message1=message#endpage">
             <div class="input_msg_write">

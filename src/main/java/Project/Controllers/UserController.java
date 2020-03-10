@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import Project.Entity.User;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +32,8 @@ public class UserController {
     public String namePage = "Пользователи";
     public String namePagePersonal = "Личный кабинет";
     public String namePagePers = "Страница пользователя";
+    public String test = "test";
+    public int boole = 0;
 
     @Autowired
     private ReviewsRepo reviewsRepo;
@@ -97,12 +100,47 @@ public class UserController {
             Model model){
         model.addAttribute("namePage", namePagePersonal);
         model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
-
+        if(test=="tester")
+        {
+            model.addAttribute("UserMessage", "Имя пользователя занято");
+        }
+        test = "test";
         Iterable<User> users = uMessageRepo.findByUsername(user.getUsername());
         model.addAttribute("personalDataEdit", users);
 
         return "PersonalEdit";
     }
+    @PostMapping("PersonalEdit")
+    public String updateProfile(
+            @AuthenticationPrincipal User user,
+            @RequestParam String email,
+            @RequestParam String password,
+            @RequestParam String username,
+            @RequestParam String fio,
+            @RequestParam String phone,
+            Model model
+
+    ){
+//        username1=user.getUsername();
+        User userFromDB = userRepo.findByUsername(username);
+        if(username.equals(user.getUsername()))
+        {
+            boole = 1;
+        }
+
+
+        if(userFromDB != null && boole == 0){
+
+            test = "tester";
+            return "redirect:/PersonalEdit";
+        }
+
+
+        test = "test";
+        userSevice.updateProfile(user, password, email, username, fio, phone);
+        return "redirect:/PersonalData";
+    }
+
 //Страница всех преподавтелей
     @GetMapping("Prep")
     public String Prep( Model model){
@@ -214,4 +252,6 @@ public class UserController {
         model.addAttribute("course", course);
         return "userPers";
     }
+
+
 }

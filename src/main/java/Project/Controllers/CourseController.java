@@ -101,13 +101,20 @@ public class CourseController {
     @GetMapping("signCourse/{user}")
     public String signCourse(
             @AuthenticationPrincipal User users,
-            @PathVariable String user, Model model){
+            @PathVariable String user,
+            Course course,
+            Model model){
         model.addAttribute("namePage", namePage);
         //usernameCorse=user;
-        SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
-        sCourseRepo.save(signUpCourse);
+//        SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
+//        sCourseRepo.save(signUpCourse);
 
+//        Course course = new Course();
+        users.getUsername();
+//        course.getId(course1);
+        course.addSignUp(users);
 
+        courseRepo.save(course);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
         return "SCourse";

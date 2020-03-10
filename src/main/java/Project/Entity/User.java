@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 @Entity
@@ -32,22 +33,22 @@ public class User implements UserDetails {
     private Set<Role> roles;
     public User(){}
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "SignUpCourses",
-//            joinColumns = {@JoinColumn(name = "UserCourseName")},
-//            inverseJoinColumns = {@JoinColumn(name = "courseName")}
-//    )
-//    private Set<Course> course = new HashSet<>();
-//
-//
-//    public Set<Course> getCourse() {
-//        return course;
-//    }
-//
-//    public void setCourse(Set<Course> course) {
-//        this.course = course;
-//    }
+    @ManyToMany
+    @JoinTable(
+            name = "SignUpCourses",
+            joinColumns = {@JoinColumn(name = "UserCourseName")},
+            inverseJoinColumns = {@JoinColumn(name = "courseName")}
+    )
+    private Set<Course> course = new HashSet<>();
+
+
+    public Set<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(Set<Course> course) {
+        this.course = course;
+    }
 
     public int getRl() {
         return rl;

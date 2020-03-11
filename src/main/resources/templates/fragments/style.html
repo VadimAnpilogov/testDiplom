@@ -5,6 +5,72 @@
 <head th:fragment="style">
     <style>
 
+        .secondLndPrepTable{
+            border-spacing: 200px 20px!important;
+        }
+        .lndDescription{
+            font-size: 18px!important;
+            font-weight: 400;
+        }
+        .lndPrep{
+            margin-left: 230px;
+            text-align: center;
+            color: #eeeeee;
+            position: absolute;
+            overflow-y: scroll;
+            height: calc( 100% - 60px);
+            width: calc(100% - 230px);
+            overflow-x: hidden;
+        }
+        .lndPrep th{
+            font-size: 20px;
+            max-width: 300px;
+        }
+        .lndPrep img{
+            position: relative;
+        }
+        .lndPrep h1{
+            margin-top: 150px;
+            position: relative;
+            font-size: 60px;
+        }
+        .lndPrep h2{
+            margin-top: 45px;
+            margin-bottom: 50px;
+            position: relative;
+            font-size: 32px;
+        }
+        .lndPrep table{
+            margin: 0 auto;
+            border-spacing: 100px 20px;
+            border-collapse: separate;
+        }
+
+        .getEnterMessage2{
+            margin: 0 0 0 530px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .getEnterMessage{
+            margin: auto;
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            display: grid;
+            width: calc(100% - 530px);
+            height: 150px;
+            top: 35%;
+        }
+        .getEnterMessage img{
+            max-width: 100%;
+            margin: auto;
+        }
+        .getEnterMessage a{
+            max-width: 100%;
+            margin: auto;
+        }
+
         .message_list{
             border-bottom: 1px solid #c4c4c4;
             margin: 0;
@@ -870,7 +936,6 @@
 
         body{
             background: #1f2024;
-            max-width: 1900px;
             min-width: 1300px;
             overflow-x: hidden;
             overflow-y: hidden;
@@ -879,7 +944,7 @@
         }
 
         .namePage{
-
+            visibility: hidden;
         }
         .namePage h4{
             color: #e5e7ed;
@@ -888,16 +953,18 @@
         }
         .span6{
             position: relative;
-            /* margin-left: 15%; */
             float: right;
             right: 30%;
             bottom: 50px;
+        }
+        .displayInline{
+            display: inline;
         }
 
         .reviews{
             position: absolute;
             overflow-y: scroll;
-            max-width: calc(100% - 250px);
+            width: calc(100% - 250px);
             height: calc(100% - 201px);
             left: 250px;
         }
@@ -986,6 +1053,12 @@
             height: calc( 100% - 60px);
             width: calc(100% - 230px);
             margin: 0 0 0 230px;
+        }
+        .formTheme{
+            color: #e5e7ed;
+            position: relative;
+            width: 900px;
+            margin: 0 auto;
         }
         .formCourseinput{
             margin-top: 30px;
@@ -1098,6 +1171,13 @@
         }
         .buttonPers{
             margin-top: 20px;
+        }
+        .dataGrid{
+            display: grid;
+        }
+        .dataGrid button{
+            width: 230px;
+            height: 40px;
         }
 
         .personalDataEdit h5{

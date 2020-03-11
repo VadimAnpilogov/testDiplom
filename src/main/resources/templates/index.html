@@ -1,103 +1,48 @@
-<!DOCTYPE html>
-<html lang="en" >
+<!DOCTYPE HTML>
 
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Как создать форму авторизации с Bootstrap</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="shortcut icon" href="https://www.rudebox.org.ua/favicon.ico"/>
-  <link rel='stylesheet prefetch' href='https://www.rudebox.org.ua/demo/lessons/styles/style.css'>
-      <link rel="stylesheet" href="css/style.css">
+    <title>Spring Boot - AJAX POST GET Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/postrequest.js"></script>
+    <script src="/js/getrequest.js"></script>
+
 </head>
-
 <body>
-<!--Начало кода используемого для демонстрации -->
-  <div id="controls">
-<div align=right><a class="close" title="Закрыть" onclick="document.getElementById('controls').style.display='none';">X</a></div>
-   <!-- Яндекс.Директ -->
-<div id="yandex_ad"></div>
-<script type="text/javascript">
-(function(w, d, n, s, t) {
-    w[n] = w[n] || [];
-    w[n].push(function() {
-        Ya.Direct.insertInto(84098, "yandex_ad", {
-            ad_format: "direct",
-            type: "240x400",
-            border_type: "block",
-            border_radius: true,
-            site_bg_color: "FFFFFF",
-            header_bg_color: "FEEAC7",
-            bg_color: "FFF9F0",
-            border_color: "FBE5C0",
-            title_color: "0000CC",
-            url_color: "006600",
-            text_color: "000000",
-            hover_color: "0066FF",
-            favicon: true,
-            no_sitelinks: false
-        });
-    });
-    t = d.getElementsByTagName("script")[0];
-    s = d.createElement("script");
-    s.src = "//an.yandex.ru/system/context.js";
-    s.type = "text/javascript";
-    s.async = true;
-    t.parentNode.insertBefore(s, t);
-})(window, document, "yandex_context_callbacks");
-</script>
-</div>
-<table cellpadding="0" cellspacing="0" id="demo_navi">
-  <tr>
-    <td width="220"><a href="https://www.rudebox.org.ua/ " rel="nofollow" ><div class="logo"><b><font color=#c3e425>RUDE</font>BOX</b></div></a></td><td width="45"><div class="demo">DEMO</div></td>
-	<td style="text-overflow: ellipsis;"><a href="https://rudebox.org.ua/how-to-create-authorization-form-with-bootstrap" class="go-bottom" rel="nofollow" ><div class="name">Как создать форму авторизации с Bootstrap</div></a></td>
-  </tr>
-</table>
-  <body class="login-page">
-    <main>
-      <div class="login-block">
-        <img src="1.png" alt="Scanfcode">
-        <h1>Введите свои данные</h1>
-        <form action="#">
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
-              <input type="text" class="form-control" placeholder="Ваш логин">
+
+<div class="container">
+
+    <h3 style="color:blue">POST-GET AJAX Example</h3>
+
+    <div>
+        <form class="form-inline" style="margin:20px 20px 20px 20px" id="customerForm">
+            <div class="form-group">
+                <label for="firstname" style="margin-right:5px">FirstName:</label>
+                <input type="text" class="form-control" id="firstname" placeholder="Enter FirstName"/>
             </div>
-          </div>
-          
-          <hr class="hr-xs">
-
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
-              <input type="password" class="form-control" placeholder="Ваш суперпароль">
+            <div class="form-group">
+                <label for="lastname" style="margin-left:20px; margin-right:5px">LastName:</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Enter LastName"/>
             </div>
-          </div>
-
-          <button class="btn btn-primary btn-block" type="submit">ВОЙТИ НА САЙТ</button>
-          <div class="login-footer">
-            <h6>или войдите с помощью</h6>
-            <ul class="social-icons">
-              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-
+            <button type="submit" class="btn btn-default" style="margin-left:20px; margin-right:5px">Submit</button>
         </form>
-      </div>
+    </div>
 
-      <div class="login-links">
-        <p class="text-center">Еще нету аккаунта? <a class="txt-brand" href="user-login.html"><font color=#29aafe>Регистрируйся</font></a></p>
-      </div>
+    <div class="col-sm-7" id="postResultDiv">
+    </div>
 
-    </main>
-  
-  
+    <div class="col-sm-7" style="margin:20px 0px 20px 0px">
+        <button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>
+        <div id="getResultDiv" style="padding:20px 10px 20px 50px">
+            <ul class="list-group">
+            </ul>
+        </div>
+    </div>
 
+</div>
 </body>
-
 </html>

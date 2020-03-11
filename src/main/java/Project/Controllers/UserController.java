@@ -135,10 +135,14 @@ public class UserController {
             test = "tester";
             return "redirect:/PersonalEdit";
         }
+        else
+        {
+            test = "test";
+            userSevice.updateProfile(user, password, email, username, fio, phone);
+        }
 
 
-        test = "test";
-        userSevice.updateProfile(user, password, email, username, fio, phone);
+
         return "redirect:/PersonalData";
     }
 

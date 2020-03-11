@@ -15,6 +15,9 @@
 </script>
 
 <div class="widget_message">
+    <form class="createDialogButton" action="users">
+        <button type="submit" class="btn btn-outline-info">Создать диалог</button>
+    </form>
     <ul>
         <li th:each="mesU : ${messageU}">
             <div class="message_list">
@@ -29,9 +32,6 @@
             </div>
         </li>
     </ul>
-    <form action="users">
-        <button type="submit" class="btn btn-outline-info">Создать диалог</button>
-    </form>
 </div>
 
 </div>

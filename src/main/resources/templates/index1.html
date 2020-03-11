@@ -1,0 +1,36 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>  
+<meta http-equiv="Content-Type" content="text/html; Charset=UTF-8">  
+<script type="text/javascript" src="jquery.js"></script>  
+</head>
+<head th:replace="fragments/head :: head"></head>
+<head th:replace="fragments/style :: style">
+<body th:replace="fragments/upMenu :: upMenu"></body>
+<body th:replace="fragments/homeMenu :: homeMenu"></body>
+<body>  
+      
+    <div id="content">
+        <p th:test="${namePage}"></p>
+    </div>
+      
+    <script>  
+        function show()  
+        {  
+            $.ajax({  
+                url: "time.php",
+                cache: false,  
+                success: function(html){  
+                    $("#content").html(html);  
+                }  
+            });  
+        }  
+      
+        $(document).ready(function(){  
+            show();  
+            setInterval('show()',1000);  
+        });  
+    </script>  
+      
+</body>  
+</html> 

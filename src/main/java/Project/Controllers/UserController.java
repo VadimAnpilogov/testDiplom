@@ -48,6 +48,7 @@ public class UserController {
     @Autowired
     private UserSevice userSevice;
 
+
     //странца всех пользователей
     @GetMapping("users")
     public String users( Model model){
@@ -104,7 +105,7 @@ public class UserController {
         {
             model.addAttribute("UserMessage", "Имя пользователя занято");
         }
-        test = "test";
+//        test = "test";
         Iterable<User> users = uMessageRepo.findByUsername(user.getUsername());
         model.addAttribute("personalDataEdit", users);
 
@@ -129,7 +130,7 @@ public class UserController {
         }
 
 
-        if(userFromDB != null && boole == 0){
+        if((userFromDB != null) && (boole == 0)){
 
             test = "tester";
             return "redirect:/PersonalEdit";
@@ -230,18 +231,22 @@ public class UserController {
         return "PrepPers";
     }
 //страница пользователя
-    @GetMapping("userPers/{username}")
+    @GetMapping("userPers/{UserId}")
     public String userPersFilter (
-            @PathVariable String username, Model model){
+            @AuthenticationPrincipal User user,
+            @PathVariable Long UserId,
+            Model model){
         model.addAttribute("namePage", namePagePers);
-        username1 = username;
-        model.addAttribute("users", userRepo.findByUsername(username1));
+//        username1 = username;
+        model.addAttribute("users", userRepo.findById(UserId));
+
+//        Iterable<Course> courses = courseRepo.findByUsers(user);
 
         Iterable<Course> course = courseRepo.findAll();
         model.addAttribute("course", course);
         return "redirect:/userPers";
     }
- //страница пользователя
+// страница пользователя
     @GetMapping("/userPers")
     public String userPers(Model model){
         model.addAttribute("namePage", namePagePers);

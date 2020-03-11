@@ -84,5 +84,14 @@ public class HomeController {
         return "contacts";
     }
 
-
+    @GetMapping("/index1")
+    public String index(Model model) {
+        model.addAttribute("namePage", namePageHome);
+        return "index1";
+    }
+    @GetMapping("/time.php")
+    public String php(Model model) {
+        model.addAttribute("namePage", namePageHome);
+        return "time.php";
+    }
 }

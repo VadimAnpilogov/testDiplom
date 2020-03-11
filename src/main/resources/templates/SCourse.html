@@ -44,6 +44,7 @@
                         <form th:action="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}" >
                             <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
                         </form>
+                        <h3 th:text="${signUp}"></h3>
                         <h3>Темы курса:</h3>
                     </div>
                     <div th:each="them : ${theme}">

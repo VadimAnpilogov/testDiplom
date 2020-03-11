@@ -22,9 +22,9 @@ public class Course {
 
     @ManyToMany
     @JoinTable(
-            name = "SignUpCourses",
-            joinColumns = {@JoinColumn(name = "courseName")},
-            inverseJoinColumns = {@JoinColumn(name = "UserCourseName")}
+            name = "AuthorCourse",
+            joinColumns = {@JoinColumn(name = "CourseId")},
+            inverseJoinColumns = {@JoinColumn(name = "UserId")}
     )
     private Set<User> users = new HashSet<>();
 
@@ -35,16 +35,17 @@ public class Course {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-    public void addSignUp(User user){
-        users.add(user);
-    }
+//    public void addSignUp(User user, String courseName ){
+//        this.courseName = courseName;
+//        users.add(user);
+//    }
 
     public Course() {
     }
 
-    public Course( String courseName, String prepName, String description, String region, String price, String priceType, String format) {
+    public Course( String courseName, String PrepName, String description, String region, String price, String priceType, String format) {
         this.courseName = courseName;
-        this.PrepName = prepName;
+        this.PrepName = PrepName;
         this.description = description;
         this.region = region;
         this.price = price;

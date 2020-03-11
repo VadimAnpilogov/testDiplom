@@ -3,11 +3,7 @@ package Project.Controllers;
 
 
 import Project.Entity.Chat;
-import Project.Entity.Messages;
-import Project.Entity.User;
 import Project.Repository.ChatRepo;
-import Project.Repository.ReviewsRepo;
-import Project.Repository.UMessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,11 +25,11 @@ public class HomeController {
     @Autowired
     private ChatRepo chatRepo;
 
-    @GetMapping(value = {"/", "/NoAuthHome"})
-    public String NoAuthHome(Model model) {
-        model.addAttribute("namePage", namePageHome);
-        return "NoAuthHome";
-    }
+//    @GetMapping(value = {"/", "/NoAuthHome"})
+//    public String NoAuthHome(Model model) {
+//        model.addAttribute("namePage", namePageHome);
+//        return "NoAuthHome";
+//    }
 
 
     @GetMapping("/home")
@@ -84,11 +80,16 @@ public class HomeController {
         return "contacts";
     }
 
+//    @GetMapping(value="/index")
+//    public String homepage(){
+//        return "index";
+//    }
+
+
     @GetMapping("/ForPrep")
     public String ForPrep(Model model) {
         model.addAttribute("namePage", namePage);
         return "ForPrep";
     }
-
 
 }

@@ -8,10 +8,23 @@
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
+<script type="text/javascript">
+    function  show() {
+        $.ajax({
+            url: "http://localhost:8080/users",
+            success: function (html) {
+                $('#usersTest').html(html);
 
+            }
+        });
+
+    }
+    setInterval('show()', 1000);
+
+</script>
 
 <div class="usersTiles">
-    <table>
+    <table id="usersTest">
         <tr th:each="usr : ${users}">
             <th>
                 <div class="usersImg">

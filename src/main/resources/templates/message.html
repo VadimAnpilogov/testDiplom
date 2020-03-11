@@ -22,7 +22,7 @@
         <li th:each="mesU : ${messageU}">
             <div class="message_list">
                 <div class="chat_people">
-                    <div class="chat_img"><a th:href="@{'/userPers/{username}'(username=${mesU.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
+                    <div class="chat_img"><a th:href="@{'/userPers/{UserId}'(UserId=${mesU.id})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
                     <div class="chat_ib">
                         <a th:href="@{'/messageU/{recipient}#endpage'(recipient=${mesU.username})}" class="username_msg">
                             <h5 th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>

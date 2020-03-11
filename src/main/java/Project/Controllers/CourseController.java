@@ -60,6 +60,8 @@ public class CourseController {
         model.addAttribute("namePage", namePageCreate);
         nameCourses = courseName;
         Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
+        course.getUsers().add(user);
+
         courseRepo.save(course);
 
         return  "redirect:/theme";
@@ -102,19 +104,22 @@ public class CourseController {
     public String signCourse(
             @AuthenticationPrincipal User users,
             @PathVariable String user,
-            Course course,
             Model model){
         model.addAttribute("namePage", namePage);
-        //usernameCorse=user;
-//        SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
-//        sCourseRepo.save(signUpCourse);
+        model.addAttribute("signUp", "Вы записались на курс");
+        usernameCorse=user;
+        SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
+        sCourseRepo.save(signUpCourse);
 
-//        Course course = new Course();
-        users.getUsername();
-//        course.getId(course1);
-        course.addSignUp(users);
-
-        courseRepo.save(course);
+// запись в таблицу связей
+//        users.getUsername();
+//
+//        course.addSignUp(users, course1);
+////        course.getUsers().add(users);
+//
+//        courseRepo.save(course);
+        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
+        model.addAttribute("theme", theme);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
         return "SCourse";

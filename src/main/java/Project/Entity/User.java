@@ -35,9 +35,9 @@ public class User implements UserDetails {
 
     @ManyToMany
     @JoinTable(
-            name = "SignUpCourses",
-            joinColumns = {@JoinColumn(name = "UserCourseName")},
-            inverseJoinColumns = {@JoinColumn(name = "courseName")}
+            name = "AuthorCourse",
+            joinColumns = {@JoinColumn(name = "UserId")},
+            inverseJoinColumns = {@JoinColumn(name = "CourseId")}
     )
     private Set<Course> course = new HashSet<>();
 

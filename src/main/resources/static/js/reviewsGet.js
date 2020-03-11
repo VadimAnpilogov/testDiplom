@@ -16,13 +16,7 @@ $( document ).ready(function() {
                     $('#getResultDiv ul').empty();
                     var custList = "";
                     $.each(result.data, function(i, customer){
-                        var customer = "- Customer with Id = " + i + ", firstname = " + customer.reviewsOp + ", lastName = " + customer.authorReviews + "<br>";
-                        // var customer = "<div class=\"review\">\n" +
-                        //     "            <h4 class=\"reviewName\">customer.authorReviews</h4>\n" +
-                        //     "            <div class=\"reviewText\">\n" +
-                        //     "                <p>customer.reviewsOp</p>\n" +
-                        //     "            </div>\n" +
-                        //     "        </div>";
+                        var customer = "Отзыв номер" + i + ", текст отзыва: " + customer.message + "<br>";
                         $('#getResultDiv .list-group').append(customer)
                     });
                     console.log("Success: ", result);
@@ -37,5 +31,4 @@ $( document ).ready(function() {
             }
         });
     }
-    // setInterval('ajaxGet()', 1000);
 })

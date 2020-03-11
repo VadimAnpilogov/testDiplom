@@ -1,24 +1,64 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head">
+<head>
+    <title>Spring Boot - AJAX POST GET Example</title>
 
-</head>
-<head th:replace="fragments/style :: style">
+
+
+    <head th:replace="fragments/head :: head"></head>
+    <head th:replace="fragments/style :: style"></head>
     <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
-<body>
+<script src="/js/postrequest.js"></script>
+<script src="/js/getrequest.js"></script>
+</head>
 
-    <div class="reviews">
-        <div class="review" th:each="mesS : ${reviewsMessage}">
-            <h4 class="reviewName" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>
-            <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
-            <div class="reviewText">
-                <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>
+<body>
+<div class="container">
+
+    <h3 style="color:blue">POST-GET AJAX Example</h3>
+
+    <div>
+        <form class="form-inline" style="margin:20px 20px 20px 20px" id="customerForm">
+            <div class="form-group">
+                <label for="reviewsOp" style="margin-right:5px">reviewsOp:</label>
+                <input type="text" class="form-control" id="reviewsOp" placeholder="Enter reviewsOp"/>
             </div>
-        </div>
-        <span id="endpage"></span>
+            <div class="form-group">
+                <label for="authorReviews" style="margin-left:20px; margin-right:5px">authorReviews:</label>
+                <input type="text" class="form-control" id="authorReviews" placeholder="Enter authorReviews"/>
+            </div>
+            <button type="submit" class="btn btn-default" style="margin-left:20px; margin-right:5px">Submit</button>
+        </form>
     </div>
+
+    <div class="col-sm-7" id="postResultDiv">
+    </div>
+
+    <div class="col-sm-7" style="margin:20px 0px 20px 0px">
+        <button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>
+            <div id="getResultDiv" style="padding:20px 10px 20px 50px">
+                <ul style="color: #e5e7ed" class="list-group">
+                </ul>
+            </div>
+    </div>
+
+</div>
+
+
+
+
+<!--    <div class="reviews">-->
+<!--        <div class="review" th:each="mesS : ${reviewsMessage}">-->
+<!--            <h4 class="reviewName" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>-->
+<!--            <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
+<!--            <div class="reviewText">-->
+<!--                <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <span id="endpage"></span>-->
+<!--    </div>-->
 
 <div class="reviewEnter">
     <div class="reviewWrite">

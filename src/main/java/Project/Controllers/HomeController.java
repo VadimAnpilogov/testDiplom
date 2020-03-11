@@ -25,11 +25,11 @@ public class HomeController {
     @Autowired
     private ChatRepo chatRepo;
 
-//    @GetMapping(value = {"/", "/NoAuthHome"})
-//    public String NoAuthHome(Model model) {
-//        model.addAttribute("namePage", namePageHome);
-//        return "NoAuthHome";
-//    }
+    @GetMapping(value = {"/", "/NoAuthHome"})
+    public String NoAuthHome(Model model) {
+        model.addAttribute("namePage", namePageHome);
+        return "NoAuthHome";
+    }
 
 
     @GetMapping("/home")

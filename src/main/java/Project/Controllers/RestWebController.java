@@ -1,10 +1,13 @@
 package Project.Controllers;
 
 import Project.Entity.Reviews;
+import Project.Entity.User;
 import Project.Repository.ReviewsRepo;
+import Project.Service.UserSevice;
 import Project.message.Response;
 import Project.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -15,8 +18,9 @@ import java.util.List;
 public class RestWebController {
 	@Autowired
 	public ReviewsRepo reviewsRepo;
+	@Autowired
+	private UserSevice userSevice;
 
-	List<Reviews> cust = new ArrayList<Reviews>();
 
 	@GetMapping(value = "/all")
 	public Response getResource() {
@@ -26,29 +30,14 @@ public class RestWebController {
 	}
 
 	@PostMapping(value = "/save")
-	public Response postCustomer(@RequestBody Reviews customer) {
-		cust.add(customer);
+	public Response postCustomer(
+			@AuthenticationPrincipal User user,
+			@RequestBody Reviews customer) {
 
-		// Create Response Object
+		Reviews reviews = new Reviews(customer.getReviewsOp(), user.getUsername(), userSevice.date());
+		reviewsRepo.save(reviews);
 		Response response = new Response("Done", customer);
 		return response;
 	}
 
-
-//	List<Customer> cust = new ArrayList<Customer>();
-//
-//	@GetMapping(value = "/all")
-//	public Response getResource() {
-//		Response response = new Response("Done", cust);
-//		return response;
-//	}
-//
-//	@PostMapping(value = "/save")
-//	public Response postCustomer(@RequestBody Customer customer) {
-//		cust.add(customer);
-//
-//		// Create Response Object
-//		Response response = new Response("Done", customer);
-//		return response;
-//	}
 }

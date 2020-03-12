@@ -7,7 +7,7 @@ $( document ).ready(function() {
         ajaxPost();
     });
 
-
+    // ", lastName = " + customer.authorReviews +
     function ajaxPost(){
 
         // PREPARE FORM DATA
@@ -28,7 +28,7 @@ $( document ).ready(function() {
                     $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
                         "Post Successfully! <br>" +
                         "---> Customer's Info: FirstName = " +
-                        result.data.reviewsOp + " ,LastName = " + result.data.authorReviews + "</p>");
+                        result.data.reviewsOp + "</p>");
                 }else{
                     $("#postResultDiv").html("<strong>Error</strong>");
                 }

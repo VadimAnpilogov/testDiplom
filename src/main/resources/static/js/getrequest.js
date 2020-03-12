@@ -1,6 +1,9 @@
 $( document ).ready(function() {
 
     // GET REQUEST
+
+
+
     $("#getAllCustomerId").click(function(event){
         event.preventDefault();
         ajaxGet();
@@ -16,7 +19,7 @@ $( document ).ready(function() {
                     $('#getResultDiv ul').empty();
                     var custList = "";
                     $.each(result.data, function(i, customer){
-                        var customer = "- Customer with Id = " + i + ", firstname = " + customer.reviewsOp + ", lastName = " + customer.authorReviews + "<br>";
+                        var customer = "Id = " + i + ", firstname = " + customer.reviewsOp +", lastName = " + customer.authorReviews + "<br>";
                         // var customer = "<div class=\"review\">\n" +
                         //     "            <h4 class=\"reviewName\">customer.authorReviews</h4>\n" +
                         //     "            <div class=\"reviewText\">\n" +

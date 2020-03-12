@@ -1,18 +1,15 @@
-$( document ).ready(function() {
+// $( document ).ready(function() {
 
     // GET REQUEST
 
 
 
-    $("#getAllCustomerId").click(function(event){
-        event.preventDefault();
-        ajaxGet();
-
-    });
+    // $("#getAllCustomerId").click(function(event){
+    //     event.preventDefault();
+    //     ajaxGet();
+    // });
 
     // DO GET
-
-
     function ajaxGet(){
         $.ajax({
             type : "GET",
@@ -22,7 +19,7 @@ $( document ).ready(function() {
                     $('#getResultDiv ul').empty();
                     var custList = "";
                     $.each(result.data, function(i, customer){
-                        var customer = "Id = " + i + ", Отзыв = " + customer.reviewsOp +", Автор = " + customer.authorReviews + ", дата = " + customer.date +"<br>";
+                        var customer = "Id = " + i + ", Отзыв = " + customer.message +", Автор = " + customer.sender + ", дата = " + customer.date +"<br>";
                         // var customer = "<div class=\"review\">\n" +
                         //     "            <h4 class=\"reviewName\">customer.authorReviews</h4>\n" +
                         //     "            <div class=\"reviewText\">\n" +
@@ -42,7 +39,6 @@ $( document ).ready(function() {
                 console.log("ERROR: ", e);
             }
         });
-
     }
-    // setInterval('ajaxGet()', 1000);
-})
+    setInterval('ajaxGet()', 1000);
+// })

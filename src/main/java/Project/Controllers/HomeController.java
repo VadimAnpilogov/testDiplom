@@ -42,37 +42,34 @@ public class HomeController {
         model.addAttribute("namePage", namePageLogin);
         return "login";
     }
-
-    @GetMapping("/help/{sender}")
-    public String helpSender(@PathVariable String sender, Model model) {
-        model.addAttribute("namePage", namePageHelp);
-        sender1 = sender;
-        Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
-        model.addAttribute("helpMessage", helpS);
-        return "redirect:/help";
-    }
-    @GetMapping("/help")
-    public String help( Model model) {
-        model.addAttribute("namePage", namePageHelp);
-        Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
-        model.addAttribute("helpMessage", helpS);
-        return "help";
-    }
-    @GetMapping("helpAddMessage")
-    public String AddHelpSender(@RequestParam String message, Model model){
-        model.addAttribute("namePage", namePageHelp);
-        Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
-        model.addAttribute("helpMessage", helpS);
-
-        Date dateNow = new Date();
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
-        date=formatForDateNow.format(dateNow);
-
-        Chat chat = new Chat(message, sender1, date);
-        chatRepo.save(chat);
-
-        return "redirect:/help";
-    }
+//
+//    @GetMapping("/help/{sender}")
+//    public String helpSender(@PathVariable String sender, Model model) {
+//        model.addAttribute("namePage", namePageHelp);
+//        sender1 = sender;
+//        Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
+//        model.addAttribute("helpMessage", helpS);
+//        return "redirect:/help";
+//    }
+//    @GetMapping("/help")
+//    public String help( ) {
+//        return "help";
+//    }
+//    @GetMapping("helpAddMessage")
+//    public String AddHelpSender(@RequestParam String message, Model model){
+//        model.addAttribute("namePage", namePageHelp);
+//        Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
+//        model.addAttribute("helpMessage", helpS);
+//
+//        Date dateNow = new Date();
+//        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
+//        date=formatForDateNow.format(dateNow);
+//
+//        Chat chat = new Chat(message, sender1, date);
+//        chatRepo.save(chat);
+//
+//        return "redirect:/help";
+//    }
 
     @GetMapping("/contacts")
     public String contacts(Model model) {

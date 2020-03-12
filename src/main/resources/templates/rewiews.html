@@ -8,12 +8,12 @@
     <head th:replace="fragments/head :: head"></head>
     <head th:replace="fragments/style :: style"></head>
     <!--<body th:replace="fragments/menu :: menu"></body>-->
-<body th:replace="fragments/upMenu :: upMenu"></body>
+
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <script src="/js/postrequest.js"></script>
 <script src="/js/getrequest.js"></script>
 </head>
-
+<body th:replace="fragments/upMenu :: upMenu"></body>
 <body>
 <div class="container">
 
@@ -37,12 +37,12 @@
     </div>
 
     <div class="col-sm-7" style="margin:20px 0px 20px 0px">
-        <button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>
-            <div id="getResultDiv" style="padding:20px 10px 20px 50px">
-                <ul style="color: #e5e7ed" class="list-group">
-                </ul>
-            </div>
+    <button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>
+    <div id="getResultDiv" style="padding:20px 10px 20px 50px">
+        <ul style="color: #e5e7ed" class="list-group">
+        </ul>
     </div>
+</div>
 
 </div>
 

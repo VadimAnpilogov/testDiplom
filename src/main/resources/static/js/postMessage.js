@@ -1,30 +1,36 @@
 $( document ).ready(function() {
 
-    // SUBMIT FORM id формы
-    $("#addReview").submit(function(event) {
+    // SUBMIT FORM
+    $("#customerForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         ajaxPost();
     });
 
-
+    // ", lastName = " + customer.authorReviews +
     function ajaxPost(){
 
         // PREPARE FORM DATA
         var formData = {
-            textReview : $("#message").val()
+            message : $("#message").val(),
+            recipient: $("#recipient").val(),
+            sender :  $("#sender").val(),
+            date: $("#date").val()
         }
 
         // DO POST
         $.ajax({
             type : "POST",
             contentType : "application/json",
-            url : window.location + "/api/customer/save",
+            url : window.location + "/save",
             data : JSON.stringify(formData),
             dataType : 'json',
             success : function(result) {
                 if(result.status == "Done"){
-                    $("#postResultDiv").html("<h1>Сообщение доставлено!</h1>");
+                    $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
+                        "Post Successfully! <br>" +
+                        "---> Customer's Info: FirstName = " +
+                        result.data.message + "</p>");
                 }else{
                     $("#postResultDiv").html("<strong>Error</strong>");
                 }
@@ -43,5 +49,8 @@ $( document ).ready(function() {
 
     function resetData(){
         $("#message").val("");
+        $("#sender").val("");
+        $("#date").val("");
+        $("#recipient").val("");
     }
 })

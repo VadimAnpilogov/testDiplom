@@ -1,18 +1,25 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head">
+<head>
+    <title>Spring Boot - AJAX POST GET Example</title>
 
-</head>
-<head th:replace="fragments/style :: style">
+
+
+    <head th:replace="fragments/head :: head"></head>
+    <head th:replace="fragments/style :: style"></head>
+    <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script src="/js/postMessage.js"></script>
+<script src="/js/getMessage.js"></script>
+</head>
 <body class="noScroll">
 
-<script>
-    function hidden(){
-        document.getElementsByClassName('enter').style.display = "none";
-    }
-</script>
+<!--<script>-->
+<!--    function hidden(){-->
+<!--        document.getElementsByClassName('enter').style.display = "none";-->
+<!--    }-->
+<!--</script>-->
 
 <div class="widget_message">
     <ul>
@@ -21,8 +28,8 @@
                 <div class="chat_people">
                     <div class="chat_img"><a th:href="@{'/userPers/{UserId}'(UserId=${mesU.id})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
                     <div class="chat_ib">
-                        <a th:href="@{'/messageU/{recipient}#endpage'(recipient=${mesU.username})}" class="username_msg">
-                            <h5 th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                        <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.username})}" class="username_msg">
+                            <h5 id="recipient" th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
                         </a>
                     </div>
                 </div>
@@ -33,30 +40,58 @@
         <button type="submit" class="btn btn-outline-info">Создать диалог</button>
     </form>
 </div>
-
 </div>
+
 <div class="msgs">
-    <div th:each="mesS : ${messageS}">
-        <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >
+        <div class="received_msg" >
             <div class="received_withd_msg">
-                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                <span class="time_dateInMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
+                <div id="getResultDiv">
+                    <ul style="color: #ed2e47" class="list-group"></ul>
+                </div>
+                <span class="time_dateInMes"> 11:01 AM    |    Today</span>
             </div>
         </div>
-        <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >
-            <div class="sent_msg">
-                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>
-                <span class="time_dateOutMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>
-            </div>
-        </div>
-    </div>
     <span id="endpage"></span>
 </div>
-<div class="enter" th:if="${test != null}">
+<!--</div>-->
+<!--<div class="msgs">-->
+<!--    <div th:each="mesS : ${messageS}">-->
+<!--        <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >-->
+<!--            <div class="received_withd_msg">-->
+<!--                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
+<!--                <span class="time_dateInMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >-->
+<!--            <div class="sent_msg">-->
+<!--                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
+<!--                <span class="time_dateOutMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <span id="endpage"></span>-->
+<!--</div>-->
+
+<div class="container">
+
+    <!--    <div class="col-sm-7" id="postResultDiv">-->
+    <!--    </div>-->
+
+<!--    <div class="col-sm-7" style="margin:20px 0px 20px 0px">-->
+<!--        <div id="getResultDiv" style="padding:20px 10px 20px 50px">-->
+<!--            <ul style="color: #e5e7ed" class="list-group">-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+
+</div>
+
+
+<div class="enter" >
     <div class="type_msg">
-        <form action="messageAdd?message1=message#endpage">
+        <form id="customerForm">
             <div class="input_msg_write">
-                <textarea maxlength="1000" type="message1" name="message" class="write_msg" placeholder="Введите сообщение" autocomplete="off" required></textarea>
+                <textarea id="message" maxlength="1000" type="message1" name="message" class="write_msg" placeholder="Введите сообщение" autocomplete="off" required></textarea>
                 <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
         </form>

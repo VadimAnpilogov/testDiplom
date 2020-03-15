@@ -40,39 +40,39 @@
         </li>
     </ul>
 </div>
-</div>
 
-<div class="msgs">
-        <div class="received_msg" >
-            <div class="received_withd_msg">
-                <div id="getResultDiv">
-                    <ul style="color: #ed2e47" class="list-group"></ul>
-                </div>
-                <span class="time_dateInMes"> 11:01 AM    |    Today</span>
-            </div>
-        </div>
-    <span id="endpage"></span>
-</div>
-<!--</div>-->
+
 <!--<div class="msgs">-->
-<!--    <div th:each="mesS : ${messageS}">-->
-<!--        <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >-->
-<!--            <div class="received_withd_msg">-->
-<!--                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
-<!--                <span class="time_dateInMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >-->
-<!--            <div class="sent_msg">-->
-<!--                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
-<!--                <span class="time_dateOutMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <span id="endpage"></span>-->
+    <!--<div class="received_msg" >-->
+        <!--<div class="received_withd_msg">-->
+            <!--<div id="getResultDiv">-->
+                <!--<ul style="color: #ed2e47" class="list-group"></ul>-->
+            <!--</div>-->
+            <!--<span class="time_dateInMes"> 11:01 AM    |    Today</span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<span id="endpage"></span>-->
 <!--</div>-->
 
-<div class="container">
+<!--<div class="msgs">-->
+    <!--<div th:each="mesS : ${messageS}">-->
+        <!--<div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >-->
+            <!--<div class="received_withd_msg">-->
+                <!--<p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
+                <!--<span class="time_dateInMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >-->
+            <!--<div class="sent_msg">-->
+                <!--<p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
+                <!--<span class="time_dateOutMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<span id="endpage"></span>-->
+<!--</div>-->
+
+<div class="msgs" style="color: white" id="getResultMessage">
 
     <!--    <div class="col-sm-7" id="postResultDiv">-->
     <!--    </div>-->
@@ -97,12 +97,12 @@
         </form>
     </div>
 </div>
-<div class="getEnterMessage2" th:if="${test == null}">
-    <div class="getEnterMessage">
-        <img src="https://img.icons8.com/color/96/000000/chat.png">
-        <a>Выберите диалог</a>
-    </div>
-</div>
+<!--<div class="getEnterMessage2" th:if="${test == null}">-->
+    <!--<div class="getEnterMessage">-->
+        <!--<img src="https://img.icons8.com/color/96/000000/chat.png">-->
+        <!--<a>Выберите диалог</a>-->
+    <!--</div>-->
+<!--</div>-->
 
 </body>
 </html>

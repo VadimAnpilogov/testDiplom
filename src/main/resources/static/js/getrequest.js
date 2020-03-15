@@ -1,48 +1,31 @@
-$( document ).ready(function() {
+function ajaxGet(){
+    $.ajax({
+        type : "GET",
+        url : window.location + "/all",
+        success: function(result){
+            if(result.status == "Done"){
+                $('#getResultReviews').empty();
 
-    // GET REQUEST
+                $.each(result.data, function(i, customer){
+                    $('#getResultReviews').append("<div class='review'>" +
+                        "<h4 class='reviewName'>" + customer.authorReviews + "</h4>" +
+                        "<span class='time_date'>" + customer.date + "</span>" +
+                        "<div class='reviewText'><p>" + customer.reviewsOp + "</p></div></div>");
+                });
 
+                // var div = $("#getResultReviews");//Прокрутка вниз страницы(не работает тк. зацикливается)
+                // div.scrollTop(div.prop('scrollHeight'));
 
-
-    $("#getAllCustomerId").click(function(event){
-        event.preventDefault();
-        ajaxGet();
-
-    });
-
-    // DO GET
-
-
-    function ajaxGet(){
-        $.ajax({
-            type : "GET",
-            url : window.location + "/all",
-            success: function(result){
-                if(result.status == "Done"){
-                    $('#getResultDiv ul').empty();
-                    var custList = "";
-                    $.each(result.data, function(i, customer){
-                        var customer = "Id = " + i + ", Отзыв = " + customer.reviewsOp +", Автор = " + customer.authorReviews + ", дата = " + customer.date +"<br>";
-                        // var customer = "<div class=\"review\">\n" +
-                        //     "            <h4 class=\"reviewName\">customer.authorReviews</h4>\n" +
-                        //     "            <div class=\"reviewText\">\n" +
-                        //     "                <p>customer.reviewsOp</p>\n" +
-                        //     "            </div>\n" +
-                        //     "        </div>";
-                        $('#getResultDiv .list-group').append(customer)
-                    });
-                    console.log("Success: ", result);
-                }else{
-                    $("#getResultDiv").html("<strong>Error</strong>");
-                    console.log("Fail: ", result);
-                }
-            },
-            error : function(e) {
-                $("#getResultDiv").html("<strong>Error</strong>");
-                console.log("ERROR: ", e);
+                console.log("Success: ", result);
+            }else{
+                $("#getResultReviews").html("<strong>Error</strong>");
+                console.log("Fail: ", result);
             }
-        });
-
-    }
-    // setInterval('ajaxGet()', 1000);
-})
+        },
+        error : function(e) {
+            $("#getResultReviews").html("<strong>Error</strong>");
+            console.log("ERROR: ", e);
+        }
+    });
+}
+setInterval('ajaxGet()', 1000);

@@ -15,50 +15,8 @@
 </head>
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body>
-<div class="container">
 
-<!--    <h3 style="color:blue">POST-GET AJAX Example</h3>-->
-
-<!--    <div>-->
-<!--        <form class="form-inline" style="margin:20px 20px 20px 20px" id="customerForm1">-->
-<!--            <div class="form-group">-->
-<!--                <label for="reviewsOp1" style="margin-right:5px">reviewsOp:</label>-->
-<!--                <input type="text" class="form-control" id="reviewsOp1" placeholder="Enter reviewsOp"/>-->
-<!--            </div>-->
-<!--&lt;!&ndash;            <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                <label for="authorReviews" style="margin-left:20px; margin-right:5px">authorReviews:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;                <input type="text" class="form-control" id="authorReviews" placeholder="Enter authorReviews"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--            <button type="submit" class="btn btn-default" style="margin-left:20px; margin-right:5px; color: #e5e7ed">Submit</button>-->
-<!--        </form>-->
-<!--    </div>-->
-
-    <div class="col-sm-7" id="postResultDiv">
-    </div>
-
-    <div class="col-sm-7" style="margin:20px 0px 20px 0px">
-    <button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>
-    <div id="getResultDiv" style="padding:20px 10px 20px 50px">
-        <ul style="color: #e5e7ed" class="list-group">
-        </ul>
-    </div>
-</div>
-
-</div>
-
-
-
-
-<!--    <div class="reviews">-->
-<!--        <div class="review" th:each="mesS : ${reviewsMessage}">-->
-<!--            <h4 class="reviewName" th:utext="${mesS.authorReviews}"> 11:01 AM    |    Today </h4>-->
-<!--            <span class="time_date" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
-<!--            <div class="reviewText">-->
-<!--                <p th:utext="${mesS.reviewsOp}">Apollo University, Delhi, India Test</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <span id="endpage"></span>-->
-<!--    </div>-->
+<div class="reviews" id="getResultReviews"></div>
 
 <div class="reviewEnter">
     <div class="reviewWrite">

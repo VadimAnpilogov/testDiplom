@@ -8,20 +8,20 @@
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
-<script type="text/javascript">
-    function  show() {
-        $.ajax({
-            url: "http://localhost:8080/users",
-            success: function (html) {
-                $('#usersTest').html(html);
+<!--<script type="text/javascript">-->
+<!--    function  show() {-->
+<!--        $.ajax({-->
+<!--            url: "http://localhost:8080/users",-->
+<!--            success: function (html) {-->
+<!--                $('#usersTest').html(html);-->
 
-            }
-        });
+<!--            }-->
+<!--        });-->
 
-    }
-    setInterval('show()', 1000);
+<!--    }-->
+<!--    setInterval('show()', 1000);-->
 
-</script>
+<!--</script>-->
 
 <div class="usersTiles">
     <table id="usersTest">

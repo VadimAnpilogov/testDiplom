@@ -25,7 +25,10 @@ public class Reviews {
         this.authorReviews = authorReviews;
         this.date = date;
     }
-
+    public Reviews(String reviewsOp, String authorReviews) {
+        this.reviewsOp = reviewsOp;
+        this.authorReviews = authorReviews;
+    }
     public Reviews(String reviewsOp, String authorReviews, String date) {
         this.reviewsOp = reviewsOp;
         this.authorReviews = authorReviews;

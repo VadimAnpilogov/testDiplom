@@ -49,11 +49,6 @@ public class MessagesController {
         model.addAttribute("messageU", messU);
 
 
-
-//        Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
-//        model.addAttribute("messageS", messages2);
-
-
         return "message";
     }
 
@@ -76,7 +71,7 @@ public class MessagesController {
 
         Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
         model.addAttribute("messageS", messages2);
-        return "message";
+        return "redirect:/message";
     }
 //Отправка сообщения
     @GetMapping("messageU/messageAdd")
@@ -102,7 +97,7 @@ public class MessagesController {
         model.addAttribute("messageS", messages2);
 
 
-        return "message";
+        return "redirect:/message";
     }
 
 }

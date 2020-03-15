@@ -12,8 +12,9 @@ $( document ).ready(function() {
 
         // PREPARE FORM DATA
         var formData = {
-            reviewsOp : $("#reviewsOp").val(),
-            authorReviews :  $("#authorReviews").val(),
+            message : $("#message").val(),
+            recipient: $("#recipient").val(),
+            sender :  $("#sender").val(),
             date: $("#date").val()
         }
 
@@ -29,7 +30,7 @@ $( document ).ready(function() {
                     $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
                         "Post Successfully! <br>" +
                         "---> Customer's Info: FirstName = " +
-                        result.data.reviewsOp + "</p>");
+                        result.data.message + "</p>");
                 }else{
                     $("#postResultDiv").html("<strong>Error</strong>");
                 }
@@ -47,8 +48,9 @@ $( document ).ready(function() {
     }
 
     function resetData(){
-        $("#reviewsOp").val("");
-        $("#authorReviews").val("");
+        $("#message").val("");
+        $("#sender").val("");
         $("#date").val("");
+        $("#recipient").val("");
     }
 })

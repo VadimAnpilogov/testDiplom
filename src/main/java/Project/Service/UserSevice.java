@@ -36,7 +36,7 @@ public class UserSevice implements UserDetailsService {
 
     public String date() {
         Date dateNow = new Date();
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss");
         Date1=formatForDateNow.format(dateNow);
 
         return Date1;

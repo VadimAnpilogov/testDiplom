@@ -28,7 +28,9 @@
         <tr th:each="usr : ${users}">
             <th>
                 <div class="usersImg">
-                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                    <a th:href="@{'/userPers/{users}'(users=${usr.username})}">
+                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                    </a>
                 </div>
                 <h1 th:utext="${usr.username}">Имя пользователя</h1>
                 <h2>Статус</h2>

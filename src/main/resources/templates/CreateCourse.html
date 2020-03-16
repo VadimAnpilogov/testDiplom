@@ -13,7 +13,7 @@
         <form class="courseForm" action="addCourse?courseName1=courseName&description1=description&region1=region&price1=price&priceType=priceType&format=format">
             <h4>Название курса</h4>
             <input type="courseName1" name="courseName" class="form-control inputField" id="courseName" autocomplete="off" placeholder="Введите название курса" required>
-
+            <h4 style="color: #dd3333" th:text="${messages}"></h4>
             <h4>Описание курса</h4>
             <textarea maxlength="1700" type="description1" name="description" class="formCourseinputDescription form-control inputField" id="description" autocomplete="off" placeholder="Введите описание курса" required></textarea>
 

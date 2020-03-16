@@ -12,4 +12,6 @@ import java.util.List;
 public interface SCourseRepo extends CrudRepository<SignUpCourse, Long > {
 //    Course findByCourseName(String courseName);
         List<SignUpCourse> findByCourseName(String CourseName);
+//        List<SignUpCourse> findByUserCourseName(String UserCourseName);
+
 }

@@ -7,6 +7,7 @@ import Project.Repository.SCourseRepo;
 import Project.Repository.ThemeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,6 +60,11 @@ public class CourseController {
             @RequestParam String format, Model model){
         model.addAttribute("namePage", namePageCreate);
         nameCourses = courseName;
+        Course addCourse = courseRepo.findByCourseName(courseName);
+        if (addCourse != null) {
+            model.addAttribute("messages", " Имя курса занято");
+            return "CreateCourse";
+        }
         Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
         course.getUsers().add(user);
 
@@ -108,6 +114,14 @@ public class CourseController {
         model.addAttribute("namePage", namePage);
         model.addAttribute("signUp", "Вы записались на курс");
         usernameCorse=user;
+//        Iterable<SignUpCourse> checkUser = sCourseRepo.findByCourseName(course1);
+//        if(checkUser == users.getUsername())
+
+//        if(checkUser != null)
+//        {
+//            model.addAttribute("messages", " Вы уже записались");
+//            return "SCourse";
+//        }
         SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
         sCourseRepo.save(signUpCourse);
 

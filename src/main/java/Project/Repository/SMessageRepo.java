@@ -13,4 +13,5 @@ public interface SMessageRepo extends CrudRepository<Messages, Long> {
     List<Messages> findByNameMess(String nameMess);
     List<Messages> findByNameMessOrderByDateAsc(String nameMess);
 
+
 }

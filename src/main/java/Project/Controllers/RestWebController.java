@@ -35,7 +35,7 @@ public class RestWebController {
 
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
-		Iterable<Reviews> custom = reviewsRepo.findAll();
+		Iterable<Reviews> custom = reviewsRepo.findAllByOrderByIdAsc();
 		Response response = new Response("Done", custom);
 		return response;
 	}
@@ -70,22 +70,33 @@ public class RestWebController {
 	public String recipient1 = "test";
 	public String NameMess= "test";
 
-	@GetMapping(value = "message/all")
-	public Response getMessage(){
+	@GetMapping(value = "messageU/{recipient}/all")
+	public Response getMessage(
+			@AuthenticationPrincipal User user,
+			@PathVariable String recipient){
 
 //		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(messages.getRecipient(), user.getUsername()));
-		Iterable<Messages> messages2 = sMessageRepo.findAll();
+
+
+		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient, user.getUsername()));
 		Response response = new Response("Done" , messages2 );
 		return response;
 	}
 
-	@PostMapping(value = "message/save")
+	@PostMapping(value = "messageU/{recipient}/save")
 	public Response postMessage(
 			@AuthenticationPrincipal User user,
-			@RequestBody Messages message
+			@RequestBody Messages message,
+			@PathVariable String recipient
 	){
 
-		Messages messages = new Messages(message.getMessage(), recipient1, user.getUsername(), NameMess, userSevice.date());
+		Messages messages = new Messages(
+				message.getMessage(),
+				recipient,
+				user.getUsername(),
+				messageService.nameDialog(recipient, user.getUsername()),
+				userSevice.date());
+
 		sMessageRepo.save(messages);
 
 		Response response = new Response("Done", message);

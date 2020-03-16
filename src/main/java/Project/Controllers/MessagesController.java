@@ -1,8 +1,10 @@
 package Project.Controllers;
 
 
+import Project.Entity.Dialog;
 import Project.Entity.Messages;
 import Project.Entity.User;
+import Project.Repository.DialogRepo;
 import Project.Repository.SMessageRepo;
 import Project.Repository.UMessageRepo;
 
@@ -40,14 +42,20 @@ public class MessagesController {
 
     @Autowired
     private UserSevice userSevice;
+    @Autowired
+    private DialogRepo dialogRepo;
 
 //Страница сообщений
     @GetMapping("message")
-    public String message(Model model){
+    public String message(
+            @AuthenticationPrincipal User user,
+            Model model){
         model.addAttribute("namePage", namePage);
         Iterable<User> messU = uMessageRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
 
+        Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+        model.addAttribute("dialogsUser", dialogs);
 
         return "message";
     }
@@ -71,7 +79,9 @@ public class MessagesController {
 
         Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
         model.addAttribute("messageS", messages2);
-        return "redirect:/message";
+        Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+        model.addAttribute("dialogsUser", dialogs);
+        return "message";
     }
 //Отправка сообщения
     @GetMapping("messageU/messageAdd")
@@ -96,6 +106,21 @@ public class MessagesController {
         Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
         model.addAttribute("messageS", messages2);
 
+        Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+        model.addAttribute("dialogsUser", dialogs);
+        return "redirect:/message";
+    }
+
+    @GetMapping("/addDialog/{userName}")
+    public String addDialogs(
+            @AuthenticationPrincipal User user,
+            @PathVariable String userName){
+
+//        Iterable<Dialog> dialogs = dialogRepo.
+
+
+        Dialog dialog = new Dialog(messageService.nameDialog(userName, user.getUsername()), user.getUsername(), userName);
+        dialogRepo.save(dialog);
 
         return "redirect:/message";
     }

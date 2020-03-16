@@ -235,14 +235,14 @@ public class UserController {
         return "PrepPers";
     }
 //страница пользователя
-    @GetMapping("userPers/{UserId}")
+    @GetMapping("userPers/{users}")
     public String userPersFilter (
             @AuthenticationPrincipal User user,
-            @PathVariable Long UserId,
+            @PathVariable String users,
             Model model){
         model.addAttribute("namePage", namePagePers);
-//        username1 = username;
-        model.addAttribute("users", userRepo.findById(UserId));
+        username1 = users;
+        model.addAttribute("users", userRepo.findByUsername(users));
 
 //        Iterable<Course> courses = courseRepo.findByUsers(user);
 

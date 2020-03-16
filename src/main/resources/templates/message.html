@@ -12,6 +12,7 @@
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <script src="/js/postMessage.js"></script>
 <script src="/js/getMessage.js"></script>
+<script src="js/dialog.js"></script>
 </head>
 <body class="noScroll">
 
@@ -22,17 +23,49 @@
 <!--</script>-->
 
 <div class="widget_message">
-    <form class="createDialogButton" action="users">
-        <button type="submit" class="btn btn-outline-info">Создать диалог</button>
-    </form>
+<!--    <form class="createDialogButton" action="users">-->
+<!--        <button type="submit" class="btn btn-outline-info">Создать диалог</button>-->
+<!--    </form>-->
+
+
+    <div id="mySidenav" class="sidenav" >
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<!--        <h5>Выберите пользователя, которому хотите написать</h5>-->
+<!--        <a th:utext="${dialog.username}"></a>-->
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <ul style=" margin-right: 20px; margin-left: 20px;">
+            <li th:each="dialog : ${messageU}">
+                <div class="message_list">
+                    <div class="chat_people">
+                        <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${dialog.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
+                        <div class="chat_ib">
+                            <a th:href="@{'/addDialog/{userName}'(userName=${dialog.username})}" class="username_msg">
+                                <h5 th:utext="${dialog.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+<!--        <a href="#">About</a>-->
+<!--        <a href="#">Services</a>-->
+<!--        <a href="#">Clients</a>-->
+<!--        <a href="#">Contact</a>-->
+    </div>
+        <form class="createDialogButton" >
+            <button onclick="openNav()" type="button" class="btn btn-outline-info">Создать диалог</button>
+<!--            <span onclick="openNav()">open</span>-->
+        </form>
+
     <ul>
-        <li th:each="mesU : ${messageU}">
+        <li th:each="mesU : ${dialogsUser}">
             <div class="message_list">
                 <div class="chat_people">
-                    <div class="chat_img"><a th:href="@{'/userPers/{UserId}'(UserId=${mesU.id})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
+                    <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${mesU.recipient})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
                     <div class="chat_ib">
-                        <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.username})}" class="username_msg">
-                            <h5 id="recipient" th:utext="${mesU.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                        <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.recipient})}" class="username_msg">
+                            <h5 id="recipient" th:utext="${mesU.recipient}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
                         </a>
                     </div>
                 </div>
@@ -55,21 +88,21 @@
 <!--</div>-->
 
 <!--<div class="msgs">-->
-    <!--<div th:each="mesS : ${messageS}">-->
-        <!--<div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >-->
-            <!--<div class="received_withd_msg">-->
-                <!--<p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
-                <!--<span class="time_dateInMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >-->
-            <!--<div class="sent_msg">-->
-                <!--<p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
-                <!--<span class="time_dateOutMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<span id="endpage"></span>-->
+<!--    <div th:each="mesS : ${messageS}">-->
+<!--        <div th:if="${mesS.sender != #httpServletRequest.remoteUser}" class="received_msg" >-->
+<!--            <div class="received_withd_msg">-->
+<!--                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
+<!--                <span class="time_dateInMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div th:if="${mesS.sender == #httpServletRequest.remoteUser}" class="outgoing_msg" >-->
+<!--            <div class="sent_msg">-->
+<!--                <p th:utext="${mesS.message}">Apollo University, Delhi, India Test</p>-->
+<!--                <span class="time_dateOutMes" th:utext="${mesS.date}"> 11:01 AM    |    Today</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <span id="endpage"></span>-->
 <!--</div>-->
 
 <div class="msgs" style="color: white" id="getResultMessage">

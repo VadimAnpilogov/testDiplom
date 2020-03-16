@@ -7,9 +7,31 @@ function ajaxGet(){
                 $('#getResultMessage').empty();
 
                 $.each(result.data, function(i, customer){
-                    $('#getResultMessage').append("<div class='received_msg'><div class='received_withd_msg'>" +
-                        "<p>" + customer.message + "</p><span class='time_dateInMes'>03/15/20 21:56</span></div></div>");
+                    $('#getResultMessage').append(
+                        "<div class='received_msg'>" +
+                        "<div class='received_withd_msg'>" +
+                        "<p>" + customer.message + "</p>" +
+                        "<span class='time_dateInMes'>" + customer.date +
+                        "</span></div></div>");
                 });
+
+// нужно сделать нормально
+                // $.each(result.data, function(i, customer){
+                //     $('#getResultMessage').append(
+                //         "<div th:if='${"+ customer.sender + " != " + customer.recipient + "}' class='received_msg'>" +
+                //         "<div class='received_withd_msg'>" +
+                //         "<p>" + customer.message + "</p>" +
+                //         "<span class='time_dateInMes'>" + customer.date +
+                //         "</span></div></div>"+
+                //
+                //         "<div th:if='${"+ customer.sender+ " == " + customer.recipient + "}' class='outgoing_msg'>" +
+                //         "<div class='sent_msg'>" +
+                //         "<p>" + customer.message + "</p>" +
+                //         "<span class='time_dateOutMes'>" + customer.date +
+                //         "</span></div></div>"
+                //
+                //     );
+                // });
 
                 // var custList = "";
                 // $.each(result.data, function(i, customer){

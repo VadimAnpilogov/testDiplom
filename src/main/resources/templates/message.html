@@ -13,6 +13,7 @@
 <script src="/js/postMessage.js"></script>
 <script src="/js/getMessage.js"></script>
 <script src="js/dialog.js"></script>
+<script src="js/getDialog.js"></script>
 </head>
 <body class="noScroll">
 
@@ -48,44 +49,18 @@
             </li>
         </ul>
 
-<!--        <a href="#">About</a>-->
-<!--        <a href="#">Services</a>-->
-<!--        <a href="#">Clients</a>-->
-<!--        <a href="#">Contact</a>-->
+
     </div>
         <form class="createDialogButton" >
             <button onclick="openNav()" type="button" class="btn btn-outline-info">Создать диалог</button>
-<!--            <span onclick="openNav()">open</span>-->
         </form>
-
     <ul>
-        <li th:each="mesU : ${dialogsUser}">
-            <div class="message_list">
-                <div class="chat_people">
-                    <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${mesU.recipient})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
-                    <div class="chat_ib">
-                        <a th:href="@{'/messageU/{recipient}'(recipient=${mesU.recipient})}" class="username_msg">
-                            <h5 id="recipient" th:utext="${mesU.recipient}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </li>
+        <li id="getResultDialog"></li>
     </ul>
 </div>
 
 
-<!--<div class="msgs">-->
-    <!--<div class="received_msg" >-->
-        <!--<div class="received_withd_msg">-->
-            <!--<div id="getResultDiv">-->
-                <!--<ul style="color: #ed2e47" class="list-group"></ul>-->
-            <!--</div>-->
-            <!--<span class="time_dateInMes"> 11:01 AM    |    Today</span>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<span id="endpage"></span>-->
-<!--</div>-->
+<div class="msgs" style="color: white" id="getResultMessage"></div>
 
 <!--<div class="msgs">-->
 <!--    <div th:each="mesS : ${messageS}">-->
@@ -105,19 +80,6 @@
 <!--    <span id="endpage"></span>-->
 <!--</div>-->
 
-<div class="msgs" style="color: white" id="getResultMessage">
-
-    <!--    <div class="col-sm-7" id="postResultDiv">-->
-    <!--    </div>-->
-
-<!--    <div class="col-sm-7" style="margin:20px 0px 20px 0px">-->
-<!--        <div id="getResultDiv" style="padding:20px 10px 20px 50px">-->
-<!--            <ul style="color: #e5e7ed" class="list-group">-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-
-</div>
 
 
 <div class="enter" >

@@ -1,13 +1,7 @@
 package Project.Controllers;
 
-import Project.Entity.Chat;
-import Project.Entity.Messages;
-import Project.Entity.Reviews;
-import Project.Entity.User;
-import Project.Repository.ChatRepo;
-import Project.Repository.ReviewsRepo;
-import Project.Repository.SMessageRepo;
-import Project.Repository.UMessageRepo;
+import Project.Entity.*;
+import Project.Repository.*;
 import Project.Service.MessageService;
 import Project.Service.UserSevice;
 import Project.message.Response;
@@ -32,6 +26,8 @@ public class RestWebController {
 	private MessageService messageService;
 	@Autowired
 	public UMessageRepo uMessageRepo;
+	@Autowired
+	private DialogRepo dialogRepo;
 
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
@@ -75,11 +71,10 @@ public class RestWebController {
 			@AuthenticationPrincipal User user,
 			@PathVariable String recipient){
 
-//		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(messages.getRecipient(), user.getUsername()));
-
+		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
 
 		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient, user.getUsername()));
-		Response response = new Response("Done" , messages2 );
+		Response response = new Response("Done" ,dialogs, messages2 );
 		return response;
 	}
 
@@ -100,6 +95,12 @@ public class RestWebController {
 		sMessageRepo.save(messages);
 
 		Response response = new Response("Done", message);
+		return response;
+	}
+	@GetMapping(value = "message/all")
+	public Response getDialog(@AuthenticationPrincipal User user){
+		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+		Response response = new Response("Done" , dialogs );
 		return response;
 	}
 }

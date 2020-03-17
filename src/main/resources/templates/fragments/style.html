@@ -77,19 +77,16 @@
         }
 
         .getEnterMessage2{
-            margin: 0 0 0 530px;
+            margin: auto;
             position: absolute;
+            top: 35%;
             width: 100%;
-            height: 100%;
         }
         .getEnterMessage{
             margin: auto;
             color: white;
             font-size: 20px;
-            position: absolute;
             display: grid;
-            width: calc(100% - 530px);
-            height: 150px;
             top: 35%;
         }
         .getEnterMessage img{
@@ -1220,6 +1217,23 @@
 
 
         /*создание диалога*/
+        .createDialogTextArea{
+            display: block;
+            width: calc(100% - 20px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #1f2024;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            height: 40px;
+            resize: none;
+            margin: 0 auto 10px;
+        }
 
         .sidenav {
             height: 100%; /* 100% Full-height */
@@ -1232,6 +1246,7 @@
             overflow-x: hidden; /* Disable horizontal scroll */
             padding-top: 60px; /* Place content 60px from the top */
             transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+            overflow-y: auto;
         }
 
          The navigation menu links

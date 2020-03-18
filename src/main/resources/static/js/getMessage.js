@@ -3,7 +3,7 @@ function ajaxGet(){
         type : "GET",
         url : window.location + "/all",
         success: function(result){
-            if (result.status != "Done") {
+            if (result.status !== "Done") {
                 $("#getResultMessage").html("<strong>Error!</strong>");
                 console.log("Fail: ", result);
             } else {

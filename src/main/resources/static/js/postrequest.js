@@ -15,7 +15,7 @@ $( document ).ready(function() {
             reviewsOp : $("#reviewsOp").val(),
             authorReviews :  $("#authorReviews").val(),
             date: $("#date").val()
-        }
+        };
 
         // DO POST
         $.ajax({
@@ -25,7 +25,7 @@ $( document ).ready(function() {
             data : JSON.stringify(formData),
             dataType : 'json',
             success : function(result) {
-                if(result.status == "Done"){
+                if(result.status === "Done"){
                     $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
                         "Post Successfully! <br>" +
                         "---> Customer's Info: FirstName = " +
@@ -36,7 +36,7 @@ $( document ).ready(function() {
                 console.log(result);
             },
             error : function(e) {
-                alert("Error!")
+                alert("Error!");
                 console.log("ERROR: ", e);
             }
         });
@@ -51,4 +51,41 @@ $( document ).ready(function() {
         $("#authorReviews").val("");
         $("#date").val("");
     }
-})
+
+    document.body.onkeydown = function(event) {
+        var e = event || window.event;
+        var code = e.keyCode || e.which;
+        var activeEl = document.activeElement.id;
+        if(code === 13 && activeEl === "reviewsOp") {
+            var text_redirect = document.getElementById('reviewsOp').value;
+            text_redirect = text_redirect.replace(/^\s+/, "");
+            if(text_redirect !== "") {
+                event.preventDefault();
+                ajaxPost();
+            } else {
+                alert("ЗАПОЛНИТЕ ФОРМУ!");
+            }
+        }
+    };
+    document.body.onkeydown = function(event) {
+        var e = event || window.event;
+        var code = e.keyCode || e.which;
+        var activeEl = document.activeElement.id;
+        if(code === 13 && e.ctrlKey) {
+            if(activeEl === "reviewsOp") {
+                document.getElementById('reviewsOp').value += "\n";
+            } else {
+                return false;
+            }
+        } else if(code === 13 && activeEl === "reviewsOp") {
+            var text_redirect = document.getElementById('reviewsOp').value;
+            text_redirect = text_redirect.replace(/^\s+/, "");
+            if(text_redirect !== "") {
+                event.preventDefault();
+                ajaxPost();
+            } else {
+                return false;
+            }
+        }
+    }
+});

@@ -16,6 +16,10 @@ function ajaxGet(){
                         "<a href='/messageU/" + customer.recipient + "' class='username_msg'>" +
                         "<h5 id='recipient' class='username_msg'>" + customer.recipient + "</h5>"+
                         "</a></div></div></div>");
+                    $("#getResultMessage").html("<div class='getEnterMessage2'>" +
+                        "<div class='getEnterMessage'>" +
+                        "<img src='https://img.icons8.com/color/96/000000/chat.png'>" +
+                        "<a>Выберите диалог</a></div></div>");
                 });
                 console.log("Success: ", result);
             }else{

@@ -3,7 +3,7 @@ function ajaxGet(){
         type : "GET",
         url : window.location + "/all",
         success: function(result){
-            if(result.status == "Done"){
+            if(result.status === "Done"){
                 $('#getResultDialog').empty();
 
                 $.each(result.data, function(i, customer){

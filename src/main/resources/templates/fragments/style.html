@@ -5,6 +5,13 @@
 <head th:fragment="style">
     <style>
 
+        .carousel-indicators li{
+            pointer-events: none;
+            cursor: default;
+            text-decoration: none;
+            color: black;
+        }
+
         .contactsForm{
             max-width: 1070px;
             margin: 30px auto;
@@ -325,6 +332,10 @@
             /*width: auto; */
             margin: 9px 28% 15px;
         }
+        .usersImg img:hover{
+            box-shadow: 0 0 10px 3px #59b4d3c7;
+            border-radius: 50%;
+        }
         .usersTiles{
             margin-left: 250px;
             position: absolute;
@@ -513,6 +524,7 @@
             overflow: hidden;
             margin: 13px 0;
             padding: 0 20%;
+            white-space: pre-wrap;
         }
         .sent_msg {
             float: right;
@@ -1160,7 +1172,7 @@
         .coursesTil th{
             background-color: #103b4f;
             padding: 20px;
-            height: 230px;
+            height: 290px;
             border: 2px #2b4458 solid;
             border-radius: 4px;
             position: relative;

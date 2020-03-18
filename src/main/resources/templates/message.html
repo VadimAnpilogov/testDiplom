@@ -33,15 +33,15 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 <!--        <h5>Выберите пользователя, которому хотите написать</h5>-->
 <!--        <a th:utext="${dialog.username}"></a>-->
-        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <input class="createDialogTextArea" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
         <ul style=" margin-right: 20px; margin-left: 20px;">
-            <li th:each="dialog : ${messageU}">
+            <li th:each="dialog : ${messageU}" id="liDialog">
                 <div class="message_list">
                     <div class="chat_people">
                         <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${dialog.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
                         <div class="chat_ib">
                             <a th:href="@{'/addDialog/{userName}'(userName=${dialog.username})}" class="username_msg">
-                                <h5 th:utext="${dialog.username}" class="username_msg">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                <h5 th:utext="${dialog.username}" class="username_msg" id="UsernameDialog">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
                             </a>
                         </div>
                     </div>
@@ -81,8 +81,7 @@
 <!--</div>-->
 
 
-
-<div class="enter" >
+<div class="enter" id="enterID" style="visibility: hidden">
     <div class="type_msg">
         <form id="customerForm">
             <div class="input_msg_write">

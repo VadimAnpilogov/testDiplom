@@ -1,6 +1,8 @@
 package Project.Controllers;
 
+import Project.Entity.Users;
 import Project.Repository.UserRepo;
+import Project.Repository.UsersRepo;
 import Project.Service.MailSender;
 //import Project.Service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,9 @@ public class RegistrationController {
 
 
     @Autowired
-    private UserRepo userRepository;
-//    @Autowired
-//    private UserSevice userSevice;
+    private UsersRepo userRepository;
+    @Autowired
+    private UserRepo userRepo;
     @Autowired
     private MailSender mailSender;
 
@@ -54,23 +56,24 @@ public class RegistrationController {
 
 //Регистрация студента
     @PostMapping("/userR")
-    public String addUser(@RequestParam String username, User user, Model model){
+    public String addUser(@RequestParam String username, User user, Users users, Model model){
         model.addAttribute("namePage", namePage);
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+        Users userFromDB = userRepository.findByUsername(users.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "User exists");
             return "userR";
         }
         user.setActive(true);
         user.setRl(1);
-        user.setRoles(Collections.singleton(Role.USER));
+        users.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
-        userRepository.save(user);
+        userRepository.save(users);
+        userRepo.save(user);
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
                             "Welcome to Mentor. Please, visit next link: http://localhost:8080/activate/%s",
-                    user.getUsername(),
+                    users.getUsername(),
                     user.getActivationCode()
             );
 
@@ -81,9 +84,9 @@ public class RegistrationController {
     }
 //Регистрация преподавателя
     @PostMapping("/adminR")
-    public String addAdmin(@RequestParam String username, User user,Model model){
+    public String addAdmin(@RequestParam String username, User user,Users users, Model model){
         model.addAttribute("namePage", namePage);
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+        Users userFromDB = userRepository.findByUsername(users.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "Имя пользователя занято");
             return "adminR";
@@ -91,14 +94,15 @@ public class RegistrationController {
 
         user.setActive(true);
         user.setRl(0);
-        user.setRoles(Collections.singleton(Role.ADMIN));
+        users.setRoles(Collections.singleton(Role.ADMIN));
         user.setActivationCode(UUID.randomUUID().toString());
-        userRepository.save(user);
+        userRepository.save(users);
+        userRepo.save(user);
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
                             "Welcome to Mentor. Please, visit next link: http://localhost:8080/activate/%s",
-                    user.getUsername(),
+                    users.getUsername(),
                     user.getActivationCode()
             );
 
@@ -118,10 +122,10 @@ public class RegistrationController {
             model.addAttribute("message", "Activation code is not found!");
         }
 
-        return "login";
+        return "redirect:/login";
     }
     public boolean activateUser(String code) {
-        User user = userRepository.findByActivationCode(code);
+        User user = userRepo.findByActivationCode(code);
 
         if (user == null) {
             return false;
@@ -129,7 +133,7 @@ public class RegistrationController {
 
         user.setActivationCode(null);
 
-        userRepository.save(user);
+        userRepo.save(user);
 
         return true;
     }

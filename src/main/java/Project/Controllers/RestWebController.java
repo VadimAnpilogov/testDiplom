@@ -6,6 +6,7 @@ import Project.Service.MessageService;
 import Project.Service.UserSevice;
 import Project.message.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,8 @@ public class RestWebController {
 	public UMessageRepo uMessageRepo;
 	@Autowired
 	private DialogRepo dialogRepo;
+	@Autowired
+	private UserRepo userRepo;
 
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
@@ -37,7 +40,7 @@ public class RestWebController {
 	}
 	@PostMapping(value = "rewiews/save")
 	public Response postReview(
-			@AuthenticationPrincipal User user,
+			@AuthenticationPrincipal Users user,
 			@RequestBody Reviews customer) {
 		Reviews reviews = new Reviews(customer.getReviewsOp(), user.getUsername(), userSevice.date());
 		reviewsRepo.save(reviews);
@@ -54,7 +57,7 @@ public class RestWebController {
 
 	@PostMapping(value = "help/save")
 	public Response postHelp(
-			@AuthenticationPrincipal User user,
+			@AuthenticationPrincipal Users user,
 			@RequestBody Chat chat
 			){
 		Chat chats = new Chat(chat.getMessage(), user.getUsername(), userSevice.date());
@@ -68,7 +71,7 @@ public class RestWebController {
 
 	@GetMapping(value = "messageU/{recipient}/all")
 	public Response getMessage(
-			@AuthenticationPrincipal User user,
+			@AuthenticationPrincipal Users user,
 			@PathVariable String recipient){
 
 		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
@@ -80,7 +83,7 @@ public class RestWebController {
 
 	@PostMapping(value = "messageU/{recipient}/save")
 	public Response postMessage(
-			@AuthenticationPrincipal User user,
+			@AuthenticationPrincipal Users user,
 			@RequestBody Messages message,
 			@PathVariable String recipient
 	){
@@ -98,7 +101,7 @@ public class RestWebController {
 		return response;
 	}
 	@GetMapping(value = "message/all")
-	public Response getDialog(@AuthenticationPrincipal User user){
+	public Response getDialog(@AuthenticationPrincipal Users user){
 		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
 		Response response = new Response("Done" , dialogs );
 		return response;

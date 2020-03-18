@@ -11,5 +11,5 @@ import java.util.List;
 public interface UMessageRepo extends CrudRepository<User, Long> {
     List<User> findAllByOrderByIdAsc();
     List<User> findAllByRl(int rl);
-    List<User> findByUsername(String username);
+//    List<User> findByUsername(String username);
 }

@@ -1,8 +1,6 @@
 package Project.Controllers;
 
-import Project.Entity.Course;
-import Project.Entity.Reviews;
-import Project.Entity.SignUpCourse;
+import Project.Entity.*;
 import Project.Repository.*;
 import Project.Service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import Project.Entity.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,7 +35,7 @@ public class UserController {
     @Autowired
     private ReviewsRepo reviewsRepo;
     @Autowired
-    private UserRepo userRepo;
+    private UsersRepo userRepo;
     @Autowired
     private CourseRepo courseRepo;
     @Autowired
@@ -47,6 +44,9 @@ public class UserController {
     private SCourseRepo sCourseRepo;
     @Autowired
     private UserSevice userSevice;
+    @Autowired
+    private UsersListRepo usersListRepo;
+
 
 
     //странца всех пользователей
@@ -62,15 +62,14 @@ public class UserController {
 //Личный кабинет
     @GetMapping("/Personal")
     public String personalUser(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users user,
             Model model){
         model.addAttribute("namePage", namePagePersonal);
         model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
 
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(user.getUsername());
         model.addAttribute("reviews", reviews2);
-
-        Iterable<User> users = uMessageRepo.findByUsername(user.getUsername());
+        Iterable<Users> users = usersListRepo.findByUsername(user.getUsername());
         model.addAttribute("personalData", users);
 
         Iterable<SignUpCourse> signUpCourses = sCourseRepo.findByCourseName(user.getUsername());
@@ -85,19 +84,19 @@ public class UserController {
     }
     @GetMapping("/PersonalData")
     public String PersonalData(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users user,
                                 Model model){
         model.addAttribute("namePage", namePagePersonal);
         model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
 
-        Iterable<User> users = uMessageRepo.findByUsername(user.getUsername());
+        Iterable<Users> users = usersListRepo.findByUsername(user.getUsername());
         model.addAttribute("personalDataEdit", users);
 
              return "PersonalData";
     }
     @GetMapping("/PersonalEdit")
     public String PersonalEdit(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users user,
             Model model){
         model.addAttribute("namePage", namePagePersonal);
         model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
@@ -106,25 +105,26 @@ public class UserController {
             model.addAttribute("UserMessage", "Имя пользователя занято");
         }
 //        test = "test";
-        Iterable<User> users = uMessageRepo.findByUsername(user.getUsername());
+        Iterable<Users> users = usersListRepo.findByUsername(user.getUsername());
         model.addAttribute("personalDataEdit", users);
 
         return "PersonalEdit";
     }
     @PostMapping("PersonalEdit")
     public String updateProfile(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users users,
             @RequestParam String email,
             @RequestParam String password,
             @RequestParam String username,
             @RequestParam String fio,
             @RequestParam String phone,
+            User user,
             Model model
 
     ){
 //        username1=user.getUsername();
-        User userFromDB = userRepo.findByUsername(username);
-        if(username.equals(user.getUsername()))
+        Users userFromDB = userRepo.findByUsername(username);
+        if(username.equals(users.getUsername()))
         {
             boole = 1;
         }
@@ -138,7 +138,7 @@ public class UserController {
         else
         {
             test = "test";
-            userSevice.updateProfile(user, password, email, username, fio, phone);
+            userSevice.updateProfile(user, users ,password, email, username, fio, phone);
         }
 
 
@@ -172,7 +172,7 @@ public class UserController {
         model.addAttribute("reviews", reviews2);
         model.addAttribute("message", studName);
 
-        Iterable<User> users = uMessageRepo.findByUsername(StudName);
+        Iterable<Users> users = usersListRepo.findByUsername(StudName);
         model.addAttribute("personalData", users);
         return "StudPers";
     }
@@ -181,7 +181,7 @@ public class UserController {
     public String prepName(@PathVariable String prepName, Model model){
         model.addAttribute("namePage", namePagePersonal);
         PrepName=prepName;
-        Iterable<User> users = uMessageRepo.findByUsername(PrepName);
+        Iterable<Users> users = usersListRepo.findByUsername(PrepName);
         model.addAttribute("personalData", users);
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(PrepName);
         model.addAttribute("reviews", reviews2);
@@ -194,7 +194,7 @@ public class UserController {
 
     @GetMapping("studName/messageAdd")
     public String addReviewsStud(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users user,
             @RequestParam String reviews, Model model){
 
 //        Date dateNow = new Date();
@@ -207,7 +207,7 @@ public class UserController {
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(StudName);
         model.addAttribute("reviews", reviews2);
 
-        Iterable<User> users = uMessageRepo.findByUsername(StudName);
+        Iterable<Users> users = usersListRepo.findByUsername(StudName);
         model.addAttribute("personalData", users);
 //        Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviewsAndAutorReviews(StudName, autor);
 //        model.addAttribute("reviews", reviews2);
@@ -216,7 +216,7 @@ public class UserController {
 
     @GetMapping("prepName/messageAdd")
     public String addReviewsPrep(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users user,
             @RequestParam String reviews, Model model){
         model.addAttribute("namePage", namePagePersonal);
 //        Date dateNow = new Date();
@@ -225,7 +225,7 @@ public class UserController {
         date = userSevice.date();
         Reviews reviews1= new Reviews(reviews, PrepName, user.getUsername(), date);
         reviewsRepo.save(reviews1);
-        Iterable<User> users = uMessageRepo.findByUsername(PrepName);
+        Iterable<Users> users = usersListRepo.findByUsername(PrepName);
         model.addAttribute("personalData", users);
 
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(PrepName);
@@ -254,7 +254,7 @@ public class UserController {
     @GetMapping("/userPers")
     public String userPers(Model model){
         model.addAttribute("namePage", namePagePers);
-        Iterable<User> user = uMessageRepo.findByUsername(username1);
+        Iterable<Users> user = usersListRepo.findByUsername(username1);
         model.addAttribute("users", user);
 
         Iterable<Course> course = courseRepo.findAll();

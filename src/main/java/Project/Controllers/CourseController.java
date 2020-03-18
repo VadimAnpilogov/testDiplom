@@ -7,18 +7,14 @@ import Project.Repository.SCourseRepo;
 import Project.Repository.ThemeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Set;
 
 @Controller
 public class CourseController {
@@ -29,6 +25,7 @@ public class CourseController {
     public SCourseRepo sCourseRepo;
     @Autowired
     public ThemeRepo themeRepo;
+
 
 //    public  String PrepName;
     public String usernameCorse;
@@ -51,7 +48,7 @@ public class CourseController {
 //Страница создания курсов, добавление курса
     @GetMapping("addCourse")
     public String addCourse(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users user,
             @RequestParam String courseName,
             @RequestParam String description,
             @RequestParam String region ,
@@ -65,10 +62,10 @@ public class CourseController {
             model.addAttribute("messages", " Имя курса занято");
             return "CreateCourse";
         }
-        Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
-        course.getUsers().add(user);
+//        Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
+//        course.getUsers().add(user);
 
-        courseRepo.save(course);
+//        courseRepo.save(course);
 
         return  "redirect:/theme";
     }
@@ -141,7 +138,7 @@ public class CourseController {
 
     @GetMapping("addTheme")
     public String addTheme(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal Users user,
             Model model, @RequestParam String nameTheme){
         model.addAttribute("namePage", namePageTheme);
 

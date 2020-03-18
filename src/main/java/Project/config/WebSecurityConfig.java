@@ -2,11 +2,9 @@ package Project.config;
 
 
 
-import Project.Entity.User;
-import Project.Repository.UserRepo;
+
 import Project.Service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,8 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 
-import javax.sql.DataSource;
-import java.time.LocalDateTime;
 
 @Configuration
 @EnableWebSecurity
@@ -25,9 +21,9 @@ import java.time.LocalDateTime;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
-    @Autowired
-    private DataSource dataSource;
+//
+//    @Autowired
+//    private DataSource dataSource;
 
     @Autowired
     private UserSevice userSevice;
@@ -38,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/", "/NoAuthHome", "/registration", "/userR", "/adminR", "/user", "/admin", "/activate/*", "/rewiews", "/help", "/contacts", "/ForPrep", "index1").permitAll()
+                    .antMatchers("/", "/NoAuthHome", "/registration", "/userR", "/adminR", "/user", "/admin", "/activate/*", "/rewiews", "/help", "/contacts", "/ForPrep").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

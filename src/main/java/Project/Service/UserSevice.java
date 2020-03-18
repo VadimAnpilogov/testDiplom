@@ -2,7 +2,9 @@ package Project.Service;
 
 
 import Project.Entity.User;
+import Project.Entity.Users;
 import Project.Repository.UserRepo;
+import Project.Repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,12 +21,15 @@ import java.util.UUID;
 public class UserSevice implements UserDetailsService {
 
     @Autowired
-    private UserRepo userRepo;
+    private UsersRepo userRepo;
+
+    @Autowired
+    private UserRepo userRepos;
     private String Date1;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username);
+        Users user = userRepo.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
@@ -44,6 +49,7 @@ public class UserSevice implements UserDetailsService {
 
     public void updateProfile(
             User user,
+            Users users,
             String password,
             String email,
             String username,
@@ -64,15 +70,17 @@ public class UserSevice implements UserDetailsService {
         }
 
 
-        user.setUsername(username);
+        users.setUsername(username);
         user.setFio(fio);
         user.setPhone(phone);
 
         if (!StringUtils.isEmpty(password)) {
-            user.setPassword(password);
+            users.setPassword(password);
         }
 
-        userRepo.save(user);
+        userRepo.save(users);
+        userRepos.save(user);
+
 
 //        if (isEmailChanged) {
 //            sendMessage(user);

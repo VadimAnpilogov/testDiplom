@@ -22,19 +22,21 @@ public class Course {
 
     @ManyToMany
     @JoinTable(
-            name = "AuthorCourse",
+            name = "CourseFollowers",
             joinColumns = {@JoinColumn(name = "CourseId")},
             inverseJoinColumns = {@JoinColumn(name = "UserId")}
     )
-    private Set<User> users = new HashSet<>();
+    private Set<User> usersFol = new HashSet<>();
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<User> getUsersFol() {
+        return usersFol;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUsersFol(Set<User> usersFol) {
+        this.usersFol = usersFol;
     }
+
+
 //    public void addSignUp(User user, String courseName ){
 //        this.courseName = courseName;
 //        users.add(user);

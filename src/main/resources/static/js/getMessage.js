@@ -15,7 +15,7 @@ function ajaxGet(){
                     $('#getResultDialog').append("<div class='message_list'>" +
                         "<div class='chat_people'>" +
                         "<div class='chat_img'>" +
-                        "<a href='/userPers/{" + customer1.recipient + "}'>" +
+                        "<a href='/userPers/" + customer1.recipient + "'>" +
                         "<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'></a></div>" +
                         "<div class=\"chat_ib\">" +
                         "<a href='/messageU/" + customer1.recipient + "' class='username_msg'>" +

@@ -5,6 +5,27 @@
 <head th:fragment="style">
     <style>
 
+        .searchDialogTextArea{
+            display: block;
+            width: 260px;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #1f2024;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            height: 40px;
+            resize: none;
+            margin: 0 auto 10px;
+        }
+        .searchDialogMenu{
+            padding: 10px 0 20px 0;
+        }
+
         .carousel-indicators li{
             pointer-events: none;
             cursor: default;
@@ -38,8 +59,9 @@
         }
 
         .createDialogButton{
-            margin: 0 0 20px;
-            display: grid;
+            margin: 0 auto;
+            display: block;
+            width: 260px;
         }
 
         .secondLndPrepTable{

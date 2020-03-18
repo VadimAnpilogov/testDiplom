@@ -5,6 +5,75 @@
 <head th:fragment="style">
     <style>
 
+        .dropdown-item:active {
+            color: #fff!important;
+            text-decoration: none!important;
+            background-color: #233740!important;
+        }
+        .dropdown-item:hover {
+            color: #ffffff!important;
+            text-decoration: none!important;
+            background-color: #233740!important;
+        }
+        .searchCourseButton{
+            position: absolute;
+            margin: 10px;
+            z-index: 1;
+        }
+        .dropdown-item{
+            display: flex;
+            width: 100%;
+            padding: .25rem 1.5rem;
+            clear: both;
+            font-weight: 400;
+            color: #ffffff;
+            text-align: inherit;
+            white-space: nowrap;
+            background-color: #233740;
+            border: 0;
+        }
+        .searchContainer{
+            margin-left: 230px;
+        }
+        .searchCourses{
+            color: #ffffff;
+            margin: 20px 10px 0;
+            will-change: transform;
+            background-color: rgb(35, 55, 64);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transform: translate3d(0px, 38px, 0px);
+        }
+        .searchCourseTitle{
+            color: white;
+            font-size: 22px;
+            margin: 10px auto;
+            width: fit-content;
+        }
+        .searchCourses h5{
+            font-size: 18px;
+            margin: auto;
+            width: 150px;
+        }
+        .searchCourses textarea{
+            display: block;
+            width: 780px;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #ffffff;
+            background-color: #1f2024;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            height: 40px;
+            resize: none;
+            margin: 0 auto 10px;
+        }
+
         .searchDialogTextArea{
             display: block;
             width: 260px;

@@ -114,23 +114,10 @@ public class CourseController {
         model.addAttribute("signUp", "Вы записались на курс");
         usernameCorse=user;
 
-        SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
-        sCourseRepo.save(signUpCourse);
-
         Course course = courseRepo.findByCourseName(course1);
-//        Users usersCourse = usersRepo.findByUsername(users.getUsername());
         users.getCourseFol().add(course);
         usersRepo.save(users);
 
-// запись в таблицу связей
-
-
-//        users.getUsername();
-//
-//        course.addSignUp(users, course1);
-////        course.getUsers().add(users);
-//
-//        courseRepo.save(course);
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
         model.addAttribute("theme", theme);
         Course courses = courseRepo.findByCourseName(course1);

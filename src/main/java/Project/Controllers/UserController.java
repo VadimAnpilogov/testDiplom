@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
-//@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     public String username1="test1";
     public int roleA=0;
@@ -41,8 +43,9 @@ public class UserController {
 
     @Autowired
     private UsersListRepo usersListRepo;
-@Autowired
-private UserService userSevice;
+
+    @Autowired
+    private UserService userSevice;
 
 
     //странца всех пользователей
@@ -68,14 +71,12 @@ private UserService userSevice;
         Iterable<Users> users = usersListRepo.findByUsername(user.getUsername());
         model.addAttribute("personalData", users);
 
-        Iterable<SignUpCourse> signUpCourses = sCourseRepo.findByCourseName(user.getUsername());
-        model.addAttribute("signUpCourse", signUpCourses);
-
-        Iterable<Course> course = courseRepo.findAll();
-        model.addAttribute("course", course);
-
-
-
+        List<Users> users1 = usersListRepo.findByUsername(user.getUsername());
+        ArrayList<Users> users2 = new ArrayList<>(users1);
+        if(users2.get(0).getCourseFol().isEmpty()){
+            return "Personal";
+        }
+        model.addAttribute("course", users2.get(0).getCourseFol());
         return "Personal";
     }
     @GetMapping("/PersonalData")
@@ -118,7 +119,6 @@ private UserService userSevice;
             Model model
 
     ){
-//        username1=user.getUsername();
         Users userFromDB = userRepo.findByUsername(username);
         if(username.equals(users.getUsername()))
         {
@@ -250,8 +250,8 @@ private UserService userSevice;
     @GetMapping("/userPers")
     public String userPers(Model model){
         model.addAttribute("namePage", namePagePers);
-        Iterable<Users> user = usersListRepo.findByUsername(username1);
-        model.addAttribute("users", user);
+//        Iterable<Users> user = usersListRepo.findByUsername(username1);
+        model.addAttribute("users", userRepo.findByUsername(username1));
 
         Iterable<Course> course = courseRepo.findAll();
         model.addAttribute("course", course);

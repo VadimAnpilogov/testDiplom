@@ -8,7 +8,7 @@ function ajaxGet(){
 
                 $.each(result.data, function(i, customer){
                     $('#getResultHelp').append("<div class='review'>" +
-                        "<h4 class='reviewName'>" + customer.username + "</h4>" +
+                        "<h4 class='reviewName'>" + customer.sender + "</h4>" +
                         "<span class='time_date'>" + customer.date + "</span>" +
                         "<div class='reviewText'><p>" + customer.message + "</p></div></div>");
                 });

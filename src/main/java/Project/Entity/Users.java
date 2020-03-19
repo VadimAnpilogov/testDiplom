@@ -35,7 +35,7 @@ public class Users implements UserDetails{
     private User user;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "CourseFollowers",
             joinColumns = {@JoinColumn(name = "UserId")},
@@ -43,6 +43,21 @@ public class Users implements UserDetails{
     )
     private Set<Course> courseFol = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "AuthorCourse",
+            joinColumns = {@JoinColumn(name = "UserId")},
+            inverseJoinColumns = {@JoinColumn(name = "CourseId")}
+    )
+    private Set<Course> AuthCourse = new HashSet<>();
+
+    public Set<Course> getAuthCourse() {
+        return AuthCourse;
+    }
+
+    public void setAuthCourse(Set<Course> authCourse) {
+        AuthCourse = authCourse;
+    }
 
     public void addUser(User user){
 //        user.setUsers(this);

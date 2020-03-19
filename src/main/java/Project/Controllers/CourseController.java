@@ -2,9 +2,7 @@ package Project.Controllers;
 
 
 import Project.Entity.*;
-import Project.Repository.CourseRepo;
-import Project.Repository.SCourseRepo;
-import Project.Repository.ThemeRepo;
+import Project.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -25,6 +23,8 @@ public class CourseController {
     public SCourseRepo sCourseRepo;
     @Autowired
     public ThemeRepo themeRepo;
+    @Autowired
+    private UsersRepo usersRepo;
 
 
 //    public  String PrepName;
@@ -62,10 +62,12 @@ public class CourseController {
             model.addAttribute("messages", " Имя курса занято");
             return "CreateCourse";
         }
-//        Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
+        Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
 //        course.getUsers().add(user);
 
-//        courseRepo.save(course);
+        courseRepo.save(course);
+        user.getAuthCourse().add(course);
+        usersRepo.save(user);
 
         return  "redirect:/theme";
     }
@@ -105,24 +107,24 @@ public class CourseController {
 //Запись на курс
     @GetMapping("signCourse/{user}")
     public String signCourse(
-            @AuthenticationPrincipal User users,
+            @AuthenticationPrincipal Users users,
             @PathVariable String user,
             Model model){
         model.addAttribute("namePage", namePage);
         model.addAttribute("signUp", "Вы записались на курс");
         usernameCorse=user;
-//        Iterable<SignUpCourse> checkUser = sCourseRepo.findByCourseName(course1);
-//        if(checkUser == users.getUsername())
 
-//        if(checkUser != null)
-//        {
-//            model.addAttribute("messages", " Вы уже записались");
-//            return "SCourse";
-//        }
         SignUpCourse signUpCourse = new SignUpCourse(course1, usernameCorse);
         sCourseRepo.save(signUpCourse);
 
+        Course course = courseRepo.findByCourseName(course1);
+//        Users usersCourse = usersRepo.findByUsername(users.getUsername());
+        users.getCourseFol().add(course);
+        usersRepo.save(users);
+
 // запись в таблицу связей
+
+
 //        users.getUsername();
 //
 //        course.addSignUp(users, course1);

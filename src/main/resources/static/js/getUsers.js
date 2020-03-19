@@ -13,7 +13,7 @@ function ajaxGet(){
                         "<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'>" +
                         "</a>" +
                         "</div>" +
-                        "<h1>" +customer.username + "</h1>" +
+                        "<h1>" + customer.username + "</h1>" +
                         "<h2>Статус</h2>" +
                         "<h2>Звание</h2>");
                 });

@@ -3,12 +3,10 @@ package Project.Controllers;
 import Project.Entity.*;
 import Project.Repository.*;
 import Project.Service.MessageService;
-import Project.Service.UserSevice;
+import Project.Service.UserService;
 import Project.message.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -18,7 +16,7 @@ public class RestWebController {
 	@Autowired
 	public ReviewsRepo reviewsRepo;
 	@Autowired
-	private UserSevice userSevice;
+	private UserService userService;
 	@Autowired
 	private ChatRepo chatRepo;
 	@Autowired
@@ -31,6 +29,8 @@ public class RestWebController {
 	private DialogRepo dialogRepo;
 	@Autowired
 	private UserRepo userRepo;
+	@Autowired
+	private UsersListRepo usersListRepo;
 
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
@@ -42,7 +42,7 @@ public class RestWebController {
 	public Response postReview(
 			@AuthenticationPrincipal Users user,
 			@RequestBody Reviews customer) {
-		Reviews reviews = new Reviews(customer.getReviewsOp(), user.getUsername(), userSevice.date());
+		Reviews reviews = new Reviews(customer.getReviewsOp(), user.getUsername(), userService.date());
 		reviewsRepo.save(reviews);
 		Response response = new Response("Done", customer);
 		return response;
@@ -60,7 +60,7 @@ public class RestWebController {
 			@AuthenticationPrincipal Users user,
 			@RequestBody Chat chat
 			){
-		Chat chats = new Chat(chat.getMessage(), user.getUsername(), userSevice.date());
+		Chat chats = new Chat(chat.getMessage(), user.getUsername(), userService.date());
 		chatRepo.save(chats);
 
 		Response response = new Response("Done", chat);
@@ -93,7 +93,7 @@ public class RestWebController {
 				recipient,
 				user.getUsername(),
 				messageService.nameDialog(recipient, user.getUsername()),
-				userSevice.date());
+				userService.date());
 
 		sMessageRepo.save(messages);
 
@@ -104,6 +104,15 @@ public class RestWebController {
 	public Response getDialog(@AuthenticationPrincipal Users user){
 		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
 		Response response = new Response("Done" , dialogs );
+		return response;
+	}
+
+	@GetMapping(value = "users/all")
+	public Response getUsers(
+			@AuthenticationPrincipal Users user
+	){
+		Iterable<Users> users = usersListRepo.findAll();
+		Response response = new Response("Done" , users );
 		return response;
 	}
 }

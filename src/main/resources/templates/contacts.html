@@ -24,10 +24,50 @@
 
 <div class="withoutMenu">
     <div class="contactsForm">
-        <textarea maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
-        <input class="contactsBtn btn btn-success" type="submit" value="Отправить"/>
+        <form id="contactsForm">
+            <textarea id="contactsText" maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
+            <input class="contactsBtn btn btn-success" type="submit" value="Отправить"/>
+        </form>
     </div>
 </div>
+
+<script>
+    document.body.onkeydown = function(event) {
+        var e = event || window.event;
+        var code = e.keyCode || e.which;
+        var activeEl = document.activeElement.id;
+        if(code === 13 && activeEl === "contactsText") {
+            activeEl.style.readonly = 1;
+            var text_redirect = document.getElementById('contactsText').value;
+            text_redirect = text_redirect.replace(/^\s+/, "");
+            if(text_redirect !== "") {
+                document.getElementById('contactsForm').submit();
+            } else {
+                alert("ЗАПОЛНИТЕ ФОРМУ!");
+            }
+        }
+    };
+    document.body.onkeydown = function(event) {
+        var e = event || window.event;
+        var code = e.keyCode || e.which;
+        var activeEl = document.activeElement.id;
+        if(code === 13 && e.ctrlKey) {
+            if(activeEl === "contactsText") {
+                document.getElementById('contactsText').value += "\n";
+            } else {
+                return false;
+            }
+        } else if(code === 13 && activeEl === "contactsText") {
+            var text_redirect = document.getElementById('contactsText').value;
+            text_redirect = text_redirect.replace(/^\s+/, "");
+            if(text_redirect !== "") {
+                document.getElementById('contactsForm').submit();
+            } else {
+                return false;
+            }
+        }
+    }
+</script>
 
 
 <!--<div class="container">-->

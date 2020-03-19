@@ -7,7 +7,58 @@
 <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script src="/js/coursesSearch.js"></script>
 <body>
+
+<div class="searchContainer">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle searchCourseButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Поиск курса
+        </button>
+        <div id="searchCourses" class="searchCourses dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(10px, 48px, 0px);">
+        <!--<div id="searchCourses" class="searchCourses dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+            <a class="dropdown-item">
+                <h5>Название курса</h5>
+                <textarea maxlength="80"></textarea>
+            </a>
+            <a class="dropdown-item">
+                <h5>Преподаватель</h5>
+                <textarea maxlength="80"></textarea>
+            </a>
+            <a class="dropdown-item">
+                <h5>Область курса</h5>
+                <textarea maxlength="80"></textarea>
+            </a>
+            <a class="dropdown-item">
+                <h5>Тип занятий</h5>
+                <textarea maxlength="80"></textarea>
+            </a>
+            <a class="dropdown-item">
+                <h5>Стоимость</h5>
+                <textarea maxlength="80"></textarea>
+            </a>
+            <a class="dropdown-item">
+                <h5>Цена за</h5>
+                <textarea maxlength="80"></textarea>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--<div id="searchCourses" class="searchCourses">-->
+    <!--<h5>Название курса</h5>-->
+    <!--<textarea maxlength="80"></textarea>-->
+    <!--<h5>Преподаватель</h5>-->
+    <!--<textarea maxlength="80"></textarea>-->
+    <!--<h5>Область курса</h5>-->
+    <!--<textarea maxlength="80"></textarea>-->
+    <!--<h5>Тип занятий</h5>-->
+    <!--<textarea maxlength="80"></textarea>-->
+    <!--<h5>Стоимость</h5>-->
+    <!--<textarea maxlength="80"></textarea>-->
+    <!--<h5>Цена за</h5>-->
+    <!--<textarea maxlength="80"></textarea>-->
+<!--</div>-->
 
 <div class="coursesTiles" >
     <table>

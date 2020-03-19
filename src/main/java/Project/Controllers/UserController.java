@@ -2,9 +2,8 @@ package Project.Controllers;
 
 import Project.Entity.*;
 import Project.Repository.*;
-import Project.Service.UserSevice;
+import Project.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 @Controller
@@ -39,21 +35,21 @@ public class UserController {
     @Autowired
     private CourseRepo courseRepo;
     @Autowired
-    private UMessageRepo uMessageRepo;
+    private UMessasgeRepo uMessageRepo;
     @Autowired
     private SCourseRepo sCourseRepo;
-    @Autowired
-    private UserSevice userSevice;
+
     @Autowired
     private UsersListRepo usersListRepo;
-
+@Autowired
+private UserService userSevice;
 
 
     //странца всех пользователей
     @GetMapping("users")
     public String users( Model model){
         model.addAttribute("namePage", namePage);
-        Iterable<User> userRole = uMessageRepo.findAll();
+        Iterable<Users> userRole = usersListRepo.findAll();
         model.addAttribute("users", userRole);
 
         return "users";

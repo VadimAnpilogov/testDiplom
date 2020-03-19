@@ -1,10 +1,11 @@
 package Project.Controllers;
 
+import Project.Entity.Role;
+import Project.Entity.User;
 import Project.Entity.Users;
 import Project.Repository.UserRepo;
 import Project.Repository.UsersRepo;
 import Project.Service.MailSender;
-//import Project.Service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import Project.Entity.Role;
-import Project.Entity.User;
-import Project.Repository.UserRepo;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.UUID;
+
+//import Project.Service.UserSevice;
 
 
 @Controller
@@ -67,8 +66,9 @@ public class RegistrationController {
         user.setRl(1);
         users.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
-        userRepository.save(users);
         userRepo.save(user);
+        users.addUser(user);
+        userRepository.save(users);
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
@@ -80,7 +80,7 @@ public class RegistrationController {
             mailSender.send(user.getEmail(), "Activation code", message);
         }
 
-        return "home";
+        return "course";
     }
 //Регистрация преподавателя
     @PostMapping("/adminR")
@@ -96,8 +96,11 @@ public class RegistrationController {
         user.setRl(0);
         users.setRoles(Collections.singleton(Role.ADMIN));
         user.setActivationCode(UUID.randomUUID().toString());
-        userRepository.save(users);
+
         userRepo.save(user);
+        users.addUser(user);
+        userRepository.save(users);
+
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
@@ -108,7 +111,7 @@ public class RegistrationController {
 
             mailSender.send(user.getEmail(), "Activation code", message);
         }
-        return "home";
+        return "course";
     }
 
     @GetMapping("/activate/{code}")

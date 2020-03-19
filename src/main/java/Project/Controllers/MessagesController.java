@@ -3,15 +3,14 @@ package Project.Controllers;
 
 import Project.Entity.Dialog;
 import Project.Entity.Messages;
-import Project.Entity.User;
 import Project.Entity.Users;
 import Project.Repository.DialogRepo;
 import Project.Repository.SMessageRepo;
-import Project.Repository.UMessageRepo;
 
+import Project.Repository.UMessageRepo;
 import Project.Repository.UsersListRepo;
 import Project.Service.MessageService;
-import Project.Service.UserSevice;
+import Project.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,7 @@ public class MessagesController {
     public String namePage = "Чат";
 
     @Autowired
-    public UMessageRepo uMessageRepo;
+    private UMessageRepo uMessageRepo;
     @Autowired
     public SMessageRepo sMessageRepo;
 
@@ -38,7 +37,7 @@ public class MessagesController {
     private MessageService messageService;
 
     @Autowired
-    private UserSevice userSevice;
+    private UserService userSevice;
     @Autowired
     private DialogRepo dialogRepo;
     @Autowired

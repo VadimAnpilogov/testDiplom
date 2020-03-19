@@ -44,6 +44,17 @@ public class Users implements UserDetails{
     private Set<Course> courseFol = new HashSet<>();
 
 
+    public void addUser(User user){
+//        user.setUsers(this);
+        this.user = user;
+    }
+    public void removeUser(){
+        if(user != null){
+//            user.setUsers(null);
+            this.user = null;
+        }
+    }
+
     public User getUser() {
         return user;
     }

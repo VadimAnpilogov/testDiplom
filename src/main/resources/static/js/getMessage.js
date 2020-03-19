@@ -3,25 +3,25 @@ function ajaxGet(){
         type : "GET",
         url : window.location + "/all",
         success: function(result){
-            if (result.status != "Done") {
+            if (result.status !== "Done") {
                 $("#getResultMessage").html("<strong>Error!</strong>");
                 console.log("Fail: ", result);
             } else {
                 var Enter = document.getElementById("enterID");
                 Enter.style.visibility = "visible";
 
-                $('#getResultDialog').empty();
-                $.each(result.data, function (i, customer1) {
-                    $('#getResultDialog').append("<div class='message_list'>" +
-                        "<div class='chat_people'>" +
-                        "<div class='chat_img'>" +
-                        "<a href='/userPers/" + customer1.recipient + "'>" +
-                        "<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'></a></div>" +
-                        "<div class=\"chat_ib\">" +
-                        "<a href='/messageU/" + customer1.recipient + "' class='username_msg'>" +
-                        "<h5 id='recipient' class='username_msg'>" + customer1.recipient + "</h5>" +
-                        "</a></div></div></div>");
-                });
+                // $('#getResultDialog').empty();
+                // $.each(result.data, function (i, customer1) {
+                //     $('#getResultDialog').append("<div class='message_list'>" +
+                //         "<div class='chat_people'>" +
+                //         "<div class='chat_img'>" +
+                //         "<a href='/userPers/{" + customer1.recipient + "}'>" +
+                //         "<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'></a></div>" +
+                //         "<div class=\"chat_ib\">" +
+                //         "<a href='/messageU/" + customer1.recipient + "' class='username_msg'>" +
+                //         "<h5 id='recipient' class='username_msg'>" + customer1.recipient + "</h5>" +
+                //         "</a></div></div></div>");
+                // });
                 $('#getResultMessage').empty();
                 var Username = document.getElementById("username").textContent;
                 $.each(result.data1, function (i, customer) {

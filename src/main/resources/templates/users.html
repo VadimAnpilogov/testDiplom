@@ -1,72 +1,66 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head :: head"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-</head>
-<head th:replace="fragments/style :: style">
+<head>
+    <title>Spring Boot - AJAX POST GET Example</title>
+
+
+
+    <head th:replace="fragments/head :: head"></head>
+    <head th:replace="fragments/style :: style"></head>
     <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script src="/js/getUsers.js"></script>
+
+</head>
 <body>
-<!--<script type="text/javascript">-->
-<!--    function  show() {-->
-<!--        $.ajax({-->
-<!--            url: "http://localhost:8080/users",-->
-<!--            success: function (html) {-->
-<!--                $('#usersTest').html(html);-->
 
-<!--            }-->
-<!--        });-->
+<div class="usersTiles" id="getResultUsers"></div>
 
-<!--    }-->
-<!--    setInterval('show()', 1000);-->
-
-<!--</script>-->
-
-<div class="usersTiles">
-    <table id="usersTest">
-        <tr th:each="usr : ${users}">
-            <th>
-                <div class="usersImg">
-                    <a th:href="@{'/userPers/{users}'(users=${usr.username})}">
-                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                    </a>
-                </div>
-                <h1 th:utext="${usr.username}">Имя пользователя</h1>
-                <h2>Статус</h2>
-                <h2>Звание</h2>
-                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
-            </th>
-            <th>
-                <div class="usersImg">
-                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                </div>
-                <h1 th:utext="${usr.username}">Имя пользователя</h1>
-                <h2>Преподаватель</h2>
-                <h2>Новичок</h2>
-                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
-            </th>
-            <th>
-                <div class="usersImg">
-                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                </div>
-                <h1 th:utext="${usr.username}">Имя пользователя</h1>
-                <h2>Студент</h2>
-                <h2>Профессионал</h2>
-                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
-            </th>
-            <th>
-                <div class="usersImg">
-                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                </div>
-                <h1 th:utext="${usr.username}">Имя пользователя</h1>
-                <h2>Студент</h2>
-                <h2>Продвинутый</h2>
-                <!--<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>-->
-            </th>
-        </tr>
-    </table>
-</div>
+<!--<div class="usersTiles">-->
+<!--    <table id="usersTest">-->
+<!--        <tr th:each="usr : ${users}">-->
+<!--            <th>-->
+<!--                <div class="usersImg">-->
+<!--                    <a th:href="@{'/userPers/{users}'(users=${usr.username})}">-->
+<!--                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <h1 th:utext="${usr.username}">Имя пользователя</h1>-->
+<!--                <h2>Статус</h2>-->
+<!--                <h2>Звание</h2>-->
+<!--                &lt;!&ndash;<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>&ndash;&gt;-->
+<!--            </th>-->
+<!--            <th>-->
+<!--                <div class="usersImg">-->
+<!--                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
+<!--                </div>-->
+<!--                <h1 th:utext="${usr.username}">Имя пользователя</h1>-->
+<!--                <h2>Преподаватель</h2>-->
+<!--                <h2>Новичок</h2>-->
+<!--                &lt;!&ndash;<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>&ndash;&gt;-->
+<!--            </th>-->
+<!--            <th>-->
+<!--                <div class="usersImg">-->
+<!--                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
+<!--                </div>-->
+<!--                <h1 th:utext="${usr.username}">Имя пользователя</h1>-->
+<!--                <h2>Студент</h2>-->
+<!--                <h2>Профессионал</h2>-->
+<!--                &lt;!&ndash;<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>&ndash;&gt;-->
+<!--            </th>-->
+<!--            <th>-->
+<!--                <div class="usersImg">-->
+<!--                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">-->
+<!--                </div>-->
+<!--                <h1 th:utext="${usr.username}">Имя пользователя</h1>-->
+<!--                <h2>Студент</h2>-->
+<!--                <h2>Продвинутый</h2>-->
+<!--                &lt;!&ndash;<a th:href="@{'/userPers/{username}'(username=${usr.username})}">Перейти на страницу пользователя</a>&ndash;&gt;-->
+<!--            </th>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
 
 <!--<div class="coursesTiles">-->
     <!--<table>-->

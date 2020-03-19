@@ -27,7 +27,7 @@
                 </form>
             </li>
             <li class="displayInline" sec:authorize="isAuthenticated()">
-                <form class="displayInline" action="logout">
+                <form class="displayInline" th:action="@{'/logout'}">
                     <button type="submit" class="btn btn-success">Выйти</button>
                 </form>
             </li>

@@ -6,6 +6,15 @@
     <style>
 
 
+        .buttonTheme{
+            position: relative;
+            float: right;
+            bottom: 38px;
+        }
+        .inputTheme{
+            width: calc(100% - 150px)!important;
+        }
+
         .spinnerMessage{
             left: 50%!important;
         }
@@ -51,19 +60,21 @@
             white-space: nowrap;
             background-color: #233740;
             border: 0;
+            border-radius: 4px;
         }
         .searchContainer{
             margin-left: 230px;
         }
         .searchCourses{
             color: #ffffff;
-            margin: 20px 10px 0;
-            will-change: transform;
+            margin: 5px;
             background-color: rgb(35, 55, 64);
             position: absolute;
-            top: 0px;
-            left: 0px;
-            transform: translate3d(0px, 38px, 0px);
+            z-index: 1;
+            border: 1px solid #6a8277;
+            border-radius: 4px;
+            padding: 15px 0;
+            display: none;
         }
         .searchCourseTitle{
             color: white;
@@ -73,7 +84,7 @@
         }
         .searchCourses h5{
             font-size: 18px;
-            margin: auto;
+            margin: auto 0;
             width: 150px;
         }
         .searchCourses textarea{
@@ -1210,7 +1221,7 @@
             color: #e5e7ed;
             position: relative;
             width: 900px;
-            margin: 0 auto;
+            margin: 30px auto;
         }
         .formCourseinput{
             margin-top: 30px;

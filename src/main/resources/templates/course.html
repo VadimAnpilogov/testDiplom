@@ -12,14 +12,14 @@
 
 <div class="searchContainer">
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle searchCourseButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Поиск курса
-        </button>
-        <div id="searchCourses" class="searchCourses dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(10px, 48px, 0px);">
-        <!--<div id="searchCourses" class="searchCourses dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+        <button class="btn btn-secondary dropdown-toggle searchCourseButton" onclick="openSearch()">Поиск курса</button>
+        <div id="searchCourses" class="searchCourses">
+            <a class="dropdown-item">
+                <button class="btn btn-secondary" onclick="closeSearch()">Свернуть</button>
+            </a>
             <a class="dropdown-item">
                 <h5>Название курса</h5>
-                <textarea maxlength="80"></textarea>
+                <textarea maxlength="80" id="CourseNameID" onkeyup="filterCourseName()"></textarea>
             </a>
             <a class="dropdown-item">
                 <h5>Преподаватель</h5>
@@ -31,7 +31,14 @@
             </a>
             <a class="dropdown-item">
                 <h5>Тип занятий</h5>
-                <textarea maxlength="80"></textarea>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="Type1" name="Type" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="Type1">Онлайн</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="Type2" name="Type" class="custom-control-input">
+                    <label class="custom-control-label" for="Type2">Оффлайн</label>
+                </div>
             </a>
             <a class="dropdown-item">
                 <h5>Стоимость</h5>
@@ -39,28 +46,20 @@
             </a>
             <a class="dropdown-item">
                 <h5>Цена за</h5>
-                <textarea maxlength="80"></textarea>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="Price1" name="Price" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="Price1">Одно занятие</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="Price2" name="Price" class="custom-control-input">
+                    <label class="custom-control-label" for="Price2">Весь курс</label>
+                </div>
             </a>
         </div>
     </div>
 </div>
 
-<!--<div id="searchCourses" class="searchCourses">-->
-    <!--<h5>Название курса</h5>-->
-    <!--<textarea maxlength="80"></textarea>-->
-    <!--<h5>Преподаватель</h5>-->
-    <!--<textarea maxlength="80"></textarea>-->
-    <!--<h5>Область курса</h5>-->
-    <!--<textarea maxlength="80"></textarea>-->
-    <!--<h5>Тип занятий</h5>-->
-    <!--<textarea maxlength="80"></textarea>-->
-    <!--<h5>Стоимость</h5>-->
-    <!--<textarea maxlength="80"></textarea>-->
-    <!--<h5>Цена за</h5>-->
-    <!--<textarea maxlength="80"></textarea>-->
-<!--</div>-->
-
-<div class="coursesTiles" >
+<div class="coursesTiles" id="coursesTilesID">
     <table>
         <tr th:each="cor : ${QCourse1}">
             <th>

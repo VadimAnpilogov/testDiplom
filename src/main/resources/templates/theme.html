@@ -13,7 +13,10 @@
     <div class="formTheme">
         <form action="addTheme?nameTheme1=nameTheme">
             <label for="nameTheme" class="h4">Темы</label>
-            <input type="nameTheme1" name="nameTheme" class="form-control inputField" id="nameTheme" placeholder="Введите название темы" autocomplete="off" required>
+            <input type="nameTheme1" name="nameTheme" class="form-control inputField inputTheme" id="nameTheme" placeholder="Введите название темы" autocomplete="off">
+            <form class="displayInline">
+                <button type="submit" class="btn btn-success buttonTheme">Перейти на курс</button>
+            </form>
         </form>
         <div th:each="Them : ${Theme}">
             <h4 th:utext="${Them.nameTheme}"></h4>

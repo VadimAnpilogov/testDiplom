@@ -9,20 +9,20 @@
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
-<div align="center" class="contacts">
-    <h1>Свяжитесь с нами</h1>
-    <div class="txtCont">
-        <h4>
-            Мы всегда готовы вам помочь и ответить на любой интересующий вас вопрос.
-            Для этого обратитесь в службу поддержки через чат на сайте или напишите письмо
-            на почту: MentorWeb.IS@yandex.ru. Вы получите ответ в течение нескольких часов.
-            Отправить сообщение напрямую администрации сервиса можно в этом разделе.
-        </h4>
+<div class="scroll">
+    <div align="center" class="contacts">
+        <h1>Свяжитесь с нами</h1>
+        <div class="txtCont">
+            <h4>
+                Мы всегда готовы вам помочь и ответить на любой интересующий вас вопрос.
+                Для этого обратитесь в службу поддержки через чат на сайте или напишите письмо
+                на почту: MentorWeb.IS@yandex.ru. Вы получите ответ в течение нескольких часов.
+                Отправить сообщение напрямую администрации сервиса можно в этом разделе.
+            </h4>
+        </div>
+
     </div>
 
-</div>
-
-<div class="withoutMenu">
     <div class="contactsForm">
         <form id="contactsForm">
             <textarea id="contactsText" maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<script>
+<script> //скрипт для переноса строки на ctrl+enter и отправки на enter
     document.body.onkeydown = function(event) {
         var e = event || window.event;
         var code = e.keyCode || e.which;

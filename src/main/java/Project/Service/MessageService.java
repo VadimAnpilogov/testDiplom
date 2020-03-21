@@ -1,9 +1,13 @@
 package Project.Service;
 
+import Project.Entity.Dialog;
 import Project.Entity.Messages;
+import Project.Repository.DialogRepo;
 import Project.Repository.SMessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MessageService {
@@ -13,6 +17,10 @@ public class MessageService {
 
     @Autowired
     public SMessageRepo sMessageRepo;
+    @Autowired
+    private MessageService messageService;
+    @Autowired
+    private DialogRepo dialogRepo;
 
     public String nameDialog(String recipient, String sender){
 
@@ -27,6 +35,19 @@ public class MessageService {
         }
 
         return NameMess;
+    }
+
+    public void createDialog(String userName1, String userName) {
+        String namemess = nameDialog(userName, userName1);
+
+        List<Dialog> dialogs1 = dialogRepo.findByNameMess(namemess);
+        if(dialogs1.size() == 0){
+            Dialog dialog = new Dialog(namemess, userName1, userName);
+            dialogRepo.save(dialog);
+            Dialog dialog2 = new Dialog(namemess, userName, userName1);
+            dialogRepo.save(dialog2);
+        }
+
     }
 
 }

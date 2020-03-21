@@ -19,7 +19,7 @@
             <th>
                 <div class="photoPers">
                     <img src="https://i9.wampi.ru/2020/03/01/s1200-1.webp">
-                    <form th:action="@{'/messageU/{recipient}#endpage'(recipient=${usr.username})}">
+                    <form th:action="@{'/messageUsers/{recipient}'(recipient=${usr.username})}">
                         <button type="submit" class="btn btn-outline-info buttonPers">Написать сообщение пользователю</button>
                     </form>
                 </div>

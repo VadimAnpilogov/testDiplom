@@ -10,4 +10,5 @@ import java.util.List;
 public interface DialogRepo extends CrudRepository<Dialog, Long> {
     List<Dialog> findAllByOrderByIdAsc();
     List<Dialog> findAllBySenderOrderByIdAsc(String Sender);
+    List<Dialog> findByNameMess(String NameMess);
 }

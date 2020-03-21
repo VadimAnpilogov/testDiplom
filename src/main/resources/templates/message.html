@@ -35,6 +35,7 @@
 <!--        <a th:utext="${dialog.username}"></a>-->
         <input class="createDialogTextArea" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
         <ul style=" margin-right: 20px; margin-left: 20px;">
+<!--            <h5 th:text="${messageDialogs}"></h5>-->
             <li th:each="dialog : ${messageU}" id="liDialog">
                 <div class="message_list">
                     <div class="chat_people">

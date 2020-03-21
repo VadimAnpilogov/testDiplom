@@ -9,14 +9,20 @@
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <body>
 
+<!--    <form th:action="@{'/SCourse/{course}'(course=${NameCourse})}">-->
+<!--        <button type="submit" class="btn btn-outline-info buttonPers">Перейти на страницу курса</button>-->
+<!--    </form>-->
+
+
 <div class="formCourse">
     <div class="formTheme">
         <form action="addTheme?nameTheme1=nameTheme">
             <label for="nameTheme" class="h4">Темы</label>
             <input type="nameTheme1" name="nameTheme" class="form-control inputField inputTheme" id="nameTheme" placeholder="Введите название темы" autocomplete="off">
-            <form class="displayInline">
-                <button type="submit" class="btn btn-success buttonTheme">Перейти на курс</button>
-            </form>
+
+        </form>
+        <form class="displayInline" th:action="@{'/SCourse/{course}'(course=${NameCourse})}">
+            <button type="submit" class="btn btn-success buttonTheme">Перейти на курс</button>
         </form>
         <div th:each="Them : ${Theme}">
             <h4 th:utext="${Them.nameTheme}"></h4>

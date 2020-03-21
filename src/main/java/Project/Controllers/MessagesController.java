@@ -6,8 +6,6 @@ import Project.Entity.Messages;
 import Project.Entity.Users;
 import Project.Repository.DialogRepo;
 import Project.Repository.SMessageRepo;
-
-import Project.Repository.UMessageRepo;
 import Project.Repository.UsersListRepo;
 import Project.Service.MessageService;
 import Project.Service.UserService;
@@ -29,8 +27,6 @@ public class MessagesController {
     public String namePage = "Чат";
 
     @Autowired
-    private UMessageRepo uMessageRepo;
-    @Autowired
     public SMessageRepo sMessageRepo;
 
     @Autowired
@@ -43,7 +39,6 @@ public class MessagesController {
     @Autowired
     private UsersListRepo usersListRepo;
 
-    private String namemess;
 //Страница сообщений
     @GetMapping("message")
     public String message(
@@ -114,13 +109,18 @@ public class MessagesController {
     public String addDialogs(
             @AuthenticationPrincipal Users user,
             @PathVariable String userName){
-        namemess=messageService.nameDialog(userName, user.getUsername());
-        Dialog dialog = new Dialog(namemess, user.getUsername(), userName);
-        dialogRepo.save(dialog);
-        Dialog dialog2 = new Dialog(namemess, userName, user.getUsername());
-        dialogRepo.save(dialog2);
+        messageService.createDialog(user.getUsername(), userName);
 
         return "redirect:/message";
     }
 
+
+    @GetMapping("/messageUsers/{recipient}")
+    public String messageUsers(
+            @AuthenticationPrincipal Users user,
+            @PathVariable String recipient){
+
+        messageService.createDialog(user.getUsername(), recipient);
+        return "redirect:/messageU/{recipient}";
+    }
 }

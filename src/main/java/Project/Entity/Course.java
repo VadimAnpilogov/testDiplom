@@ -1,6 +1,8 @@
 package Project.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,20 +21,20 @@ public class Course {
     private String priceType;
     private String format;
 
-
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "CourseFollowers",
             joinColumns = {@JoinColumn(name = "CourseId")},
             inverseJoinColumns = {@JoinColumn(name = "UserId")}
     )
-    private Set<User> usersFol = new HashSet<>();
+    private Set<Users> usersFol = new HashSet<>();
 
-    public Set<User> getUsersFol() {
+    public Set<Users> getUsersFol() {
         return usersFol;
     }
 
-    public void setUsersFol(Set<User> usersFol) {
+    public void setUsersFol(Set<Users> usersFol) {
         this.usersFol = usersFol;
     }
 

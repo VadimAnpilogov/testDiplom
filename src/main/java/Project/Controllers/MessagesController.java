@@ -105,14 +105,14 @@ public class MessagesController {
         return "redirect:/message";
     }
 
-    @GetMapping("/addDialog/{userName}")
-    public String addDialogs(
-            @AuthenticationPrincipal Users user,
-            @PathVariable String userName){
-        messageService.createDialog(user.getUsername(), userName);
-
-        return "redirect:/message";
-    }
+//    @GetMapping("/addDialog/{userName}")
+//    public String addDialogs(
+//            @AuthenticationPrincipal Users user,
+//            @PathVariable String userName){
+//        messageService.createDialog(user.getUsername(), userName);
+//
+//        return "redirect:/message";
+//    }
 
 
     @GetMapping("/messageUsers/{recipient}")

@@ -21,7 +21,7 @@
             <li>
                 <a th:href="@{'/course'}">Курсы</a>
             </li>
-        <li sec:authorize ="isAuthenticated()">
+        <li sec:authorize="${hasAuthority('ADMIN')}">
             <a th:href="@{'/createCourse'}">Создание курса</a>
         </li>
 

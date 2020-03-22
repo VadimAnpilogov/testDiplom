@@ -39,11 +39,7 @@ public class UserController {
     @Autowired
     private UMessasgeRepo uMessageRepo;
     @Autowired
-    private SCourseRepo sCourseRepo;
-
-    @Autowired
     private UsersListRepo usersListRepo;
-
     @Autowired
     private UserService userSevice;
 

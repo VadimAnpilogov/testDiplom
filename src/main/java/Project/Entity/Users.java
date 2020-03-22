@@ -1,6 +1,7 @@
 package Project.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -34,8 +35,8 @@ public class Users implements UserDetails{
     )
     private User user;
 
-
-    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "CourseFollowers",
             joinColumns = {@JoinColumn(name = "UserId")},

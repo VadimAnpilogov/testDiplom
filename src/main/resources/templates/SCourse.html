@@ -1,17 +1,56 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
       xmlns:https="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/head :: head"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-</head>
-<head th:replace="fragments/style :: style">
-<!--<body th:replace="fragments/menu :: menu"></body>-->
+<head>
+    <title>Spring Boot - AJAX POST GET Example</title>
+
+
+
+    <head th:replace="fragments/head :: head"></head>
+    <head th:replace="fragments/style :: style"></head>
+    <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script src="/js/getUsersCourse.js"></script>
+
+</head>
 <body >
 <!--<div class="names" th:each="corse : ${courses}">-->
 <!--    <h2 align="center" th:utext="${corse.courseName}"></h2>-->
 <!--</div>-->
+
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <input class="createDialogTextArea" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+
+        <ul style=" margin-right: 20px; margin-left: 20px;">
+            <li th:each="users : ${UsersCourse}" id="liDialog">
+                <div class="message_list" >
+                    <div class="chat_people">
+                        <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${users.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
+                        <div class="chat_ib">
+                            <a th:href="@{'/messageUsers/{recipient}'(recipient=${users.username})}" class="username_msg">
+                                <h5 th:utext="${users.username}" class="username_msg" id="UsernameDialog">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+
+    </div>
+
+
+    <div id="getResultDialog" th:each="cors2 : ${courses}">
+        <div id="searchDialogMenu" class="searchDialogMenu" th:if="${cors2.prepName == #httpServletRequest.remoteUser}">
+            <button onclick="openNav()" type="button" class="btn btn-outline-info createDialogButton">Посмотреть участников курса</button>
+        </div>
+    </div>
+
+
+
 
 <div class="withoutMenu scroll">
     <table class="courseTable">
@@ -40,8 +79,8 @@
         <tr>
             <td>
                 <div  class="themes">
-                    <div>
-                        <form th:action="@{'/signCourse/{user}'(user=${#httpServletRequest.remoteUser})}" >
+                    <div th:each="cors1 : ${courses}">
+                        <form sec:authorize="${hasAuthority('USER')}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
                             <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
                         </form>
                         <h3 th:text="${signUp}"></h3>

@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface CourseRepo extends CrudRepository<Course, Long > {
     List<Course> findAllByOrderByIdAsc();
+    List<Course> findByCourseNameOrderByIdAsc(String CourseName);
     Course findByCourseName(String courseName);
 
 }

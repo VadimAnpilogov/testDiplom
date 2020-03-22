@@ -1,8 +1,14 @@
 package Project.Controllers;
 
 
-import Project.Entity.*;
-import Project.Repository.*;
+import Project.Entity.Course;
+import Project.Entity.Theme;
+import Project.Entity.Users;
+import Project.Repository.CourseRepo;
+import Project.Repository.ThemeRepo;
+import Project.Repository.UsersListRepo;
+import Project.Repository.UsersRepo;
+import Project.Service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class CourseController {
@@ -20,11 +27,13 @@ public class CourseController {
     @Autowired
     public CourseRepo courseRepo;
     @Autowired
-    public SCourseRepo sCourseRepo;
-    @Autowired
     public ThemeRepo themeRepo;
     @Autowired
     private UsersRepo usersRepo;
+    @Autowired
+    private MessageService messageService;
+    @Autowired
+    private UsersListRepo usersListRepo;
 
 
 //    public  String PrepName;
@@ -89,6 +98,11 @@ public class CourseController {
 
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
         model.addAttribute("theme", theme);
+
+
+        List<Course> usersCourse = courseRepo.findByCourseNameOrderByIdAsc(course1);
+        model.addAttribute("UsersCourse", usersCourse.get(0).getUsersFol());
+
         return "SCourse";
     }
 
@@ -112,16 +126,23 @@ public class CourseController {
             Model model){
         model.addAttribute("namePage", namePage);
         model.addAttribute("signUp", "Вы записались на курс");
-        usernameCorse=user;
+        usernameCorse=users.getUsername();
 
         Course course = courseRepo.findByCourseName(course1);
-        users.getCourseFol().add(course);
-        usersRepo.save(users);
+
+        Users users1 = usersRepo.findByUsername(users.getUsername());
+        users1.getCourseFol().add(course);
+        usersRepo.save(users1);
+
+        messageService.createDialog(users.getUsername(), user);
+
+
 
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
         model.addAttribute("theme", theme);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
+
         return "SCourse";
     }
 

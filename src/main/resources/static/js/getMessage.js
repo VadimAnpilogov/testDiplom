@@ -1,3 +1,4 @@
+var endMessage = 0;
 function ajaxGet(){
     $.ajax({
         type : "GET",
@@ -28,6 +29,12 @@ function ajaxGet(){
                     }
                 });
 
+                if(endMessage === 0)
+                {
+                    var div = $("#getResultMessage");
+                    div.scrollTop(div.prop('scrollHeight'));
+                    endMessage = 1;
+                }
                 console.log("Success: ", result);
             } else {
                 $("#getResultMessage").html("<div class='getEnterMessage2'>" +

@@ -61,9 +61,9 @@
 
 <div class="coursesTiles" id="coursesTilesID">
     <table>
-        <tr th:each="cor : ${QCourse1}">
+        <tr th:each="cor : ${QCourse1}" id="TR">
             <th>
-                    <h1 class="courseDetail">Название курса: </h1><h1 th:utext="${cor.courseName}">Название курса</h1>
+                    <h1 class="courseDetail">Название курса: </h1><h1 th:utext="${cor.courseName}" id="CourseName">Название курса</h1>
                     <h3 class="courseDetail">Преподаватель: </h3><h3 th:utext="${cor.prepName}" >Преподаватель</h3>
                     <h3 class="courseDetail">Область курса: </h3><h3 th:utext="${cor.region}">Область курса</h3>
                     <h3 class="courseDetail">Занятия: </h3><h3 th:utext="${cor.format}">Онлайн/оффлайн</h3>

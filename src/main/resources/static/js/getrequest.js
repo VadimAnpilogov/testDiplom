@@ -1,9 +1,10 @@
+var endReviews = 0;
 function ajaxGet(){
     $.ajax({
         type : "GET",
         url : window.location + "/all",
         success: function(result){
-            if(result.status == "Done"){
+            if(result.status === "Done"){
                 $('#getResultReviews').empty();
 
                 $.each(result.data, function(i, customer){
@@ -13,9 +14,14 @@ function ajaxGet(){
                         "<div class='reviewText'><p>" + customer.reviewsOp + "</p></div></div>");
                 });
 
-                // var div = $("#getResultReviews");//Прокрутка вниз страницы(не работает тк. зацикливается)
-                // div.scrollTop(div.prop('scrollHeight'));
+                if(endReviews === 0)
+                {
+                    var div = $("#getResultReviews");
+                    div.scrollTop(div.prop('scrollHeight'));
+                    endReviews = 1;
+                }
 
+                document.getElementById("reviewEnter").style.display = "block";
                 console.log("Success: ", result);
             }else{
                 $("#getResultReviews").html("<strong>Error</strong>");

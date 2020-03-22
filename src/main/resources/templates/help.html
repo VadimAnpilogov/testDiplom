@@ -15,9 +15,13 @@
 </head>
 <body>
 
-<div class="reviews" id="getResultHelp"></div>
-<span id="endpage"></span>
-<div class="reviewEnter">
+<div class="reviews" id="getResultHelp">
+    <div class="spinner-border text-light spinnerMessage" role="status" id="loading">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="reviewEnter" id="reviewEnter">
     <div class="reviewWrite">
         <form id="customerForm">
             <textarea id="message" maxlength="1000" type="message1" name="message" class="reviewWriteArea" placeholder="Введите сообщение" autocomplete="off" required></textarea>

@@ -35,10 +35,11 @@ $( document ).ready(function() {
                 }else{
                     $("#postResultDiv").html("<strong>Error</strong>");
                 }
+                endMessage = 0;
                 console.log(result);
             },
             error : function(e) {
-                alert("Error!")
+                alert("Error!");
                 console.log("ERROR: ", e);
             }
         });

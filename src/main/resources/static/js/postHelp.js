@@ -33,6 +33,7 @@ $( document ).ready(function() {
                 }else{
                     $("#postResultDiv").html("<strong>Error</strong>");
                 }
+                endHelp = 0;
                 console.log(result);
             },
             error : function(e) {

@@ -8,17 +8,20 @@
     <head th:replace="fragments/head :: head"></head>
     <head th:replace="fragments/style :: style"></head>
     <!--<body th:replace="fragments/menu :: menu"></body>-->
-
+<body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <script src="/js/postrequest.js"></script>
 <script src="/js/getrequest.js"></script>
 </head>
-<body th:replace="fragments/upMenu :: upMenu"></body>
 <body>
 
-<div class="reviews" id="getResultReviews"></div>
+<div class="reviews" id="getResultReviews">
+    <div class="spinner-border text-light spinnerMessage" role="status" id="loading">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 
-<div class="reviewEnter">
+<div class="reviewEnter" id="reviewEnter">
     <div class="reviewWrite">
         <form id="customerForm">
             <textarea id="reviewsOp" maxlength="1000" type="message1" name="reviewsOp" class="reviewWriteArea" placeholder="Поделитесь вашими впечатлениями от использования сервиса" autocomplete="off" required></textarea>

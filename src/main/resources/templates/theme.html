@@ -16,13 +16,20 @@
 
 <div class="formCourse">
     <div class="formTheme">
+        <div>
+            <label for="nameTheme" class="h4">Темы для курса: [[${NameCourse}]]</label>
+            <form class="displayInline" th:action="@{'/SCourse/{course}'(course=${NameCourse})}">
+                <button type="submit" class="btn btn-outline-info buttonTheme">Перейти на курс</button>
+            </form>
+        </div>
         <form action="addTheme?nameTheme1=nameTheme">
-            <label for="nameTheme" class="h4">Темы</label>
             <input type="nameTheme1" name="nameTheme" class="form-control inputField inputTheme" id="nameTheme" placeholder="Введите название темы" autocomplete="off">
-
+            <button type="submit" class="btn btn-success buttonThemeEnter">
+                <img class="buttonThemeImg" src="https://img.icons8.com/color/96/000000/add.png"/>
+            </button>
         </form>
         <form class="displayInline" th:action="@{'/SCourse/{course}'(course=${NameCourse})}">
-            <button type="submit" class="btn btn-success buttonTheme">Перейти на курс</button>
+
         </form>
         <div th:each="Them : ${Theme}">
             <h4 th:utext="${Them.nameTheme}"></h4>

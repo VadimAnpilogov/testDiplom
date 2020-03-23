@@ -33,3 +33,6 @@ function filterFunction() {
     }
     HideMyName();
 }
+function deleteDialog() {
+    alert("Заглушка)");
+}

@@ -1,10 +1,15 @@
 function SentMessage() {
-    $('#contactsFormGeneral').empty();
-    $('#contactsFormGeneral').append(
-        "<div>" +
+    var text_redirect = document.getElementById("contactsText").textContent;
+    if(text_redirect !== "") {
+        $('#contactsFormGeneral').empty();
+        $('#contactsFormGeneral').append(
+            "<div>" +
             "<h4>Спасибо!</h4>" +
             "<h5>Мы свяжемся с вами для ответа.</h5>" +
-        "</div>");
+            "</div>");
+    } else {
+        alert("Заполните форму!");
+    }
 }
 
 //скрипты для переноса строки на ctrl+enter и отправки на enter

@@ -28,7 +28,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 <!--        <h5>Выберите пользователя, которому хотите написать</h5>-->
 <!--        <a th:utext="${dialog.username}"></a>-->
-        <input class="createDialogTextArea" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <input class="createDialogTextArea" type="text" placeholder="Поиск" id="myInput" onkeyup="filterFunction()">
         <ul style=" margin-right: 20px; margin-left: 20px;" id="dialogUL">
 <!--            <h5 th:text="${messageDialogs}"></h5>-->
             <li th:each="dialog : ${messageU}" id="liDialog">
@@ -50,7 +50,7 @@
 
     <div id="getResultDialog">
         <div id="searchDialogMenu" class="searchDialogMenu">
-            <input class="searchDialogTextArea" type="text" placeholder="Search.." id="searchDialog" onkeyup="filterDialogFunction()">
+            <input class="searchDialogTextArea" type="text" placeholder="Поиск" id="searchDialog" onkeyup="filterDialogFunction()">
             <button onclick="openNav()" type="button" class="btn btn-outline-info createDialogButton">Создать диалог</button>
         </div>
 
@@ -67,6 +67,12 @@
                             <a th:href="@{'/messageU/{recipient}'(recipient=${dialog.recipient})}"  class="username_msg">
                                 <h5 id='recipient' class='username_msg' th:utext="${dialog.recipient}"></h5>
                             </a>
+                        </div>
+                        <div class="deleteButton" onclick="deleteDialog()">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                 width="20"
+                                 viewBox="0 0 172 172"
+                                 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#24282c"><path d="M40.13333,22.93333c-1.46702,0 -2.93565,0.55882 -4.05365,1.67969l-11.46667,11.46667c-2.24173,2.24173 -2.24173,5.87129 0,8.10729l41.81302,41.81302l-41.81302,41.81302c-2.24173,2.24173 -2.24173,5.87129 0,8.10729l11.46667,11.46667c2.24173,2.24173 5.87129,2.24173 8.10729,0l41.81302,-41.81302l41.81302,41.81302c2.236,2.24173 5.87129,2.24173 8.10729,0l11.46667,-11.46667c2.24173,-2.24173 2.24173,-5.87129 0,-8.10729l-41.81302,-41.81302l41.81302,-41.81302c2.24173,-2.236 2.24173,-5.87129 0,-8.10729l-11.46667,-11.46667c-2.24173,-2.24173 -5.87129,-2.24173 -8.10729,0l-41.81302,41.81302l-41.81302,-41.81302c-1.12087,-1.12087 -2.58663,-1.67969 -4.05365,-1.67969z"></path></g></g></svg>
                         </div>
                     </div>
                 </div>

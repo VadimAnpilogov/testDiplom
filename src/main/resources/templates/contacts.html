@@ -7,6 +7,7 @@
 <title>Контакты</title>
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script src="js/contacts.js"></script>
 <body>
 <div class="scroll">
     <div align="center" class="contacts">
@@ -22,83 +23,13 @@
 
     </div>
 
-    <div class="contactsForm">
+    <div class="contactsForm" id="contactsFormGeneral">
         <form id="contactsForm">
             <textarea id="contactsText" maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
-            <input class="contactsBtn btn btn-success" type="submit" value="Отправить"/>
+            <input type="button" class="contactsBtn btn btn-success" value="Отправить" onclick="SentMessage()"/>
         </form>
     </div>
 </div>
-
-<script> //скрипт для переноса строки на ctrl+enter и отправки на enter
-    document.body.onkeydown = function(event) {
-        var e = event || window.event;
-        var code = e.keyCode || e.which;
-        var activeEl = document.activeElement.id;
-        if(code === 13 && activeEl === "contactsText") {
-            activeEl.style.readonly = 1;
-            var text_redirect = document.getElementById('contactsText').value;
-            text_redirect = text_redirect.replace(/^\s+/, "");
-            if(text_redirect !== "") {
-                document.getElementById('contactsForm').submit();
-            } else {
-                alert("ЗАПОЛНИТЕ ФОРМУ!");
-            }
-        }
-    };
-    document.body.onkeydown = function(event) {
-        var e = event || window.event;
-        var code = e.keyCode || e.which;
-        var activeEl = document.activeElement.id;
-        if(code === 13 && e.ctrlKey) {
-            if(activeEl === "contactsText") {
-                document.getElementById('contactsText').value += "\n";
-            } else {
-                return false;
-            }
-        } else if(code === 13 && activeEl === "contactsText") {
-            var text_redirect = document.getElementById('contactsText').value;
-            text_redirect = text_redirect.replace(/^\s+/, "");
-            if(text_redirect !== "") {
-                document.getElementById('contactsForm').submit();
-            } else {
-                return false;
-            }
-        }
-    }
-</script>
-
-
-<!--<div class="container">-->
-
-    <!--<h3 style="color:blue">POST-GET AJAX Example</h3>-->
-
-    <!--<div>-->
-        <!--<form class="form-inline" style="margin:20px 20px 20px 20px" id="customerForm">-->
-            <!--<div class="form-group">-->
-                <!--<label for="firstname" style="margin-right:5px">FirstName:</label>-->
-                <!--<input type="text" class="form-control" id="firstname" placeholder="Enter FirstName"/>-->
-            <!--</div>-->
-            <!--<div class="form-group">-->
-                <!--<label for="lastname" style="margin-left:20px; margin-right:5px">LastName:</label>-->
-                <!--<input type="text" class="form-control" id="lastname" placeholder="Enter LastName"/>-->
-            <!--</div>-->
-            <!--<button type="submit" class="btn btn-default" style="margin-left:20px; margin-right:5px">Submit</button>-->
-        <!--</form>-->
-    <!--</div>-->
-
-    <!--<div class="col-sm-7" id="postResultDiv">-->
-    <!--</div>-->
-
-    <!--<div class="col-sm-7" style="margin:20px 0px 20px 0px">-->
-        <!--<button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>-->
-        <!--<div id="getResultDiv" style="padding:20px 10px 20px 50px">-->
-            <!--<ul class="list-group">-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
 
 </body>
 </html>

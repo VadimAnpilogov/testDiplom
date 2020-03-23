@@ -1,18 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
       xmlns:https="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Spring Boot - AJAX POST GET Example</title>
-
-
-
-    <head th:replace="fragments/head :: head"></head>
+<head th:replace="fragments/head :: head"></head>
+<title>Страница курса</title>
     <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <script src="/js/getUsersCourse.js"></script>
 
-</head>
 <body >
 <!--<div class="names" th:each="corse : ${courses}">-->
 <!--    <h2 align="center" th:utext="${corse.courseName}"></h2>-->
@@ -23,7 +18,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <input class="createDialogTextArea" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 
-        <ul style=" margin-right: 20px; margin-left: 20px;">
+        <ul class="searchList">
             <li th:each="users : ${UsersCourse}" id="liDialog">
                 <div class="message_list" >
                     <div class="chat_people">
@@ -37,63 +32,60 @@
                 </div>
             </li>
         </ul>
-
-
     </div>
 
-
-    <div id="getResultDialog" th:each="cors2 : ${courses}">
-        <div id="searchDialogMenu" class="searchDialogMenu" th:if="${cors2.prepName == #httpServletRequest.remoteUser}">
-            <button onclick="openNav()" type="button" class="btn btn-outline-info createDialogButton">Посмотреть участников курса</button>
+    <div class="withoutMenu">
+        <div class="courseFollowers" th:each="cors2 : ${courses}" th:if="${cors2.prepName == #httpServletRequest.remoteUser}">
+            <button onclick="openNav()" type="button" class="btn btn-outline-info">Посмотреть участников курса</button>
         </div>
     </div>
 
 
 
 
-<div class="withoutMenu scroll">
-    <table class="courseTable">
-        <tr>
-            <td>
-                <div class="photo">
-<!--                    <img src="https://i9.wampi.ru/2020/03/01/book-731199_960_720.webp">-->
-                    <img src="https://i9.wampi.ru/2020/03/01/origami_samolet_art_128345_1920x1080.jpg">
+    <div class="withoutMenu scroll">
+        <table class="courseTable">
+            <tr>
+                <td>
+                    <div class="photo">
+    <!--                    <img src="https://i9.wampi.ru/2020/03/01/book-731199_960_720.webp">-->
+                        <img src="https://i9.wampi.ru/2020/03/01/origami_samolet_art_128345_1920x1080.jpg">
 
-                </div>
-            </td>
-            <td th:each="cors : ${courses}">
-                <div class="textOp">
-                    <h3 class="courseDetail">Название курса: </h3><h3 th:utext="${cors.courseName}">Название курса</h3>
-                    <h6 class="courseDetail">Преподаватель: </h6><h6 th:utext="${cors.prepName}" >Преподаватель</h6>
-                    <h6 class="courseDetail">Область курса: </h6><h6 th:utext="${cors.region}">Область курса</h6>
-                    <h6 class="courseDetail">Занятия: </h6><h6 th:utext="${cors.format}">Онлайн/оффлайн</h6>
-                    <h6 class="courseDetail">Тип занятий: </h6><h6>Индивидуальные/групповые занятия</h6>
-                    <h6 class="courseDetail">Стоимость: </h6><h6 th:utext="${cors.price}">Цена</h6>
-                    <h6 class="courseDetail">Цена указана: </h6><h6 th:utext="${cors.priceType}">Цена</h6>
-                    <h6 class="courseDetail">Описание курса: </h6>
-                    <h6 th:utext="${cors.description}"></h6>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div  class="themes">
-                    <div th:each="cors1 : ${courses}">
-                        <form sec:authorize="${hasAuthority('USER')}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
-                            <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
-                        </form>
-                        <h3 th:text="${signUp}"></h3>
-                        <h3>Темы курса:</h3>
                     </div>
-                    <div th:each="them : ${theme}">
-                        <h6 th:utext="${them.nameTheme}"></h6>
+                </td>
+                <td th:each="cors : ${courses}">
+                    <div class="textOp">
+                        <h3 class="courseDetail">Название курса: </h3><h3 th:utext="${cors.courseName}">Название курса</h3>
+                        <h6 class="courseDetail">Преподаватель: </h6><h6 th:utext="${cors.prepName}" >Преподаватель</h6>
+                        <h6 class="courseDetail">Область курса: </h6><h6 th:utext="${cors.region}">Область курса</h6>
+                        <h6 class="courseDetail">Занятия: </h6><h6 th:utext="${cors.format}">Онлайн/оффлайн</h6>
+                        <h6 class="courseDetail">Тип занятий: </h6><h6>Индивидуальные/групповые занятия</h6>
+                        <h6 class="courseDetail">Стоимость: </h6><h6 th:utext="${cors.price}">Цена</h6>
+                        <h6 class="courseDetail">Цена указана: </h6><h6 th:utext="${cors.priceType}">Цена</h6>
+                        <h6 class="courseDetail">Описание курса: </h6>
+                        <h6 th:utext="${cors.description}"></h6>
                     </div>
-                </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div  class="themes">
+                        <div th:each="cors1 : ${courses}">
+                            <form sec:authorize="${hasAuthority('USER')}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
+                                <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
+                            </form>
+                            <h3 th:text="${signUp}"></h3>
+                            <h3>Темы курса:</h3>
+                        </div>
+                        <div th:each="them : ${theme}">
+                            <h6 th:utext="${them.nameTheme}"></h6>
+                        </div>
+                    </div>
 
-            </td>
-        </tr>
-    </table>
-</div>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 </html>

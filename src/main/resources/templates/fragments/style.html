@@ -5,6 +5,11 @@
 <head th:fragment="style">
     <style>
 
+        .courseFollowers{
+            margin: 25px auto -15px;
+            max-width: 1254px;
+        }
+
         .menuLockImg{
             height: 20px;
             margin-top: 4px;
@@ -793,7 +798,8 @@
             -webkit-box-shadow:0 3px 50px 0 rgba(0,0,0,.1);
             box-shadow:0 3px 50px 0 rgba(0,0,0,.1);
             text-align:center;
-            border-radius:5px
+            border-radius:5px;
+            border: 2px #2b4458 solid;
         }
         .login-block h1,.login-block h6
         {
@@ -803,7 +809,7 @@
         }
         .login-block h1
         {
-            font-size:22px;
+            font-size:24px;
             margin-bottom:60px;
             margin-top:40px
         }
@@ -826,7 +832,7 @@
         .login-block .form-control
         {
             font-size:17px;
-            border-radius:0px;
+            border-radius:0;
             color: #d1d1d1;
         }
         .login-block input:-webkit-autofill
@@ -841,7 +847,8 @@
         {
             color:#29aafe;
             font-size:19px;
-            opacity:.5
+            opacity:.5;
+            margin: 5px 8px 0;
         }
         .login-block .btn-block
         {
@@ -853,8 +860,10 @@
         .login-block .hr-xs
         {
             margin-top:5px;
-            margin-bottom:5px
+            margin-bottom:5px;
+            border: #4e5a64 1px solid;
         }
+        
 
         .login-footer
         {
@@ -1427,6 +1436,17 @@
             right: 25px;
             font-size: 36px;
             margin-left: 50px;
+        }
+        .closebtn, .closebtn:hover{
+            text-decoration: none;
+            color: #e5e7ed;
+            display: inline-block;
+        }
+
+        .searchList {
+            margin-right: 20px;
+            margin-left: 20px;
+            padding-left: 0;
         }
 
         /* Style page content - use this if you want to push the page content to the right when you open the side navigation */

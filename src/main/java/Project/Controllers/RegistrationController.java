@@ -59,7 +59,7 @@ public class RegistrationController {
         model.addAttribute("namePage", namePage);
         Users userFromDB = userRepository.findByUsername(users.getUsername());
         if(userFromDB != null){
-            model.addAttribute("messages", "User exists");
+            model.addAttribute("messages", "Имя пользователя занято");
             return "userR";
         }
         user.setActive(true);

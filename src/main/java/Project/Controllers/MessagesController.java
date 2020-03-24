@@ -53,6 +53,20 @@ public class MessagesController {
 
         return "message";
     }
+    @GetMapping("messageDown")
+    public String messageDown(
+            @AuthenticationPrincipal Users user,
+            Model model){
+        recipient1 = "test";
+        model.addAttribute("namePage", namePage);
+        Iterable<Users> messU = usersListRepo.findAllByOrderByIdAsc();
+        model.addAttribute("messageU", messU);
+
+        Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+        model.addAttribute("dialogsUser", dialogs);
+
+        return "message";
+    }
 
     //Получение имени Получателя
     @GetMapping("/messageU/{recipient}")

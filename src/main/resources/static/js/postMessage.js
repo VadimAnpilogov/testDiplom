@@ -15,7 +15,8 @@ $( document ).ready(function() {
             message : $("#message").val(),
             recipient: $("#recipient").val(),
             sender :  $("#sender").val(),
-            date: $("#date").val()
+            date: $("#date").val(),
+            nameMess: $("#nameMess").val()
         };
 
         // DO POST
@@ -54,6 +55,7 @@ $( document ).ready(function() {
         $("#sender").val("");
         $("#date").val("");
         $("#recipient").val("");
+        $("#nameMess").val("");
     }
 
     document.body.onkeydown = function(event) {

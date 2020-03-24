@@ -4,15 +4,23 @@
 <title>Регистрация</title>
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
-
-<body class="login-page">
+<script>
+    function regError() {
+        var error = document.getElementById("Error").textContent;
+        if(error !== "")
+        {
+            alert("Данное имя пользователя занято!")
+        }
+    }
+</script>
+<body class="login-page" onload="regError()">
 
 <div class="scroll">
     <main>
         <div class="login-block">
             <!--        <img src="1.png" alt="Scanfcode">-->
             <h1>Введите свои данные</h1>
-            <h4 style="color: #dd3333" th:text="${messages}"></h4>
+            <h4 id="Error" style="display: none; position: absolute;" th:utext="${messages}"></h4>
             <form action="adminR" method="post">
                 <div class="form-group">
                     <div class="input-group">

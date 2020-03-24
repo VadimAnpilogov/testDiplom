@@ -4,8 +4,17 @@
 <title>Вход</title>
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script>
+    function Error() {
+        var paramValue = document.location.search;
+        if(paramValue !== "")
+        {
+            alert("Неверное имя пользователя или пароль!")
+        }
+    }
+</script>
 
-<body class="login-page">
+<body class="login-page" onload="Error()">
 
 <div class="scroll">
     <main>

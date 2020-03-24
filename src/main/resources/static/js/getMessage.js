@@ -1,4 +1,6 @@
 var endMessage = 0;
+var nameDialog;
+var temp = 0;
 function ajaxGet(){
     $.ajax({
         type : "GET",
@@ -26,6 +28,11 @@ function ajaxGet(){
                             "<p>" + customer.message + "</p>" +
                             "<span class='time_dateOutMes'>" + customer.date +
                             "</span></div></div>");
+                    }
+                    if(temp === 0)
+                    {
+                        nameDialog = customer.recipient;
+                        temp = 1;
                     }
                 });
 

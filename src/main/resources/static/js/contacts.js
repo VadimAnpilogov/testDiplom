@@ -1,6 +1,6 @@
 function SentMessage() {
-    var text_redirect = document.getElementById("contactsText").textContent;
-    if(text_redirect !== "") {
+    var text_redirect = document.getElementById("contactsText");
+    if(text_redirect.value !== "") {
         $('#contactsFormGeneral').empty();
         $('#contactsFormGeneral').append(
             "<div>" +

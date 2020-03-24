@@ -8,7 +8,6 @@
 <script src="/js/getMessage.js"></script>
 <script src="js/dialog.js"></script>
 <script src="js/getDialog.js"></script>
-<script src="js/whichDialog.js"></script>
 
 <body class="noScroll">
 
@@ -64,7 +63,7 @@
                             </a>
                         </div>
                         <div class="chat_ib">
-                            <a th:href="@{'/messageU/{recipient}'(recipient=${dialog.recipient})}"  class="username_msg">
+                            <a th:href="@{'/messageU/{recipient}'(recipient=${dialog.recipient})}" class="username_msg">
                                 <h5 id='recipient' class='username_msg' th:utext="${dialog.recipient}"></h5>
                             </a>
                         </div>

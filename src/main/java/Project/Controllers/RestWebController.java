@@ -72,19 +72,6 @@ public class RestWebController {
 	private String recipient2="test";
 	public String NameMess= "test";
 
-
-	@GetMapping(value = "messageU/{recipient}/all")
-	public Response getMessageU(
-			@AuthenticationPrincipal Users user,
-			@PathVariable String recipient){
-		recipient1 = recipient;
-		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
-
-//		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient, user.getUsername()));
-		Response response = new Response("Done" ,dialogs );
-		return response;
-	}
-
 	@GetMapping(value = "message/all")
 	public Response getMessage(
 			@AuthenticationPrincipal Users user){
@@ -101,18 +88,17 @@ public class RestWebController {
 
 		return response;
 	}
-	@PostMapping(value = "messageU/{recipient}/save")
+	@PostMapping(value = "message/save")
 	public Response postMessage(
 			@AuthenticationPrincipal Users user,
-			@RequestBody Messages message,
-			@PathVariable String recipient
+			@RequestBody Messages message
 	){
-
+		recipient1=messagesController.recipient1;
 		Messages messages = new Messages(
 				message.getMessage(),
-				recipient,
+				recipient1,
 				user.getUsername(),
-				messageService.nameDialog(recipient, user.getUsername()),
+				messageService.nameDialog(recipient1, user.getUsername()),
 				userService.date());
 
 		sMessageRepo.save(messages);

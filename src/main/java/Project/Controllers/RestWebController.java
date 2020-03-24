@@ -31,6 +31,8 @@ public class RestWebController {
 	private UserRepo userRepo;
 	@Autowired
 	private UsersListRepo usersListRepo;
+	@Autowired
+	private MessagesController messagesController;
 
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
@@ -66,21 +68,39 @@ public class RestWebController {
 		Response response = new Response("Done", chat);
 		return response;
 	}
-	public String recipient1 = "test";
+	private String recipient1="test";
+	private String recipient2="test";
 	public String NameMess= "test";
 
+
 	@GetMapping(value = "messageU/{recipient}/all")
-	public Response getMessage(
+	public Response getMessageU(
 			@AuthenticationPrincipal Users user,
 			@PathVariable String recipient){
-
+		recipient1 = recipient;
 		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
 
-		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient, user.getUsername()));
-		Response response = new Response("Done" ,dialogs, messages2 );
+//		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient, user.getUsername()));
+		Response response = new Response("Done" ,dialogs );
 		return response;
 	}
 
+	@GetMapping(value = "message/all")
+	public Response getMessage(
+			@AuthenticationPrincipal Users user){
+
+		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+		recipient1=messagesController.recipient1;
+		if(recipient1 == recipient2){
+			Response response = new Response("Done" ,dialogs);
+			return response;
+		}
+
+		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient1, user.getUsername()));
+		Response response = new Response("Done" ,dialogs, messages2 );
+
+		return response;
+	}
 	@PostMapping(value = "messageU/{recipient}/save")
 	public Response postMessage(
 			@AuthenticationPrincipal Users user,
@@ -100,12 +120,12 @@ public class RestWebController {
 		Response response = new Response("Done", message);
 		return response;
 	}
-	@GetMapping(value = "message/all")
-	public Response getDialog(@AuthenticationPrincipal Users user){
-		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
-		Response response = new Response("Done" , dialogs );
-		return response;
-	}
+//	@GetMapping(value = "message/all")
+//	public Response getDialog(@AuthenticationPrincipal Users user){
+//		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+//		Response response = new Response("Done" , dialogs );
+//		return response;
+//	}
 
 	@GetMapping(value = "users/all")
 	public Response getUsers(

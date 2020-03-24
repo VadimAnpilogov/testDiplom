@@ -75,7 +75,7 @@ public class MessagesController {
         model.addAttribute("messageS", messages2);
         Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
         model.addAttribute("dialogsUser", dialogs);
-        return "message";
+        return "redirect:/message";
     }
 //Отправка сообщения
     @GetMapping("messageU/messageAdd")

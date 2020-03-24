@@ -80,7 +80,7 @@ public class RegistrationController {
             mailSender.send(user.getEmail(), "Activation code", message);
         }
 
-        return "course";
+        return "login";
     }
 //Регистрация преподавателя
     @PostMapping("/adminR")
@@ -111,7 +111,7 @@ public class RegistrationController {
 
             mailSender.send(user.getEmail(), "Activation code", message);
         }
-        return "course";
+        return "login";
     }
 
     @GetMapping("/activate/{code}")

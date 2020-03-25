@@ -25,7 +25,7 @@ $( document ).ready(function() {
             contentType : "application/json",
             url : window.location + "/save",
             data : JSON.stringify(formData),
-            data1 : JSON.stringify(formData),
+            // data1 : JSON.stringify(formData),
             dataType : 'json',
             success : function(result) {
                 if(result.status === "Done"){

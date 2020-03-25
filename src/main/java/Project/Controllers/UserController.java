@@ -2,6 +2,7 @@ package Project.Controllers;
 
 import Project.Entity.*;
 import Project.Repository.*;
+import Project.Service.MailSender;
 import Project.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -44,7 +45,8 @@ public class UserController {
     private UsersListRepo usersListRepo;
     @Autowired
     private UserService userSevice;
-
+    @Autowired
+    private MailSender mailSender;
 
     //странца всех пользователей
     @GetMapping("users")
@@ -177,6 +179,22 @@ public class UserController {
         }
         return "userPers";
     }
+    @GetMapping("messageDev")
+    public String messageDev(
+            @AuthenticationPrincipal Users users,
+            @RequestParam String messages
+    ){
 
+        String message = String.format(
+                "Сообщение от %s! \n" +
+                        "%s",
+                users.getUsername(),
+                messages
+        );
+
+        mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message);
+        mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message);
+        return "contacts";
+    }
 
 }

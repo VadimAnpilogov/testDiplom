@@ -7,7 +7,12 @@ import Project.Service.UserService;
 import Project.message.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -78,15 +83,23 @@ public class RestWebController {
 	public Response getMessage(
 			@AuthenticationPrincipal Users user){
 
-		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
+//		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
 		recipient1=messagesController.recipient1;
-		if(recipient1 == recipient2){
-			Response response = new Response("Done" ,dialogs);
-			return response;
+//		if(recipient1 == recipient2){
+//			Response response = new Response("Done" ,dialogs);
+//			return response;
+//		}
+
+		List<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient1, user.getUsername()));
+		for (int i = 0; i< messages2.size(); i++){
+			if(messages2.get(i).getRecipient().equals(user.getUsername())){
+				messages2.get(i).setStatusMessage(true);
+				sMessageRepo.save(messages2.get(i));
+			}
+
 		}
 
-		Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient1, user.getUsername()));
-		Response response = new Response("Done" ,dialogs, messages2 );
+		Response response = new Response("Done" , messages2 );
 
 		return response;
 	}

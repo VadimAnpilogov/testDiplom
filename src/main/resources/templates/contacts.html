@@ -24,9 +24,9 @@
     </div>
 
     <div class="contactsForm" id="contactsFormGeneral" sec:authorize ="isAuthenticated()">
-        <form id="contactsForm">
-            <textarea id="contactsText" maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
-            <input type="button" class="contactsBtn btn btn-success" value="Отправить" onclick="SentMessage()"/>
+        <form id="contactsForm" action="messageDev?messages1=messages">
+            <textarea  type="messages1" name="messages" id="contactsText" maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
+            <input type="submit" class="contactsBtn btn btn-success" value="Отправить" />
         </form>
     </div>
 </div>

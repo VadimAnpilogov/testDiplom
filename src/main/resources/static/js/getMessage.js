@@ -6,13 +6,13 @@ function ajaxGet(){
         type : "GET",
         url : window.location + "/all",
         success: function(result){
-            if (result.status === "Done" && result.data1 !== null) {
+            if (result.status === "Done" && result.data !== null) {
                 var Enter = document.getElementById("enterID");
                 Enter.style.visibility = "visible";
 
                 $('#getResultMessage').empty();
                 var Username = document.getElementById("username").textContent;
-                $.each(result.data1, function (i, customer) {
+                $.each(result.data, function (i, customer) {
                     if (customer.sender !== Username) {
                         $('#getResultMessage').append(
                             "<div class='received_msg'>" +

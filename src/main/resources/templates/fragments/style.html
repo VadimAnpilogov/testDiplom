@@ -5,6 +5,46 @@
 <head th:fragment="style">
     <style>
 
+
+        .coursesMessage{
+            color: white;
+            position: absolute;
+            margin: 92px 0 0 230px;
+            width: calc(100% - 230px);
+            height: calc(100% - 92px);
+            z-index: -1;
+        }
+        .coursesMessage h4{
+            margin: 10% auto;
+            width: fit-content;
+        }
+        .myCoursesButtons{
+            margin: 25px 0 0 230px;
+            position: absolute;
+            width: calc(100% - 230px);
+        }
+        .myCoursesButtons table{
+            max-width: 1000px;
+            margin: 15px auto 30px;
+            border-bottom: 1px white solid;
+        }
+        .myCoursesButtons th{
+            padding: 5px 100px;
+        }
+        .myCoursesButtons a {
+            color: #e5e7ed;
+            text-decoration: none;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size .3s;
+            font-size: 24px;
+        }
+        .myCoursesButtons a:hover {
+            background-size: 100% 2px;
+        }
+
         .lightDialog, .lightDialog:hover {
             background-color: #17708e !important;
             border-radius: 10px !important;
@@ -452,11 +492,11 @@
         }
 
         .coursesTiles{
-            margin-top: 50px;
+            margin-top: 92px;
             margin-left: 250px;
             position: absolute;
             overflow-y: scroll;
-            height: calc( 100% - 60px);
+            height: calc( 100% - 152px);
         }
         .coursesTiles h1{/*название курса*/
             color: white;

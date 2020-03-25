@@ -9,22 +9,20 @@
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <script src="/js/coursesSearch.js"></script>
 <body>
-<div class="f1">
-    <div class="persButtons">
-        <table>
-            <tr>
-                <th>
-                    <a th:href="@{'/course'}">Все курсы</a>
-                </th>
-                <th>
-                    <a th:href="@{'/myCourse'}">Мои курсы</a>
-                </th>
-            </tr>
-        </table>
-    </div>
+
+<div class="myCoursesButtons">
+    <table>
+        <tr>
+            <th>
+                <a th:href="@{'/course'}">Все курсы</a>
+            </th>
+            <th>
+                <a th:href="@{'/myCourse'}">Мои курсы</a>
+            </th>
+        </tr>
+    </table>
 </div>
 
-<h4 th:utext="${messCourse}"></h4>
 <div class="coursesTiles" id="coursesTilesID2" th:if="${testUser != #httpServletRequest.remoteUser}">
     <table>
         <tr th:each="cor : ${myCourseUser}" id="TR2">
@@ -59,6 +57,9 @@
         </tr>
 
     </table>
+</div>
+<div class="coursesMessage">
+    <h4 th:utext="${messCourse}"></h4>
 </div>
 <!--<div class="searchContainer">-->
 <!--    <div class="dropdown">-->

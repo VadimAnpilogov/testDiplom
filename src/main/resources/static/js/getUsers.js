@@ -7,7 +7,7 @@ function ajaxGet(){
             if(result.status === "Done"){
                 $('#getResultUsers').empty();
                 document.getElementById("loading").style.display = "none";
-                var Username = new Array();
+                var Username = [];
                 var AllData = "";
 
                 $.each(result.data, function(i, customer){

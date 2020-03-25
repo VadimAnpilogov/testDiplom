@@ -29,7 +29,9 @@ public class UserController {
     public String namePagePers = "Страница пользователя";
     public String test = "test";
     public int boole = 0;
-
+    public String adminR = "[ADMIN]";
+    public String userR = "[USER]";
+    public String roles;
     @Autowired
     private ReviewsRepo reviewsRepo;
     @Autowired
@@ -148,12 +150,14 @@ public class UserController {
             Model model){
         model.addAttribute("namePage", namePagePers);
         username1 = users;
-        model.addAttribute("users", userRepo.findByUsername(users));
-
+        Users users1 = userRepo.findByUsername(users);
+        model.addAttribute("users", users1);
+        roles = users1.getRoles().toString();
 //        Iterable<Course> courses = courseRepo.findByUsers(user);
 
         Iterable<Course> course = courseRepo.findAll();
         model.addAttribute("course", course);
+
         return "redirect:/userPers";
     }
 // страница пользователя
@@ -165,6 +169,12 @@ public class UserController {
 
         Iterable<Course> course = courseRepo.findAll();
         model.addAttribute("course", course);
+
+        if(roles.equals(adminR)){
+            model.addAttribute("status", "Преподаватель");
+        }else {
+            model.addAttribute("status", "Студент");
+        }
         return "userPers";
     }
 

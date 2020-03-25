@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -88,9 +89,12 @@ public class CourseController {
         model.addAttribute("QCourse1", course);
         return "CreateCourse";
     }
+
 //Страница конкретного курса
     @GetMapping("SCourse")
-    public String SCourse(Model model){
+    public String SCourse(
+            @AuthenticationPrincipal Users users,
+            Model model){
 //        Iterable<Course> courses = courseRepo.findByCourseName(course1);
         model.addAttribute("namePage", namePage);
         Course courses = courseRepo.findByCourseName(course1);
@@ -102,7 +106,18 @@ public class CourseController {
 
         List<Course> usersCourse = courseRepo.findByCourseNameOrderByIdAsc(course1);
         model.addAttribute("UsersCourse", usersCourse.get(0).getUsersFol());
+        Users users1 = usersRepo.findByUsername(users.getUsername());
 
+        ArrayList<Users> usersCourse1 = new ArrayList<>();
+        ArrayList<Users> usersCourse2 = new ArrayList<>(usersCourse.get(0).getUsersFol());
+        usersCourse1.add(users1);
+
+        for(int i = 0; i< usersCourse2.size(); i++) {
+            System.out.println("hz = " + usersCourse2.get(i));
+            if (usersCourse2.get(i) == usersCourse1.get(0)) {
+                model.addAttribute("signUpCourse", users.getUsername());
+            }
+        }
         return "SCourse";
     }
 
@@ -143,7 +158,20 @@ public class CourseController {
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
 
-        return "SCourse";
+        return "redirect:/SCourse";
+    }
+
+    @GetMapping("unsubscribeCourse")
+    public String unsubscribeCourse(
+            @AuthenticationPrincipal Users users
+    ){
+
+        Course course = courseRepo.findByCourseName(course1);
+
+        Users users1 = usersRepo.findByUsername(users.getUsername());
+        users1.getCourseFol().remove(course);
+        usersRepo.save(users1);
+        return "redirect:/SCourse";
     }
 
     @GetMapping("addTheme")
@@ -173,5 +201,12 @@ public class CourseController {
         model.addAttribute("NameCourse", nameCourses);
         return "theme";
     }
+    @GetMapping("deleteCourse/{id}")
+    public String deleteCourse(
+            @PathVariable Long id
+    ){
 
+        courseRepo.deleteById(id);
+        return "redirect:/course";
+    }
 }

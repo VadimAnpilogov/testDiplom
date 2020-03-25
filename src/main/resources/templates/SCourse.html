@@ -39,6 +39,8 @@
             <button onclick="openNav()" type="button" class="btn btn-outline-info">Посмотреть участников курса</button>
             <button onclick="" type="button" class="btn btn-outline-info">Редактировать курс</button>
             <button onclick="" type="button" class="btn btn-outline-info">Добавить объявление</button>
+            <form th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}">
+            <button onclick="" type="submit" class="btn btn-outline-info">Удалить курс</button></form>
         </div>
     </div>
 
@@ -73,9 +75,20 @@
                 <td>
                     <div  class="themes">
                         <div th:each="cors1 : ${courses}">
-                            <form sec:authorize="${hasAuthority('USER')}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
-                                <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
-                            </form>
+
+                            <div sec:authorize="${hasAuthority('USER')}">
+                                <form th:if="${signUpCourse != #httpServletRequest.remoteUser}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
+                                    <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
+                                </form>
+                                <form th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'unsubscribeCourse'}" >
+                                    <button type="submit" class="btn btn-outline-info">Отписаться от курса</button>
+                                </form>
+                                <form th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers/{recipient}'(recipient=${cors1.prepName})}" >
+                                    <button type="submit" class="btn btn-outline-info">Написать сообщение преподавателю</button>
+                                </form>
+                            </div>
+
+
                             <h3 th:text="${signUp}"></h3>
                             <h3>Темы курса:</h3>
                         </div>

@@ -119,14 +119,13 @@ public class MessagesController {
         return "redirect:/message";
     }
 
-//    @GetMapping("/addDialog/{userName}")
-//    public String addDialogs(
-//            @AuthenticationPrincipal Users user,
-//            @PathVariable String userName){
-//        messageService.createDialog(user.getUsername(), userName);
-//
-//        return "redirect:/message";
-//    }
+    @GetMapping("/deleteDialog/{id}")
+    public String DeleteDialogs(
+            @PathVariable Long id){
+        messageService.deleteDialog(id);
+
+        return "redirect:/message";
+    }
 
 
     @GetMapping("/messageUsers/{recipient}")

@@ -23,7 +23,7 @@
 
     </div>
 
-    <div class="contactsForm" id="contactsFormGeneral">
+    <div class="contactsForm" id="contactsFormGeneral" sec:authorize ="isAuthenticated()">
         <form id="contactsForm">
             <textarea id="contactsText" maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
             <input type="button" class="contactsBtn btn btn-success" value="Отправить" onclick="SentMessage()"/>

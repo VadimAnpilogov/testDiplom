@@ -50,6 +50,7 @@ public class MessagesController {
 
         Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
         model.addAttribute("dialogsUser", dialogs);
+        model.addAttribute("colorDialog", recipient1);
 
         return "message";
     }
@@ -81,12 +82,12 @@ public class MessagesController {
         model.addAttribute("messageU", messU);
 
         NameMess = messageService.nameDialog(recipient1,user.getUsername() );
-        Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);
+//        Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);
 
 
 
-        Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
-        model.addAttribute("messageS", messages2);
+//        Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
+//        model.addAttribute("messageS", messages2);
         Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
         model.addAttribute("dialogsUser", dialogs);
         return "redirect:/message";

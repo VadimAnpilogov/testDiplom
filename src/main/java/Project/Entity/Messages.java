@@ -17,16 +17,17 @@ public class Messages {
     private String sender;
     private String nameMess;
     public String date;
-//    private boolean active;
+    private boolean statusMessage;
 
 public Messages(){}
 
-    public Messages(String message, String recipient, String sender, String nameMess, String date) {
+    public Messages(String message, String recipient, String sender, String nameMess, String date, boolean statusMessage) {
         this.message = message;
         this.recipient = recipient;
         this.sender = sender;
         this.nameMess = nameMess;
         this.date = date;
+        this.statusMessage = statusMessage;
     }
 
     public Long getId() {
@@ -75,5 +76,13 @@ public Messages(){}
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean isStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(boolean statusMessage) {
+        this.statusMessage = statusMessage;
     }
 }

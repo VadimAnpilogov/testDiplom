@@ -2,7 +2,6 @@ package Project.Controllers;
 
 
 import Project.Entity.Dialog;
-import Project.Entity.Messages;
 import Project.Entity.Users;
 import Project.Repository.DialogRepo;
 import Project.Repository.SMessageRepo;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -82,44 +80,13 @@ public class MessagesController {
         model.addAttribute("messageU", messU);
 
         NameMess = messageService.nameDialog(recipient1,user.getUsername() );
-//        Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);
-
-
-
-//        Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
-//        model.addAttribute("messageS", messages2);
-        Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
-        model.addAttribute("dialogsUser", dialogs);
-        return "redirect:/message";
-    }
-//Отправка сообщения
-    @GetMapping("messageU/messageAdd")
-    public String messageAdd(
-            @AuthenticationPrincipal Users user,
-            @RequestParam String message, Model model){
-        model.addAttribute("namePage", namePage);
-        model.addAttribute("test", "test");
-
-        NameMess = messageService.nameDialog(recipient1,user.getUsername() );
-//        Iterable<Messages> messages1 = sMessageRepo.findByNameMess(NameMess);
-
-
-        date = userSevice.date();
-
-        Iterable<Users> messU = usersListRepo.findAllByOrderByIdAsc();
-        model.addAttribute("messageU", messU);
-
-        Messages messages = new Messages(message, recipient1, user.getUsername(), NameMess,date);
-        sMessageRepo.save(messages);
-
-        Iterable<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(NameMess);
-        model.addAttribute("messageS", messages2);
 
         Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
         model.addAttribute("dialogsUser", dialogs);
         return "redirect:/message";
     }
 
+    //удаление диалога
     @GetMapping("/deleteDialog/{id}")
     public String DeleteDialogs(
             @PathVariable Long id){
@@ -128,7 +95,7 @@ public class MessagesController {
         return "redirect:/messageDown";
     }
 
-
+//создание диалога
     @GetMapping("/messageUsers/{recipient}")
     public String messageUsers(
             @AuthenticationPrincipal Users user,

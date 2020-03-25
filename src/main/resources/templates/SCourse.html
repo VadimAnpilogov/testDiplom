@@ -37,8 +37,9 @@
     <div class="withoutMenu">
         <div class="courseFollowers" th:each="cors2 : ${courses}" th:if="${cors2.prepName == #httpServletRequest.remoteUser}">
             <button onclick="openNav()" type="button" class="btn btn-outline-info">Посмотреть участников курса</button>
-            <button onclick="" type="button" class="btn btn-outline-info">Редактировать курс</button>
             <button onclick="" type="button" class="btn btn-outline-info">Добавить объявление</button>
+            <form th:action="@{'/CourseEdit'}" class="inline">
+            <button onclick="" type="submit" class="btn btn-outline-info">Редактировать курс</button></form>
             <form th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}" class="inline">
             <button onclick="" type="submit" class="btn btn-outline-info">Удалить курс</button></form>
         </div>

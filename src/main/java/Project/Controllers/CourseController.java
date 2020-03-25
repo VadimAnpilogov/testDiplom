@@ -3,6 +3,7 @@ package Project.Controllers;
 
 import Project.Entity.Course;
 import Project.Entity.Theme;
+import Project.Entity.User;
 import Project.Entity.Users;
 import Project.Repository.CourseRepo;
 import Project.Repository.ThemeRepo;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
@@ -47,6 +49,8 @@ public class CourseController {
     public String date;
     public String roles = "[ADMIN]";
     public String roles1;
+    public String test = "test";
+    public int boole = 0;
 
     //Страница курсов
     @GetMapping("/course")
@@ -233,9 +237,64 @@ public class CourseController {
             }
             model.addAttribute("myCourseUser", users1.get(0).getCourseFol());
         }
-
-
-
         return "myCourse";
+    }
+
+    @GetMapping("/CourseEdit")
+    public String CourseEdit(
+            @AuthenticationPrincipal Users user,
+            Model model){
+
+        model.addAttribute("courses", courseRepo.findByCourseName(course1));
+        if(test=="tester")
+        {
+            model.addAttribute("CourseMessage", "Имя курса занято");
+        }
+
+        Course course = courseRepo.findByCourseName(course1);
+        model.addAttribute("CourseDataEdit", course);
+
+        return "CourseEdit";
+    }
+    @PostMapping("/CourseEdit")
+    public String updateCourse(
+            @AuthenticationPrincipal Users users,
+            @RequestParam String courseName,
+            @RequestParam String description,
+            @RequestParam String region,
+            @RequestParam String price,
+            @RequestParam String priceType,
+            @RequestParam String format,
+            User user,
+            Model model
+
+    ){
+        Course coursefromDB = courseRepo.findByCourseName(course1);
+        Course testCourse = courseRepo.findByCourseName(courseName);
+
+        if(courseName.equals(course1))
+        {
+            boole = 1;
+        }
+        if((testCourse != null) && (boole == 0)){
+
+            test = "tester";
+            return "redirect:/CourseEdit";
+        }
+        else
+        {
+            test = "test";
+            coursefromDB.setCourseName(courseName);
+            coursefromDB.setDescription(description);
+            coursefromDB.setRegion(region);
+            coursefromDB.setPrice(price);
+            coursefromDB.setPriceType(priceType);
+            coursefromDB.setFormat(format);
+            courseRepo.save(coursefromDB);
+        }
+        course1 = courseName;
+
+
+        return "redirect:/SCourse";
     }
 }

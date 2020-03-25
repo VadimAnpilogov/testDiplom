@@ -34,6 +34,8 @@ public class RestWebController {
 	@Autowired
 	private MessagesController messagesController;
 
+	public boolean statusMessage = false;
+
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
 		Iterable<Reviews> custom = reviewsRepo.findAllByOrderByIdAsc();
@@ -99,19 +101,16 @@ public class RestWebController {
 				recipient1,
 				user.getUsername(),
 				messageService.nameDialog(recipient1, user.getUsername()),
-				userService.date());
+				userService.date(),
+				statusMessage
+				);
 
 		sMessageRepo.save(messages);
 
 		Response response = new Response("Done", message);
 		return response;
 	}
-//	@GetMapping(value = "message/all")
-//	public Response getDialog(@AuthenticationPrincipal Users user){
-//		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
-//		Response response = new Response("Done" , dialogs );
-//		return response;
-//	}
+
 
 	@GetMapping(value = "users/all")
 	public Response getUsers(

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:https="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+<title>Страница курса</title>
+<!--<body th:replace="fragments/menu :: menu"></body>-->
+<body th:replace="fragments/upMenu :: upMenu"></body>
+<body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script src="/js/getUsersCourse.js"></script>
+
+<body >
+<!--<div class="names" th:each="corse : ${courses}">-->
+<!--    <h2 align="center" th:utext="${corse.courseName}"></h2>-->
+<!--</div>-->
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <input class="createDialogTextArea" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+
+    <ul class="searchList">
+        <li th:each="users : ${UsersCourse}" id="liDialog">
+            <div class="message_list" >
+                <div class="chat_people">
+                    <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${users.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
+                    <div class="chat_ib">
+                        <a th:href="@{'/messageUsers/{recipient}'(recipient=${users.username})}" class="username_msg">
+                            <h5 th:utext="${users.username}" class="username_msg" id="UsernameDialog">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="withoutMenu">
+    <div class="courseFollowers" th:each="cors2 : ${courses}" th:if="${cors2.prepName == #httpServletRequest.remoteUser}">
+        <button onclick="openNav()" type="button" class="btn btn-outline-info">Посмотреть участников курса</button>
+        <button onclick="" type="button" class="btn btn-outline-info">Добавить объявление</button>
+        <form th:action="@{'/CourseEdit'}" class="inline">
+            <button onclick="" type="button" class="btn btn-outline-info">Редактировать курс</button></form>
+        <form th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}" class="inline">
+            <button onclick="" type="submit" class="btn btn-outline-info">Удалить курс</button></form>
+    </div>
+</div>
+
+
+
+
+<!--<div class="withoutMenu scroll">-->
+<!--    <table class="courseTable">-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--&lt;!&ndash;                <div class="photo">&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash;                    <img src="https://i9.wampi.ru/2020/03/01/book-731199_960_720.webp">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="https://i9.wampi.ru/2020/03/01/origami_samolet_art_128345_1920x1080.jpg">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </td>-->
+<!--            <td th:each="cors : ${CourseDataEdit}">-->
+<!--                <div class="textOp">-->
+
+
+<!--                    <h5>Название курса</h5>-->
+<!--                    <input type="fio1" value="fio" th:attr="value=${data.user.fio}" name="fio" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
+<!--                    <h5>Область курса</h5>-->
+<!--                    <input type="phone1" value="fio" th:attr="value=${data.user.phone}" name="phone" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
+<!--                    <h5>Занятия</h5>-->
+<!--                    <input type="email1" value="fio" th:attr="value=${data.user.email}" name="email" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
+<!--                    <h5>Тип занятий</h5>-->
+<!--                    <input type="username1" value="fio" th:attr="value=${data.username}" name="username" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
+<!--                    <h5 style="color: #dd3333" th:text="${UserMessage}"></h5>-->
+<!--                    <h5>Стоимость</h5>-->
+<!--                    <input type="password1" value="fio" th:attr="value=${data.password}" name="password" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
+<!--                    <h5>Тип занятий</h5>-->
+<!--                    <input type="username1" value="fio" th:attr="value=${data.username}" name="username" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
+<!--                    <h5 style="color: #dd3333" th:text="${UserMessage}"></h5>-->
+<!--                    <h5>Стоимость</h5>-->
+<!--                    <input type="password1" value="fio" th:attr="value=${data.password}" name="password" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <div  class="themes">-->
+<!--                    <form  method="post" action="PersonalEdit?password?phone?email?username?fio">-->
+<!--                        <button type="submit" class="btn btn-outline-info buttonPers">Сохранить изменения</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+
+
+
+<div class="formCourse" th:each="cors : ${CourseDataEdit}">
+    <form method="post" class="courseForm" action="CourseEdit?courseName1=courseName&description1=description&region1=region&price1=price&priceType1=priceType&format1=format">
+        <h4>Название курса</h4>
+        <input type="courseName1" name="courseName" th:attr="value=${cors.courseName}" class="form-control inputField" id="courseName" autocomplete="off" placeholder="Введите название курса" required>
+        <h4 style="color: #dd3333" th:text="${CourseMessage}"></h4>
+        <h4>Описание курса</h4>
+        <textarea maxlength="1700" type="description1" name="description"  class="formCourseinputDescription form-control inputField" id="description" autocomplete="off" placeholder="Введите описание курса" required>[[${cors.description}]]</textarea>
+
+        <h4>Область курса</h4>
+        <input type="region1" name="region" th:attr="value=${cors.region}" class="formCourseinputText form-control inputField" id="region" autocomplete="off" placeholder="Введите область курса (например, программирование, математика, музыка, фитнес)" required>
+
+        <h4>Формат проведения</h4>
+        <label><input class="courseCheck-box" type="radio" checked name="format" value="Онлайн"/>Онлайн</label>
+        <label><input class="courseCheck-box" type="radio" name="format" value="Оффлайн"/>Оффлайн</label>
+
+        <h4>Стоимость</h4>
+        <input type="price1" name="price" th:attr="value=${cors.price}" class="formCourseinputText form-control inputField" id="price" autocomplete="off" placeholder="Введите стоимость" required>
+        <label><input class="courseCheck-box" type="radio" checked name="priceType" value="Каждого занятия"/>Каждого занятия</label>
+        <label><input class="courseCheck-box" type="radio" name="priceType" value="Всего курса в целом"/>Всего курса в целом</label>
+
+        <input class="formCourseinput btn btn-success" type="submit"value="Сохранить изменения"/>
+    </form>
+</div>
+</body>
+</html>

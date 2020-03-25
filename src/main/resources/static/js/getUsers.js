@@ -18,7 +18,7 @@ function ajaxGet(){
                 {
                     if(Username[q] === document.getElementById("username").textContent)
                     {
-                        delete Username[q];
+                        Username.splice(q, 1);
                     }
                 }
 

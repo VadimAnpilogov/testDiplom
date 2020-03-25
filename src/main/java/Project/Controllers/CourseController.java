@@ -45,6 +45,8 @@ public class CourseController {
     public String namePageTheme = "Темы курса";
     public String nameCourses;
     public String date;
+    public String roles = "[ADMIN]";
+    public String roles1;
 
     //Страница курсов
     @GetMapping("/course")
@@ -74,10 +76,10 @@ public class CourseController {
         }
         Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
 //        course.getUsers().add(user);
-
+        Users users1 = usersRepo.findByUsername(user.getUsername());
         courseRepo.save(course);
-        user.getAuthCourse().add(course);
-        usersRepo.save(user);
+        users1.getAuthCourse().add(course);
+        usersRepo.save(users1);
 
         return  "redirect:/theme";
     }
@@ -208,5 +210,32 @@ public class CourseController {
 
         courseRepo.deleteById(id);
         return "redirect:/course";
+    }
+
+    @GetMapping("myCourse")
+    public String myCourse(
+            @AuthenticationPrincipal Users users,
+            Model model
+    ){
+        List<Users> users1 = usersListRepo.findByUsername(users.getUsername());
+        roles1 = users1.get(0).getRoles().toString();
+        if(roles1.equals(roles)){
+            if(users1.get(0).getAuthCourse().isEmpty()){
+                model.addAttribute("messCourse", "У вас пока нет ни одного курса");
+                return "myCourse";
+            }
+            model.addAttribute("myCoursePrep", users1.get(0).getAuthCourse());
+            model.addAttribute("testUser", users.getUsername());
+        }else {
+            if(users1.get(0).getCourseFol().isEmpty()){
+                model.addAttribute("messCourse", "У вас пока нет ни одного курса");
+                return "myCourse";
+            }
+            model.addAttribute("myCourseUser", users1.get(0).getCourseFol());
+        }
+
+
+
+        return "myCourse";
     }
 }

@@ -23,9 +23,11 @@
         </table>
     </div>
 </div>
-<div class="coursesTiles" id="coursesTilesID">
+
+<h4 th:utext="${messCourse}"></h4>
+<div class="coursesTiles" id="coursesTilesID2" th:if="${testUser != #httpServletRequest.remoteUser}">
     <table>
-        <tr th:each="cor : ${QCourse1}" id="TR">
+        <tr th:each="cor : ${myCourseUser}" id="TR2">
             <th>
                 <h1 class="courseDetail">Название курса: </h1><h1 th:utext="${cor.courseName}" id="CourseName">Название курса</h1>
                 <h3 class="courseDetail">Преподаватель: </h3><h3 th:utext="${cor.prepName}" >Преподаватель</h3>
@@ -41,6 +43,23 @@
     </table>
 </div>
 
+<div class="coursesTiles" id="coursesTilesID1" th:if="${testUser == #httpServletRequest.remoteUser}">
+    <table>
+        <tr th:each="cor1 : ${myCoursePrep}" id="TR1">
+            <th>
+                <h1 class="courseDetail">Название курса: </h1><h1 th:utext="${cor1.courseName}" id="CourseName">Название курса</h1>
+                <h3 class="courseDetail">Преподаватель: </h3><h3 th:utext="${cor1.prepName}" >Преподаватель</h3>
+                <h3 class="courseDetail">Область курса: </h3><h3 th:utext="${cor1.region}">Область курса</h3>
+                <h3 class="courseDetail">Занятия: </h3><h3 th:utext="${cor1.format}">Онлайн/оффлайн</h3>
+                <h3 class="courseDetail">Тип занятий: </h3><h3>Индивидуальные/групповые занятия</h3>
+                <h2 class="courseDetail">Стоимость: </h2><h2 th:utext="${cor1.price}">Цена</h2>
+                <h2 class="courseDetail">Цена указана: </h2><h2 th:utext="${cor1.priceType}">Цена</h2>
+                <a th:href="@{'/SCourse/{course}'(course=${cor1.courseName})}">Перейти на курс</a>
+            </th>
+        </tr>
+
+    </table>
+</div>
 <!--<div class="searchContainer">-->
 <!--    <div class="dropdown">-->
 <!--        <button class="btn btn-secondary dropdown-toggle searchCourseButton" onclick="openSearch()">Поиск курса</button>-->

@@ -125,7 +125,7 @@ public class MessagesController {
             @PathVariable Long id){
         messageService.deleteDialog(id);
 
-        return "redirect:/message";
+        return "redirect:/messageDown";
     }
 
 

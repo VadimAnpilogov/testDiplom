@@ -39,7 +39,7 @@
             <button onclick="openNav()" type="button" class="btn btn-outline-info">Посмотреть участников курса</button>
             <button onclick="" type="button" class="btn btn-outline-info">Редактировать курс</button>
             <button onclick="" type="button" class="btn btn-outline-info">Добавить объявление</button>
-            <form th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}">
+            <form th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}" class="inline">
             <button onclick="" type="submit" class="btn btn-outline-info">Удалить курс</button></form>
         </div>
     </div>
@@ -77,13 +77,13 @@
                         <div th:each="cors1 : ${courses}">
 
                             <div sec:authorize="${hasAuthority('USER')}">
-                                <form th:if="${signUpCourse != #httpServletRequest.remoteUser}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
+                                <form class="inline" th:if="${signUpCourse != #httpServletRequest.remoteUser}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
                                     <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
                                 </form>
-                                <form th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'unsubscribeCourse'}" >
+                                <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'unsubscribeCourse'}" >
                                     <button type="submit" class="btn btn-outline-info">Отписаться от курса</button>
                                 </form>
-                                <form th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers/{recipient}'(recipient=${cors1.prepName})}" >
+                                <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers/{recipient}'(recipient=${cors1.prepName})}" >
                                     <button type="submit" class="btn btn-outline-info">Написать сообщение преподавателю</button>
                                 </form>
                             </div>

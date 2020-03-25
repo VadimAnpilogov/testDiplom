@@ -4,7 +4,7 @@ function ajaxGet(){
         url : window.location + "/all",
 
         success: function(result){
-            if(result.status == "Done"){
+            if(result.status === "Done"){
                 $('#getResultUsers').empty();
                 document.getElementById("loading").style.display = "none";
                 var Username = new Array();
@@ -13,6 +13,14 @@ function ajaxGet(){
                 $.each(result.data, function(i, customer){
                     Username.push(customer.username);
                 });
+
+                for (var q = 0; q < Username.length; q++)
+                {
+                    if(Username[q] === document.getElementById("username").textContent)
+                    {
+                        delete Username[q];
+                    }
+                }
 
                 AllData += '<div class="usersTiles">' + //начало таблицы
                     '<table id="usersTest">';

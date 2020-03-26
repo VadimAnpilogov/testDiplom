@@ -23,6 +23,13 @@
     </table>
 </div>
 
+<!--<form style="margin-left: 400px;" action="search?courseNameS1=courseNameS">-->
+<!--    <input type="courseNameS1" name="courseNameS">-->
+<!--    <input type="submit" value="Поиск"  >-->
+<!--</form>-->
+
+
+
 <div class="coursesTiles" id="coursesTilesID">
     <table>
         <tr th:each="cor : ${QCourse1}" id="TR">
@@ -41,17 +48,17 @@
     </table>
 </div>
 
-<!--<div class="searchContainer">-->
-<!--    <div class="dropdown">-->
-<!--        <button class="btn btn-secondary dropdown-toggle searchCourseButton" onclick="openSearch()">Поиск курса</button>-->
-<!--        <div id="searchCourses" class="searchCourses">-->
-<!--            <a class="dropdown-item">-->
-<!--                <button class="btn btn-secondary" onclick="closeSearch()">Свернуть</button>-->
-<!--            </a>-->
-<!--            <a class="dropdown-item">-->
-<!--                <h5>Название курса</h5>-->
-<!--                <textarea maxlength="80" id="CourseNameID" onkeyup="filterCourseName()"></textarea>-->
-<!--            </a>-->
+<div class="searchContainer">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle searchCourseButton" onclick="openSearch()">Поиск курса</button>
+        <div id="searchCourses" class="searchCourses">
+            <a class="dropdown-item">
+                <button class="btn btn-secondary" onclick="closeSearch()">Свернуть</button>
+            </a>
+            <a class="dropdown-item">
+                <h5>Название курса</h5>
+                <textarea maxlength="80" id="CourseNameID" onkeyup="filterCourseName()"></textarea>
+            </a>
 <!--            <a class="dropdown-item">-->
 <!--                <h5>Преподаватель</h5>-->
 <!--                <textarea maxlength="80"></textarea>-->
@@ -86,9 +93,9 @@
 <!--                    <label class="custom-control-label" for="Price2">Весь курс</label>-->
 <!--                </div>-->
 <!--            </a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+        </div>
+    </div>
+</div>
 
 
 

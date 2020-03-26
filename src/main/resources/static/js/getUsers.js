@@ -22,7 +22,7 @@ function ajaxGet(){
                     }
                 }
 
-                AllData += '<div class="usersTiles">' + //начало таблицы
+                AllData += '<div class="usersTiles" id="usersTilesID">' + //начало таблицы
                     '<table id="usersTest">';
 
                 while (Username.length !== 0) {

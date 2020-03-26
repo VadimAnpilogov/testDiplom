@@ -5,6 +5,7 @@
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <script src="/js/getUsers.js"></script>
+<script src="/js/usersSearch.js"></script>
 <body>
 
 <div class="spinner-border text-light" role="status" id="loading">
@@ -12,6 +13,18 @@
 </div>
 
 <div id="getResultUsers"></div>
+
+<!--<div class="searchContainer">-->
+    <!--<div class="dropdown">-->
+        <!--<button class="btn btn-secondary dropdown-toggle searchCourseButton" onclick="openSearch()">Поиск пользователя</button>-->
+        <!--<div id="searchCourses" class="searchCourses">-->
+            <!--<a class="dropdown-item">-->
+                <!--<button class="btn btn-secondary" onclick="closeSearch()">Свернуть</button>-->
+                <!--<textarea maxlength="80" id="usernameID" onkeyup="filterUsername()"></textarea>-->
+            <!--</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 </body>
 </html>

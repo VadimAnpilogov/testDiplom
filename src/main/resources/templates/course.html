@@ -23,13 +23,6 @@
     </table>
 </div>
 
-<!--<form style="margin-left: 400px;" action="search?courseNameS1=courseNameS">-->
-<!--    <input type="courseNameS1" name="courseNameS">-->
-<!--    <input type="submit" value="Поиск"  >-->
-<!--</form>-->
-
-
-
 <div class="coursesTiles" id="coursesTilesID">
     <table>
         <tr th:each="cor : ${QCourse1}" id="TR">
@@ -54,51 +47,11 @@
         <div id="searchCourses" class="searchCourses">
             <a class="dropdown-item">
                 <button class="btn btn-secondary" onclick="closeSearch()">Свернуть</button>
-            </a>
-            <a class="dropdown-item">
-                <h5>Название курса</h5>
                 <textarea maxlength="80" id="CourseNameID" onkeyup="filterCourseName()"></textarea>
             </a>
-<!--            <a class="dropdown-item">-->
-<!--                <h5>Преподаватель</h5>-->
-<!--                <textarea maxlength="80"></textarea>-->
-<!--            </a>-->
-<!--            <a class="dropdown-item">-->
-<!--                <h5>Область курса</h5>-->
-<!--                <textarea maxlength="80"></textarea>-->
-<!--            </a>-->
-<!--            <a class="dropdown-item">-->
-<!--                <h5>Тип занятий</h5>-->
-<!--                <div class="custom-control custom-radio custom-control-inline">-->
-<!--                    <input type="radio" id="Type1" name="Type" class="custom-control-input" checked>-->
-<!--                    <label class="custom-control-label" for="Type1">Онлайн</label>-->
-<!--                </div>-->
-<!--                <div class="custom-control custom-radio custom-control-inline">-->
-<!--                    <input type="radio" id="Type2" name="Type" class="custom-control-input">-->
-<!--                    <label class="custom-control-label" for="Type2">Оффлайн</label>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--            <a class="dropdown-item">-->
-<!--                <h5>Стоимость</h5>-->
-<!--                <textarea maxlength="80"></textarea>-->
-<!--            </a>-->
-<!--            <a class="dropdown-item">-->
-<!--                <h5>Цена за</h5>-->
-<!--                <div class="custom-control custom-radio custom-control-inline">-->
-<!--                    <input type="radio" id="Price1" name="Price" class="custom-control-input" checked>-->
-<!--                    <label class="custom-control-label" for="Price1">Одно занятие</label>-->
-<!--                </div>-->
-<!--                <div class="custom-control custom-radio custom-control-inline">-->
-<!--                    <input type="radio" id="Price2" name="Price" class="custom-control-input">-->
-<!--                    <label class="custom-control-label" for="Price2">Весь курс</label>-->
-<!--                </div>-->
-<!--            </a>-->
         </div>
     </div>
 </div>
-
-
-
 
 </body>
 </html>

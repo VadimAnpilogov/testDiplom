@@ -297,4 +297,25 @@ public class CourseController {
 
         return "redirect:/SCourse";
     }
+//    public String coursesName;
+//    @GetMapping("search")
+//    public String searchCourse(
+//            @RequestParam String courseNameS,
+//            Model model
+//    ){
+//        List<Course> filterCourse = courseRepo.findAllByOrderById();
+//        ArrayList<Course> filterCourses = new ArrayList<>();
+//        for(int i=0; i< filterCourse.size(); i++){
+//            coursesName = filterCourse.get(i).getCourseName();
+//           if(coursesName.toUpperCase().contains(courseNameS.toUpperCase())){
+//               filterCourses.add(filterCourse.get(i));
+//           }
+//
+//
+//
+//        }
+//        model.addAttribute("QCourse1", filterCourses);
+//
+//        return "course";
+//    }
 }

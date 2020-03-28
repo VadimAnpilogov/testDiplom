@@ -49,7 +49,6 @@ public class UserService implements UserDetailsService {
     public void updateProfile(
             User user,
             Users users,
-            String password,
             String email,
             String username,
             String fio,
@@ -73,9 +72,6 @@ public class UserService implements UserDetailsService {
         user.setFio(fio);
         user.setPhone(phone);
 
-        if (!StringUtils.isEmpty(password)) {
-            users.setPassword(password);
-        }
 
         userRepo.save(users);
         userRepos.save(user);

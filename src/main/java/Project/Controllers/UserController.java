@@ -125,7 +125,6 @@ public class UserController {
     public String updateProfile(
             @AuthenticationPrincipal Users users,
             @RequestParam String email,
-            @RequestParam String password,
             @RequestParam String username,
             @RequestParam String fio,
             @RequestParam String phone,
@@ -148,7 +147,7 @@ public class UserController {
         else
         {
             test = "test";
-            userSevice.updateProfile(user, users ,password, email, username, fio, phone);
+            userSevice.updateProfile(user, users , email, username, fio, phone);
         }
 
 
@@ -233,15 +232,16 @@ public class UserController {
             @RequestParam String password,
             @RequestParam String passwordNew,
             @RequestParam String passwordNew2,
-            User user,
             Model model
     ){
 
-       // Users users1 = userRepo.findByUsername(users.getUsername());
+       Users users1 = userRepo.findByUsername(users.getUsername());
 
-        if(password.equals(users.getPassword())){
+        if(password.equals(users1.getPassword())){
             if(passwordNew.equals(passwordNew2)){
-                userSevice.updateProfile(user, users ,passwordNew, users.getUser().getEmail(), users.getUsername(), users.getUser().getFio(), users.getUser().getPhone());
+                users1.setPassword(passwordNew);
+                userRepo.save(users1);
+                //userSevice.updateProfile(user, users ,passwordNew, users.getUser().getEmail(), users.getUsername(), users.getUser().getFio(), users.getUser().getPhone());
             }
             else {
                 model.addAttribute("errorPassword", "Пароли не совпадают");

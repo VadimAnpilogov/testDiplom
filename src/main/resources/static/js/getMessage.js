@@ -22,12 +22,25 @@ function ajaxGet(){
                             "</span></div></div>");
                     }
                     if (customer.sender === Username) {
-                        $('#getResultMessage').append(
-                            "<div class='outgoing_msg'>" +
-                            "<div class='sent_msg'>" +
-                            "<p>" + customer.message + "</p>" +
-                            "<span class='time_dateOutMes'>" + customer.date +
-                            "</span></div></div>");
+                        if(customer.statusMessage === true)
+                        {
+                            $('#getResultMessage').append(
+                                "<div class='outgoing_msg'>" +
+                                "<div class='sent_msg'>" +
+                                "<div><p>" + customer.message + "</p>" +
+                                "<span class='time_dateOutMes'>" + customer.date +
+                                "</span></div></div></div>");
+                        }
+                        else
+                        {
+                            $('#getResultMessage').append(
+                                "<div class='outgoing_msg'>" +
+                                "<div class='sent_msg'>" +
+                                "<img alt='" + customer.statusMessage + "' src=\"https://img.icons8.com/color/48/000000/filled-circle.png\"/>" +
+                                "<div><p>" + customer.message + "</p>" +
+                                "<span class='time_dateOutMes'>" + customer.date +
+                                "</span></div></div></div>");
+                        }
                     }
                     if(temp === 0)
                     {

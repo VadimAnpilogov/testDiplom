@@ -5,6 +5,12 @@
 <head th:fragment="style">
     <style>
 
+        .outgoing_msg img{
+            width: 15px;
+            margin: 9px;
+            position: absolute;
+            left: -31px;
+        }
 
         .coursesMessage{
             color: white;
@@ -749,7 +755,7 @@
         }
         .sent_msg {
             float: right;
-            /*width: 46%;*/
+            position: relative;
         }
         .input_msg_write input {
             background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -1479,6 +1485,10 @@
             padding-top: 60px; /* Place content 60px from the top */
             transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
             overflow-y: auto;
+        }
+        a:not([href]):not([tabindex]) {
+             color: white!important;
+            cursor: pointer;
         }
 
          The navigation menu links

@@ -9,14 +9,15 @@ function closeNav() {
 }
 function HideMyName() {
     var Username = document.getElementById("username").textContent;
-    var Dialog = document.getElementById("UsernameDialog").textContent;
-    var Li = document.getElementById("liDialog");
-    if(Username === Dialog)
+    var Dialogs = document.getElementById("dialogUL").getElementsByTagName("li");
+    for(var i = 0; i < Dialogs.length; i++)
     {
-        Li.style.display = "none";
+        if(Username === Dialogs.item(i).innerText)
+        {
+            Dialogs.item(i).style.display = "none";
+        }
     }
 }
-
 
 function filterFunction() {
     var input, filter, ul, li, i;
@@ -32,7 +33,4 @@ function filterFunction() {
         }
     }
     HideMyName();
-}
-function deleteDialog() {
-    alert("Заглушка)");
 }

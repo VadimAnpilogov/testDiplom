@@ -76,7 +76,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <div  class="themes">
                         <div th:each="cors1 : ${courses}">
 
@@ -90,6 +90,17 @@
                                 <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers/{recipient}'(recipient=${cors1.prepName})}" >
                                     <button type="submit" class="btn btn-outline-info">Написать сообщение преподавателю</button>
                                 </form>
+                                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Открыть объявления преподавателя</button>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <ul class="news">
+                                            <li th:each="news:${News}">
+                                                <p th:utext="${news.date}"></p>
+                                                <h1 th:utext="${news.messageNews}"></h1>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
 
 

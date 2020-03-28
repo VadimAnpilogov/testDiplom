@@ -123,7 +123,7 @@ public class CourseController {
             }
         }
         nameCourses=course1;
-        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateDesc(courses.getPrepName());
         model.addAttribute("News", news1);
         return "SCourse";
     }
@@ -351,7 +351,7 @@ public class CourseController {
     public String news(
             @AuthenticationPrincipal Users users,
             Model model){
-        List<News> news = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        List<News> news = newsRepo.findByAuthorNewsOrderByDateDesc(users.getUsername());
         model.addAttribute("News", news);
         return "news";
     }
@@ -390,7 +390,7 @@ public class CourseController {
         news.get().setMessageNews(messageNews);
         newsRepo.save(news.get());
 
-        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateDesc(users.getUsername());
         model.addAttribute("News", news1);
         return "news";
     }
@@ -402,7 +402,7 @@ public class CourseController {
         Optional<News> news = newsRepo.findById(id1);
         model.addAttribute("News", news.get().getMessageNews());
 
-        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateDesc(users.getUsername());
         model.addAttribute("NewsEd", news1);
         return "newsEdit";
     }

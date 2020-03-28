@@ -1,5 +1,4 @@
 function openNav() {
-    // HideMyName();
     document.getElementById("mySidenav").style.width = "250px";
 }
 
@@ -7,16 +6,6 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
-// function HideMyName() {
-//     var Username = document.getElementById("username").textContent;
-//     var Dialog = document.getElementById("UsernameDialog").textContent;
-//     var Li = document.getElementById("liDialog");
-//     if(Username === Dialog)
-//     {
-//         Li.style.display = "none";
-//     }
-// }
-
 
 function filterFunction() {
     var input, filter, ul, li, i;
@@ -31,5 +20,4 @@ function filterFunction() {
             a[i].style.display = "none";
         }
     }
-    // HideMyName();
 }

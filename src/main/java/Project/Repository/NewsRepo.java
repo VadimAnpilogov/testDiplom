@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface NewsRepo extends CrudRepository<News, Long> {
-    List<News> findByAuthorNewsOrderByDateAsc(String AuthorNews);
+    List<News> findByAuthorNewsOrderByDateDesc(String AuthorNews);
 }

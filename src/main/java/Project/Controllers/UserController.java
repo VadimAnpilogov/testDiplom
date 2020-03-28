@@ -71,12 +71,23 @@ public class UserController {
         Iterable<Users> users = usersListRepo.findByUsername(user.getUsername());
         model.addAttribute("personalData", users);
 
+        roles = user.getRoles().toString();
+
         List<Users> users1 = usersListRepo.findByUsername(user.getUsername());
         ArrayList<Users> users2 = new ArrayList<>(users1);
-        if(users2.get(0).getCourseFol().isEmpty()){
-            return "Personal";
+        if(roles.equals(adminR)){
+            if(users2.get(0).getAuthCourse().isEmpty()){
+                return "Personal";
+            }
+            model.addAttribute("course", users2.get(0).getAuthCourse());
+            model.addAttribute("status", "Преподаватель");
+        }else {
+            if(users2.get(0).getCourseFol().isEmpty()){
+                return "Personal";
+            }
+            model.addAttribute("course", users2.get(0).getCourseFol());
+            model.addAttribute("status", "Студент");
         }
-        model.addAttribute("course", users2.get(0).getCourseFol());
         return "Personal";
     }
     @GetMapping("/PersonalData")
@@ -155,10 +166,6 @@ public class UserController {
         Users users1 = userRepo.findByUsername(users);
         model.addAttribute("users", users1);
         roles = users1.getRoles().toString();
-//        Iterable<Course> courses = courseRepo.findByUsers(user);
-
-        Iterable<Course> course = courseRepo.findAll();
-        model.addAttribute("course", course);
 
         return "redirect:/userPers";
     }
@@ -169,13 +176,25 @@ public class UserController {
 //        Iterable<Users> user = usersListRepo.findByUsername(username1);
         model.addAttribute("users", userRepo.findByUsername(username1));
 
-        Iterable<Course> course = courseRepo.findAll();
-        model.addAttribute("course", course);
+
+        List<Users> users3 = usersListRepo.findByUsername(username1);
+        ArrayList<Users> users2 = new ArrayList<>(users3);
+
 
         if(roles.equals(adminR)){
             model.addAttribute("status", "Преподаватель");
+            if(users2.get(0).getAuthCourse().isEmpty()){
+                return "userPers";
+            }
+            model.addAttribute("course", users2.get(0).getAuthCourse());
+
         }else {
             model.addAttribute("status", "Студент");
+            if(users2.get(0).getCourseFol().isEmpty()){
+                return "userPers";
+            }
+            model.addAttribute("course", users2.get(0).getCourseFol());
+
         }
         return "userPers";
     }

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -51,12 +50,9 @@ public class MessageService {
 
     }
 
-    public void deleteDialog(Long id){
-
-        Optional<Dialog> dialog = dialogRepo.findById(id);
-        dialogRepo.deleteById(id);
-        List<Dialog> dialog1 = dialogRepo.findByNameMess(dialog.get().getNameMess());
+    public void deleteDialog(String namemess){
+        List<Dialog> dialog1 = dialogRepo.findByNameMess(namemess);
         dialogRepo.deleteById(dialog1.get(0).getId());
-
+        dialogRepo.deleteById(dialog1.get(1).getId());
     }
 }

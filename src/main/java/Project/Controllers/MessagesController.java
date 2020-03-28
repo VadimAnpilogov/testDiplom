@@ -87,10 +87,10 @@ public class MessagesController {
     }
 
     //удаление диалога
-    @GetMapping("/deleteDialog/{id}")
+    @GetMapping("/deleteDialog/{namemess}")
     public String DeleteDialogs(
-            @PathVariable Long id){
-        messageService.deleteDialog(id);
+            @PathVariable String namemess){
+        messageService.deleteDialog(namemess);
 
         return "redirect:/messageDown";
     }

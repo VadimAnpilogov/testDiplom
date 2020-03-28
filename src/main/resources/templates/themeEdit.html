@@ -21,24 +21,16 @@
                 <button type="submit" class="btn btn-outline-info buttonTheme">Перейти на курс</button>
             </form>
         </div>
-        <form action="addTheme?nameTheme1=nameTheme">
-            <input type="nameTheme1" name="nameTheme" class="form-control inputField inputTheme" id="nameTheme" placeholder="Введите название темы" autocomplete="off">
-            <button type="submit" class="btn btn-success buttonThemeEnter">
-                <img class="buttonThemeImg" src="https://img.icons8.com/color/96/000000/add.png"/>
-            </button>
+        <form action="EditTheme?nameTheme1=nameTheme" method="post">
+            <input type="nameTheme1" name="nameTheme" th:attr="value=${Theme}" class="form-control inputField inputTheme" id="nameTheme" placeholder="Введите название темы" autocomplete="off">
+            <button type="submit" class="btn btn-outline-info buttonTheme">Сохранить изменения</button>
         </form>
-<!--        <form class="displayInline" th:action="@{'/SCourse/{course}'(course=${NameCourse})}">-->
+        <!--        <form class="displayInline" th:action="@{'/SCourse/{course}'(course=${NameCourse})}">-->
 
-<!--        </form>-->
-        <div th:each="Them : ${Theme}">
+        <!--        </form>-->
+        <div th:each="Them : ${Themes}">
 
             <h4 th:utext="${Them.nameTheme}"></h4>
-            <a th:href="@{'/EditTheme/{id}'(id=${Them.id})}">
-                <h7>Редактировать</h7>
-            </a>
-            <a th:href="@{'/deleteTheme/{id}'(id=${Them.id})}">
-                <h7>Удалить</h7>
-            </a>
         </div>
     </div>
 </div>

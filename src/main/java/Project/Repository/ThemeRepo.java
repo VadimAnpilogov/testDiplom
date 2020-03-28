@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface ThemeRepo extends CrudRepository <Theme, Long> {
     List <Theme> findAllByOrderByDateAsc();
-    List <Theme> findByNameCourseOrderByDateAsc(String nameCourse);;
+    List <Theme> findByNameCourseOrderByDateAsc(String nameCourse);
+    Theme findById(int id);
 }

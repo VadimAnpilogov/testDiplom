@@ -10,6 +10,7 @@ import Project.Repository.ThemeRepo;
 import Project.Repository.UsersListRepo;
 import Project.Repository.UsersRepo;
 import Project.Service.MessageService;
+import Project.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,10 +20,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CourseController {
@@ -38,6 +38,9 @@ public class CourseController {
     @Autowired
     private UsersListRepo usersListRepo;
 
+    @Autowired
+    private UserService userService;
+
 
 //    public  String PrepName;
     public String usernameCorse;
@@ -51,7 +54,7 @@ public class CourseController {
     public String roles1;
     public String test = "test";
     public int boole = 0;
-
+    public Long id1;
     //Страница курсов
     @GetMapping("/course")
     public String course(Model model){
@@ -124,6 +127,7 @@ public class CourseController {
                 model.addAttribute("signUpCourse", users.getUsername());
             }
         }
+        nameCourses=course1;
         return "SCourse";
     }
 
@@ -136,7 +140,7 @@ public class CourseController {
         model.addAttribute("theme", theme);
         Course courses = courseRepo.findByCourseName(course1);
         model.addAttribute("courses", courses);
-
+        nameCourses=course1;
         return "redirect:/SCourse";
     }
 //Запись на курс
@@ -186,9 +190,7 @@ public class CourseController {
             Model model, @RequestParam String nameTheme){
         model.addAttribute("namePage", namePageTheme);
 
-        Date dateNow = new Date();
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm");
-        date=formatForDateNow.format(dateNow);
+        date = userService.date();
 
         Theme themes = new Theme(nameTheme, nameCourses, user.getUsername(), date);
         themeRepo.save(themes);
@@ -215,6 +217,52 @@ public class CourseController {
         courseRepo.deleteById(id);
         return "redirect:/course";
     }
+
+    @GetMapping("deleteTheme/{id}")
+    public String deleteTheme(
+            @PathVariable Long id
+    ){
+        themeRepo.deleteById(id);
+
+        return "redirect:/theme";
+    }
+
+    @PostMapping("EditTheme")
+    public String EditThemes(
+            @RequestParam String nameTheme,
+            Model model
+    ){
+        date = userService.date();
+
+        Optional<Theme> themes = themeRepo.findById(id1);
+        themes.get().setNameTheme(nameTheme);
+        themeRepo.save(themes.get());
+
+        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
+        model.addAttribute("Theme", theme);
+        model.addAttribute("NameCourse", nameCourses);
+        return "theme";
+    }
+    @GetMapping("EditThemes")
+    public String EditThemes(Model model){
+        Optional<Theme> themes = themeRepo.findById(id1);
+        model.addAttribute("Theme", themes.get().getNameTheme());
+        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
+        model.addAttribute("Themes", theme);
+        model.addAttribute("NameCourse", nameCourses);
+        return "themeEdit";
+    }
+
+    @GetMapping("EditTheme/{id}")
+    public String EditTheme(
+            @PathVariable Long id
+    ){
+
+        id1=id;
+        return "redirect:/EditThemes";
+    }
+
+
 
     @GetMapping("myCourse")
     public String myCourse(

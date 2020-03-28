@@ -40,6 +40,8 @@
             <button onclick="" type="button" class="btn btn-outline-info">Добавить объявление</button>
             <form th:action="@{'/CourseEdit'}" class="inline">
             <button onclick="" type="submit" class="btn btn-outline-info">Редактировать курс</button></form>
+            <form th:action="@{'/theme'}" class="inline">
+                <button onclick="" type="submit" class="btn btn-outline-info">Редактировать темы</button></form>
             <form th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}" class="inline">
             <button onclick="" type="submit" class="btn btn-outline-info">Удалить курс</button></form>
         </div>
@@ -95,6 +97,7 @@
                         </div>
                         <div th:each="them : ${theme}">
                             <h6 th:utext="${them.nameTheme}"></h6>
+
                         </div>
                     </div>
 

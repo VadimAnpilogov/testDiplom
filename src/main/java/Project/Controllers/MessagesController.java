@@ -104,4 +104,7 @@ public class MessagesController {
         messageService.createDialog(user.getUsername(), recipient);
         return "redirect:/messageU/{recipient}";
     }
+
+
+
 }

@@ -52,6 +52,7 @@ public class Users implements UserDetails{
     )
     private Set<Course> AuthCourse = new HashSet<>();
 
+
     public Set<Course> getAuthCourse() {
         return AuthCourse;
     }

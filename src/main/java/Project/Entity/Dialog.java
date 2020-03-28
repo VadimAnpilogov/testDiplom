@@ -1,9 +1,10 @@
 package Project.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Dialog {
@@ -15,12 +16,31 @@ public class Dialog {
     private String sender;
     private String recipient;
 
+
+    @JsonIgnore
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "MessDialog",
+            joinColumns = {@JoinColumn(name = "DialogId")},
+            inverseJoinColumns = {@JoinColumn(name = "MessageId")}
+    )
+    private Set<Messages> MessageDialogs = new HashSet<>();
+
+
     public Dialog() {
     }
     public Dialog(String nameMess, String sender, String recipient) {
         this.nameMess = nameMess;
         this.sender = sender;
         this.recipient = recipient;
+    }
+
+    public Set<Messages> getMessageDialogs() {
+        return MessageDialogs;
+    }
+
+    public void setMessageDialogs(Set<Messages> messageDialogs) {
+        MessageDialogs = messageDialogs;
     }
 
     public String getRecipient() {

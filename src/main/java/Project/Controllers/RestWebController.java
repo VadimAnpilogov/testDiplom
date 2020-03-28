@@ -103,6 +103,7 @@ public class RestWebController {
 
 		return response;
 	}
+	public String nameMessD;
 	@PostMapping(value = "message/save")
 	public Response postMessage(
 			@AuthenticationPrincipal Users user,
@@ -117,9 +118,14 @@ public class RestWebController {
 				userService.date(),
 				statusMessage
 				);
-
+//		nameMessD = messageService.nameDialog(recipient1, user.getUsername());
+		List<Dialog> dialog = dialogRepo.findByNameMess(messageService.nameDialog(recipient1, user.getUsername()));
 		sMessageRepo.save(messages);
+		dialog.get(0).getMessageDialogs().add(messages);
+		dialogRepo.save(dialog.get(0));
+		dialog.get(1).getMessageDialogs().add(messages);
 
+		dialogRepo.save(dialog.get(1));
 		Response response = new Response("Done", message);
 		return response;
 	}

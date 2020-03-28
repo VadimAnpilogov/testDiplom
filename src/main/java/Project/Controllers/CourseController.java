@@ -123,7 +123,7 @@ public class CourseController {
             }
         }
         nameCourses=course1;
-        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(courses.getPrepName());
         model.addAttribute("News", news1);
         return "SCourse";
     }

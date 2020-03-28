@@ -19,9 +19,7 @@
                 <th>
                     <a th:href="@{'/PersonalData'}">Мои данные</a>
                 </th>
-                <th>
-                    <a th:href="@{'/Personal'}">Достижения</a>
-                </th>
+
             </tr>
         </table>
     </div>
@@ -46,8 +44,8 @@
                 <h5>Никнейм</h5>
                 <input type="username1" value="fio" th:attr="value=${data.username}" name="username" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
                 <h5 style="color: #dd3333" th:text="${UserMessage}"></h5>
-                <h5>Пароль</h5>
-                <input type="password1" value="fio" th:attr="value=${data.password}" name="password" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
+<!--                <h5>Пароль</h5>-->
+<!--                <input type="password1" value="fio" th:attr="value=${data.password}" name="password" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
 
 
 

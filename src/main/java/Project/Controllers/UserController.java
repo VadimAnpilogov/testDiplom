@@ -1,9 +1,12 @@
 package Project.Controllers;
 
-import Project.Entity.*;
+import Project.Entity.Reviews;
+import Project.Entity.User;
+import Project.Entity.Users;
 import Project.Repository.*;
 import Project.Service.MailSender;
 import Project.Service.UserService;
+import Project.message.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -216,4 +219,86 @@ public class UserController {
         return "contacts";
     }
 
+    @GetMapping("PersonalPassword")
+    public String PersonalPassword(){
+
+        return "PersonalPassword";
+    }
+
+
+
+    @PostMapping("PasswordNew")
+    public String PasswordNew(
+            @AuthenticationPrincipal Users users,
+            @RequestParam String password,
+            @RequestParam String passwordNew,
+            @RequestParam String passwordNew2,
+            User user,
+            Model model
+    ){
+
+       // Users users1 = userRepo.findByUsername(users.getUsername());
+
+        if(password.equals(users.getPassword())){
+            if(passwordNew.equals(passwordNew2)){
+                userSevice.updateProfile(user, users ,passwordNew, users.getUser().getEmail(), users.getUsername(), users.getUser().getFio(), users.getUser().getPhone());
+            }
+            else {
+                model.addAttribute("errorPassword", "Пароли не совпадают");
+                return "PersonalPassword";
+            }
+
+        }else {
+            model.addAttribute("errorPassword", "Неверный пароль");
+            return "PersonalPassword";
+        }
+
+        return "redirect:/PersonalData";
+    }
+
+    @GetMapping("Password")
+    public String password(){
+
+        return "Password";
+    }
+
+    @PostMapping("passwordMail")
+    public String passwordMail(
+            @RequestParam String username,
+            @RequestParam String email,
+            Model model
+    ){
+        PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
+                .useDigits(true)
+                .useLower(true)
+                .useUpper(true)
+                .build();
+        String password = passwordGenerator.generate(12);
+
+        Users users1 = userRepo.findByUsername(username);
+        if(users1 != null){
+            if(users1.getUser().getEmail().equals(email)){
+                String message = String.format(
+                        "Здравствуйте, %s! \n" +
+                                "Вот ваш временный пароль, с помощью которого вы можете войти на сервис \n" +
+                                "%s \n"+
+                                "Если это не вы пытались воостановить пароль, то ваш аккаунт может быть под угрозой и вам нужно скорее сменить пароль.",
+                        users1.getUsername(),
+                        password
+                );
+                mailSender.send(users1.getUser().getEmail(), "Восстановление пароля", message);
+            }else {
+                model.addAttribute("message", "Невырный логин или пароль");
+                return "Password";
+            }
+        }else {
+            model.addAttribute("message", "Невырный логин или пароль");
+            return "Password";
+        }
+
+        users1.setPassword(password);
+        userRepo.save(users1);
+
+        return "redirect:/login";
+    }
 }

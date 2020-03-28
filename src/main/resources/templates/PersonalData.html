@@ -19,9 +19,7 @@
                 <th>
                     <a th:href="@{'/PersonalData'}">Мои данные</a>
                 </th>
-                <th>
-                    <a th:href="@{'/Personal'}">Достижения</a>
-                </th>
+
             </tr>
         </table>
     </div>
@@ -32,6 +30,9 @@
                 <img class="pers" src="https://i9.wampi.ru/2020/03/01/s1200-1.webp" alt="sunil">
                 <form action="PersonalEdit">
                     <button type="submit" class="btn btn-outline-info buttonPers">Изменить личные данные</button>
+                </form>
+                <form action="PersonalPassword">
+                    <button type="submit" class="btn btn-outline-info buttonPers">Изменить пароль</button>
                 </form>
             </div>
             <div class="col-6 personalData" >

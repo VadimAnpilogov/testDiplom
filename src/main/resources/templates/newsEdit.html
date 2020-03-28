@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+</head>
+<title>Темы курса</title>
+<body th:replace="fragments/upMenu :: upMenu"></body>
+<body th:replace="fragments/homeMenu :: homeMenu"></body>
+<body>
+
+<!--    <form th:action="@{'/SCourse/{course}'(course=${NameCourse})}">-->
+<!--        <button type="submit" class="btn btn-outline-info buttonPers">Перейти на страницу курса</button>-->
+<!--    </form>-->
+
+
+<div class="formCourse">
+    <div class="formTheme">
+        <div>
+            <label for="nameTheme" class="h4">Мои объявления</label>
+<!--            <form class="displayInline" th:action="@{'/SCourse/{course}'(course=${NameCourse})}">-->
+<!--                <button type="submit" class="btn btn-outline-info buttonTheme">Перейти на курс</button>-->
+<!--            </form>-->
+        </div>
+        <form action="EditNews?messageNews1=messageNews" method="post">
+            <input type="messageNews1" name="messageNews" th:attr="value=${News}" class="form-control inputField inputTheme" id="nameTheme" placeholder="Введите название темы" autocomplete="off">
+            <button type="submit" class="btn btn-outline-info buttonTheme">Сохранить изменения</button>
+        </form>
+        <!--        <form class="displayInline" th:action="@{'/SCourse/{course}'(course=${NameCourse})}">-->
+
+        <!--        </form>-->
+        <div th:each="Them : ${NewsEd}">
+
+            <h4 th:utext="${Them.messageNews}"></h4>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

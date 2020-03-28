@@ -1,14 +1,8 @@
 package Project.Controllers;
 
 
-import Project.Entity.Course;
-import Project.Entity.Theme;
-import Project.Entity.User;
-import Project.Entity.Users;
-import Project.Repository.CourseRepo;
-import Project.Repository.ThemeRepo;
-import Project.Repository.UsersListRepo;
-import Project.Repository.UsersRepo;
+import Project.Entity.*;
+import Project.Repository.*;
 import Project.Service.MessageService;
 import Project.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +31,10 @@ public class CourseController {
     private MessageService messageService;
     @Autowired
     private UsersListRepo usersListRepo;
-
     @Autowired
     private UserService userService;
+    @Autowired
+    private NewsRepo newsRepo;
 
 
 //    public  String PrepName;
@@ -128,6 +123,8 @@ public class CourseController {
             }
         }
         nameCourses=course1;
+        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        model.addAttribute("News", news1);
         return "SCourse";
     }
 
@@ -200,15 +197,18 @@ public class CourseController {
         return "redirect:/theme";
     }
 
+
+
     @GetMapping("theme")
     public String theme(Model model){
-        model.addAttribute("namePage", namePageTheme);
 
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
         model.addAttribute("Theme", theme);
         model.addAttribute("NameCourse", nameCourses);
         return "theme";
     }
+
+
     @GetMapping("deleteCourse/{id}")
     public String deleteCourse(
             @PathVariable Long id
@@ -345,6 +345,86 @@ public class CourseController {
 
         return "redirect:/SCourse";
     }
+
+
+    @GetMapping("news")
+    public String news(
+            @AuthenticationPrincipal Users users,
+            Model model){
+        List<News> news = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        model.addAttribute("News", news);
+        return "news";
+    }
+
+    @PostMapping("NewsAdd")
+    public String NewsAdd(
+            @AuthenticationPrincipal Users users,
+            @RequestParam String messageNews,
+            Model model){
+        News news = new News(messageNews, users.getUsername(), userService.date());
+        newsRepo.save(news);
+
+        return "redirect:/news";
+    }
+
+
+    @GetMapping("deleteNews/{id}")
+    public String deleteNews(
+            @PathVariable Long id
+    ){
+        newsRepo.deleteById(id);
+
+        return "redirect:/news";
+    }
+
+
+
+    @PostMapping("EditNews")
+    public String EditNews(
+            @AuthenticationPrincipal Users users,
+            @RequestParam String messageNews,
+            Model model
+    ){
+
+        Optional<News> news = newsRepo.findById(id1);
+        news.get().setMessageNews(messageNews);
+        newsRepo.save(news.get());
+
+        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        model.addAttribute("News", news1);
+        return "news";
+    }
+
+    @GetMapping("EditNewsGet")
+    public String EditNews(
+            @AuthenticationPrincipal Users users,
+            Model model){
+        Optional<News> news = newsRepo.findById(id1);
+        model.addAttribute("News", news.get().getMessageNews());
+
+        Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateAsc(users.getUsername());
+        model.addAttribute("NewsEd", news1);
+        return "newsEdit";
+    }
+
+    @GetMapping("EditNews/{id}")
+    public String EditNewsId(
+            @PathVariable Long id
+    ){
+
+        id1=id;
+        return "redirect:/EditNewsGet";
+    }
+
+
+
+
+
+
+
+
+
+
 //    public String coursesName;
 //    @GetMapping("search")
 //    public String searchCourse(

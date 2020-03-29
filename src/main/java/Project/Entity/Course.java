@@ -30,6 +30,23 @@ public class Course {
     )
     private Set<Users> usersFol = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "CourseTheme",
+            joinColumns = {@JoinColumn(name = "CourseId")},
+            inverseJoinColumns = {@JoinColumn(name = "ThemeId")}
+    )
+    private Set<Theme> ThemesCourse = new HashSet<>();
+
+    public Set<Theme> getThemesCourse() {
+        return ThemesCourse;
+    }
+
+    public void setThemesCourse(Set<Theme> themesCourse) {
+        ThemesCourse = themesCourse;
+    }
+
     public Set<Users> getUsersFol() {
         return usersFol;
     }

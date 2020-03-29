@@ -1,9 +1,8 @@
 package Project.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Theme {
@@ -24,6 +23,28 @@ public class Theme {
     }
 
     public Theme() {
+    }
+
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "CourseTheme",
+            joinColumns = {@JoinColumn(name = "ThemeId")},
+            inverseJoinColumns = {@JoinColumn(name = "CourseId")}
+    )
+    private Course CourseThemes;
+
+    public void addCourse(Course course){
+        this.CourseThemes = course;
+    }
+
+    public Course getCourseThemes() {
+        return CourseThemes;
+    }
+
+    public void setCourseThemes(Course courseThemes) {
+        CourseThemes = courseThemes;
     }
 
     public Long getId() {

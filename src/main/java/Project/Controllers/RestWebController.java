@@ -142,22 +142,23 @@ public class RestWebController {
 		return response;
 	}
 
-	@PostMapping("messageDev")
-	public String messageDev(
+	@PostMapping(value = "contacts/messageDev")
+	public Response messageDev(
 			@AuthenticationPrincipal Users users,
-			@RequestParam String messages
+			@RequestBody Messages message
 	){
 
-		String message = String.format(
+		String message1 = String.format(
 				"Сообщение от %s! \n" +
 						"%s",
 				users.getUsername(),
-				messages
+				message.getMessage()
 		);
 
-		mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message);
-		mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message);
-		return "contacts";
+		mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message1);
+		mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message1);
+		Response response = new Response("Done" , "Готово");
+		return response;
 	}
 
 }

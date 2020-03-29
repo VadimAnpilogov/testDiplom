@@ -8,7 +8,6 @@
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
 <script src="js/postContacts.js"></script>
-<script src="js/contacts.js"></script>
 <body>
 <div class="scroll">
     <div align="center" class="contacts">
@@ -26,8 +25,8 @@
 
     <div class="contactsForm" id="contactsFormGeneral" sec:authorize ="isAuthenticated()">
         <form id="contactsForm">
-            <textarea name="message" id="contactsText" maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
-            <button onclick="SentMessage()" class="contactsBtn btn btn-success" value="Отправить">Отправить</button>
+            <textarea id="message" name="message"  maxlength="1000" class="contactsInput" placeholder="Введите сообщение" autocomplete="off" required></textarea>
+            <button class="contactsBtn btn btn-success" value="Отправить">Отправить</button>
         </form>
     </div>
 </div>

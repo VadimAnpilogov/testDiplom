@@ -24,10 +24,7 @@ $( document ).ready(function() {
             dataType : 'json',
             success : function(result) {
                 if(result.status === "Done"){
-                    $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
-                        "Post Successfully! <br>" +
-                        "---> Customer's Info: FirstName = " +
-                        result.data.message + "</p>");
+                    SentMessage();
                 }else{
                     $("#postResultDiv").html("<strong>Error</strong>");
                 }
@@ -52,8 +49,8 @@ $( document ).ready(function() {
         var e = event || window.event;
         var code = e.keyCode || e.which;
         var activeEl = document.activeElement.id;
-        if(code === 13 && activeEl === "contactsText") {
-            var text_redirect = document.getElementById('contactsText').value;
+        if(code === 13 && activeEl === "message") {
+            var text_redirect = document.getElementById('message').value;
             text_redirect = text_redirect.replace(/^\s+/, "");
             if(text_redirect !== "") {
                 event.preventDefault();
@@ -68,13 +65,13 @@ $( document ).ready(function() {
         var code = e.keyCode || e.which;
         var activeEl = document.activeElement.id;
         if(code === 13 && e.ctrlKey) {
-            if(activeEl === "contactsText") {
-                document.getElementById('contactsText').value += "\n";
+            if(activeEl === "message") {
+                document.getElementById('message').value += "\n";
             } else {
                 return false;
             }
-        } else if(code === 13 && activeEl === "contactsText") {
-            var text_redirect = document.getElementById('contactsText').value;
+        } else if(code === 13 && activeEl === "message") {
+            var text_redirect = document.getElementById('message').value;
             text_redirect = text_redirect.replace(/^\s+/, "");
             if(text_redirect !== "") {
                 event.preventDefault();
@@ -83,5 +80,13 @@ $( document ).ready(function() {
                 return false;
             }
         }
+    };
+    function SentMessage() {
+        $('#contactsFormGeneral').empty();
+        $('#contactsFormGeneral').append(
+            "<div>" +
+            "<h4>Спасибо!</h4>" +
+            "<h5>Мы свяжемся с вами для ответа.</h5>" +
+            "</div>");
     }
 });

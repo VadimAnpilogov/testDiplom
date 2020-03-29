@@ -145,14 +145,14 @@ public class RestWebController {
 	@PostMapping(value = "contacts/messageDev")
 	public Response messageDev(
 			@AuthenticationPrincipal Users users,
-			@RequestBody Messages message
+			@RequestBody Chat chat
 	){
 
 		String message1 = String.format(
 				"Сообщение от %s! \n" +
 						"%s",
 				users.getUsername(),
-				message.getMessage()
+				chat.getMessage()
 		);
 
 		mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message1);

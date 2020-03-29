@@ -52,8 +52,8 @@ $( document ).ready(function() {
         var e = event || window.event;
         var code = e.keyCode || e.which;
         var activeEl = document.activeElement.id;
-        if(code === 13 && activeEl === "message") {
-            var text_redirect = document.getElementById('message').value;
+        if(code === 13 && activeEl === "contactsText") {
+            var text_redirect = document.getElementById('contactsText').value;
             text_redirect = text_redirect.replace(/^\s+/, "");
             if(text_redirect !== "") {
                 event.preventDefault();
@@ -68,13 +68,13 @@ $( document ).ready(function() {
         var code = e.keyCode || e.which;
         var activeEl = document.activeElement.id;
         if(code === 13 && e.ctrlKey) {
-            if(activeEl === "message") {
-                document.getElementById('message').value += "\n";
+            if(activeEl === "contactsText") {
+                document.getElementById('contactsText').value += "\n";
             } else {
                 return false;
             }
-        } else if(code === 13 && activeEl === "message") {
-            var text_redirect = document.getElementById('message').value;
+        } else if(code === 13 && activeEl === "contactsText") {
+            var text_redirect = document.getElementById('contactsText').value;
             text_redirect = text_redirect.replace(/^\s+/, "");
             if(text_redirect !== "") {
                 event.preventDefault();

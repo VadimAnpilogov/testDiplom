@@ -288,11 +288,11 @@ public class UserController {
                 );
                 mailSender.send(users1.getUser().getEmail(), "Восстановление пароля", message);
             }else {
-                model.addAttribute("message", "Невырный логин или пароль");
+                model.addAttribute("message", "Неверный логин или пароль");
                 return "Password";
             }
         }else {
-            model.addAttribute("message", "Невырный логин или пароль");
+            model.addAttribute("message", "Неверный логин или пароль");
             return "Password";
         }
 

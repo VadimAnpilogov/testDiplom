@@ -8,17 +8,32 @@ function ajaxGet(){
                 $('#getResultUsers').empty();
                 document.getElementById("loading").style.display = "none";
                 var Username = [];
+                var Fio = [];
+                var Status = [];
                 var AllData = "";
 
                 $.each(result.data, function(i, customer){
                     Username.push(customer.username);
+                    Fio.push(customer.user.fio);
+                    Status.push(customer.user.rl);
+
                 });
+
+                for(var a = 0; a < Status.length; a++)
+                {
+                    if(Status[a] === 0)
+                        Status[a] = "Преподаватель";
+                    else
+                        Status[a] = "Студент";
+                }
 
                 for (var q = 0; q < Username.length; q++)
                 {
                     if(Username[q] === document.getElementById("username").textContent)
                     {
                         Username.splice(q, 1);
+                        Fio.splice(q, 1);
+                        Status.splice(q, 1);
                     }
                 }
 
@@ -37,14 +52,18 @@ function ajaxGet(){
                                 '</a>' +
                                 '</div>' +
                                 '<h1>' + Username[i] + '</h1>' +
-                                '<h2>Статус</h2>' +
-                                '<h2>Звание</h2>' +
+                                '<h2>' + Fio[i] + '</h2>' +
+                                '<h2>' + Status[i] + '</h2>' +
                                 '</th>';
                         }
                     }
                     AllData += '</tr>';
                     for (var j = 0; j < 4; j++) //удаление первых 4 пользователей из массива
+                    {
                         Username.shift();
+                        Fio.shift();
+                        Status.shift();
+                    }
                 }
 
 

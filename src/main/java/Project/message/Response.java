@@ -8,7 +8,7 @@ public class Response {
 	public Response(){
 		
 	}
-	
+
 	public Response(String status, Object data){
 		this.status = status;
 		this.data = data;

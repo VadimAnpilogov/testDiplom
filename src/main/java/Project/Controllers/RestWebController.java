@@ -135,8 +135,8 @@ public class RestWebController {
 	public Response getUsers(
 			@AuthenticationPrincipal Users user
 	){
-		Iterable<Users> users = usersListRepo.findAll();
-		Response response = new Response("Done" , users );
+		List<Users> users1 = usersListRepo.findAllByOrderByIdAsc();
+		Response response = new Response("Done" , users1);
 		return response;
 	}
 }

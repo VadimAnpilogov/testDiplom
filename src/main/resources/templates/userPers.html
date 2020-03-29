@@ -74,7 +74,7 @@
                                     <h3 class="courseDetail">Занятия: </h3><h3 th:utext="${cor.format}">Онлайн/оффлайн</h3>
                                     <h3 class="courseDetail">Стоимость: </h3><h3 th:utext="${cor.price}">Цена</h3>
                                     <h3 class="courseDetail">Цена указана: </h3><h3 th:utext="${cor.priceType}">Цена</h3>
-                                    <a th:href="@{'/SCourse/{course}'(course=${cor.courseName})}">Перейти на курс</a>
+                                    <a th:href="@{'/SCourse/{id}'(id=${cor.id})}">Перейти на курс</a>
                                 </th>
                             </tr>
                         </table>

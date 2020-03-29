@@ -200,23 +200,23 @@ public class UserController {
         }
         return "userPers";
     }
-    @GetMapping("messageDev")
-    public String messageDev(
-            @AuthenticationPrincipal Users users,
-            @RequestParam String messages
-    ){
-
-        String message = String.format(
-                "Сообщение от %s! \n" +
-                        "%s",
-                users.getUsername(),
-                messages
-        );
-
-        mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message);
-        mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message);
-        return "contacts";
-    }
+//    @GetMapping("messageDev")
+//    public String messageDev(
+//            @AuthenticationPrincipal Users users,
+//            @RequestParam String messages
+//    ){
+//
+//        String message = String.format(
+//                "Сообщение от %s! \n" +
+//                        "%s",
+//                users.getUsername(),
+//                messages
+//        );
+//
+//        mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message);
+//        mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message);
+//        return "contacts";
+//    }
 
     @GetMapping("PersonalPassword")
     public String PersonalPassword(){

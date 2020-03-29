@@ -2,15 +2,13 @@ package Project.Controllers;
 
 import Project.Entity.*;
 import Project.Repository.*;
+import Project.Service.MailSender;
 import Project.Service.MessageService;
 import Project.Service.UserService;
 import Project.message.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +36,10 @@ public class RestWebController {
 	private UsersListRepo usersListRepo;
 	@Autowired
 	private MessagesController messagesController;
+	@Autowired
+	private MailSender mailSender;
+
+
 
 	public boolean statusMessage = false;
 
@@ -139,4 +141,23 @@ public class RestWebController {
 		Response response = new Response("Done" , users1);
 		return response;
 	}
+
+	@PostMapping("messageDev")
+	public String messageDev(
+			@AuthenticationPrincipal Users users,
+			@RequestParam String messages
+	){
+
+		String message = String.format(
+				"Сообщение от %s! \n" +
+						"%s",
+				users.getUsername(),
+				messages
+		);
+
+		mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message);
+		mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message);
+		return "contacts";
+	}
+
 }

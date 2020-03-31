@@ -22,9 +22,9 @@
             <li th:each="users : ${UsersCourse}" id="liDialog">
                 <div class="message_list" >
                     <div class="chat_people">
-                        <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${users.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
+                        <div class="chat_img"><a th:href="@{'/userPers={users}'(users=${users.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
                         <div class="chat_ib">
-                            <a th:href="@{'/messageUsers/{recipient}'(recipient=${users.username})}" class="username_msg">
+                            <a th:href="@{'/messageUsers={recipient}'(recipient=${users.username})}" class="username_msg">
                                 <h5 th:utext="${users.username}" class="username_msg" id="UsernameDialog">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
                             </a>
                         </div>
@@ -81,13 +81,13 @@
                         <div th:each="cors1 : ${courses}">
 
                             <div sec:authorize="${hasAuthority('USER')}">
-                                <form class="inline" th:if="${signUpCourse != #httpServletRequest.remoteUser}" th:action="@{'/signCourse/{user}'(user=${cors1.prepName})}" >
+                                <form class="inline" th:if="${signUpCourse != #httpServletRequest.remoteUser}" th:action="@{'/signCourse={user}'(user=${cors1.prepName})}" >
                                     <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
                                 </form>
                                 <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'unsubscribeCourse'}" >
                                     <button type="submit" class="btn btn-outline-info">Отписаться от курса</button>
                                 </form>
-                                <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers/{recipient}'(recipient=${cors1.prepName})}" >
+                                <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers={recipient}'(recipient=${cors1.prepName})}" >
                                     <button type="submit" class="btn btn-outline-info">Написать сообщение преподавателю</button>
                                 </form>
                                 <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Открыть объявления преподавателя</button>

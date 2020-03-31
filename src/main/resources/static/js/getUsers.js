@@ -47,7 +47,7 @@ function ajaxGet(){
                             AllData +=  //ячейка для пользователя
                                 '<th>' +
                                 '<div class="usersImg">' +
-                                '<a href="/userPers/' + Username[i] + '">' +
+                                '<a href="/userPers=' + Username[i] + '">' +
                                 '<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">' +
                                 '</a>' +
                                 '</div>' +

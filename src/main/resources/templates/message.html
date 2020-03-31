@@ -33,9 +33,9 @@
             <li th:each="dialog : ${messageU}" id="liDialog">
                 <div class="message_list">
                     <div class="chat_people">
-                        <div class="chat_img"><a th:href="@{'/userPers/{users}'(users=${dialog.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
+                        <div class="chat_img"><a th:href="@{'/userPers={users}'(users=${dialog.username})}"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></a></div>
                         <div class="chat_ib">
-                            <a th:href="@{'/messageUsers/{recipient}'(recipient=${dialog.username})}" class="username_msg">
+                            <a th:href="@{'/messageUsers={recipient}'(recipient=${dialog.username})}" class="username_msg">
                                 <h5 th:utext="${dialog.username}" class="username_msg" id="UsernameDialog">Sunil Rajput <span class="chat_date">Dec 25</span></h5>
                             </a>
                         </div>
@@ -60,12 +60,12 @@
                     <div class="message_list lightDialog" id="dialogIDThis">
                         <div class="chat_people">
                             <div class="chat_img">
-                                <a th:href="@{'/userPers/{users}'(users=${dialog.recipient})}">
+                                <a th:href="@{'/userPers={users}'(users=${dialog.recipient})}">
                                     <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'>
                                 </a>
                             </div>
                             <div class="chat_ib">
-                                <a th:href="@{'/messageU/{recipient}'(recipient=${dialog.recipient})}" class="username_msg">
+                                <a th:href="@{'/message={recipient}'(recipient=${dialog.recipient})}" class="username_msg">
                                     <h5 id='recipientThis' class='username_msg' th:utext="${dialog.recipient}"></h5>
                                 </a>
                             </div>
@@ -85,12 +85,12 @@
                     <div class="message_list" id="dialogID">
                         <div class="chat_people">
                             <div class="chat_img">
-                                <a th:href="@{'/userPers/{users}'(users=${dialog.recipient})}">
+                                <a th:href="@{'/userPers={users}'(users=${dialog.recipient})}">
                                     <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'>
                                 </a>
                             </div>
                             <div class="chat_ib">
-                                <a th:href="@{'/messageU/{recipient}'(recipient=${dialog.recipient})}" class="username_msg">
+                                <a th:href="@{'/message={recipient}'(recipient=${dialog.recipient})}" class="username_msg">
                                     <h5 id='recipient' class='username_msg' th:utext="${dialog.recipient}"></h5>
                                 </a>
                             </div>

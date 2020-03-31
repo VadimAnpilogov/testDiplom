@@ -73,12 +73,14 @@ public class RestWebController {
 	}
 
 
-	@GetMapping(value = "message/all")
+	@GetMapping(value = "message={recipient}/all")
 	public Response getMessage(
-			@AuthenticationPrincipal Users user){
+			@AuthenticationPrincipal Users user,
+			@PathVariable String recipient){
 
 		recipient1=messagesController.recipient1;
-		List<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient1, user.getUsername()));
+
+		List<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient, user.getUsername()));
 		for (int i = 0; i< messages2.size(); i++){
 			if(messages2.get(i).getRecipient().equals(user.getUsername())){
 				messages2.get(i).setStatusMessage(true);
@@ -89,21 +91,22 @@ public class RestWebController {
 		Response response = new Response("Done" , messages2 );
 		return response;
 	}
-	@PostMapping(value = "message/save")
+	@PostMapping(value = "message={recipient}/save")
 	public Response postMessage(
 			@AuthenticationPrincipal Users user,
-			@RequestBody Messages message
+			@RequestBody Messages message,
+			@PathVariable String recipient
 	){
 		recipient1=messagesController.recipient1;
 		Messages messages = new Messages(
 				message.getMessage(),
 				recipient1,
 				user.getUsername(),
-				messageService.nameDialog(recipient1, user.getUsername()),
+				messageService.nameDialog(recipient, user.getUsername()),
 				userService.date(),
 				statusMessage
 				);
-		List<Dialog> dialog = dialogRepo.findByNameMess(messageService.nameDialog(recipient1, user.getUsername()));
+		List<Dialog> dialog = dialogRepo.findByNameMess(messageService.nameDialog(recipient, user.getUsername()));
 		sMessageRepo.save(messages);
 		dialog.get(0).getMessageDialogs().add(messages);
 		dialogRepo.save(dialog.get(0));

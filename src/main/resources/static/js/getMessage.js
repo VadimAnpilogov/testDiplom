@@ -4,7 +4,7 @@ var temp = 0;
 function ajaxGet(){
     $.ajax({
         type : "GET",
-        url : window.location + "/all",
+        url : window.location+"/all",
         success: function(result){
             if (result.status === "Done" && result.data !== null) {
                 var Enter = document.getElementById("enterID");

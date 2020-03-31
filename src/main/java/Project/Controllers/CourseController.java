@@ -120,7 +120,7 @@ public class CourseController {
     }
 
 //Получение названия курса
-    @GetMapping("SCourse/{id}")
+    @GetMapping("SCourse={id}")
     public String SCourseC(@PathVariable Long id, Model model){
 
         idCourse = id;
@@ -129,10 +129,10 @@ public class CourseController {
         course1=course.get().getCourseName();
 
         nameCourses=course1;
-        return "redirect:/SCourse";
+        return "SCourse";
     }
 //Запись на курс
-    @GetMapping("signCourse/{user}")
+    @GetMapping("signCourse={user}")
     public String signCourse(
             @AuthenticationPrincipal Users users,
             @PathVariable String user,
@@ -151,7 +151,7 @@ public class CourseController {
         Optional<Course> courses = courseRepo.findById(idCourse);
         model.addAttribute("courses", courses.get());
 
-        return "redirect:/SCourse";
+        return "SCourse";
     }
 
     @GetMapping("unsubscribeCourse")

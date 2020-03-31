@@ -34,7 +34,7 @@
                 <h3 class="courseDetail">Тип занятий: </h3><h3>Индивидуальные/групповые занятия</h3>
                 <h2 class="courseDetail">Стоимость: </h2><h2 th:utext="${cor.price}">Цена</h2>
                 <h2 class="courseDetail">Цена указана: </h2><h2 th:utext="${cor.priceType}">Цена</h2>
-                <a th:href="@{'/SCourse/{id}'(id=${cor.id})}">Перейти на курс</a>
+                <a th:href="@{'/SCourse={id}'(id=${cor.id})}">Перейти на курс</a>
             </th>
         </tr>
 
@@ -52,7 +52,7 @@
                 <h3 class="courseDetail">Тип занятий: </h3><h3>Индивидуальные/групповые занятия</h3>
                 <h2 class="courseDetail">Стоимость: </h2><h2 th:utext="${cor1.price}">Цена</h2>
                 <h2 class="courseDetail">Цена указана: </h2><h2 th:utext="${cor1.priceType}">Цена</h2>
-                <a th:href="@{'/SCourse/{id}'(id=${cor1.id})}">Перейти на курс</a>
+                <a th:href="@{'/SCourse={id}'(id=${cor1.id})}">Перейти на курс</a>
             </th>
         </tr>
     </table>

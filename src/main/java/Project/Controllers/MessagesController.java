@@ -1,6 +1,5 @@
 package Project.Controllers;
 
-
 import Project.Entity.Dialog;
 import Project.Entity.Users;
 import Project.Repository.DialogRepo;
@@ -21,7 +20,6 @@ public class MessagesController {
     public String recipient1 = "test";
     public String NameMess= "test";
     public String date;
-    public String namePage = "Чат";
 
     @Autowired
     public SMessageRepo sMessageRepo;
@@ -42,26 +40,12 @@ public class MessagesController {
 
         Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
         model.addAttribute("dialogsUser", dialogs);
-        model.addAttribute("colorDialog", recipient1);
-
-        return "message";
-    }
-    @GetMapping("messageDown")
-    public String messageDown(
-            @AuthenticationPrincipal Users user,
-            Model model){
-        recipient1 = "test";
-        Iterable<Users> messU = usersListRepo.findAllByOrderByIdAsc();
-        model.addAttribute("messageU", messU);
-
-        Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
-        model.addAttribute("dialogsUser", dialogs);
 
         return "message";
     }
 
     //Получение имени Получателя
-    @GetMapping("/messageU/{recipient}")
+    @GetMapping("/message={recipient}")
     public String messageU(
             @AuthenticationPrincipal Users user,
             @PathVariable String recipient, Model model){
@@ -74,7 +58,8 @@ public class MessagesController {
 
         Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
         model.addAttribute("dialogsUser", dialogs);
-        return "redirect:/message";
+        model.addAttribute("colorDialog", recipient1);
+        return "message";
     }
 
     //удаление диалога
@@ -83,16 +68,16 @@ public class MessagesController {
             @PathVariable String namemess){
         messageService.deleteDialog(namemess);
 
-        return "redirect:/messageDown";
+        return "redirect:/message";
     }
 
 //создание диалога
-    @GetMapping("/messageUsers/{recipient}")
+    @GetMapping("/messageUsers={recipient}")
     public String messageUsers(
             @AuthenticationPrincipal Users user,
             @PathVariable String recipient){
         messageService.createDialog(user.getUsername(), recipient);
-        return "redirect:/messageU/{recipient}";
+        return "redirect:/message={recipient}";
     }
 
 

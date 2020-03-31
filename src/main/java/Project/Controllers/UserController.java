@@ -138,7 +138,7 @@ public class UserController {
 
 
 //страница пользователя
-    @GetMapping("userPers/{users}")
+    @GetMapping("userPers={users}")
     public String userPersFilter (
             @PathVariable String users,
             Model model){
@@ -147,7 +147,7 @@ public class UserController {
         Users users1 = userRepo.findByUsername(users);
         model.addAttribute("users", users1);
         roles = users1.getRoles().toString();
-        return "redirect:/userPers";
+        return "userPers";
     }
 
 // страница пользователя
@@ -162,6 +162,8 @@ public class UserController {
         if(roles.equals(adminR)){
             model.addAttribute("status", "Преподаватель");
             if(users2.get(0).getAuthCourse().isEmpty()){
+//                List<Reviews> reviews = reviewsRepo.findByUserReviews(username1);
+//                model.addAttribute("reviews", reviews);
                 return "userPers";
             }
             model.addAttribute("course", users2.get(0).getAuthCourse());

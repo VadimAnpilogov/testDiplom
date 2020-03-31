@@ -47,4 +47,10 @@ public class HomeController {
         return "ForPrep";
     }
 
+    @GetMapping("/test")
+    public String test() {
+
+        return "test";
+    }
+
 }

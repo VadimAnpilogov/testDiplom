@@ -23,14 +23,7 @@ import java.util.List;
 @Controller
 public class UserController {
     public String username1="test1";
-    public int roleA=0;
-    public int roleU=1;
-    public String PrepName;
-    public String StudName;
     public String date = "test";
-    public String namePage = "Пользователи";
-    public String namePagePersonal = "Личный кабинет";
-    public String namePagePers = "Страница пользователя";
     public String test = "test";
     public int boole = 0;
     public String adminR = "[ADMIN]";
@@ -41,20 +34,16 @@ public class UserController {
     @Autowired
     private UsersRepo userRepo;
     @Autowired
-    private CourseRepo courseRepo;
-    @Autowired
-    private UMessasgeRepo uMessageRepo;
-    @Autowired
     private UsersListRepo usersListRepo;
     @Autowired
     private UserService userSevice;
     @Autowired
     private MailSender mailSender;
 
+
     //странца всех пользователей
     @GetMapping("users")
     public String users( Model model){
-        model.addAttribute("namePage", namePage);
         Iterable<Users> userRole = usersListRepo.findAll();
         model.addAttribute("users", userRole);
 
@@ -66,7 +55,6 @@ public class UserController {
     public String personalUser(
             @AuthenticationPrincipal Users user,
             Model model){
-        model.addAttribute("namePage", namePagePersonal);
         model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
 
         Iterable<Reviews> reviews2 = reviewsRepo.findByUserReviews(user.getUsername());
@@ -96,10 +84,9 @@ public class UserController {
     @GetMapping("/PersonalData")
     public String PersonalData(
             @AuthenticationPrincipal Users user,
-                                Model model){
-        model.addAttribute("namePage", namePagePersonal);
-        model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
+            Model model){
 
+        model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
         Iterable<Users> users = usersListRepo.findByUsername(user.getUsername());
         model.addAttribute("personalDataEdit", users);
 
@@ -109,18 +96,18 @@ public class UserController {
     public String PersonalEdit(
             @AuthenticationPrincipal Users user,
             Model model){
-        model.addAttribute("namePage", namePagePersonal);
+
         model.addAttribute("users", userRepo.findByUsername(user.getUsername()));
         if(test=="tester")
         {
             model.addAttribute("UserMessage", "Имя пользователя занято");
         }
-//        test = "test";
         Iterable<Users> users = usersListRepo.findByUsername(user.getUsername());
         model.addAttribute("personalDataEdit", users);
-
         return "PersonalEdit";
     }
+
+
     @PostMapping("PersonalEdit")
     public String updateProfile(
             @AuthenticationPrincipal Users users,
@@ -128,17 +115,13 @@ public class UserController {
             @RequestParam String username,
             @RequestParam String fio,
             @RequestParam String phone,
-            User user,
-            Model model
+            User user){
 
-    ){
         Users userFromDB = userRepo.findByUsername(username);
         if(username.equals(users.getUsername()))
         {
             boole = 1;
         }
-
-
         if((userFromDB != null) && (boole == 0)){
 
             test = "tester";
@@ -150,38 +133,31 @@ public class UserController {
             userSevice.updateProfile(user, users , email, username, fio, phone);
         }
 
-
-
         return "redirect:/PersonalData";
     }
-
 
 
 //страница пользователя
     @GetMapping("userPers/{users}")
     public String userPersFilter (
-            @AuthenticationPrincipal User user,
             @PathVariable String users,
             Model model){
-        model.addAttribute("namePage", namePagePers);
+
         username1 = users;
         Users users1 = userRepo.findByUsername(users);
         model.addAttribute("users", users1);
         roles = users1.getRoles().toString();
-
         return "redirect:/userPers";
     }
+
 // страница пользователя
     @GetMapping("/userPers")
     public String userPers(Model model){
-        model.addAttribute("namePage", namePagePers);
-//        Iterable<Users> user = usersListRepo.findByUsername(username1);
-        model.addAttribute("users", userRepo.findByUsername(username1));
 
+        model.addAttribute("users", userRepo.findByUsername(username1));
 
         List<Users> users3 = usersListRepo.findByUsername(username1);
         ArrayList<Users> users2 = new ArrayList<>(users3);
-
 
         if(roles.equals(adminR)){
             model.addAttribute("status", "Преподаватель");
@@ -196,34 +172,9 @@ public class UserController {
                 return "userPers";
             }
             model.addAttribute("course", users2.get(0).getCourseFol());
-
         }
         return "userPers";
     }
-//    @GetMapping("messageDev")
-//    public String messageDev(
-//            @AuthenticationPrincipal Users users,
-//            @RequestParam String messages
-//    ){
-//
-//        String message = String.format(
-//                "Сообщение от %s! \n" +
-//                        "%s",
-//                users.getUsername(),
-//                messages
-//        );
-//
-//        mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message);
-//        mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message);
-//        return "contacts";
-//    }
-
-    @GetMapping("PersonalPassword")
-    public String PersonalPassword(){
-
-        return "PersonalPassword";
-    }
-
 
 
     @PostMapping("PasswordNew")
@@ -232,8 +183,7 @@ public class UserController {
             @RequestParam String password,
             @RequestParam String passwordNew,
             @RequestParam String passwordNew2,
-            Model model
-    ){
+            Model model){
 
        Users users1 = userRepo.findByUsername(users.getUsername());
 
@@ -241,7 +191,6 @@ public class UserController {
             if(passwordNew.equals(passwordNew2)){
                 users1.setPassword(passwordNew);
                 userRepo.save(users1);
-                //userSevice.updateProfile(user, users ,passwordNew, users.getUser().getEmail(), users.getUsername(), users.getUser().getFio(), users.getUser().getPhone());
             }
             else {
                 model.addAttribute("errorPassword", "Пароли не совпадают");
@@ -252,22 +201,16 @@ public class UserController {
             model.addAttribute("errorPassword", "Неверный пароль");
             return "PersonalPassword";
         }
-
         return "redirect:/PersonalData";
     }
 
-    @GetMapping("Password")
-    public String password(){
-
-        return "Password";
-    }
 
     @PostMapping("passwordMail")
     public String passwordMail(
             @RequestParam String username,
             @RequestParam String email,
-            Model model
-    ){
+            Model model){
+
         PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
                 .useDigits(true)
                 .useLower(true)
@@ -295,10 +238,8 @@ public class UserController {
             model.addAttribute("message", "Неверный логин или пароль");
             return "Password";
         }
-
         users1.setPassword(password);
         userRepo.save(users1);
-
         return "redirect:/login";
     }
 }

@@ -27,11 +27,7 @@ public class RestWebController {
 	@Autowired
 	private MessageService messageService;
 	@Autowired
-	public UMessageRepo uMessageRepo;
-	@Autowired
 	private DialogRepo dialogRepo;
-	@Autowired
-	private UserRepo userRepo;
 	@Autowired
 	private UsersListRepo usersListRepo;
 	@Autowired
@@ -39,9 +35,8 @@ public class RestWebController {
 	@Autowired
 	private MailSender mailSender;
 
-
-
 	public boolean statusMessage = false;
+	private String recipient1="test";
 
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
@@ -65,7 +60,6 @@ public class RestWebController {
 		Response response = new Response("Done" , helpS );
 		return response;
 	}
-
 	@PostMapping(value = "help/save")
 	public Response postHelp(
 			@AuthenticationPrincipal Users user,
@@ -77,21 +71,13 @@ public class RestWebController {
 		Response response = new Response("Done", chat);
 		return response;
 	}
-	private String recipient1="test";
-	private String recipient2="test";
-	public String NameMess= "test";
+
 
 	@GetMapping(value = "message/all")
 	public Response getMessage(
 			@AuthenticationPrincipal Users user){
 
-//		Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
 		recipient1=messagesController.recipient1;
-//		if(recipient1 == recipient2){
-//			Response response = new Response("Done" ,dialogs);
-//			return response;
-//		}
-
 		List<Messages> messages2 = sMessageRepo.findByNameMessOrderByDateAsc(messageService.nameDialog(recipient1, user.getUsername()));
 		for (int i = 0; i< messages2.size(); i++){
 			if(messages2.get(i).getRecipient().equals(user.getUsername())){
@@ -100,12 +86,9 @@ public class RestWebController {
 			}
 
 		}
-
 		Response response = new Response("Done" , messages2 );
-
 		return response;
 	}
-	public String nameMessD;
 	@PostMapping(value = "message/save")
 	public Response postMessage(
 			@AuthenticationPrincipal Users user,
@@ -120,7 +103,6 @@ public class RestWebController {
 				userService.date(),
 				statusMessage
 				);
-//		nameMessD = messageService.nameDialog(recipient1, user.getUsername());
 		List<Dialog> dialog = dialogRepo.findByNameMess(messageService.nameDialog(recipient1, user.getUsername()));
 		sMessageRepo.save(messages);
 		dialog.get(0).getMessageDialogs().add(messages);
@@ -132,11 +114,8 @@ public class RestWebController {
 		return response;
 	}
 
-
 	@GetMapping(value = "users/all")
-	public Response getUsers(
-			@AuthenticationPrincipal Users user
-	){
+	public Response getUsers(){
 		List<Users> users1 = usersListRepo.findAllByOrderByIdAsc();
 		Response response = new Response("Done" , users1);
 		return response;
@@ -145,8 +124,7 @@ public class RestWebController {
 	@PostMapping(value = "contacts/messageDev")
 	public Response messageDev(
 			@AuthenticationPrincipal Users users,
-			@RequestBody Chat chat
-	){
+			@RequestBody Chat chat){
 
 		String message1 = String.format(
 				"Сообщение от %s! \n" +
@@ -154,11 +132,9 @@ public class RestWebController {
 				users.getUsername(),
 				chat.getMessage()
 		);
-
 		mailSender.send("vadick.anpilogov2015@yandex.ru", "Сообщения для разработчиков", message1);
 		mailSender.send("denis.moroz.98@gmail.com", "Сообщения для разработчиков", message1);
 		Response response = new Response("Done" , "Готово");
 		return response;
 	}
-
 }

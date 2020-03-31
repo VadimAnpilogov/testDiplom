@@ -31,7 +31,7 @@ public class Course {
     private Set<Users> usersFol = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
             name = "CourseTheme",
             joinColumns = {@JoinColumn(name = "CourseId")},
@@ -56,11 +56,6 @@ public class Course {
     }
 
 
-//    public void addSignUp(User user, String courseName ){
-//        this.courseName = courseName;
-//        users.add(user);
-//    }
-
     public Course() {
     }
 
@@ -73,7 +68,6 @@ public class Course {
         this.priceType = priceType;
         this.format = format;
     }
-
 
 
     public Long getId() {

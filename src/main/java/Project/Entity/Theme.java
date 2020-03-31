@@ -26,27 +26,6 @@ public class Theme {
     }
 
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "CourseTheme",
-            joinColumns = {@JoinColumn(name = "ThemeId")},
-            inverseJoinColumns = {@JoinColumn(name = "CourseId")}
-    )
-    private Course CourseThemes;
-
-    public void addCourse(Course course){
-        this.CourseThemes = course;
-    }
-
-    public Course getCourseThemes() {
-        return CourseThemes;
-    }
-
-    public void setCourseThemes(Course courseThemes) {
-        CourseThemes = courseThemes;
-    }
-
     public Long getId() {
         return id;
     }

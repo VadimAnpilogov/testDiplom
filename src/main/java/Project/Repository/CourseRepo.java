@@ -12,7 +12,6 @@ public interface CourseRepo extends CrudRepository<Course, Long > {
     List<Course> findAllByOrderByIdAsc();
     List<Course> findByCourseNameOrderByIdAsc(String CourseName);
     Course findByCourseName(String courseName);
-//    List<Course> findAllByOrderById();
 
 
 }

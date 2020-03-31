@@ -7,7 +7,6 @@ import Project.Repository.DialogRepo;
 import Project.Repository.SMessageRepo;
 import Project.Repository.UsersListRepo;
 import Project.Service.MessageService;
-import Project.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -26,12 +25,8 @@ public class MessagesController {
 
     @Autowired
     public SMessageRepo sMessageRepo;
-
     @Autowired
     private MessageService messageService;
-
-    @Autowired
-    private UserService userSevice;
     @Autowired
     private DialogRepo dialogRepo;
     @Autowired
@@ -42,7 +37,6 @@ public class MessagesController {
     public String message(
             @AuthenticationPrincipal Users user,
             Model model){
-        model.addAttribute("namePage", namePage);
         Iterable<Users> messU = usersListRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
 
@@ -57,7 +51,6 @@ public class MessagesController {
             @AuthenticationPrincipal Users user,
             Model model){
         recipient1 = "test";
-        model.addAttribute("namePage", namePage);
         Iterable<Users> messU = usersListRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
 
@@ -72,13 +65,11 @@ public class MessagesController {
     public String messageU(
             @AuthenticationPrincipal Users user,
             @PathVariable String recipient, Model model){
-        model.addAttribute("namePage", namePage);
         model.addAttribute("test", "test");
         recipient1 = recipient;
 
         Iterable<Users> messU = usersListRepo.findAllByOrderByIdAsc();
         model.addAttribute("messageU", messU);
-
         NameMess = messageService.nameDialog(recipient1,user.getUsername() );
 
         Iterable<Dialog> dialogs = dialogRepo.findAllBySenderOrderByIdAsc(user.getUsername());
@@ -100,7 +91,6 @@ public class MessagesController {
     public String messageUsers(
             @AuthenticationPrincipal Users user,
             @PathVariable String recipient){
-
         messageService.createDialog(user.getUsername(), recipient);
         return "redirect:/messageU/{recipient}";
     }

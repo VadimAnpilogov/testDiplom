@@ -17,7 +17,6 @@ public class Users implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    private boolean active;
     private String username;
     private String password;
 
@@ -44,6 +43,7 @@ public class Users implements UserDetails{
     )
     private Set<Course> courseFol = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "AuthorCourse",

@@ -18,8 +18,6 @@ public class MessageService {
     @Autowired
     public SMessageRepo sMessageRepo;
     @Autowired
-    private MessageService messageService;
-    @Autowired
     private DialogRepo dialogRepo;
 
     public String nameDialog(String recipient, String sender){

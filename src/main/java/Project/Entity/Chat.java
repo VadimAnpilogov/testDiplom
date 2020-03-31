@@ -13,11 +13,8 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
-//    private String recipient;//получатель
     private String sender;//отправитель
-//    private String nameMess;
     public String date;
-//    private boolean active;
 
     public Chat(){}
 
@@ -43,14 +40,6 @@ public class Chat {
         this.message = message;
     }
 
-//    public String getRecipient() {
-//        return recipient;
-//    }
-//
-//    public void setRecipient(String recipient) {
-//        this.recipient = recipient;
-//    }
-
     public String getSender() {
         return sender;
     }
@@ -58,14 +47,6 @@ public class Chat {
     public void setSender(String sender) {
         this.sender = sender;
     }
-//
-//    public String getNameMess() {
-//        return nameMess;
-//    }
-//
-//    public void setNameMess(String nameMess) {
-//        this.nameMess = nameMess;
-//    }
 
     public String getDate() {
         return date;

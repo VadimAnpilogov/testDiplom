@@ -37,11 +37,9 @@ public class CourseController {
     private NewsRepo newsRepo;
 
 
-//    public  String PrepName;
     public String usernameCorse;
     public String course1;
     public Long idCourse;
-    public String namePage = "Курсы";
     public String namePageCreate = "Создание курса";
     public String namePageTheme = "Темы курса";
     public String nameCourses;
@@ -49,12 +47,13 @@ public class CourseController {
     public String roles = "[ADMIN]";
     public String roles1;
     public String test = "test";
-    public int boole = 0;
     public Long id1;
+
+
     //Страница курсов
     @GetMapping("/course")
     public String course(Model model){
-        model.addAttribute("namePage", namePage);
+
         Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
         model.addAttribute("QCourse1", course);
         return "course";
@@ -72,13 +71,8 @@ public class CourseController {
             @RequestParam String format, Model model){
         model.addAttribute("namePage", namePageCreate);
         nameCourses = courseName;
-//        Course addCourse = courseRepo.findByCourseName(courseName);
-//        if (addCourse != null) {
-//            model.addAttribute("messages", " Имя курса занято");
-//            return "CreateCourse";
-//        }
         Course course = new Course(courseName, user.getUsername(), description, region, price, priceType, format);
-//        course.getUsers().add(user);
+
         Users users1 = usersRepo.findByUsername(user.getUsername());
         courseRepo.save(course);
         users1.getAuthCourse().add(course);
@@ -88,10 +82,7 @@ public class CourseController {
     }
 //Страница создания курса
     @GetMapping("createCourse")
-    public String CreateCourse(Model model){
-        model.addAttribute("namePage", namePageCreate);
-        Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
-        model.addAttribute("QCourse1", course);
+    public String CreateCourse(){
         return "CreateCourse";
     }
 
@@ -101,14 +92,11 @@ public class CourseController {
             @AuthenticationPrincipal Users users,
             Model model){
 
-
-
         Optional<Course> courses = courseRepo.findById(idCourse);
         model.addAttribute("courses", courses.get());
 
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
         model.addAttribute("theme", theme);
-
 
         Optional<Course> usersCourse = courseRepo.findById(idCourse);
         model.addAttribute("UsersCourse", usersCourse.get().getUsersFol());
@@ -140,9 +128,6 @@ public class CourseController {
         model.addAttribute("courses", course.get());
         course1=course.get().getCourseName();
 
-        Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
-        model.addAttribute("theme", theme);
-
         nameCourses=course1;
         return "redirect:/SCourse";
     }
@@ -152,23 +137,16 @@ public class CourseController {
             @AuthenticationPrincipal Users users,
             @PathVariable String user,
             Model model){
-
         usernameCorse=users.getUsername();
-
-//        Course course = courseRepo.findByCourseName(course1);
         Optional<Course> course = courseRepo.findById(idCourse);
 
         Users users1 = usersRepo.findByUsername(users.getUsername());
         users1.getCourseFol().add(course.get());
         usersRepo.save(users1);
-
         messageService.createDialog(users.getUsername(), user);
-
-
 
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(course1);
         model.addAttribute("theme", theme);
-//        Course courses = courseRepo.findByCourseName(course1);
 
         Optional<Course> courses = courseRepo.findById(idCourse);
         model.addAttribute("courses", courses.get());
@@ -180,8 +158,6 @@ public class CourseController {
     public String unsubscribeCourse(
             @AuthenticationPrincipal Users users
     ){
-
-//        Course course = courseRepo.findByCourseName(course1);
         Optional<Course> course = courseRepo.findById(idCourse);
         Users users1 = usersRepo.findByUsername(users.getUsername());
         users1.getCourseFol().remove(course.get());
@@ -194,15 +170,14 @@ public class CourseController {
             @AuthenticationPrincipal Users user,
             Model model, @RequestParam String nameTheme){
         model.addAttribute("namePage", namePageTheme);
-
         date = userService.date();
 
         Theme themes = new Theme(nameTheme, nameCourses, user.getUsername(), date);
+
         Optional<Course> course = courseRepo.findById(idCourse);
-        themes.addCourse(course.get());
         themeRepo.save(themes);
-//        course.get().getThemesCourse().add(themes);
-//        courseRepo.save(course.get());
+        course.get().getThemesCourse().add(themes);
+        courseRepo.save(course.get());
 
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
         model.addAttribute("Theme", theme);
@@ -210,10 +185,8 @@ public class CourseController {
     }
 
 
-
     @GetMapping("theme")
     public String theme(Model model){
-
         Iterable<Theme> theme = themeRepo.findByNameCourseOrderByDateAsc(nameCourses);
         model.addAttribute("Theme", theme);
         model.addAttribute("NameCourse", nameCourses);
@@ -223,29 +196,24 @@ public class CourseController {
 
     @GetMapping("deleteCourse/{id}")
     public String deleteCourse(
-            @PathVariable Long id
-    ){
-
+            @PathVariable Long id){
         courseRepo.deleteById(id);
         return "redirect:/course";
     }
 
     @GetMapping("deleteTheme/{id}")
     public String deleteTheme(
-            @PathVariable Long id
-    ){
+            @PathVariable Long id){
         themeRepo.deleteById(id);
-
         return "redirect:/theme";
     }
+
 
     @PostMapping("EditTheme")
     public String EditThemes(
             @RequestParam String nameTheme,
-            Model model
-    ){
+            Model model){
         date = userService.date();
-
         Optional<Theme> themes = themeRepo.findById(id1);
         themes.get().setNameTheme(nameTheme);
         themeRepo.save(themes.get());
@@ -256,6 +224,8 @@ public class CourseController {
         model.addAttribute("NameCourse", idCourse);
         return "theme";
     }
+
+
     @GetMapping("EditThemes")
     public String EditThemes(Model model){
         Optional<Theme> themes = themeRepo.findById(id1);
@@ -269,20 +239,16 @@ public class CourseController {
 
     @GetMapping("EditTheme/{id}")
     public String EditTheme(
-            @PathVariable Long id
-    ){
-
+            @PathVariable Long id){
         id1=id;
         return "redirect:/EditThemes";
     }
 
 
-
     @GetMapping("myCourse")
     public String myCourse(
             @AuthenticationPrincipal Users users,
-            Model model
-    ){
+            Model model){
         List<Users> users1 = usersListRepo.findByUsername(users.getUsername());
         roles1 = users1.get(0).getRoles().toString();
         if(roles1.equals(roles)){
@@ -302,37 +268,31 @@ public class CourseController {
         return "myCourse";
     }
 
+
     @GetMapping("/CourseEdit")
     public String CourseEdit(
             @AuthenticationPrincipal Users user,
             Model model){
-
         model.addAttribute("courses", courseRepo.findByCourseName(course1));
         if(test=="tester")
         {
             model.addAttribute("CourseMessage", "Имя курса занято");
         }
 
-//        Course course = courseRepo.findByCourseName(course1);
         Optional<Course> course = courseRepo.findById(idCourse);
         model.addAttribute("CourseDataEdit", course.get());
-
         return "CourseEdit";
     }
+
+
     @PostMapping("/CourseEdit")
     public String updateCourse(
-            @AuthenticationPrincipal Users users,
             @RequestParam String courseName,
             @RequestParam String description,
             @RequestParam String region,
             @RequestParam String price,
             @RequestParam String priceType,
-            @RequestParam String format,
-            User user,
-            Model model
-
-    ){
-
+            @RequestParam String format){
         Optional<Course> courseFromDB = courseRepo.findById(idCourse);
         if(courseFromDB.get() == null){
 
@@ -349,8 +309,6 @@ public class CourseController {
             courseRepo.save(courseFromDB.get());
         }
         course1 = courseName;
-
-
         return "redirect:/SCourse";
     }
 
@@ -367,33 +325,26 @@ public class CourseController {
     @PostMapping("NewsAdd")
     public String NewsAdd(
             @AuthenticationPrincipal Users users,
-            @RequestParam String messageNews,
-            Model model){
+            @RequestParam String messageNews){
         News news = new News(messageNews, users.getUsername(), userService.date());
         newsRepo.save(news);
-
         return "redirect:/news";
     }
 
 
     @GetMapping("deleteNews/{id}")
     public String deleteNews(
-            @PathVariable Long id
-    ){
+            @PathVariable Long id){
         newsRepo.deleteById(id);
-
         return "redirect:/news";
     }
-
 
 
     @PostMapping("EditNews")
     public String EditNews(
             @AuthenticationPrincipal Users users,
             @RequestParam String messageNews,
-            Model model
-    ){
-
+            Model model){
         Optional<News> news = newsRepo.findById(id1);
         news.get().setMessageNews(messageNews);
         newsRepo.save(news.get());
@@ -402,6 +353,7 @@ public class CourseController {
         model.addAttribute("News", news1);
         return "news";
     }
+
 
     @GetMapping("EditNewsGet")
     public String EditNews(
@@ -417,41 +369,10 @@ public class CourseController {
 
     @GetMapping("EditNews/{id}")
     public String EditNewsId(
-            @PathVariable Long id
-    ){
-
+            @PathVariable Long id){
         id1=id;
         return "redirect:/EditNewsGet";
     }
 
 
-
-
-
-
-
-
-
-
-//    public String coursesName;
-//    @GetMapping("search")
-//    public String searchCourse(
-//            @RequestParam String courseNameS,
-//            Model model
-//    ){
-//        List<Course> filterCourse = courseRepo.findAllByOrderById();
-//        ArrayList<Course> filterCourses = new ArrayList<>();
-//        for(int i=0; i< filterCourse.size(); i++){
-//            coursesName = filterCourse.get(i).getCourseName();
-//           if(coursesName.toUpperCase().contains(courseNameS.toUpperCase())){
-//               filterCourses.add(filterCourse.get(i));
-//           }
-//
-//
-//
-//        }
-//        model.addAttribute("QCourse1", filterCourses);
-//
-//        return "course";
-//    }
 }

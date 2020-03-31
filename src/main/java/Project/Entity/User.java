@@ -17,23 +17,7 @@ public class User {
     private String email;
     private String activationCode;
 
-//    @OneToOne
-//    @JoinTable(
-//            name = "UserData",
-//            joinColumns = {@JoinColumn(name = "UserId")},
-//            inverseJoinColumns = {@JoinColumn(name = "UsersId")}
-//    )
-//    private Users users;
-
     public User(){}
-
-//    public Users getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Users users) {
-//        this.users = users;
-//    }
 
     public int getRl() {
         return rl;

@@ -76,9 +76,5 @@ public class UserService implements UserDetailsService {
         userRepo.save(users);
         userRepos.save(user);
 
-
-//        if (isEmailChanged) {
-//            sendMessage(user);
-//        }
     }
 }

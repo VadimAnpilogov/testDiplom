@@ -18,12 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Collections;
 import java.util.UUID;
 
-//import Project.Service.UserSevice;
-
 
 @Controller
 public class RegistrationController {
-
 
     @Autowired
     private UsersRepo userRepository;
@@ -34,29 +31,16 @@ public class RegistrationController {
 
     public String namePage = "Регистрация";
 
-//Страница регистрации
-    @GetMapping("/registration")
-    public String registration(Model model){
-        model.addAttribute("namePage", namePage);
-        return "registration";
-    }
-//Старница регистрации студента
-    @GetMapping("/user")
-    public String userR (Model model){
-        model.addAttribute("namePage", namePage);
-        return "userR";
-    }
-//Страница регистрации преподавтеля
-    @GetMapping("/admin")
-    public String adminR(Model model){
-        model.addAttribute("namePage", namePage);
-        return "adminR";
-    }
+
 
 //Регистрация студента
     @PostMapping("/userR")
-    public String addUser(@RequestParam String username, User user, Users users, Model model){
-        model.addAttribute("namePage", namePage);
+    public String addUser(
+            @RequestParam String username,
+            User user,
+            Users users,
+            Model model){
+
         Users userFromDB = userRepository.findByUsername(users.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "Имя пользователя занято");
@@ -76,7 +60,6 @@ public class RegistrationController {
                     users.getUsername(),
                     user.getActivationCode()
             );
-
             mailSender.send(user.getEmail(), "Activation code", message);
         }
 
@@ -84,8 +67,12 @@ public class RegistrationController {
     }
 //Регистрация преподавателя
     @PostMapping("/adminR")
-    public String addAdmin(@RequestParam String username, User user,Users users, Model model){
-        model.addAttribute("namePage", namePage);
+    public String addAdmin(
+            @RequestParam String username,
+            User user,
+            Users users,
+            Model model){
+
         Users userFromDB = userRepository.findByUsername(users.getUsername());
         if(userFromDB != null){
             model.addAttribute("messages", "Имя пользователя занято");
@@ -108,15 +95,16 @@ public class RegistrationController {
                     users.getUsername(),
                     user.getActivationCode()
             );
-
             mailSender.send(user.getEmail(), "Activation code", message);
         }
         return "login";
     }
 
     @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code) {
-        model.addAttribute("namePage", namePage);
+    public String activate(
+            Model model,
+            @PathVariable String code) {
+
         boolean isActivated = activateUser(code);
 
         if (isActivated) {
@@ -127,17 +115,15 @@ public class RegistrationController {
 
         return "redirect:/login";
     }
+
+
     public boolean activateUser(String code) {
         User user = userRepo.findByActivationCode(code);
-
         if (user == null) {
             return false;
         }
-
         user.setActivationCode(null);
-
         userRepo.save(user);
-
         return true;
     }
 

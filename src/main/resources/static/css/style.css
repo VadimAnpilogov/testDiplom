@@ -118,7 +118,7 @@
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 50% 100%;
     background-repeat: no-repeat;
-    background-size: 0% 2px;
+    background-size: 0 2px;
     transition: background-size .3s;
     font-size: 24px;
 }
@@ -419,7 +419,7 @@
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 50% 100%;
     background-repeat: no-repeat;
-    background-size: 0% 2px;
+    background-size: 0 2px;
     transition: background-size .3s;
     font-size: 24px;
 }
@@ -618,7 +618,7 @@
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 50% 100%;
     background-repeat: no-repeat;
-    background-size: 0% 2px;
+    background-size: 0 2px;
     transition: background-size .3s;
 }
 
@@ -713,7 +713,13 @@ img{ max-width:100%;}
     font-size: 21px;
     margin: auto;
 }
-.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+.srch_bar input{
+    border:1px solid #cdcdcd;
+    border-width:0 0 1px 0;
+    width:80%;
+    padding:2px 0 4px 6px;
+    background:none;
+}
 .srch_bar .input-group-addon button {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
@@ -1172,7 +1178,7 @@ h5.cont1{
     /*ширина меню*/
     width: 230px;
     position: fixed;
-    top: 0px;
+    top: 0;
     padding: 20px;
     /*border: 5px solid #f1f1f1;*/
     background: rgb(27, 43, 56);
@@ -1353,7 +1359,7 @@ body{
     color: #e5e7ed;
 }
 .messages{
-    padding: 0px;
+    padding: 0;
 }
 .name{
     padding-left: 35px;
@@ -1491,7 +1497,7 @@ body{
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 50% 100%;
     background-repeat: no-repeat;
-    background-size: 0% 2px;
+    background-size: 0 2px;
     transition: background-size .3s;
 }
 .coursesTil a:hover {
@@ -1608,3 +1614,38 @@ The navigation menu links
     .sidenav a {font-size: 18px;}
 }
 
+.myTooltip{
+    position: absolute;
+    margin: -50px 0 0 240px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    opacity: 0.3;
+    transition: 0.3s;
+}
+.myTooltip:hover{
+    opacity: 1;
+}
+.myTooltip svg{
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.tooltipDiv{
+    position: absolute;
+    background-color: #313236;
+    z-index: 10;
+    width: 400px;
+    max-height: 300px;
+    margin: 10px 0 0 240px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: #185675 1px solid;
+    opacity: 0;
+    transition: 0.5s;
+}
+.tooltipDiv p{
+    color: white;
+}

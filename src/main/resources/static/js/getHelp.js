@@ -35,3 +35,16 @@ function ajaxGet(){
     });
 }
 setInterval('ajaxGet()', 1000);
+
+function openTooltip() {
+    var tooltip = document.getElementById("tooltipDiv");
+
+    if(tooltip.style.opacity === "1")
+    {
+        tooltip.style.opacity = "0";
+    }
+    else
+    {
+        tooltip.style.opacity = "1";
+    }
+}

@@ -43,8 +43,8 @@
             <button onclick="" type="submit" class="btn btn-outline-info">Редактировать курс</button></form>
             <form th:action="@{'/theme'}" class="inline">
                 <button onclick="" type="submit" class="btn btn-outline-info">Редактировать темы</button></form>
-            <form th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}" class="inline">
-            <button onclick="" type="submit" class="btn btn-outline-info">Удалить курс</button></form>
+            <form id="deleteCourse" th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}" class="inline"></form>
+            <button onclick="myConfirm()" type="submit" class="btn btn-outline-info">Удалить курс</button>
         </div>
     </div>
 
@@ -90,7 +90,7 @@
                                 <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers={recipient}'(recipient=${cors1.prepName})}" >
                                     <button type="submit" class="btn btn-outline-info">Написать сообщение преподавателю</button>
                                 </form>
-                                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Открыть объявления преподавателя</button>
+                                <button class="btn btn-outline-info" th:if="${signUpCourse == #httpServletRequest.remoteUser}" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Открыть объявления преподавателя</button>
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body">
                                         <ul class="news">

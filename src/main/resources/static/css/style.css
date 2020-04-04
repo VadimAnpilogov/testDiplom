@@ -1638,13 +1638,13 @@ The navigation menu links
     background-color: #313236;
     z-index: 10;
     width: 400px;
-    max-height: 300px;
     margin: 10px 0 0 240px;
     padding: 10px 15px;
     border-radius: 10px;
     border: #185675 1px solid;
     opacity: 0;
     transition: 0.5s;
+    cursor: default;
 }
 .tooltipDiv p{
     color: white;

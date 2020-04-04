@@ -21,3 +21,10 @@ function filterFunction() {
         }
     }
 }
+
+function myConfirm() {
+    var form = document.getElementById("deleteCourse");
+    if (confirm("Вы уверены, что хотите удалить курс?")) {
+        form.submit();
+    }
+}

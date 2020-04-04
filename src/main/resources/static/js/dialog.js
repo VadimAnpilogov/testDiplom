@@ -34,3 +34,11 @@ function filterFunction() {
     }
     HideMyName();
 }
+
+function deleteDialog() {
+    var url = document.getElementById('deleteHref');
+    document.location.href = url.value;
+    if (confirm("Вы уверены, что хотите удалить диалог?")) {
+        document.location.href = url.value;
+    }
+}

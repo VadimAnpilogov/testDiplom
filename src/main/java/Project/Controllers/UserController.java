@@ -3,11 +3,15 @@ package Project.Controllers;
 import Project.Entity.Reviews;
 import Project.Entity.User;
 import Project.Entity.Users;
-import Project.Repository.*;
+import Project.Repository.ReviewsRepo;
+import Project.Repository.UserRepo;
+import Project.Repository.UsersListRepo;
+import Project.Repository.UsersRepo;
 import Project.Service.MailSender;
 import Project.Service.UserService;
 import Project.message.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +19,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +46,11 @@ public class UserController {
     private UserService userSevice;
     @Autowired
     private MailSender mailSender;
+    @Autowired
+    private UserRepo userRepo1;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
 
     //странца всех пользователей
@@ -115,9 +127,11 @@ public class UserController {
             @RequestParam String username,
             @RequestParam String fio,
             @RequestParam String phone,
-            User user){
+            @RequestParam("file") MultipartFile file
+           ) throws IOException {
 
         Users userFromDB = userRepo.findByUsername(username);
+        User user = userFromDB.getUser();
         if(username.equals(users.getUsername()))
         {
             boole = 1;
@@ -129,8 +143,11 @@ public class UserController {
         }
         else
         {
+
+            String fileName = "images/"+ file.getOriginalFilename();
+            file.transferTo(new File(uploadPath + "/" + fileName));
             test = "test";
-            userSevice.updateProfile(user, users , email, username, fio, phone);
+            userSevice.updateProfile(user, users , email, username, fio, phone, fileName );
         }
 
         return "redirect:/PersonalData";
@@ -144,15 +161,16 @@ public class UserController {
             Model model){
 
         username1 = users;
-        Users users1 = userRepo.findByUsername(users);
-        model.addAttribute("users", users1);
-        roles = users1.getRoles().toString();
+        data(model);
         return "userPers";
     }
 
-// страница пользователя
-    @GetMapping("/userPers")
-    public String userPers(Model model){
+    public String data(
+            Model model){
+
+        Users users1 = userRepo.findByUsername(username1);
+        model.addAttribute("users", users1);
+        roles = users1.getRoles().toString();
 
         model.addAttribute("users", userRepo.findByUsername(username1));
 
@@ -161,9 +179,10 @@ public class UserController {
 
         if(roles.equals(adminR)){
             model.addAttribute("status", "Преподаватель");
+            List<Reviews> reviews = reviewsRepo.findByUserReviews(username1);
+            model.addAttribute("reviews", reviews);
             if(users2.get(0).getAuthCourse().isEmpty()){
-//                List<Reviews> reviews = reviewsRepo.findByUserReviews(username1);
-//                model.addAttribute("reviews", reviews);
+
                 return "userPers";
             }
             model.addAttribute("course", users2.get(0).getAuthCourse());
@@ -177,7 +196,23 @@ public class UserController {
         }
         return "userPers";
     }
+// страница пользователя
+    @GetMapping("/userPers")
+    public String userPers(){
+        return "userPers";
+    }
 
+    @GetMapping("userPersReview")
+    public String reviewsAdd(
+            @AuthenticationPrincipal Users user,
+            @RequestParam String reviews,
+            Model model){
+
+        Reviews reviews1 = new Reviews(reviews, user.getUsername(), username1, userSevice.date());
+        reviewsRepo.save(reviews1);
+        data(model);
+        return "userPers";
+    }
 
     @PostMapping("PasswordNew")
     public String PasswordNew(

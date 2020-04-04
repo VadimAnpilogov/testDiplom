@@ -17,7 +17,7 @@
     <div class="formTheme">
         <div>
             <label for="nameTheme" class="h4">Темы для курса: [[${NameCourse}]]</label>
-            <form class="displayInline" th:action="@{'/SCourse={id}'(id=${id})}">
+            <form class="displayInline" th:action="@{'/SCourse={id}'(id=${idCourse})}">
                 <button type="submit" class="btn btn-outline-info buttonTheme">Перейти на курс</button>
             </form>
         </div>

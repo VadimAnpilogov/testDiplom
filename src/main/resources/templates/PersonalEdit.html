@@ -23,7 +23,7 @@
             </tr>
         </table>
     </div>
-    <form  method="post" action="PersonalEdit?password?phone?email?username?fio">
+    <form  method="post" action="PersonalEdit?password?phone?email?username?fio?file" enctype="multipart/form-data">
     <div class="container">
         <div class="chat_list row" th:each="data : ${personalDataEdit}">
 
@@ -44,6 +44,8 @@
                 <h5>Никнейм</h5>
                 <input type="username1" value="fio" th:attr="value=${data.username}" name="username" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>
                 <h5 style="color: #dd3333" th:text="${UserMessage}"></h5>
+                <input type="file" name="file" th:attr="value=${data.user.fileName}">
+                <img style="width: 900px" th:src="${data.user.fileName}"  >
 <!--                <h5>Пароль</h5>-->
 <!--                <input type="password1" value="fio" th:attr="value=${data.password}" name="password" class="form-control inputField" autocomplete="off" placeholder="Введите Ваше ФИО" required>-->
 

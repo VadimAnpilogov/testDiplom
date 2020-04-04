@@ -29,9 +29,6 @@ public class RegistrationController {
     @Autowired
     private MailSender mailSender;
 
-    public String namePage = "Регистрация";
-
-
 
 //Регистрация студента
     @PostMapping("/userR")
@@ -91,7 +88,7 @@ public class RegistrationController {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Mentor. Please, visit next link: http://localhost:8080/activate/%s",
+                            "Welcome to Mentor. Please, visit next link: http://localhost:8080/activate=%s",
                     users.getUsername(),
                     user.getActivationCode()
             );
@@ -100,7 +97,7 @@ public class RegistrationController {
         return "login";
     }
 
-    @GetMapping("/activate/{code}")
+    @GetMapping("/activate={code}")
     public String activate(
             Model model,
             @PathVariable String code) {

@@ -52,8 +52,12 @@ public class UserService implements UserDetailsService {
             String email,
             String username,
             String fio,
-            String  phone
+            String phone,
+            String fileName
     ) {
+
+
+
         String userEmail = user.getEmail();
 
         boolean isEmailChanged = (email != null && !email.equals(userEmail)) ||
@@ -71,6 +75,7 @@ public class UserService implements UserDetailsService {
         users.setUsername(username);
         user.setFio(fio);
         user.setPhone(phone);
+        user.setFileName(fileName);
 
 
         userRepo.save(users);

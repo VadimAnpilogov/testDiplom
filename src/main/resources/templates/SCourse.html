@@ -43,7 +43,7 @@
             <button onclick="" type="submit" class="btn btn-outline-info">Редактировать курс</button></form>
             <form th:action="@{'/theme'}" class="inline">
                 <button onclick="" type="submit" class="btn btn-outline-info">Редактировать темы</button></form>
-            <form id="deleteCourse" th:action="@{'/deleteCourse/{id}'(id=${cors2.id})}" class="inline"></form>
+            <form id="deleteCourse" th:action="@{'/deleteCourse={id}'(id=${cors2.id})}" class="inline"></form>
             <button onclick="myConfirm()" type="submit" class="btn btn-outline-info">Удалить курс</button>
         </div>
     </div>

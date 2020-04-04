@@ -161,15 +161,16 @@ public class UserController {
             Model model){
 
         username1 = users;
-        Users users1 = userRepo.findByUsername(users);
-        model.addAttribute("users", users1);
-        roles = users1.getRoles().toString();
+        data(model);
         return "userPers";
     }
 
-// страница пользователя
-    @GetMapping("/userPers")
-    public String userPers(Model model){
+    public String data(
+            Model model){
+
+        Users users1 = userRepo.findByUsername(username1);
+        model.addAttribute("users", users1);
+        roles = users1.getRoles().toString();
 
         model.addAttribute("users", userRepo.findByUsername(username1));
 
@@ -178,9 +179,10 @@ public class UserController {
 
         if(roles.equals(adminR)){
             model.addAttribute("status", "Преподаватель");
+            List<Reviews> reviews = reviewsRepo.findByUserReviews(username1);
+            model.addAttribute("reviews", reviews);
             if(users2.get(0).getAuthCourse().isEmpty()){
-//                List<Reviews> reviews = reviewsRepo.findByUserReviews(username1);
-//                model.addAttribute("reviews", reviews);
+
                 return "userPers";
             }
             model.addAttribute("course", users2.get(0).getAuthCourse());
@@ -194,7 +196,23 @@ public class UserController {
         }
         return "userPers";
     }
+// страница пользователя
+    @GetMapping("/userPers")
+    public String userPers(){
+        return "userPers";
+    }
 
+    @GetMapping("userPersReview")
+    public String reviewsAdd(
+            @AuthenticationPrincipal Users user,
+            @RequestParam String reviews,
+            Model model){
+
+        Reviews reviews1 = new Reviews(reviews, user.getUsername(), username1, userSevice.date());
+        reviewsRepo.save(reviews1);
+        data(model);
+        return "userPers";
+    }
 
     @PostMapping("PasswordNew")
     public String PasswordNew(

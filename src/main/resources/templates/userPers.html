@@ -92,6 +92,38 @@
             </a>
         </div>
     </div>
+
+
+
+
+
+    <div>
+        <form action="userPersReview?reviews1"reviews>
+            <table align="center" >
+                <tr>
+                    <td width="400px">
+                        <p>Отзыв:</p>
+                    </td>
+                    <td width="400px">
+                        <p>Автор</p>
+                    </td>
+
+                <tr>
+                    <td width="400px">
+
+                        <input type="reviews1" name="reviews"
+                               placeholder="Введите ваше сообщение" required="true"/>
+                    <td> <input type="submit"value="Отправить"/></td>
+                    </td>
+                </tr>
+                <tr th:each="rev : ${reviews}" >
+                    <td width="400px" th:utext="${rev.reviewsOp}"></td>
+                    <td width="400px" th:utext="${rev.authorReviews}"></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
 </div>
 
 </body>

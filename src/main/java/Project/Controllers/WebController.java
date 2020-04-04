@@ -71,4 +71,16 @@ public class WebController {
         return "Password";
     }
 
+    //Страница конкретного курса
+    @GetMapping("SCourse")
+    public String SCourse(){
+        return "SCourse";
+    }
+
+    //Страница создания курса
+    @GetMapping("createCourse")
+    public String CreateCourse(){
+        return "CreateCourse";
+    }
+
 }

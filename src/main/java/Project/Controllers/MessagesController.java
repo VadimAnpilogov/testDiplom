@@ -63,7 +63,7 @@ public class MessagesController {
     }
 
     //удаление диалога
-    @GetMapping("/deleteDialog/{namemess}")
+    @GetMapping("/deleteDialog={namemess}")
     public String DeleteDialogs(
             @PathVariable String namemess){
         messageService.deleteDialog(namemess);

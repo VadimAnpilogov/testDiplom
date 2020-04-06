@@ -8,7 +8,8 @@
 <script src="/js/getMessage.js"></script>
 <script src="js/dialog.js"></script>
 <script src="js/getDialog.js"></script>
-
+<script src="js/getMessageCount.js"></script>
+<script src="js/getMessageCountDialog.js"></script>
 <body class="noScroll">
 
 <!--<script>-->
@@ -55,7 +56,8 @@
 
         <ul>
             <li th:each="dialog : ${dialogsUser}">
-
+<!--                /////////////////////////////////////////////////////////////////////////////-->
+                <div class="getResultCount" id="getResultCountD"></div>
                 <div th:if="${colorDialog == dialog.recipient}" style="border-bottom: 1px solid #c4c4c4;">
                     <div class="message_list lightDialog" id="dialogIDThis">
                         <div class="chat_people">
@@ -70,7 +72,7 @@
                                 </a>
                             </div>
                             <div class="deleteButton">
-                                <a id="deleteHref" th:href="@{'/deleteDialog/{namemess}'(namemess=${dialog.nameMess})}"></a>
+                                <a id="deleteHref" th:href="@{'/deleteDialog={namemess}'(namemess=${dialog.nameMess})}"></a>
                                 <svg onclick="deleteDialog()" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                      width="20"
                                      viewBox="0 0 172 172"
@@ -94,7 +96,7 @@
                                 </a>
                             </div>
                             <div class="deleteButton">
-                                <a th:href="@{'/deleteDialog/{id}'(id=${dialog.id})}">
+                                <a th:href="@{'/deleteDialog={namemess}'(namemess=${dialog.nameMess})}">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                          width="20"
                                          viewBox="0 0 172 172"

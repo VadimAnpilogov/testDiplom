@@ -28,7 +28,7 @@
                     <h6 class="courseDetail">ФИО: </h6><h6 th:utext="${usr.user.fio}">Название курса</h6>
                     <h6 class="courseDetail">Почта: </h6><h6 th:utext="${usr.user.email}" >Преподаватель</h6>
                     <h6 class="courseDetail">Телефон: </h6><h6 th:utext="${usr.user.phone}">Область курса</h6>
-                    <h6 class="courseDetail">Статус: </h6><h6 th:text="${status}">Преподаватель</h6>
+                    <h6 class="courseDetail">Статус: </h6><h6 th:text="${status}" id="statusPers">Преподаватель</h6>
 <!--                    <h6 class="courseDetail">Звание: </h6><h6>Джуниор</h6>-->
 <!--                    <h6 class="courseDetail">Последнее достижение: </h6><h6>Фото аватара</h6>-->
 <!--                    <h6 class="courseDetail">Рейтинг: </h6><h6>3358</h6>-->
@@ -93,10 +93,10 @@
         </div>
     </div>
 
-    <div class="reviewPers">
+    <div class="reviewPers" id="reviews">
         <form action="userPersReview?reviews1">
             <table>
-                <tr>
+                <tr sec:authorize="${hasAuthority('USER')}">
                     <td>
                         <input class="form-control inputField" type="reviews1" name="reviews" placeholder="Введите отзыв о преподавателе" required/>
                     </td>
@@ -104,7 +104,7 @@
                         <button class="btn btn-success sentButton" type="submit">Отправить</button>
                     </td>
                 </tr>
-                <tr>
+                <tr id="lastTR">
                     <td>
                         <p>Отзыв:</p>
                     </td>
@@ -121,5 +121,6 @@
     </div>
 </div>
 
+<script src="js/userPers.js"></script>
 </body>
 </html>

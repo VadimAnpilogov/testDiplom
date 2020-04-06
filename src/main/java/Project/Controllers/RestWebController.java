@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,6 +38,7 @@ public class RestWebController {
 
 	public boolean statusMessage = false;
 	private String recipient1="test";
+	public int count1 = 0;
 
 	@GetMapping(value = "rewiews/all")
 	public Response getReview() {
@@ -55,9 +57,11 @@ public class RestWebController {
 	}
 
 	@GetMapping(value = "help/all")
-	public Response getHelp(){
+	public Response getHelp(@AuthenticationPrincipal Users users){
 		Iterable<Chat> helpS = chatRepo.findAllByOrderByIdAsc();
-		Response response = new Response("Done" , helpS );
+		count1 =0;
+		MessageCount(users.getUsername());
+		Response response = new Response("Done" , helpS, count1 );
 		return response;
 	}
 	@PostMapping(value = "help/save")
@@ -88,7 +92,9 @@ public class RestWebController {
 			}
 
 		}
-		Response response = new Response("Done" , messages2 );
+		count1 =0;
+		MessageCount(user.getUsername());
+		Response response = new Response("Done" , messages2, count1);
 		return response;
 	}
 	@PostMapping(value = "message={recipient}/save")
@@ -118,9 +124,11 @@ public class RestWebController {
 	}
 
 	@GetMapping(value = "users/all")
-	public Response getUsers(){
+	public Response getUsers(@AuthenticationPrincipal Users users){
 		List<Users> users1 = usersListRepo.findAllByOrderByIdAsc();
-		Response response = new Response("Done" , users1);
+		count1 =0;
+		MessageCount(users.getUsername());
+		Response response = new Response("Done" , users1, count1);
 		return response;
 	}
 
@@ -141,7 +149,7 @@ public class RestWebController {
 		return response;
 	}
 
-public int count1 = 0;
+
 	public void MessageCount(String recipient){
 		List<Messages> messages = sMessageRepo.findByRecipient(recipient);
 		for(int i = 0; i< messages.size(); i++){
@@ -151,11 +159,45 @@ public int count1 = 0;
 		}
 	}
 
-	@GetMapping(value = {"Personal/count", "course/count", "createCourse/count", "contacts/count"})
+	@GetMapping(value = {"Personal/count", "course/count", "myCourse/count","createCourse/count", "contacts/count", "theme/count", "PersonalData/count", "message/count"})
 	public Response Personal(@AuthenticationPrincipal Users users){
 		count1 =0;
 		MessageCount(users.getUsername());
 		Response response = new Response("DoneYes", count1);
 		return response;
 	}
+
+	@GetMapping(value = {"SCourse={id}/count"})
+	public Response Scourse(@AuthenticationPrincipal Users users,
+							 @PathVariable int id){
+		count1 =0;
+		MessageCount(users.getUsername());
+		Response response = new Response("DoneYes", count1);
+		return response;
+	}
+
+	@GetMapping(value = {"userPers={users}/count"})
+	public Response Users(@AuthenticationPrincipal Users user,
+							@PathVariable String users){
+		count1 =0;
+		MessageCount(user.getUsername());
+		Response response = new Response("DoneYes", count1);
+		return response;
+	}
+
+	@GetMapping("message/countD")
+	public Response DialogsMess(@AuthenticationPrincipal Users users){
+
+		ArrayList<String> sender = new ArrayList<>();
+		List<Messages> messages = sMessageRepo.findByRecipient(users.getUsername());
+		for(int i = 0; i< messages.size(); i++){
+			if(messages.get(i).isStatusMessage() == false){
+				sender.add(messages.get(i).getSender());
+			}
+		}
+
+		Response response = new Response("DoneYes", sender);
+		return response;
+	}
+
 }

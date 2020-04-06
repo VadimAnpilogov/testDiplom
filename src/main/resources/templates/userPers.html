@@ -93,34 +93,29 @@
         </div>
     </div>
 
-
-
-
-
-    <div>
-        <form action="userPersReview?reviews1"reviews>
-            <table align="center" >
+    <div class="reviewPers">
+        <form action="userPersReview?reviews1">
+            <table>
                 <tr>
-                    <td width="400px">
+                    <td>
+                        <input class="form-control inputField" type="reviews1" name="reviews" placeholder="Введите отзыв о преподавателе" required/>
+                    </td>
+                    <td class="rightCell">
+                        <button class="btn btn-success sentButton" type="submit">Отправить</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <p>Отзыв:</p>
                     </td>
-                    <td width="400px">
+                    <td class="rightCell">
                         <p>Автор</p>
                     </td>
-
-                <tr>
-                    <td width="400px">
-
-                        <input type="reviews1" name="reviews"
-                               placeholder="Введите ваше сообщение" required="true"/>
-                    <td> <input type="submit"value="Отправить"/></td>
-                    </td>
                 </tr>
-                <tr th:each="rev : ${reviews}" >
-                    <td width="400px" th:utext="${rev.reviewsOp}"></td>
-                    <td width="400px" th:utext="${rev.authorReviews}"></td>
+                <tr class="trReview" th:each="rev : ${reviews}">
+                    <td class="textReview" th:utext="${rev.reviewsOp}"></td>
+                    <td class="rightCell textReview" th:utext="${rev.authorReviews}"></td>
                 </tr>
-
             </table>
         </form>
     </div>

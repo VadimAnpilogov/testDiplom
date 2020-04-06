@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head :: head"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 </head>
 <title>Личный кабинет</title>
 <!--<body th:replace="fragments/menu :: menu"></body>-->
 <body th:replace="fragments/upMenu :: upMenu"></body>
 <body th:replace="fragments/homeMenu :: homeMenu"></body>
+<script src="/js/getMessageCount.js"></script>
 <body>
 
 <div class="f1">
@@ -30,6 +32,7 @@
 
             </div>
             <div class="col-6 personalData" >
+                <div id="getResultCount"></div>
                 <h4 th:utext="${data.username}">Sunil Rajput <span class="chat_date">Dec 25</span></h4>
                 <h4 th:utext="${data.user.phone}">Sunil Rajput</h4>
                 <h4 th:utext="${data.user.fio}">Sunil Rajput</h4>

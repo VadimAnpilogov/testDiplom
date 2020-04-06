@@ -140,4 +140,22 @@ public class RestWebController {
 		Response response = new Response("Done" , "Готово");
 		return response;
 	}
+
+public int count1 = 0;
+	public void MessageCount(String recipient){
+		List<Messages> messages = sMessageRepo.findByRecipient(recipient);
+		for(int i = 0; i< messages.size(); i++){
+			if(messages.get(i).isStatusMessage() == false){
+				count1++;
+			}
+		}
+	}
+
+	@GetMapping(value = {"Personal/count", "course/count", "createCourse/count", "contacts/count"})
+	public Response Personal(@AuthenticationPrincipal Users users){
+		count1 =0;
+		MessageCount(users.getUsername());
+		Response response = new Response("DoneYes", count1);
+		return response;
+	}
 }

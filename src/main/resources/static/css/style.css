@@ -1684,3 +1684,26 @@ The navigation menu links
 .sentButton{
     width: 200px;
 }
+.getResultCount{
+    color: white;
+    position: absolute;
+}
+.getResultCount p{
+    position: absolute;
+    top: -12px;
+    left: 125px;
+    background: #131e27;
+    border-radius: 50%;
+    height: 17px;
+    width: 17px;
+    margin: 0;
+    padding: 0 4px;
+    font-size: 14px;
+}
+.getResultCount svg{
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    top: -30px;
+    left: 100px;
+}

@@ -52,8 +52,7 @@ public class UserService implements UserDetailsService {
             String email,
             String username,
             String fio,
-            String phone,
-            String fileName
+            String phone
     ) {
 
 
@@ -75,7 +74,6 @@ public class UserService implements UserDetailsService {
         users.setUsername(username);
         user.setFio(fio);
         user.setPhone(phone);
-        user.setFileName(fileName);
 
 
         userRepo.save(users);

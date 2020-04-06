@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,9 +123,7 @@ public class UserController {
             @RequestParam String email,
             @RequestParam String username,
             @RequestParam String fio,
-            @RequestParam String phone,
-            @RequestParam("file") MultipartFile file
-           ) throws IOException {
+            @RequestParam String phone){
 
         Users userFromDB = userRepo.findByUsername(username);
         User user = userFromDB.getUser();
@@ -144,10 +139,10 @@ public class UserController {
         else
         {
 
-            String fileName = "images/"+ file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + fileName));
+//            String fileName = "images/"+ file.getOriginalFilename();
+//            file.transferTo(new File(uploadPath + "/" + fileName));
             test = "test";
-            userSevice.updateProfile(user, users , email, username, fio, phone, fileName );
+            userSevice.updateProfile(user, users , email, username, fio, phone);
         }
 
         return "redirect:/PersonalData";

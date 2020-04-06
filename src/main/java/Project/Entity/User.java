@@ -16,17 +16,9 @@ public class User {
     private String phone;
     private String email;
     private String activationCode;
-    private String fileName;
 
     public User(){}
 
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 
     public int getRl() {
         return rl;

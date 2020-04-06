@@ -56,8 +56,6 @@
 
         <ul>
             <li th:each="dialog : ${dialogsUser}">
-<!--                /////////////////////////////////////////////////////////////////////////////-->
-                <div class="getResultCount" id="getResultCountD"></div>
                 <div th:if="${colorDialog == dialog.recipient}" style="border-bottom: 1px solid #c4c4c4;">
                     <div class="message_list lightDialog" id="dialogIDThis">
                         <div class="chat_people">

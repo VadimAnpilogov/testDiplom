@@ -33,14 +33,11 @@ $( document ).ready(function() {
                         "Post Successfully! <br>" +
                         "---> Customer's Info: FirstName = " +
                         result.data.message + "</p>");
-                }else{
-                    $("#postResultDiv").html("<strong>Error</strong>");
                 }
                 endMessage = 0;
                 console.log(result);
             },
             error : function(e) {
-                alert("Error!");
                 console.log("ERROR: ", e);
             }
         });

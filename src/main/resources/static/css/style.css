@@ -1692,7 +1692,7 @@ The navigation menu links
     position: absolute;
     top: -12px;
     left: 125px;
-    background: #131e27;
+    background: rgb(27, 43, 56);
     border-radius: 50%;
     height: 17px;
     width: 17px;
@@ -1712,4 +1712,14 @@ The navigation menu links
     font-size: 30px;
     margin: 50px auto;
     width: fit-content;
+}
+.svgMessage{
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    top: 15px;
+    right: 0px;
+}
+.widget_message li{
+    position: relative;
 }

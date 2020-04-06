@@ -77,10 +77,6 @@ public class WebController {
         return "SCourse";
     }
 
-    //Страница создания курса
-    @GetMapping("createCourse")
-    public String CreateCourse(){
-        return "CreateCourse";
-    }
+
 
 }

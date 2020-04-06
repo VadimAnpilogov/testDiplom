@@ -30,7 +30,10 @@
             <label><input class="courseCheck-box" type="radio" checked name="priceType" value="Каждого занятия"/>Каждого занятия</label>
             <label><input class="courseCheck-box" type="radio" name="priceType" value="Всего курса в целом"/>Всего курса в целом</label>
 
-            <input class="formCourseinput btn btn-success" type="submit"value="Добавить"/>
+            <div th:if="${active == #httpServletRequest.remoteUser}">
+                <h4 style="color: #dd3333">Для того, чтобы создать курс, пожалуйста подтвердите свою почту</h4>
+            </div>
+            <input th:if="${active != #httpServletRequest.remoteUser}" class="formCourseinput btn btn-success" type="submit"value="Добавить"/>
         </form>
     </div>
 

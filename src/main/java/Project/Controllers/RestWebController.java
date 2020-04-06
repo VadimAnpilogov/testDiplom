@@ -94,7 +94,8 @@ public class RestWebController {
 		}
 		count1 =0;
 		MessageCount(user.getUsername());
-		Response response = new Response("Done" , messages2, count1);
+		Object sender = MessageDialog(user.getUsername());
+		Response response = new Response("Done" , messages2, count1, sender);
 		return response;
 	}
 	@PostMapping(value = "message={recipient}/save")
@@ -185,17 +186,21 @@ public class RestWebController {
 		return response;
 	}
 
-	@GetMapping("message/countD")
-	public Response DialogsMess(@AuthenticationPrincipal Users users){
 
+	public Object MessageDialog(String recipient){
 		ArrayList<String> sender = new ArrayList<>();
-		List<Messages> messages = sMessageRepo.findByRecipient(users.getUsername());
+		List<Messages> messages = sMessageRepo.findByRecipient(recipient);
 		for(int i = 0; i< messages.size(); i++){
 			if(messages.get(i).isStatusMessage() == false){
 				sender.add(messages.get(i).getSender());
 			}
 		}
+		return  sender;
+	}
 
+	@GetMapping("message/countD")
+	public Response DialogsMess(@AuthenticationPrincipal Users users){
+		Object sender = MessageDialog(users.getUsername());
 		Response response = new Response("DoneYes", sender);
 		return response;
 	}

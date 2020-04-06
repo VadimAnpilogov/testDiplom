@@ -77,30 +77,39 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <div  class="themes">
+
+
+                    <div  class="themes" >
                         <div th:each="cors1 : ${courses}">
 
                             <div sec:authorize="${hasAuthority('USER')}">
-                                <form class="inline" th:if="${signUpCourse != #httpServletRequest.remoteUser}" th:action="@{'/signCourse={user}'(user=${cors1.prepName})}" >
-                                    <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
-                                </form>
-                                <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'unsubscribeCourse'}" >
-                                    <button type="submit" class="btn btn-outline-info">Отписаться от курса</button>
-                                </form>
-                                <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers={recipient}'(recipient=${cors1.prepName})}" >
-                                    <button type="submit" class="btn btn-outline-info">Написать сообщение преподавателю</button>
-                                </form>
-                                <button class="btn btn-outline-info" th:if="${signUpCourse == #httpServletRequest.remoteUser}" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Открыть объявления преподавателя</button>
-                                <div class="collapse" id="collapseExample">
-                                    <div class="card card-body">
-                                        <ul class="news">
-                                            <li th:each="news:${News}">
-                                                <p th:utext="${news.date}"></p>
-                                                <h1 th:utext="${news.messageNews}"></h1>
-                                            </li>
-                                        </ul>
+
+                                <div th:if="${active == #httpServletRequest.remoteUser}">
+                                    <h4 style="color: #dd3333">Для того, чтобы записаться на курс, пожалуйста подтвердите свою почту</h4>
+                                </div>
+                                <div th:if="${active != #httpServletRequest.remoteUser}">
+                                    <form class="inline" th:if="${signUpCourse != #httpServletRequest.remoteUser}" th:action="@{'/signCourse={user}'(user=${cors1.prepName})}" >
+                                        <button type="submit" class="btn btn-outline-info">Записаться на курс</button>
+                                    </form>
+                                    <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'unsubscribeCourse'}" >
+                                        <button type="submit" class="btn btn-outline-info">Отписаться от курса</button>
+                                    </form>
+                                    <form class="inline" th:if="${signUpCourse == #httpServletRequest.remoteUser}" th:action="@{'/messageUsers={recipient}'(recipient=${cors1.prepName})}" >
+                                        <button type="submit" class="btn btn-outline-info">Написать сообщение преподавателю</button>
+                                    </form>
+                                    <button class="btn btn-outline-info" th:if="${signUpCourse == #httpServletRequest.remoteUser}" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Открыть объявления преподавателя</button>
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="card card-body">
+                                            <ul class="news">
+                                                <li th:each="news:${News}">
+                                                    <p th:utext="${news.date}"></p>
+                                                    <h1 th:utext="${news.messageNews}"></h1>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
 
 

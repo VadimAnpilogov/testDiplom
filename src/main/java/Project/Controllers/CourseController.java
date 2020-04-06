@@ -48,6 +48,16 @@ public class CourseController {
     public Long id1;
 
 
+    public boolean Active(String userName){
+       Users users = usersRepo.findByUsername(userName);
+       if(users.getUser().getActivationCode().equals("")){
+           return true;
+       }
+       else {
+           return false;
+       }
+    }
+
     //Страница курсов
     @GetMapping("/course")
     public String course(Model model){
@@ -55,6 +65,17 @@ public class CourseController {
         Iterable<Course> course = courseRepo.findAllByOrderByIdAsc();
         model.addAttribute("QCourse1", course);
         return "course";
+    }
+
+    //Страница создания курса
+    @GetMapping("createCourse")
+    public String CreateCourse(@AuthenticationPrincipal Users users,
+                               Model model){
+
+        if(Active(users.getUsername()) == false){
+            model.addAttribute("active", users.getUsername());
+        }
+        return "CreateCourse";
     }
 
 //Страница создания курсов, добавление курса
@@ -111,6 +132,10 @@ public class CourseController {
 
         Iterable<News> news1 = newsRepo.findByAuthorNewsOrderByDateDesc(course.get().getPrepName());
         model.addAttribute("News", news1);
+        if(Active(users.getUsername()) == false){
+            model.addAttribute("active", users.getUsername());
+        }
+
         nameCourses=course1;
         return "SCourse";
     }

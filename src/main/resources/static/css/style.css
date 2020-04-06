@@ -1707,3 +1707,9 @@ The navigation menu links
     top: -30px;
     left: 100px;
 }
+
+.reviewPers h1{
+    font-size: 30px;
+    margin: 50px auto;
+    width: fit-content;
+}
